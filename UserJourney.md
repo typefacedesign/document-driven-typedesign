@@ -69,45 +69,46 @@ This allows Chris to follow guided tests for his Font Family
 * Chris is asked to create a Font Family to get started
 * Chris types in a name
 * Chris clicks the "Save" button
-* Chris is shown a confirmation message and is asked to upload 1 or more Font to the Font Family
+* Chris is shown a confirmation message
+* Chris is asked to upload 1 or more Font to the Font Family
+* Chris is shown his dashboard
 
 ### Create a new Font Family (Existing User)
 
 * Chris wants to create a new Font Family
-* Chris clicks on the "Manage" button on his dashboard
-* Chris is shown a form above his list
+* Chris clicks on the "New Family" button on his dashboard
 * Chris is asked to give his new Font Family a unique name
 * Chris types in a new name
-	* If the name is already being used, he is told to choose a different name
+	* If the name is already being used, the "Save" button is disabled, with a tooltip that asks Chris to choose another name
 * Chris clicks the "Save" button
-* Chris is shown a confirmation message and is asked to upload 1 or more Font to the Font Family
+* Chris is shown a confirmation message 
+* Chris is asked to upload 1 or more Font to the Font Family
 
 ### Renaming an existing Font Family
 
-* Chris is viewing a Font Family
-* Chris clicks on the "Edit" button
-* Chris is shown a form with a Text Input and Button
+* Chris is viewing a Font Family on the dashboard
+* Chris clicks on the "Rename" button
+* Chris is asked for a new name
 * Chris types in a new name
-	* If the name is already being used, he is told to choose a different name
+	* If the name is already being used, the "Save" button is disabled, with a tooltip that asks Chris to choose another name
 * Chris clicks the "Save" button
 * Chris is shown a confirmation message
-* Chris can Undo this
 
 ### Removing an existing Font Family
 
-* Chris is viewing a Font Family
+* Chris is viewing a Font Family on the dashboard
 * Chris clicks on the "Remove" button
 * Chris is reminded that this will remove any Fonts he has added to the Font Family, as well as forgetting any testing completed for those Fonts
 	* If Chris answers "Yes",
 		* It will remove the Font Family and any Fonts that have been added to it
 		* Chris is shown a confirmation message
-		* Chris can Undo this
+		* Chris is shown a button to Undo this, for 30 seconds
 	* If Chris answers "No",
 		* It will not remove that Font Family or any Fonts that have been added to it
 
 ### Add 1 or more Fonts to a Font Family
 
-* Chris is viewing a Font Family
+* Chris is viewing a Font Family on the dashboard
 * Chris wants to add Fonts to it
 * Chris drags the Fonts from a folder on his computer to the drop area
 	* Chris is also able to select Fonts using a File Dialog
@@ -116,66 +117,72 @@ This allows Chris to follow guided tests for his Font Family
 
 ### Add 1 or more existing Fonts to a Font Family
 
-* Chris is viewing a Font Family
-* Chris is trying to add Fonts to it but some of them already exist
+* Chris is viewing a Font Family on the dashboard
+* Chris is trying to add Fonts to it but some of them already exist in that Family
 * For each Font that already exists, Chris is asked if he wants to replace the existing Font which will forget any testing he has already completed for that Font
 	* If Chris answers Yes,
 		* It will replace that Font
 		* Chris is shown a confirmation message
-		* Chris can Undo this
+		* Chris is shown a button to Undo this for 30 seconds
 	* If Chris answers No,
 		* It will not replace that Font
 
 ### Removing an existing Font from a Font Family
 
-* Chris is viewing a Font Family
+* Chris is viewing a Font Family on the dashboard
 * Chris wants to remove a Font from it
 * Chris clicks on the "Remove" button for the Font he wants to remove
 * Chris is reminded that this will forget any testing he has already completed for that Font
 	* If Chris answers Yes,
 		* It will remove that Font
-		* Chris can Undo this
+		* Chris is shown a button to Undo this for 30 seconds
 	* If Chris answers No,
 		* It will not remove that Font
 
 ## Previewing Font Families
 
-### Choosing a Font Family
+### Browsing Font Families
 
-* Chris wants to preview a Font Family
-* Chris clicks on the "Preview" button on his dashboard
-* Chris is asked to choose which Font Family he wants to preview
-* Chris chooses a Font Family and is shown a list of sections he can preview. Examples:
-	* Overview
-	* Headings
-	* Paragraphs
-	* Lists
-	* Numbers
-	* Caps
-	* Lowercase
-	* Mixed Content
+* Chris wants to browse the fonts in his font families
+* Chris sees on his dashboard a preview card of each Font Family
+* Chris can change the dimensions of each preview card
+* Chris can change the dimentions of every preview card at once
+* Chris can reset the dimentions of each or every preview card
+* Chris can tell how much each family has alredy been Tested from a progress indicator on each preview
+* Chris can change the contents of every preview card to show text at 3 scales:
 	* Glyphs
-	* World Scripts
+		* 1 glyphs per Font is shown in each preview
+		* Each preview is squarish in shape by default
+	* Headings
+		* 1 line per Font is shown in each preview
+		* Each preview is a thin wide rectangle in shape by default
+	* Paragraphs
+		* 1 small paragraph is shown in each preview, each word in the next Font (looping)
+		* Each preview is squarish in shape by default
+	* Chris can edit the text
+	* Chris can change the px size of the text within a relevant range
+		
+### Selecting Font Families
+
+* Chris wants to select 1 or more families to Compare or Test
+* Chris selects each Font Family
+* Chris sees the Font Family is selected
 
 ------
 
 ## Comparing Font Families
 
-### Adding a Font Family
+* Chris selects 1+ Font Families (see above)
+* Chris clicks on the "Compare" button and is taken away from the dashboard
+* Chris is taken to the comparison window
+* The window splits into 2+ columns, one for each font Family
+* TODO: Detail this section
 
-* Chris is previewing a Font Family
-* Chris wants to compare it with another Font Family
-* Chris clicks on the "Add Font Family" button
-* Chris is shown a list of his Font Families
-* Chris chooses another Font Family to compare
-* The preview window splits into 2 columns, one for each font Family
+### Leaving the Comparison mode
 
-### Removing a Font Family
-
-* Chris is previewing 2 Font Families
-* Chris wants to remove a Font Family
-* Chris clicks on the "Remove" button for one of the Font Families
-* The preview window reverts to 1 column
+* Chris wants to return to the dashboard
+* Chris clicks on the "Home" button
+* Chris is taken to the dashboard
 
 ------
 
@@ -184,11 +191,11 @@ This allows Chris to follow guided tests for his Font Family
 ### Starting a new Test
 
 * Chris wants to test a Font Family he has loaded
-* Chris clicks on the "Test" button on his dashboard
-* Chris is asked to choose which Font Family he wants to test
-	* Each Font Family has its own progress indicator outlining how much it has been Tested already
-* Chris chooses a Font Family
-* Chris is presented with a bar that informs him of his overall progress for the Font Family, as well as a list of sections he will need to complete as part of testing. Examples:
+* Chris selects 1 Font Families (see above)
+	* If more than 1 Family sis selected, the "Test" button is disabled
+* Chris clicks on the "Test" button and is taken away from the dashboard
+* Chris is presented with a bar that informs him of his overall progress for the Font Family, as well as a list of sections he will need to complete as part of testing.
+* Examples from PI:
 	* Headlines
 	* Text
 	* adhesion
@@ -202,9 +209,21 @@ This allows Chris to follow guided tests for his Font Family
 	* Hinting
 	* Latin
 	* World Scripts
-	* More?...
+* Examples from GL:
+	* fit of typeset text within the brief
+	* key dimensions within the body
+	* stroke thickness range
+	* balance of key strokes and space within and between letters
+	* stroke modulation
+	* in/out stroke recipes
+	* alignments in H and V axis
+	* transitions between letter elements
+	* relating of inner and outer strokes
+	* letter shapes within key patterns
+	* integration of exceptions
+	* TODO: Add more
 * Chris clicks on a section, e.g. Kern
-* Chris is presented with the first of 14 segments in the Kern section
+* Chris is presented with the first of a set of test document segments, e.g. 14 in in the Kern section
 
 ### Answering a Segment's Questions
 
@@ -275,7 +294,7 @@ This allows Chris to follow guided tests for his Font Family
 ### Include an Ignored Question or Section
 
 * Chris wants to include a Question or Section previously ignored
-* TODO
+* TODO: Figure this out
 
 ------
 
@@ -289,70 +308,62 @@ This allows Chris to follow guided tests for his Font Family
 ### View (Any time after testing)
 
 * Chris wants to View the results of a test for a Font Family he completed a few days ago
-* Chris clicks on the "Test" button on his dashboard
-* Chris is asked to choose which Font Family he wants to Test
-* Chris chooses a Font Family that is 100% test complete
+* Chris selects 1 Font Families (see above) that is 100% test complete
+* Chris clicks on the "Test" button and is taken away from the dashboard
 * Chris is presented with a summary for each section highlighting any issues or comments relating to questions raised during testing
 
-### Share
+### Download
 
 * Chris is viewing the results of a Test he has completed for a Font Family
-* Chris wants to Share these results
-* Chris clicks on the "Share Results" button and is asked to enter the email address(s) of the recipient(s) as well an optional note
-* Chris clicks on the "Share" button
-* Chris is shown a confirmation message
-* Chris can Undo this
+* Chris wants to Download these results, to save them for later or to share with a colleague
+* Chris clicks on the "Download Results" button
+* Chris is told he will be given a download HTML file, which he can share like any other file (such as attaching to an email address)
+* Chris's browser is sent a downloaded HTML file object, which he is asked to Save or Ignore in the normal way
 
 ------
 
 ## Unanswered Questions
 
-*Q: Are the sections defined in the Test scenario all relevant for the purposes of Testing? Some of them seem like they would be better suited purely in the Preview scenario. Looking through the DDT document I just want to make sure the list of sections we've defined match the list of parameters mentioned as outlined:*
+**Q: Are the sections defined in the Test scenario all relevant for the purposes of Testing? Some of them seem like they would be better suited purely in the Preview scenario. Looking through the DDT document I just want to make sure the list of sections we've defined match the list of parameters mentioned as outlined:**
 
-* *fit of typeset text within the brief*
-* *key dimensions within the body*
-* *stroke thickness range*
-* *balance of key strokes and space within and between letters*
-* *stroke modulation*
-* *in/out stroke recipes*
-* *alignments in H and V axis*
-* *transitions between letter elements*
-* *relating of inner and outer strokes*
-* *letter shapes within key patterns*
-* *integration of exceptions*
+A: DC reworked the preview scenario to be core to the dashboard. The sections are fine, they will be defined by the power users of the application (who will edit its source code.) I guess we should have a small number of user stories for such a persona, Pablo, who has his own HTML+CSS test document segments he has organized into series with Q&As, reads the developer documentation, and adds them.
+
+**Q: Other things to go into a question's interface: Tips? Examples? Highlighting of what to look at?**
+
+A: 
 
 ------
 
 ## Answered Questions
 
-*Q: Can a user group uploaded fonts into sets? i.e. all of the individual Roboto family fonts in a “Roboto” folder.*
+**Q: Can a user group uploaded fonts into sets? i.e. all of the individual Roboto family fonts in a “Roboto” folder.**
 
-> A: Yes. Within 'Font Family Uploading', add the ability to group fonts, and in other sections, allow testing groups. Essentially font on its own is a font set with 1 member (DC)
+A: Yes. Within 'Font Family Uploading', add the ability to group fonts, and in other sections, allow testing groups. Essentially font on its own is a font set with 1 member (DC)
 
-*Q: Do we need to have User Accounts (Sign Up and Sign In) – just trying to think of how we store the progress of a user as they go through testing as well as previously uploaded fonts, etc or are we happy to store all of this on the client side?*
+**Q: Do we need to have User Accounts (Sign Up and Sign In) – just trying to think of how we store the progress of a user as they go through testing as well as previously uploaded fonts, etc or are we happy to store all of this on the client side?**
 
-> A: We store the progress all client side, such as with [localStorage](http://www.html5rocks.com/en/features/storage) or similar (DC)
+A: We store the progress all client side, such as with [localStorage](http://www.html5rocks.com/en/features/storage) or similar (DC)
 
-*Q: Should a user be able to repeat a test?*
+**Q: Should a user be able to repeat a test?**
 
-> A: Yes. (DC)
+A: Yes. (DC)
 
-*Q: Should a user be able to skip a question entirely?*
+**Q: Should a user be able to skip a question entirely?**
 
-> A: Yes. (DC)
+A: Yes. (DC)
 
-*Q: Should a user be able to skip a section entirely? i.e. Hinting or Kern*
+**Q: Should a user be able to skip a section entirely? i.e. Hinting or Kern**
 
-> A: Yes; both skip and exclude. (DC)
+A: Yes; both skip and exclude. (DC)
 
-*Q: Should the test be linear and start at the first section or can a user choose where to start and the order they want to complete the other sections in?*
+**Q: Should the test be linear and start at the first section or can a user choose where to start and the order they want to complete the other sections in?**
 
-> A: There should be a default linear path, so Dave can just go answer, answer, answer and hammer on it until all the tests are done; and Chris should be able to load a font and navigate to specific questions to inform his design process. (DC)
+A: There should be a default linear path, so Dave can just go answer, answer, answer and hammer on it until all the tests are done; and Chris should be able to load a font and navigate to specific questions to inform his design process. (DC)
 
-*Q: What are the questions for every section and segment? This will be vital to know to ensure the interface is optimally designed.*
+**Q: What are the questions for every section and segment? This will be vital to know to ensure the interface is optimally designed.**
 
-> A: I hope to get this ready for July 1. (DC)
+A: I hope to get this ready for July 1. (DC)
 
-*Q: If a user is testing a font and wants to switch to a different font, what happens if they are at different stages of testing for the 2 fonts? i.e. they are testing the Hinting section on Font 1 but are on the Kern section on Font 2. I would recommend that when switching fonts it simply takes them to the next section for that font they haven’t completed testing for, unless they have 100% completed testing in which case take them to the Results page for that font.*
+**Q: If a user is testing a font and wants to switch to a different font, what happens if they are at different stages of testing for the 2 fonts? i.e. they are testing the Hinting section on Font 1 but are on the Kern section on Font 2. I would recommend that when switching fonts it simply takes them to the next section for that font they haven’t completed testing for, unless they have 100% completed testing in which case take them to the Results page for that font.**
 
-> A: I think your recommendation is good. (DC)
+A: I think your recommendation is good. (DC)
