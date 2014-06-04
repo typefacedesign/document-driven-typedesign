@@ -12,19 +12,16 @@ For Chris to assess the quality of his design, he must load production-ready Fon
 
 There are 4 scenarios to consider:
 
-### Managing Font Families
-
+**Managing Font Families**
 This allows Chris to create Font Families and add/remove Fonts to them
 
-### Previewing Font Families
-
+**Previewing Font Families**
 This allows Chris to Preview a Font Family (similarly to the current Testing page)
 
-### Comparing Font Families
+**Comparing Font Families**
 This allows Chris to compare 1 or more Font Families at a time
 
-### Testing Font Families
-
+**Testing Font Families**
 This allows Chris to follow guided tests for his Font Family
 
 ## User Journeys
