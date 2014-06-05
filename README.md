@@ -2,7 +2,4 @@
 
 A project to test typefaces with documents
 
-### Similar Projects
-
-* http://www.impallari.com/testing
-* http://urtd.net/projects/fontinspector/
+See [gh-pages branch](https://github.com/metapolator/ddt/tree/gh-pages)
