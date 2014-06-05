@@ -75,54 +75,32 @@ This allows Chris to follow guided tests for his Font Family
 * Chris is asked to create a Font Family to get started
 * Chris types in a name
 * Chris clicks the "Save" button
-<<<<<<< Updated upstream
-* Chris is shown a confirmation message
-* Chris is asked to upload 1 or more Font to the Font Family
-* Chris is shown his dashboard
-=======
 * Chris is shown his dashboard
 * Chris is shown a confirmation message
 * Chris is asked to upload 1 or more Font to the Font Family
->>>>>>> Stashed changes
 
 ### Create a new Font Family (Existing User)
 
 * Chris wants to create a new Font Family
-<<<<<<< Updated upstream
-* Chris clicks on the "New Family" button on his dashboard
-=======
 * Chris clicks on the "Add Font Family" button on his dashboard
 * Chris is shown a form
->>>>>>> Stashed changes
 * Chris is asked to give his new Font Family a unique name
 * Chris types in a new name
 	* If the name is already being used, the "Save" button is disabled, with a tooltip that asks Chris to choose another name
 * Chris clicks the "Save" button
-<<<<<<< Updated upstream
-* Chris is shown a confirmation message 
-=======
 * Chris is shown a confirmation message
->>>>>>> Stashed changes
 * Chris is asked to upload 1 or more Font to the Font Family
 
 ### Renaming an existing Font Family
 
 * Chris is viewing a Font Family on the dashboard
-<<<<<<< Updated upstream
-* Chris clicks on the "Rename" button
-* Chris is asked for a new name
-=======
 * Chris clicks on the Font Family title
 	* This adds a Text Input on top of the title
->>>>>>> Stashed changes
 * Chris types in a new name
 	* If the name is already being used, the "Save" button is disabled, with a tooltip that asks Chris to choose another name
 * Chris clicks the "Save" button
 * Chris is shown a confirmation message
-<<<<<<< Updated upstream
-=======
 * Chris is shown a button to Undo this, for 30 seconds
->>>>>>> Stashed changes
 
 ### Removing an existing Font Family
 
@@ -173,32 +151,6 @@ This allows Chris to follow guided tests for his Font Family
 
 ### Browsing Font Families
 
-<<<<<<< Updated upstream
-* Chris wants to browse the fonts in his font families
-* Chris sees on his dashboard a preview card of each Font Family
-* Chris can change the dimensions of each preview card
-* Chris can change the dimentions of every preview card at once
-* Chris can reset the dimentions of each or every preview card
-* Chris can tell how much each family has alredy been Tested from a progress indicator on each preview
-* Chris can change the contents of every preview card to show text at 3 scales:
-	* Glyphs
-		* 1 glyphs per Font is shown in each preview
-		* Each preview is squarish in shape by default
-	* Headings
-		* 1 line per Font is shown in each preview
-		* Each preview is a thin wide rectangle in shape by default
-	* Paragraphs
-		* 1 small paragraph is shown in each preview, each word in the next Font (looping)
-		* Each preview is squarish in shape by default
-	* Chris can edit the text
-	* Chris can change the px size of the text within a relevant range
-		
-### Selecting Font Families
-
-* Chris wants to select 1 or more families to Compare or Test
-* Chris selects each Font Family
-* Chris sees the Font Family is selected
-=======
 * Chris wants to browse the Fonts in his Font Families
 * Chris sees on his dashboard a preview card of each Font Family
 * ~~Chris can change the dimensions of each preview card~~
@@ -281,24 +233,11 @@ This allows Chris to follow guided tests for his Font Family
 * Chris sees the Font Family is no longer selected
 * The "Compare" button is now disabled
 * The "Test" button is now enabled
->>>>>>> Stashed changes
 
 ------
 
 ## Comparing Font Families
 
-<<<<<<< Updated upstream
-* Chris selects 1+ Font Families (see above)
-* Chris clicks on the "Compare" button and is taken away from the dashboard
-* Chris is taken to the comparison window
-* The window splits into 2+ columns, one for each font Family
-* TODO: Detail this section
-
-### Leaving the Comparison mode
-
-* Chris wants to return to the dashboard
-* Chris clicks on the "Home" button
-=======
 ### Entering Comparison Mode
 
 * Chris selects 2 Font Families (see above)
@@ -341,7 +280,6 @@ This allows Chris to follow guided tests for his Font Family
 
 * Chris wants to stop the comparison
 * Chris clicks on the "Stop Comparison" button
->>>>>>> Stashed changes
 * Chris is taken to the dashboard
 
 ------
@@ -351,13 +289,8 @@ This allows Chris to follow guided tests for his Font Family
 ### Starting a new Test
 
 * Chris wants to test a Font Family he has loaded
-<<<<<<< Updated upstream
-* Chris selects 1 Font Families (see above)
-	* If more than 1 Family sis selected, the "Test" button is disabled
-=======
 * Chris selects 1 Font Family (see above)
 	* If more than 1 Family is selected, the "Test" button is disabled
->>>>>>> Stashed changes
 * Chris clicks on the "Test" button and is taken away from the dashboard
 * Chris is presented with a bar that informs him of his overall progress for the Font Family, as well as a list of sections he will need to complete as part of testing.
 * Examples from PI:
@@ -387,13 +320,8 @@ This allows Chris to follow guided tests for his Font Family
 	* letter shapes within key patterns
 	* integration of exceptions
 	* TODO: Add more
-<<<<<<< Updated upstream
-* Chris clicks on a section, e.g. Kern
-* Chris is presented with the first of a set of test document segments, e.g. 14 in in the Kern section
-=======
 * Chris clicks on the "Begin Test" button
 * Chris is presented with a set of test document segments, e.g. 14 in the Kern section
->>>>>>> Stashed changes
 
 ### Answering a Segment's Questions
 
@@ -470,10 +398,6 @@ This allows Chris to follow guided tests for his Font Family
 * Once Chris has answered the question, he is taken back to the results for the Font Family
 * The question he answered is now marked as complete
 
-<<<<<<< Updated upstream
-* Chris wants to include a Question or Section previously ignored
-* TODO: Figure this out
-=======
 ### Answering an Ignored Section
 
 * Chris is viewing the results of a Font Family he has tested
@@ -482,7 +406,6 @@ This allows Chris to follow guided tests for his Font Family
 * Chris is shown the first question in that section
 * Once Chris has answered all of the questions in that section, he is taken back to the results for the Font Family
 * The section he answered is now marked as complete
->>>>>>> Stashed changes
 
 ------
 
@@ -514,19 +437,6 @@ This allows Chris to follow guided tests for his Font Family
 
 ## Unanswered Questions
 
-<<<<<<< Updated upstream
-**Q: Are the sections defined in the Test scenario all relevant for the purposes of Testing? Some of them seem like they would be better suited purely in the Preview scenario. Looking through the DDT document I just want to make sure the list of sections we've defined match the list of parameters mentioned as outlined:**
-
-A: DC reworked the preview scenario to be core to the dashboard. The sections are fine, they will be defined by the power users of the application (who will edit its source code.) I guess we should have a small number of user stories for such a persona, Pablo, who has his own HTML+CSS test document segments he has organized into series with Q&As, reads the developer documentation, and adds them.
-
-**Q: Other things to go into a question's interface: Tips? Examples? Highlighting of what to look at?**
-
-A: 
-
-**Q: Its very common to print test documents on high end laser printers. How can Chris print his tests and bulk-enter answers?**
-
-A: 
-=======
 **Q: Are the sections defined in the Test scenario all relevant for the purposes of Testing? Some of them seem like they would be better suited purely in the Preview scenario. Looking through the DDT document I just want to make sure the list of sections we've defined match the list of parameters mentioned as outlined?**
 
 A: DC reworked the preview scenario to be core to the dashboard. The sections are fine, they will be defined by the power users of the application (who will edit its source code.) I guess we should have a small number of user stories for such a persona, Pablo, who has his own HTML+CSS test document segments he has organised into series with Q&As, reads the developer documentation, and adds them. (DC)
@@ -534,7 +444,6 @@ A: DC reworked the preview scenario to be core to the dashboard. The sections ar
 **Q: Other things to go into a question's interface: Tips? Examples? Highlighting of what to look at?**
 
 A:
->>>>>>> Stashed changes
 
 ------
 
@@ -546,11 +455,7 @@ A: Yes. Within 'Font Family Uploading', add the ability to group fonts, and in o
 
 **Q: Do we need to have User Accounts (Sign Up and Sign In) – just trying to think of how we store the progress of a user as they go through testing as well as previously uploaded fonts, etc or are we happy to store all of this on the client side?**
 
-<<<<<<< Updated upstream
-A: We store the progress all client side, such as with [hood.ie](https://www.google.co.uk/search?q=hood.ie+angular) or [PouchDB]() which provide nice wrappers around [localStorage](http://www.html5rocks.com/en/features/storage) etc (DC)
-=======
 A: We store the progress all client side, such as with [localStorage](http://www.html5rocks.com/en/features/storage) or similar (DC)
->>>>>>> Stashed changes
 
 **Q: Should a user be able to repeat a test?**
 
