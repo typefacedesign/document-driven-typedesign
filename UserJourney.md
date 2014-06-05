@@ -332,6 +332,10 @@ A: DC reworked the preview scenario to be core to the dashboard. The sections ar
 
 A: 
 
+**Q: Its very common to print test documents on high end laser printers. How can Chris print his tests and bulk-enter answers?**
+
+A: 
+
 ------
 
 ## Answered Questions
