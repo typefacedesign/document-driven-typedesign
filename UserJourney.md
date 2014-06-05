@@ -346,7 +346,7 @@ A: Yes. Within 'Font Family Uploading', add the ability to group fonts, and in o
 
 **Q: Do we need to have User Accounts (Sign Up and Sign In) – just trying to think of how we store the progress of a user as they go through testing as well as previously uploaded fonts, etc or are we happy to store all of this on the client side?**
 
-A: We store the progress all client side, such as with [localStorage](http://www.html5rocks.com/en/features/storage) or similar (DC)
+A: We store the progress all client side, such as with [hood.ie](https://www.google.co.uk/search?q=hood.ie+angular) or [PouchDB]() which provide nice wrappers around [localStorage](http://www.html5rocks.com/en/features/storage) etc (DC)
 
 **Q: Should a user be able to repeat a test?**
 
