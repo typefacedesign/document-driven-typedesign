@@ -160,11 +160,11 @@ This allows Chris to follow guided tests for his Font Family
 * Chris can toggle the contents of every preview card to show text at 3 scales:
 	* Glyphs
 		* 1 glyph per Font is shown in each preview
-		* There is a maximum of 16 glyphs in each preview
+		* There is a maximum of 18 glyphs in each preview (9 weights Roman, 9 weights Italic)
 		* Each preview is squarish in shape
 	* Headings
 		* 1 line per Font is shown in each preview
-		* There is a maximum of 16 lines in each preview
+		* There is a maximum of 18 lines in each preview (9 weights Roman, 9 weights Italic)
 		* Each preview is a tall thin rectangle in shape
 	* Paragraphs
 		* 1 small paragraph is shown in each preview
