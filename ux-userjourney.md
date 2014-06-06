@@ -445,6 +445,10 @@ A: DC reworked the preview scenario to be core to the dashboard. The sections ar
 
 A:
 
+**Q: Blondina asks, Is Telaro within scope for this?**
+
+A: Yes, we need to add a persona for a type designer to add their own tests, and Telaro can be part of that (DC)
+
 ------
 
 ## Answered Questions
