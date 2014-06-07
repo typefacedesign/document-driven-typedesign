@@ -5,9 +5,9 @@ title: User Journeys
 
 # Meet Chris
 
-Our primary User Persona is Chris, a Type Designer who wants to design a high quality Latin + Devanagari typeface families.
+Our primary User Persona is Chris, a Type Designer who wants to design high quality Latin + Devanagari typeface families for a client.
 
-Acceptance Criteria: For Chris to assess the quality of his design, he must load production-ready Font Families into a web page (testmyfont.com) and follow guided tests, then improve the Fonts and load them again until all the tests are passed.
+Acceptance Criteria: For Chris to assess the quality of his design, he must load production-ready Font Families into a web page (testmyfont.client.com) and follow guided tests, then improve the Fonts and load them again until all the tests are passed, so he can sell them to his client.
 
 He faces 4 scenarios:
 
@@ -22,6 +22,23 @@ Comparing Font Families
 
 Testing Font Families
 : Chris can follow guided tests for his Font Family
+
+# Meet Dave
+
+Our secondary User Persona is Dave, a web-technology and typography savvy Art Director and Chris' client, who wants to define the tests for Chris to check his fonts with.
+
+Acceptance Criteria: For Dave to design and ship new tests to a deployed instance of DDT (testmyfont.client.com)
+
+He faces 3 scenarios:
+
+Managing Tests
+: Dave can add/remove/rename Test Sections, and add/remove/move/rename Tests
+
+Designing Test Documents
+: Dave can create HTML test documents [Perhaps: Enter/check in flat HTML with inline CSS and JS using the "Exo 2" Web Font Family (which has the maximum 18 styles) for real time preview]
+
+Defining Tests Questions
+: Dave can define tests that refer to segments of documents [Perhaps: Create YAML files that define tests (Document Key, Segment Key (HTML ID or Class), Questions, Answers, Pass/Fail Criteria, Examples of Passing/Failing Fonts, Recommendations on how to pass)]
 
 * auto-gen TOC:
 {:toc}
