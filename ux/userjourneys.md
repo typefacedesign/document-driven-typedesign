@@ -110,9 +110,57 @@ Testing Font Families
 	* If Chris answers No,
 		* It will not remove that Font
 
-## Previewing Font Families
+----
 
-### Browsing Font Families
+## Filtering Font Families
+
+### Selecting 1 Font Family
+
+* Chris wants to select 1 Font Family to Test
+* Chris clicks on the Font Family
+* Chris sees the Font Family is selected
+* The "Test" button is now enabled
+
+### Selecting 2 Font Families
+
+* Chris wants to select 2 Font Families to Test
+* Chris selects 2 Font Families
+* Chris sees each Font Family is selected
+* The "Test" button is now disabled
+* The "Compare" button is now enabled
+* If Chris tries to select another Font Family he is shown a message that a maximum of 2 Font Families can be selected at any one time
+
+### Deselect a Font Family (1 Font Family Selected)
+
+* Chris wants to deselect a Font Family he has selected
+* Chris clicks on the Font Family
+* Chris sees the Font Family is no longer selected
+* The "Test" button is now disabled
+
+### Deselect a Font Family (2 Font Families Selected)
+
+* Chris wants to deselect a Font Family he has selected
+* Chris clicks on the Font Family
+* Chris sees the Font Family is no longer selected
+* The "Compare" button is now disabled
+* The "Test" button is now enabled
+
+### Searching Font Families (Results)
+
+* Chris wants to search for a specific Font Family
+* Chris types in the name of a Font Family into the search Input on his dashboard
+* Chris sees a preview card of each Font Family that matches his search term
+
+### Searching Font Families (No Results)
+
+* Chris is trying to Search Font Families (see above)
+* His search term doesn't match any Font Families
+* Chris is shown a message that no Font Families can be found
+
+
+----
+
+## Browsing Font Families
 
 * Chris is viewing the dashboard and sees a preview card of each Font Family
 * Chris can tell how much each Font Family has already been tested from a progress indicator on each preview
@@ -151,49 +199,6 @@ Testing Font Families
 		* Tamil
 		* Thaana
 		* Tibetian
-
-### Searching Font Families (Results)
-
-* Chris wants to search for a specific Font Family
-* Chris types in the name of a Font Family into the search Input on his dashboard
-* Chris sees a preview card of each Font Family that matches his search term
-
-### Searching Font Families (No Results)
-
-* Chris is trying to Search Font Families (see above)
-* His search term doesn't match any Font Families
-* Chris is shown a message that no Font Families can be found
-
-### Selecting 1 Font Family
-
-* Chris wants to select 1 Font Family to Test
-* Chris clicks on the Font Family
-* Chris sees the Font Family is selected
-* The "Test" button is now enabled
-
-### Selecting 2 Font Families
-
-* Chris wants to select 2 Font Families to Test
-* Chris selects 2 Font Families
-* Chris sees each Font Family is selected
-* The "Test" button is now disabled
-* The "Compare" button is now enabled
-* If Chris tries to select another Font Family he is shown a message that a maximum of 2 Font Families can be selected at any one time
-
-### Deselect a Font Family (1 Font Family Selected)
-
-* Chris wants to deselect a Font Family he has selected
-* Chris clicks on the Font Family
-* Chris sees the Font Family is no longer selected
-* The "Test" button is now disabled
-
-### Deselect a Font Family (2 Font Families Selected)
-
-* Chris wants to deselect a Font Family he has selected
-* Chris clicks on the Font Family
-* Chris sees the Font Family is no longer selected
-* The "Compare" button is now disabled
-* The "Test" button is now enabled
 
 ------
 
