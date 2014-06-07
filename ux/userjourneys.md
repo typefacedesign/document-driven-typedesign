@@ -94,22 +94,25 @@ Defining Tests Questions
 	* If Chris answers "No",
 		* It will not remove that Font Family or any Fonts that have been added to it
 
-### Add 1 or more Fonts to a Font Family
+### Add 1 or more Fonts to 1 or more Families
 
 * Chris is viewing the dashboard
-* Chris selects a Family
-* Chris drags the Fonts from a folder on his computer to the drop area
+* Chris selects 1 or more Families
+* Chris drags 1 or more Fonts from a folder on his computer to the drop area
 	* Chris is also able to select Fonts using a File Dialog
-	* Chris is also able to enter a URL to load the font from
-* If Chris drops more than 18 Fonts, he is asked to try again with less Fonts
+	* Chris is also able to enter a URL to load the fonts from
+* If Chris adds more than 18 Fonts, he is asked to select which Families to add each font to
 * Else, Chris is notified of the progress as the Fonts are loaded
 * Once all of the Fonts have been loaded they are added to the list of Fonts for the Font Family
 
-### Add 1 or more existing Fonts to a Font Family
+### Add 1 or more Fonts to 1 or more Families that already have those fonts
 
 * Chris is viewing the dashboard
-* Chris is trying to add Fonts to it but some of them already exist in that Family
-* If the fonts Chris tries to add bring the Family total to over 18, he is asked to try again with less Fonts
+* Chris selects 1 or more Families
+* Chris drags 1 or more Fonts from a folder on his computer to the drop area
+	* Chris is also able to select Fonts using a File Dialog
+	* Chris is also able to enter a URL to load the fonts from
+* If Chris adds more than 18 Fonts, he is asked to select which Families to add each font to
 * For each Font that already exists, Chris is asked if he wants to replace the existing Font which will forget any testing he has already completed for that Font
 	* If Chris answers Yes,
 		* It will replace that Font
