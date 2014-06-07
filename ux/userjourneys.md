@@ -199,41 +199,21 @@ Testing Font Families
 
 ### Entering Comparison Mode
 
-* Chris selects 2 Font Families (see above)
+* Chris selects 2 or more Families (see above)
 * Chris clicks on the "Compare" button
-	* If only 1 Font Family is selected the "Compare" button is disabled
+	* If only 1 Family is selected the "Compare" button is disabled
 * The "Compare" button is replaced with a "Stop Comparison" button
-* Chris is shown a character map of glyphs
-* Each glyph is squarish in shape
-* Chris can toggle between 2 Modes for comparison
+* The unselected Families are no longer shown
+* Chris can toggle between Modes for comparison ([examples](http://xuv.github.io/design-with-git/))
+	* Side by side
+	* Toggle
 	* Opacity
 	* Mask
-* Chris can use a slider to control the selected Mode
+	* Pixel Diff
+	* Binary File Size
+* Chris can use a slider to control Opacity and Mask modes
 	* By default the slider is set to 50% position
-* Chris can change the Font Families
-* Chris can change the Font style
-	* Light (300)
-	* Regular (400)
-	* Bold (700)
-	* Black (900)
-* Chris can change the Script type
-	* Cyrillic
-	* Devanagari
-	*	Greek
-	* Arabic
-	* Hebrew
-	* Armenian
-	* Georgian
-	* Thai
-	* Bengali
-	* Burmese
-	* CJK
-	* Ethiopic
-	* Khmer
-	* Lao
-	* Tamil
-	* Thaana
-	* Tibetian
+
 
 ### Leaving Comparison mode
 
