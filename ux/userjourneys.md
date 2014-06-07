@@ -97,8 +97,10 @@ Defining Tests Questions
 ### Add 1 or more Fonts to a Font Family
 
 * Chris is viewing the dashboard
+* Chris selects a Family
 * Chris drags the Fonts from a folder on his computer to the drop area
 	* Chris is also able to select Fonts using a File Dialog
+	* Chris is also able to enter a URL to load the font from
 * If Chris drops more than 18 Fonts, he is asked to try again with less Fonts
 * Else, Chris is notified of the progress as the Fonts are loaded
 * Once all of the Fonts have been loaded they are added to the list of Fonts for the Font Family
