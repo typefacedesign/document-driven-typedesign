@@ -33,7 +33,7 @@ Testing Font Families
 
 ### Create a new Font Family (New User)
 
-* Chris is new to testmyfont.com and has not added any Font Families previously
+* Chris visits testmyfont.com for the first time
 * Chris is asked to create a Font Family to get started
 * Chris types in a name
 * Chris clicks the "Save" button
@@ -43,8 +43,9 @@ Testing Font Families
 
 ### Create a new Font Family (Existing User)
 
-* Chris wants to create a new Font Family
-* Chris clicks on the "Add Font Family" button on his dashboard
+* Chris visits testmyfont.com
+* Chris is viewing the dashboard
+* Chris clicks on the "Add Font Family" button
 * Chris is shown a form
 * Chris is asked to give his new Font Family a unique name
 * Chris types in a new name
@@ -55,7 +56,7 @@ Testing Font Families
 
 ### Renaming an existing Font Family
 
-* Chris is viewing a Font Family on the dashboard
+* Chris is viewing the dashboard
 * Chris clicks on the Font Family title
 	* This adds a Text Input on top of the title
 * Chris types in a new name
@@ -66,7 +67,7 @@ Testing Font Families
 
 ### Removing an existing Font Family
 
-* Chris is viewing a Font Family on the dashboard
+* Chris is viewing the dashboard
 * Chris clicks on the "Remove" button
 * Chris is reminded that this will remove any Fonts he has added to the Font Family, as well as forgetting any testing completed for those Fonts
 	* If Chris answers "Yes",
@@ -78,8 +79,7 @@ Testing Font Families
 
 ### Add 1 or more Fonts to a Font Family
 
-* Chris is viewing a Font Family on the dashboard
-* Chris wants to add Fonts to it
+* Chris is viewing the dashboard
 * Chris drags the Fonts from a folder on his computer to the drop area
 	* Chris is also able to select Fonts using a File Dialog
 * Chris is notified of the progress as the Fonts are loaded
@@ -87,7 +87,7 @@ Testing Font Families
 
 ### Add 1 or more existing Fonts to a Font Family
 
-* Chris is viewing a Font Family on the dashboard
+* Chris is viewing the dashboard
 * Chris is trying to add Fonts to it but some of them already exist in that Family
 * For each Font that already exists, Chris is asked if he wants to replace the existing Font which will forget any testing he has already completed for that Font
 	* If Chris answers Yes,
@@ -99,8 +99,7 @@ Testing Font Families
 
 ### Removing an existing Font from a Font Family
 
-* Chris is viewing a Font Family on the dashboard
-* Chris wants to remove a Font from it
+* Chris is viewing the dashboard
 * Chris clicks on the "Remove" button for the Font he wants to remove
 * Chris is reminded that this will forget any testing he has already completed for that Font
 	* If Chris answers Yes,
