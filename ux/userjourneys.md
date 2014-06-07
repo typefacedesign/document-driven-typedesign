@@ -163,42 +163,35 @@ Testing Font Families
 ## Browsing Font Families
 
 * Chris is viewing the dashboard and sees a preview card of each Font Family
-* Chris can tell how much each Font Family has already been tested from a progress indicator on each preview
-* Chris can toggle the contents of every preview card to show text at 3 scales:
+* Chris can see how much each Family has already been tested from a progress indicator on each preview
+* Chris can see the count of how many Fonts are in each Family
+* Chris is shown text in a Family's Regular Font by default 
+* Chris can sort the families, choosing from a list of orderings
+    * Alphabetical
+    * Date Added
+    * Number of Styles
+    * Writing System
+* Chris can toggle the direction of the sorting order
+* Chris can toggle the contents of every card to show text at 3 scales:
 	* Glyphs
-		* ~5 glyphs are shown in each preview
+		* ~5 glyphs are shown in each card
 		* Each preview is wide rectangle in shape (2:1 ratio)
 	* Headings
-		* ~30 glyphs are shown in each preview
+		* ~30 glyphs are shown in each card
 		* Each preview is a very wide rectangle in shape (6:1 ratio)
 	* Paragraphs
-		* ~1,000 glyphs are shown in each preview
+		* ~1,000 glyphs are shown in each card
 		* Each preview is square in shape (1:1 ratio)
 * For each card that is currently selected, or for all cards if none are selected, Chris can
     * change the px size of the text within a range relevant to the mode
-    * resize their dimensions
-    * reset their dimensions to defaults
-    * select which Font is displayed
-    * cycle through Fonts in the Family (prev/next)
-	* edit their texts
-	* set their texts to one of a set of pre-made texts
-		* Cyrillic
-		* Devanagari
-		* Greek
-		* Arabic
-		* Hebrew
-		* Armenian
-		* Georgian
-		* Thai
-		* Bengali
-		* Burmese
-		* CJK
-		* Ethiopic
-		* Khmer
-		* Lao
-		* Tamil
-		* Thaana
-		* Tibetian
+    * toggle between roman and italic
+    * resize the cards dimensions
+    * reset the cards dimensions to defaults
+    * cycle which Font is displayed (prev/next)
+    * change how many Fonts are shown onl each card, from 1 to N to All
+	* edit their text
+	* set their text to one of a list of pre-made texts (including many different writing systems, e.g. Cyrillic, Devanagari)
+* Chris can edit any card text directly by clicking on it to set the cursor and typing
 
 ------
 
