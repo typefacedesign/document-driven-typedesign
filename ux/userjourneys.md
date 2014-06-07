@@ -221,21 +221,23 @@ Defining Tests Questions
 
 ### Entering Comparison Mode
 
-* Chris selects 2 or more Families (see above)
+* Chris is viewing the dashboard
+* If Chris selects 0 or 1 Family, the "Compare" button is disabled
+* Chris selects 2 or more Families
 * Chris clicks on the "Compare" button
-	* If only 1 Family is selected the "Compare" button is disabled
-* The "Compare" button is replaced with a "Stop Comparison" button
-* The unselected Families are no longer shown
-* Chris can toggle between Modes for comparison ([examples](http://xuv.github.io/design-with-git/))
-	* Side by side
+* Chris can tell that he is in Compare mode
+    * The "Compare" button is replaced with a "Stop Comparison" button
+    * The unselected Families are no longer shown
+    * The card selection indication is no longer shown
+* Chris can toggle between Compare Modes ([examples](http://xuv.github.io/design-with-git/))
+	* Side by side ([example, specimen tab](http://www.google.com/fonts#ReviewPlace:refine/Collection:Open+Sans|Roboto|Oswald))
 	* Toggle
-	* Opacity
+	* Opacity ([example, compare tab](http://www.google.com/fonts#ReviewPlace:refine/Collection:Open+Sans|Roboto|Oswald))
 	* Mask
 	* Pixel Diff
 	* Binary File Size
-* Chris can use a slider to control Opacity and Mask modes
+* Chris can use a slider to travel between Families in Opacity and Mask modes
 	* By default the slider is set to 50% position
-
 
 ### Leaving Comparison mode
 
