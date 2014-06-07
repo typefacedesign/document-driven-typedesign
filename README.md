@@ -1,8 +1,17 @@
-# Document Driven Type Design
+---
+layout: default
+title: Document Driven Typedesign
+---
 
-A project to test typefaces with documents
+We are developing a small web application for testing typeface design quality. 
 
-### Similar Projects
+* [User Journeys](/ux/userjourneys.html)
 
-* http://www.impallari.com/testing
-* http://urtd.net/projects/fontinspector/
+* [Wireframe Sketches](/ux/sketches/)
+
+* [Wireframe Mocks](/ux/mocks/001)
+
+#### Similar Projects
+
+* <http://www.impallari.com/testing>
+* <http://urtd.net/projects/fontinspector/>

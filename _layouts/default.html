@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{{ page.title }}</title>
+        <meta name="viewport" content="width=device-width">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <!-- Bootstrap: Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <!-- Bootstrap: Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+        <!-- Bootstrap: Latest compiled and minified JavaScript -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <!-- Bootstrap: mousewheel plugin -->
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.11/jquery.mousewheel.min.js"></script>
+        <!-- Bootstrap: fancyBox2 -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" type="text/css" media="screen" />
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+        <!-- Optionally add helpers - button, thumbnail and/or media -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/helpers/jquery.fancybox-buttons.css" type="text/css" media="screen" />
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/helpers/jquery.fancybox-buttons.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/helpers/jquery.fancybox-media.js"></script>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/helpers/jquery.fancybox-thumbs.css" type="text/css" media="screen" />
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/helpers/jquery.fancybox-thumbs.js"></script>
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">{{ site.name }}</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h1>{{ page.title }}</h1>
+          {{ content }}
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                DDT<br />
+                <br />
+
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                home <a href="http://metapolator.github.io/ddt">metapolator.github.io/ddt</a><br />
+                develop <a href="https://github.com/metapolator/ddt">github.com/metapolator/ddt</a><br />
+                discuss <a href="https://plus.google.com/communities/110027004108709154749">plus.google.com</a>
+              </p>
+            </div>
+
+            <p>
+                Copyright &copy; 2013 <a href='https://github.com/metapolator/ddt/blob/master/AUTHORS.txt'>The DDT Authors</a>.<br />
+                The DDT Project is <a href='http://www.gnu.org/philosophy/free-sw.html'>free software</a>, available under the terms of the <a href='https://github.com/metapolator/ddt/blob/master/LICENSE.txt'>Apache 2.0 license</a>.
+                Please <a href='https://github.com/metapolator/ddt/issues/new'>report issues</a>, suggest features, and contribute on <a href='https://github.com/metapolator/ddt/'>GitHub <i class='icon-github'></i></a>
+            </p>
+          </div>
+        </div>
+
+        <script type="text/javascript">
+        	$(document).ready(function() {
+        		$(".fancybox").fancybox();
+        	});
+        </script>
+    </body>
+</html>

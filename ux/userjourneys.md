@@ -1,69 +1,31 @@
-# Overview
+---
+layout: default
+title: User Journeys
+---
 
-## User Persona
+# Meet Chris
 
-Chris is a Designer who wants to design a high quality Latin + Devanagari typeface families.
+Our primary User Persona is Chris, a Type Designer who wants to design a high quality Latin + Devanagari typeface families.
 
-## Acceptance Criteria
+Acceptance Criteria: For Chris to assess the quality of his design, he must load production-ready Font Families into a web page (testmyfont.com) and follow guided tests, then improve the Fonts and load them again until all the tests are passed.
 
-For Chris to assess the quality of his design, he must load production-ready Font Families into a web page (testmyfont.com) and follow guided tests, then improve the Fonts and load them again until all the tests are passed.
+He faces 4 scenarios:
 
-## Scenarios
+Managing Font Families
+: Chris can create Font Families and add/remove Fonts to them
 
-There are 4 scenarios to consider:
+Previewing Font Families
+: Chris can Preview a Font Family (similarly to the current Testing page)
 
-**Managing Font Families**
+Comparing Font Families
+: Chris can compare 1 or more Font Families at a time
 
-This allows Chris to create Font Families and add/remove Fonts to them
+Testing Font Families
+: Chris can follow guided tests for his Font Family
 
-**Previewing Font Families**
+* auto-gen TOC:
+{:toc}
 
-This allows Chris to Preview a Font Family (similarly to the current Testing page)
-
-**Comparing Font Families**
-
-This allows Chris to compare 1 or more Font Families at a time
-
-**Testing Font Families**
-
-This allows Chris to follow guided tests for his Font Family
-
-## User Journeys
-
-* Managing Font Families
-	* Create a new Font Family (New User)
-	* Create a new Font Family (Existing User)
-	* Rename an existing Font Family
-	* Remove an existing Font Family
-	* Add 1 or more Fonts to a Font Family
-	* Add 1 or more existing Fonts to a Font Family
-	* Remove an existing Font from a Font Family
-* Previewing Font Families
-	* Browsing Font Families
-	* Searching Font Families
-	* Selecting 1 Font Family
-	* Selecting 2 Font Families
-	* Deselect a Font Family (1 Font Family Selected)
-	* Deselect a Font Family (2 Font Families Selected)
-* Comparing Font Families
-	* Entering Comparison Mode
-	* Leaving Comparison Mode
-* Testing Font Families
-	* Starting a new Test
-	* Answering a Segment's Questions
-	* Skipping a Question
-	* Skipping a Section
-	* Ignoring a Question
-	* Ignoring a Section
-	* Continuing a Test
-	* Completing a Test
-	* Repeating a Test
-	* Answering an Ignored Question
-	* Answering an Ignored Section
-	* Results
-		* View (Directly after testing)
-		* View (Any time after testing)
-		* Download
 
 ------
 
@@ -435,52 +397,52 @@ This allows Chris to follow guided tests for his Font Family
 
 ------
 
-## Unanswered Questions
+## Answered Questions
 
-**Q: Are the sections defined in the Test scenario all relevant for the purposes of Testing? Some of them seem like they would be better suited purely in the Preview scenario. Looking through the DDT document I just want to make sure the list of sections we've defined match the list of parameters mentioned as outlined?**
+**CM: Can a user group uploaded fonts into sets? i.e. all of the individual Roboto family fonts in a “Roboto” folder.**
 
-A: DC reworked the preview scenario to be core to the dashboard. The sections are fine, they will be defined by the power users of the application (who will edit its source code.) I guess we should have a small number of user stories for such a persona, Pablo, who has his own HTML+CSS test document segments he has organised into series with Q&As, reads the developer documentation, and adds them. (DC)
+DC: Yes. Within 'Font Family Uploading', add the ability to group fonts, and in other sections, allow testing groups. Essentially font on its own is a font set with 1 member
 
-**Q: Other things to go into a question's interface: Tips? Examples? Highlighting of what to look at?**
+**CM: Do we need to have User Accounts (Sign Up and Sign In) – just trying to think of how we store the progress of a user as they go through testing as well as previously uploaded fonts, etc or are we happy to store all of this on the client side?**
 
-A:
+DC: We store the progress all client side, such as with [localStorage](http://www.html5rocks.com/en/features/storage) or similar
 
-**Q: Blondina asks, Is Telaro within scope for this?**
+**CM: Should a user be able to repeat a test?**
 
-A: Yes, we need to add a persona for a type designer to add their own tests, and Telaro can be part of that (DC)
+DC: Yes.
+
+**CM: Should a user be able to skip a question entirely?**
+
+DC: Yes.
+
+**CM: Should a user be able to skip a section entirely? i.e. Hinting or Kern**
+
+DC: Yes; both skip and exclude.
+
+**CM: Should the test be linear and start at the first section or can a user choose where to start and the order they want to complete the other sections in?**
+
+DC: There should be a default linear path, so Dave can just go answer, answer, answer and hammer on it until all the tests are done; and Chris should be able to load a font and navigate to specific questions to inform his design process.
+
+**CM: What are the questions for every section and segment? This will be vital to know to ensure the interface is optimally designed.**
+
+DC: I hope to get this ready for July 1.
+
+**CM: If a user is testing a font and wants to switch to a different font, what happens if they are at different stages of testing for the 2 fonts? i.e. they are testing the Hinting section on Font 1 but are on the Kern section on Font 2. I would recommend that when switching fonts it simply takes them to the next section for that font they haven’t completed testing for, unless they have 100% completed testing in which case take them to the Results page for that font.**
+
+DC: I think your recommendation is good.
+
+**CM: Are the sections defined in the Test scenario all relevant for the purposes of Testing? Some of them seem like they would be better suited purely in the Preview scenario. Looking through the DDT document I just want to make sure the list of sections we've defined match the list of parameters mentioned as outlined?**
+
+DC: I reworked the preview scenario to be core to the dashboard. The sections are fine, they will be defined by the power users of the application (who will edit its source code.) I guess we should have a small number of user stories for such a persona, Pablo, who has his own HTML+CSS test document segments he has organised into series with Q&As, reads the developer documentation, and adds them.
+
+**Blondina: Is Telaro within scope for this?**
+
+DC: Yes, we need to add a persona for a type designer to add their own tests, and Telaro can be part of that
 
 ------
 
-## Answered Questions
+## Unanswered Questions
 
-**Q: Can a user group uploaded fonts into sets? i.e. all of the individual Roboto family fonts in a “Roboto” folder.**
+**DC: Other things to go into a question's interface: Tips? Examples? Highlighting of what to look at?**
 
-A: Yes. Within 'Font Family Uploading', add the ability to group fonts, and in other sections, allow testing groups. Essentially font on its own is a font set with 1 member (DC)
-
-**Q: Do we need to have User Accounts (Sign Up and Sign In) – just trying to think of how we store the progress of a user as they go through testing as well as previously uploaded fonts, etc or are we happy to store all of this on the client side?**
-
-A: We store the progress all client side, such as with [localStorage](http://www.html5rocks.com/en/features/storage) or similar (DC)
-
-**Q: Should a user be able to repeat a test?**
-
-A: Yes. (DC)
-
-**Q: Should a user be able to skip a question entirely?**
-
-A: Yes. (DC)
-
-**Q: Should a user be able to skip a section entirely? i.e. Hinting or Kern**
-
-A: Yes; both skip and exclude. (DC)
-
-**Q: Should the test be linear and start at the first section or can a user choose where to start and the order they want to complete the other sections in?**
-
-A: There should be a default linear path, so Dave can just go answer, answer, answer and hammer on it until all the tests are done; and Chris should be able to load a font and navigate to specific questions to inform his design process. (DC)
-
-**Q: What are the questions for every section and segment? This will be vital to know to ensure the interface is optimally designed.**
-
-A: I hope to get this ready for July 1. (DC)
-
-**Q: If a user is testing a font and wants to switch to a different font, what happens if they are at different stages of testing for the 2 fonts? i.e. they are testing the Hinting section on Font 1 but are on the Kern section on Font 2. I would recommend that when switching fonts it simply takes them to the next section for that font they haven’t completed testing for, unless they have 100% completed testing in which case take them to the Results page for that font.**
-
-A: I think your recommendation is good. (DC)
+CM: TODO
