@@ -144,7 +144,7 @@ Testing Font Families
 	* Chris can change the Script type
 		* Cyrillic
 		* Devanagari
-		*	Greek
+		* Greek
 		* Arabic
 		* Hebrew
 		* Armenian
