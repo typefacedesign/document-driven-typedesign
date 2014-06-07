@@ -126,22 +126,14 @@ Testing Font Families
 	* Paragraphs
 		* ~1,000 glyphs are shown in each preview
 		* Each preview is square in shape (1:1 ratio)
-* For each preview card individually, Chris can
-    * select which Font is displayed
-    * cycle through Fonts in the Family (prev/next)
-	* edit the text
-	* change the px size of the text within a range relevant to the mode
-	* resize the dimensions
-	* reset the dimensions to defaults
-* For every preview card at once, losing any changes made to individual cards, Chris can
+* For each card that is currently selected, or for all cards if none are selected, Chris can
+    * change the px size of the text within a range relevant to the mode
+    * resize their dimensions
+    * reset their dimensions to defaults
     * select which Font is displayed
     * cycle through Fonts in the Family (prev/next)
 	* edit their texts
 	* set their texts to one of a set of pre-made texts
-	* change the px size of the text within a range relevant to the mode
-	* resize their dimensions
-	* reset their dimensions to defaults
-	* Chris can change the Script type
 		* Cyrillic
 		* Devanagari
 		* Greek
