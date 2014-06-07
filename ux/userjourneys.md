@@ -114,9 +114,6 @@ Testing Font Families
 
 ### Browsing Font Families
 
-* ~~Chris can change the dimensions of each preview card~~
-* ~~Chris can change the dimensions of every preview card at once~~
-* ~~Chris can reset the dimensions of each or every preview card~~
 * Chris is viewing the dashboard and sees a preview card of each Font Family
 * Chris can tell how much each Font Family has already been tested from a progress indicator on each preview
 * Chris can toggle the contents of every preview card to show text at 3 scales:
@@ -127,10 +124,23 @@ Testing Font Families
 		* ~30 glyphs are shown in each preview
 		* Each preview is a very wide rectangle in shape (6:1 ratio)
 	* Paragraphs
-	* Chris can edit the text
-	* Chris can change the px size of the text within a relevant range
 		* ~1,000 glyphs are shown in each preview
 		* Each preview is square in shape (1:1 ratio)
+* For each preview card individually, Chris can
+    * select which Font is displayed
+    * cycle through Fonts in the Family (prev/next)
+	* edit the text
+	* change the px size of the text within a range relevant to the mode
+	* resize the dimensions
+	* reset the dimensions to defaults
+* For every preview card at once, losing any changes made to individual cards, Chris can
+    * select which Font is displayed
+    * cycle through Fonts in the Family (prev/next)
+	* edit their texts
+	* set their texts to one of a set of pre-made texts
+	* change the px size of the text within a range relevant to the mode
+	* resize their dimensions
+	* reset their dimensions to defaults
 	* Chris can change the Script type
 		* Cyrillic
 		* Devanagari
