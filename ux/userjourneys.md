@@ -82,13 +82,15 @@ Testing Font Families
 * Chris is viewing the dashboard
 * Chris drags the Fonts from a folder on his computer to the drop area
 	* Chris is also able to select Fonts using a File Dialog
-* Chris is notified of the progress as the Fonts are loaded
+* If Chris drops more than 18 Fonts, he is asked to try again with less Fonts
+* Else, Chris is notified of the progress as the Fonts are loaded
 * Once all of the Fonts have been loaded they are added to the list of Fonts for the Font Family
 
 ### Add 1 or more existing Fonts to a Font Family
 
 * Chris is viewing the dashboard
 * Chris is trying to add Fonts to it but some of them already exist in that Family
+* If the fonts Chris tries to add bring the Family total to over 18, he is asked to try again with less Fonts
 * For each Font that already exists, Chris is asked if he wants to replace the existing Font which will forget any testing he has already completed for that Font
 	* If Chris answers Yes,
 		* It will replace that Font
@@ -121,11 +123,9 @@ Testing Font Families
 * Chris can toggle the contents of every preview card to show text at 3 scales:
 	* Glyphs
 		* 1 glyph per Font is shown in each preview
-		* There is a maximum of 18 glyphs in each preview (9 weights Roman, 9 weights Italic)
 		* Each preview is squarish in shape
 	* Headings
 		* 1 line per Font is shown in each preview
-		* There is a maximum of 18 lines in each preview (9 weights Roman, 9 weights Italic)
 		* Each preview is a tall thin rectangle in shape
 	* Paragraphs
 		* 1 small paragraph is shown in each preview
