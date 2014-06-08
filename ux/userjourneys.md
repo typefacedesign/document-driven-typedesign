@@ -29,7 +29,7 @@ Our secondary User Persona is Dave, a web-technology and typography savvy Art Di
 
 Acceptance Criteria: For Dave to design and ship new tests to a deployed instance of DDT (testmyfont.client.com)
 
-He faces 3 scenarios:
+He faces 4 scenarios:
 
 Managing Tests
 : Dave can add/remove/rename Test Sections, and add/remove/move/rename Tests
@@ -39,6 +39,9 @@ Designing Test Documents
 
 Defining Tests Questions
 : Dave can define tests that refer to segments of documents [Perhaps: Create YAML files that define tests (Document Key, Segment Key (HTML ID or Class), Questions, Answers, Pass/Fail Criteria, Examples of Passing/Failing Fonts, Recommendations on how to pass)]
+
+Sharing Tests
+: Dave can share Tests with other users, and contribute them to the upstream project here
 
 * auto-gen TOC:
 {:toc}
