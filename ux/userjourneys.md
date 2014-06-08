@@ -321,15 +321,17 @@ Sharing Tests
  
 * Chris wants to ignore a Question, because it doesn't make sense for the given font
 * Chris clicks "Ignore Question"
+* Chris is asked to confirm this, and reminded that it means this question will no longer effect the completion percentage
+* This question will no longer effect the completion percentage
 * Chris is taken to the next question
-* This question doesn't effect the completion percentage
 
 ### Ignoring a Section
   
 * Chris wants to ignore a Section, because it doesn't make sense for the given font
 * Chris clicks "Ignore Section"
-* Chris is taken to the next unanswered question in the next section
+* Chris is asked to confirm this, and reminded that it means this section will no longer effect the completion percentage
 * This section doesn't effect the completion percentage
+* Chris is taken to the next unanswered question in the next section
 
 ### Continuing a Test
 
