@@ -202,13 +202,13 @@ Sharing Tests
 * Chris can toggle the contents of every card to show text at 3 scales:
 	* Glyphs
 		* ~5 glyphs are shown in each card
-		* Each preview is wide rectangle in shape (2:1 ratio)
+		* Each preview is wide rectangle in shape (2:1 ratio when 1 Font is shown)
 	* Headings
 		* ~30 glyphs are shown in each card
-		* Each preview is a very wide rectangle in shape (6:1 ratio)
+		* Each preview is a very wide rectangle in shape (6:1 ratio when 1 Font is shown)
 	* Paragraphs
 		* ~1,000 glyphs are shown in each card
-		* Each preview is square in shape (1:1 ratio)
+		* Each preview is square in shape (1:1 ratio when 1 Font is shown)
 * For each card that is currently selected, or for all cards if none are selected, Chris can
     * change the px size of the text within a range relevant to the mode
     * toggle between roman and italic
