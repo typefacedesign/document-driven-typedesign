@@ -14,11 +14,14 @@ He faces 4 scenarios:
 Managing Font Families
 : Chris can create Font Families and add/remove Fonts to them
 
-Previewing Font Families
+Filtering Font Families
+: Chris can find and select Font Families
+
+Browsing Font Families
 : Chris can Preview a Font Family (similarly to the current Testing page)
 
 Comparing Font Families
-: Chris can compare 1 or more Font Families at a time
+: Chris can compare 2 Font Families at a time
 
 Testing Font Families
 : Chris can follow guided tests for his Font Family
@@ -58,23 +61,24 @@ Sharing Tests
 * Chris visits testmyfont.com for the first time
 * Chris is asked to create a Font Family to get started
 * Chris types in a name
-* Chris clicks the "Save" button
+* Chris clicks the "Save Family" button
 * Chris is shown his dashboard
 * Chris is shown a confirmation message
-* Chris is asked to upload 1 or more Font to the Font Family
+* Chris is asked to add Fonts to the Font Family
 
 ### Create a new Font Family (Existing User)
 
 * Chris visits testmyfont.com
 * Chris is viewing the dashboard
-* Chris clicks on the "Add Font Family" button
+* Chris clicks on the "Add Family" button
 * Chris is shown a form
 * Chris is asked to give his new Font Family a unique name
 * Chris types in a new name
 	* If the name is already being used, the "Save" button is disabled, with a tooltip that asks Chris to choose another name
-* Chris clicks the "Save" button
+* Chris clicks the "Save Family" button
 * Chris is shown a confirmation message
-* Chris is asked to upload 1 or more Font to the Font Family
+* Chris is shown a button to Undo this, for 30 seconds
+* Chris is asked to add Fonts to the Font Family
 
 ### Renaming an existing Font Family
 
@@ -90,7 +94,9 @@ Sharing Tests
 ### Removing an existing Font Family
 
 * Chris is viewing the dashboard
-* Chris clicks on the "Remove" button
+* Chris clicks on the "Menu" dropdown
+* Chris is shown a set of menu options for the Font Family
+* Chris clicks on the "Delete Family" button
 * Chris is reminded that this will remove any Fonts he has added to the Font Family, as well as forgetting any testing completed for those Fonts
 	* If Chris answers "Yes",
 		* It will remove the Font Family and any Fonts that have been added to it
@@ -99,31 +105,28 @@ Sharing Tests
 	* If Chris answers "No",
 		* It will not remove that Font Family or any Fonts that have been added to it
 
-### Add 1 or more Fonts to 1 or more Families
+### Add 1 or more Fonts to a Font Family
 
 * Chris is viewing the dashboard
-* Chris selects 1 or more Families
-* Chris drags 1 or more Fonts from a folder on his computer to the drop area
-	* Chris is also able to select Fonts using a File Dialog
-	* Chris is also able to enter a URL to load the fonts from
-* If Chris adds more than 18 Fonts, he is asked to select which Families to add each font to
+* Chris clicks the "Add Fonts" button for a Font Family
+* Chris is presented with a popup that asks how he wants to upload the fonts:
+	* Chris can drag fonts from his computer to the drop area
+	* Chris can select Fonts using a File Dialog
+	* Chris can enter a URL to load the fonts from
+* If Chris adds more than 18 Fonts, he is told to try again with less fonts
 * Else, Chris is notified of the progress as the Fonts are loaded
 * Once all of the Fonts have been loaded they are added to the list of Fonts for the Font Family
+* Chris is shown a confirmation message
+* Chris is shown a button to Undo this, for 30 seconds
 
-### Add 1 or more Fonts to 1 or more Families that already have those fonts
+### Add 1 or more Fonts to a Font Family that already have those fonts
 
-* Chris is viewing the dashboard
-* Chris selects 1 or more Families
-* Chris drags 1 or more Fonts from a folder on his computer to the drop area
-	* Chris is also able to select Fonts using a File Dialog
-	* Chris is also able to enter a URL to load the fonts from
-* If Chris adds more than 18 Fonts, he is asked to select which Families to add each font to
+* Chris is adding Fonts to a Font Family (see above)
+* Some of the Fonts Chris is uploading already exist in that Font Family
 * For each Font that already exists, Chris is asked if he wants to replace the existing Font which will forget any testing he has already completed for that Font
-	* If Chris answers Yes,
+	* If Chris answers "Replace Existing",
 		* It will replace that Font
-		* Chris is shown a confirmation message
-		* Chris is shown a button to Undo this for 30 seconds
-	* If Chris answers No,
+	* If Chris answers "Keep Existing",
 		* It will not replace that Font
 
 ### Removing an existing Font from a Font Family
@@ -145,13 +148,14 @@ Sharing Tests
 
 * Chris wants to select 1 Font Family to Test
 * Chris clicks on the Font Family
+	* Chris can also click on the "Menu" dropdown and kick on the "Select Family" button
 * Chris sees the Font Family is selected
 * The "Test" button is now enabled
 
 ### Selecting 2 Font Families
 
 * Chris wants to select 2 Font Families to Test
-* Chris selects 2 Font Families
+* Chris selects 2 Font Families (see above)
 * Chris sees each Font Family is selected
 * The "Test" button is now disabled
 * The "Compare" button is now enabled
@@ -161,13 +165,14 @@ Sharing Tests
 
 * Chris wants to deselect a Font Family he has selected
 * Chris clicks on the Font Family
+	* Chris can also click on the "Menu" dropdown and kick on the "Deselect Family" button
 * Chris sees the Font Family is no longer selected
 * The "Test" button is now disabled
 
 ### Deselect a Font Family (2 Font Families Selected)
 
 * Chris wants to deselect a Font Family he has selected
-* Chris clicks on the Font Family
+* Chris selects 1 Font Family (see above)
 * Chris sees the Font Family is no longer selected
 * The "Compare" button is now disabled
 * The "Test" button is now enabled
@@ -184,15 +189,14 @@ Sharing Tests
 * His search term doesn't match any Font Families
 * Chris is shown a message that no Font Families can be found
 
-
 ----
 
 ## Browsing Font Families
 
 * Chris is viewing the dashboard and sees a preview card of each Font Family
-* Chris can see how much each Family has already been tested from a progress indicator on each preview
-* Chris can see the count of how many Fonts are in each Family
-* Chris is shown text in a Family's Regular Font by default 
+* Chris can see how much each Font Family has already been tested from a progress indicator on each preview
+* Chris can see the count of how many Fonts are in each Font Family
+* Chris is shown text in a Font Family's Regular Font by default (CM: This is assuming we are only showing 1 row for each Font Family by default – is this what you want?)
 * Chris can sort the families, choosing from a list of orderings
     * Alphabetical
     * Date Added
@@ -201,7 +205,7 @@ Sharing Tests
 * Chris can toggle the direction of the sorting order
 * Chris can toggle the contents of every card to show text at 3 scales:
 	* Glyphs
-		* ~5 glyphs are shown in each card
+		* ~5 glyphs are shown in each card 
 		* Each preview is wide rectangle in shape (2:1 ratio)
 	* Headings
 		* ~30 glyphs are shown in each card
@@ -211,14 +215,11 @@ Sharing Tests
 		* Each preview is square in shape (1:1 ratio)
 * For each card that is currently selected, or for all cards if none are selected, Chris can
     * change the px size of the text within a range relevant to the mode
-    * toggle between roman and italic
-    * resize the cards dimensions
-    * reset the cards dimensions to defaults
-    * cycle which Font is displayed (prev/next)
-    * change how many Fonts are shown onl each card, from 1 to N to All
+    * cycle which Font is displayed (prev/next) (CM: This will only work for certain content types, i.e. Paragraphs as that never changes to more than 1 Font showing at a time)
+    * change how many Fonts are shown on each card, from 1 to N to All (CM: Recommend this is an all or nothing, i.e. like Google Fonts you are choose to show all "styles" or just 1)
 	* edit their text
 	* set their text to one of a list of pre-made texts (including many different writing systems, e.g. Cyrillic, Devanagari)
-* Chris can edit any card text directly by clicking on it to set the cursor and typing
+* Chris can edit any card text directly by clicking on it to set the cursor and typing (CM: Not sure on this. Example would be the user is on the "Headings" section and has all 16 Fonts for a Family showing. What if they click on the 3rd font in the list and start typing, should it change all of the others? I feel this functionality is well served with text input in the bar and doesn't need to be duplicated which could cause inconsistencies in the interface)
 
 ------
 
@@ -227,8 +228,8 @@ Sharing Tests
 ### Entering Comparison Mode
 
 * Chris is viewing the dashboard
-* If Chris selects 0 or 1 Family, the "Compare" button is disabled
-* Chris selects 2 or more Families
+* If Chris selects 0 or 1 Font Family, the "Compare" button is disabled
+* Chris selects 2 Font Families (CM: You can only test 2 families at once otherwise many of the comparison modes won't work)
 * Chris clicks on the "Compare" button
 * Chris can tell that he is in Compare mode
     * The "Compare" button is replaced with a "Stop Comparison" button
@@ -240,7 +241,6 @@ Sharing Tests
 	* Opacity ([example, compare tab](http://www.google.com/fonts#ReviewPlace:refine/Collection:Open+Sans|Roboto|Oswald))
 	* Mask
 	* Pixel Diff
-	* Binary File Size
 * Chris can use a slider to travel between Families in Opacity and Mask modes
 	* By default the slider is set to 50% position
 
