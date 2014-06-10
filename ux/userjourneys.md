@@ -240,7 +240,6 @@ Sharing Tests
 	* Opacity ([example, compare tab](http://www.google.com/fonts#ReviewPlace:refine/Collection:Open+Sans|Roboto|Oswald))
 	* Mask
 	* Pixel Diff
-	* Binary File Size
 * Chris can use a slider to travel between Families in Opacity and Mask modes
 	* By default the slider is set to 50% position
 
