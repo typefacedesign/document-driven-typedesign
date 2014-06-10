@@ -451,4 +451,4 @@ DC: Yes, we need to add a persona for a type designer to add their own tests, an
 
 **DC: Other things to go into a question's interface: Tips? Examples? Highlighting of what to look at?**
 
-CM: TODO
+**DC: Can Compare mode work during testing? Pablo asked about testing beta versions of a family over time, so perhaps being able to run tests in pair mode would also be good. The way I wrote the above Compare made, makes it really a Browse mode... like for an additional toolbar to slide down from the primary one. Perhaps the toolbar could stay there and be used to 2-up/opacity/mask a testing area?**
