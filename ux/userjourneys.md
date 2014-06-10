@@ -451,6 +451,13 @@ DC: Yes, we need to add a persona for a type designer to add their own tests, an
 
 **DC: Other things to go into a question's interface: Tips? Examples? Highlighting of what to look at?**
 
-**DC: Can Compare mode work during testing? Pablo asked about testing beta versions of a family over time, so perhaps being able to run tests in pair mode would also be good. The way I wrote the above Compare made, makes it really a Browse mode... like for an additional toolbar to slide down from the primary one. Perhaps the toolbar could stay there and be used to 2-up/opacity/mask a testing area?**
+**DC: Can Compare mode work during testing? Pablo asked about testing beta versions of a family over time, so perhaps being able to run tests in pair mode would also be good. The way I wrote the above Compare made, makes it really a Browse mode... like for an additional toolbar to slide down from the primary one. Perhaps the toolbar could stay there and be used to 2-up/opacity/mask a testing area? I have adjusted the user scenarios like this.**
+
+
 
 **DC: The Browse mode allows users to enter customer previewing text. Designers often create text to enter using  'generator' tools (like <http://www.adhesiontext.com> (with Devanagari mode, <http://www.adhesiontext.com/devanagari>), <http://libretext.org/>, <http://justanotherfoundry.com/generator>, <http://www.urtd.net/blog/typable>, and perhaps others) where they input a small number of characters they have, select a language, and the dictionary of that language is stripped to only include words that can be made with the given characters. I expect all text in test documents will be contentEditable, and that in Dave's test documents he can use JS to define a string once and repeat it in the test series. It would be good for our Chris user to be able to define the inputs to a test text generator (almost all those I listed are libre, and the others acn be used as web APIs I think) and store these with cached versions of their outputs, and have them included in the Browser text dropdown. It would also be good for Dave to be able to apply a class to HTML elements in his tests to which these outputs can be applied as substitute contents.**
+
+
+
+*DC: Dan also brought up (a) printing and (b) non-latin. For (b) I think the Dave persona takes care of this, since such a user can add a series of tests using whatever langauge text they like. For (a) I guess that a good Print CSS file will do the trick, and then (with the appropriate JS keybinding library) it should be fast to key answers to the test that are already decided. How should printing be handled in the UI?*
+
