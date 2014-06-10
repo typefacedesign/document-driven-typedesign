@@ -3,7 +3,7 @@ layout: default
 title: User Journeys
 ---
 
-# Meet Chris
+## Meet Chris
 
 Our primary User Persona is Chris, a Type Designer who wants to design high quality Latin + Devanagari typeface families for a client.
 
@@ -23,7 +23,7 @@ Comparing Font Families
 Testing Font Families
 : Chris can follow guided tests for his Font Family
 
-# Meet Dave
+## Meet Dave
 
 Our secondary User Persona is Dave, a web-technology and typography savvy Art Director and Chris' client, who wants to define the tests for Chris to check his fonts with.
 
@@ -42,6 +42,8 @@ Defining Tests Questions
 
 Sharing Tests
 : Dave can share Tests with other users, and contribute them to the upstream project here
+
+## Table of Contents
 
 * auto-gen TOC:
 {:toc}
@@ -451,13 +453,15 @@ DC: Yes, we need to add a persona for a type designer to add their own tests, an
 
 **DC: Other things to go into a question's interface: Tips? Examples? Highlighting of what to look at?**
 
+CM: Without knowing the individual questions and any supporting content I'm not sure where this would fit into the interface currently.
+
 **DC: Can Compare mode work during testing? Pablo asked about testing beta versions of a family over time, so perhaps being able to run tests in pair mode would also be good. The way I wrote the above Compare made, makes it really a Browse mode... like for an additional toolbar to slide down from the primary one. Perhaps the toolbar could stay there and be used to 2-up/opacity/mask a testing area? I have adjusted the user scenarios like this.**
 
-
+CM: I strongly believe we need to separate the 2 modes to reduce the complexity of this app, but again without knowing the specifics of how the tests are meant to work I can't know for certain if we can make them work together.
 
 **DC: The Browse mode allows users to enter customer previewing text. Designers often create text to enter using  'generator' tools (like <http://www.adhesiontext.com> (with Devanagari mode, <http://www.adhesiontext.com/devanagari>), <http://libretext.org/>, <http://justanotherfoundry.com/generator>, <http://www.urtd.net/blog/typable>, and perhaps others) where they input a small number of characters they have, select a language, and the dictionary of that language is stripped to only include words that can be made with the given characters. I expect all text in test documents will be contentEditable, and that in Dave's test documents he can use JS to define a string once and repeat it in the test series. It would be good for our Chris user to be able to define the inputs to a test text generator (almost all those I listed are libre, and the others acn be used as web APIs I think) and store these with cached versions of their outputs, and have them included in the Browser text dropdown. It would also be good for Dave to be able to apply a class to HTML elements in his tests to which these outputs can be applied as substitute contents.**
 
-
+CM: Ok, can you clarify what a test document is again? I think we need a glossary for some of these words as it isn't 100% clear what they are.
 
 *DC: Dan also brought up (a) printing and (b) non-latin. For (b) I think the Dave persona takes care of this, since such a user can add a series of tests using whatever langauge text they like. For (a) I guess that a good Print CSS file will do the trick, and then (with the appropriate JS keybinding library) it should be fast to key answers to the test that are already decided. How should printing be handled in the UI?*
 
