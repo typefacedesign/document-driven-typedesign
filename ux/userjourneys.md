@@ -463,5 +463,8 @@ CM: I strongly believe we need to separate the 2 modes to reduce the complexity 
 
 CM: Ok, can you clarify what a test document is again? I think we need a glossary for some of these words as it isn't 100% clear what they are.
 
-*DC: Dan also brought up (a) printing and (b) non-latin. For (b) I think the Dave persona takes care of this, since such a user can add a series of tests using whatever langauge text they like. For (a) I guess that a good Print CSS file will do the trick, and then (with the appropriate JS keybinding library) it should be fast to key answers to the test that are already decided. How should printing be handled in the UI?*
+**DC: Dan also brought up (a) printing and (b) non-latin. For (b) I think the Dave persona takes care of this, since such a user can add a series of tests using whatever langauge text they like. For (a) I guess that a good Print CSS file will do the trick, and then (with the appropriate JS keybinding library) it should be fast to key answers to the test that are already decided. How should printing be handled in the UI?**
 
+
+
+**DC: Why have an Add Fmaily button? Why not just say that there is always a empty family, and when Chris clicks 'add font' then 2 thigns happen, a font is added, and a new empty family is created?**
