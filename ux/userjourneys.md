@@ -470,4 +470,6 @@ CM: Ok, can you clarify what a test document is again? I think we need a glossar
 **DC: Why have an Add Fmaily button? Why not just say that there is always a empty family, and when Chris clicks 'add font' then 2 thigns happen, a font is added, and a new empty family is created?**
 
 
-*DC: 3-way comparisons (or N-way) can work by having them in a line, `x----x----x----x`, so that you fade or slide from one to the next to the next, or see them in a row.**
+**DC: 3-way comparisons (or N-way) can work by having them in a line, `x----x----x----x`, so that you fade or slide from one to the next to the next, or see them in a row.**
+
+** DC: Part of the 'beta' idea is that users want to see the fonts evolve over time... so being able to 'play' a series of instances of the same family over time. Like Etherpad, playing the document being typed. This could be part of the compare mode? Highlight changes as an animation....**
