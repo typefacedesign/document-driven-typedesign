@@ -261,6 +261,8 @@ Sharing Tests
 	* If more than 1 Family is selected, the "Test" button is disabled
 * Chris clicks on the "Test" button and is taken away from the dashboard
 * Chris is presented with a bar that informs him of his overall progress for the Font Family, as well as a list of sections he will need to complete as part of testing.
+* Examples from DC:
+    * Shaping. This means long columns of words, one Font per col, and a couple of correct 'control' Fonts preloaded in cols. The Compare modes could be useful here. Example: [conjuncts.pdf](/ddt/ux/samples/conjuncts.pdf)
 * Examples from PI:
 	* Headlines
 	* Text
