@@ -1,1 +1,1 @@
-<http://metapolator.github.io/ddt/>
+<http://testmyfont.com>
