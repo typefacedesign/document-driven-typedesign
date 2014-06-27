@@ -5,11 +5,11 @@ title: Document Driven Typedesign
 
 We are developing a small web application for testing typeface design quality. 
 
-* [User Journeys](/ddt/ux/userjourneys.html)
+* [User Journeys](/ux/userjourneys.html)
 
-* [Wireframe Sketches](/ddt/ux/sketches/)
+* [Wireframe Sketches](/ux/sketches/)
 
-* [Wireframe Mocks](/ddt/ux/mocks/002)
+* [Wireframe Mocks](/ux/mocks/002)
 
 #### Similar Projects
 
