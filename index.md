@@ -19,3 +19,4 @@ We are developing a small web application for testing typeface design quality.
 * Red Hat's <http://tdil-dc.in/utrrs/> (similar to [this pdf](https://github.com/metapolator/ddt/raw/gh-pages/ux/samples/conjuncts.pdf))
 * Huerta Tipografica's <http://devanaguide.huertatipografica.com/>
 * Adobe Type [blog post on testing](http://blog.typekit.com/2013/11/06/the-mysteries-of-type-quality-engineering-explained/) with sample PDFs
+* Nina's <http://tools.ninastoessinger.com> test text generators
