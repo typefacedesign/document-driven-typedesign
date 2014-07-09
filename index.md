@@ -13,7 +13,7 @@ We are developing a small web application for testing typeface design quality.
 
 #### Similar Projects
 
-* Pablo Impallari's <http://www.impallari.com/testing> and <http://www.impallari.com/testing/devatest> 
+* Pablo Impallari's <http://www.impallari.com/testing>
 * Vernon Adams' <http://vernnobile.github.io/webfont-testing/>
 * Ondrej Jób's <http://urtd.net/projects/fontinspector/>
 * Red Hat's <http://tdil-dc.in/utrrs/> (similar to [this pdf](https://github.com/metapolator/ddt/raw/gh-pages/ux/samples/conjuncts.pdf))
