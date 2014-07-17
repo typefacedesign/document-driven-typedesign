@@ -9,7 +9,7 @@ We are developing a small web application for testing typeface design quality.
 
 * [Wireframe Sketches](/ux/sketches/)
 
-* [Wireframe Mocks](/ux/mocks/002)
+* [Wireframe Mocks](/ux/mocks/003)
 
 #### Similar Projects
 
