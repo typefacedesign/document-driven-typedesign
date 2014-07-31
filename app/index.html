@@ -1,49 +1,16 @@
 <!doctype html>
 <html>
-<head>
-  <title>DDT</title>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-touch-fullscreen" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style"
-        content="black-translucent" >
-  <meta name="format-detection" content="telephone=no">
-  <meta name="application-name" content="DDT">
-
-  <!--
-  Chrome 35 has old :host behavior before :host-context addition.
-  Since Chrome 35 does not have HTMLImports, we can use this as a decent signal
-  to force the ShadowDOM Polyfill.
-  -->
-  <script>
-    if (!('import' in document.createElement('link'))) {
-      var Platform = {flags: {shadow: true}};
-    }
-  </script>
-
-  <script src="components/platform/platform.js"></script>
-
-  <!--
-  <link rel="import" href="components/font-roboto/roboto.html">
-  -->
-
-  <script>
-    if (navigator.serviceWorker) {
-      // Register our ServiceWorker
-      navigator.serviceWorker.register("sw.js");
-    }
-  </script>
-
-</head>
-<body>
-
-  <template is="auto-binding">
-    <ddt-app fit touch action="auto">
-      
-    </ddt>
-  </template>
-
-</body>
+	<head>
+		<meta charset="utf-8">
+		<title>Document Driven Typedesign</title>
+		<script type="text/javascript" src="components/platform/platform.js"></script>
+		<link rel="stylesheet" type="text/css" href="theme.css">
+		<meta name="viewport" content="width=device-width, min-scale=1.0; initial-scale=1.0; user-scalable=yes">
+		<link rel="import" href="components/font-roboto/roboto.html">
+		<link rel="import" href="components/core-toolbar/core-toolbar.html">
+		<link rel="import" href="components/ddt-elements/ddt-app.html">
+	</head>
+	<body unresolved touch-action="auto">
+		<ddt-app></ddt-app>
+	</body>
 </html>
