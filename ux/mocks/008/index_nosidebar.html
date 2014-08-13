@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+		
+	<title>MockFlow HTML5 Viewer</title> 
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
+
+	
+	<link href="css/kendo/kendo.common.min.css" rel="stylesheet" type="text/css" />
+       <link href="css/kendo/kendo.mockflow.min.css" rel="stylesheet" type="text/css" />
+       
+	   <script type="text/javascript" src="js/jquery-1.7.1.min.js" charset="utf-8"></script>		
+	<script type="text/javascript" src="js/jquery.address-1.4.min.js" charset="utf-8"></script> 
+	
+	<script  type="text/javascript" > 
+
+        
+         var AWSBUCKET="mfassets";
+         
+    
+    
+
+    	</script>
+	
+	
+	
+        	<script type="text/javascript" src="js/kendo.custom.min.js" charset="utf-8"></script> 
+    	<script type="text/javascript" src="js/mockflow-components.min.js" charset="utf-8"></script> 
+    	<script type="text/javascript" src="js/mockflow-viewer.min.js" charset="utf-8"></script>
+    	<script type="text/javascript" src="js/data.js" charset="utf-8"></script> 
+        <script type="text/javascript" src="js/jquery.getimagedata.min.js" charset="utf-8"></script>
+	
+	    <script type="text/javascript">
+
+                 var PUBLICPAGE = "";
+
+
+                    $.address.change(function(event) {  
+
+        							var pageid = "";
+
+        							for (var i =0;i<event.pathNames.length;i++)
+        							{
+        								var arr = event.pathNames[i].split("=");
+
+        								if(arr.length == 2)
+        								{
+        									if(arr[0] == "page")
+        									{
+        										pageid = arr[1];
+        									} 
+        								}	
+        							}
+
+        							if(pageid != "" && pageid != null)
+        						     {
+        								PUBLICPAGE = pageid;
+
+        						     	if(PagePool.getPages().length > 0)
+        				 				{
+        				 					if(PagePool.getPage(PUBLICPAGE))
+        				 					viewPage(checkPage(PagePool.getPage(PUBLICPAGE)));
+        				 					else
+        				 					viewPage(checkPage(PagePool.getPages()[0]));
+
+        				 				}
+        						     }  
+
+
+                    });
+
+
+
+                </script>
+                
+	<style type="text/css" media="all"> 
+	
+	@font-face {
+		    font-family: 'BlockFont';
+		    src: url('css/fonts/blokk/blokk.ttf') format('truetype');
+
+		    font-weight: normal;
+		    font-style: normal;
+		}
+
+		@font-face {
+		    font-family: 'BlockRedactedFont';
+		    src: url('css/fonts/redacted/redacted-regular.ttf') format('truetype');
+
+		    font-weight: normal;
+		    font-style: normal;
+		}
+
+		@font-face {
+		    font-family: 'BlockRedactedFontScript';
+		    src: url('css/fonts/redacted/redacted-script.ttf') format('truetype');
+
+		    font-weight: normal;
+		    font-style: normal;
+		}
+
+		@font-face {
+		    font-family: 'BlockRedactedFontScriptBold';
+		    src: url('css/fonts/redacted/redacted-script-bold.ttf') format('truetype');
+
+		    font-weight: bold;
+		    font-style: bold;
+		}
+
+	
+	.button {
+       border-top: 1px solid #575757;
+       background: #000000;
+       background: -webkit-gradient(linear, left top, left bottom, from(#616161), to(#000000));
+       background: -moz-linear-gradient(top, #616161, #000000);
+       padding: 5px 10px;
+       -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+       border-radius: 8px;
+       -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+       -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+       box-shadow: rgba(0,0,0,1) 0 1px 0;
+       text-shadow: rgba(0,0,0,.4) 0 1px 0;
+       color: white;
+       font-size: 11px;
+       font-family: Helvetica, Arial, Sans-Serif;
+       text-decoration: none;
+       vertical-align: middle;
+       border-color: #000000;
+       cursor: pointer;
+       }
+    .button:hover {
+       border-top: 1px solid #575757;
+       background: #333333;
+       background: -webkit-gradient(linear, left top, left bottom, from(#333333), to(#000000));
+       background: -moz-linear-gradient(top, #616161, #333333);
+       padding: 5px 10px;
+       -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+       border-radius: 8px;
+       -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+       -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+       box-shadow: rgba(0,0,0,1) 0 1px 0;
+       text-shadow: rgba(0,0,0,.4) 0 1px 0;
+       color: white;
+       font-size: 11px;
+       font-family: Helvetica, Arial, Sans-Serif;
+       text-decoration: none;
+       vertical-align: middle;
+       border-color: #000000;
+       cursor: pointer;
+       }
+
+    
+	
+		
+		
+		a
+		{
+		  color: #FFFFFF !important;
+		}
+		html, body
+		{
+			margin: 0;
+			padding: 0;
+		}
+	
+		#header { padding: 1em; }
+		 
+	
+	</style> 
+	
+
+	
+	
+<script  type="text/javascript" > 
+$().ready(function() {
+	 
+	
+
+	 $("#annotations").click(function(event){
+		   //alert('wtf');
+		  	if($('#annotations').prop('checked') == false)
+		  		toggleAnnotations(false);
+
+		  	if($('#annotations').prop('checked') == true)
+		  		toggleAnnotations(true);
+		});  
+
+	 $("#linkhighlights").click(function(event){
+		   //alert('wtf');
+		  	if($('#linkhighlights').prop('checked') == false)
+		  		toggleLinkHighlights(false);
+
+		  	if($('#linkhighlights').prop('checked') == true)
+		  		toggleLinkHighlights(true);
+		});  
+	
+});
+</script> 
+
+
+<script type="text/javascript"> 
+
+function zoomMockup() {
+
+	FITX = false;
+
+	//ZOOMX = $( "#zoomSlider" ).slider( "value" );
+
+	
+	$( "#mockupContent" ).css( "zoom" ,  ZOOMX + "%");
+
+	
+}
+
+function zoomReset() {
+
+	FITX = false;
+
+	ZOOMX = 100;
+
+	
+	$( "#mockupContent" ).css( "zoom" ,  ZOOMX + "%");
+
+	
+}
+
+function zoomToFit() {
+
+	FITX = true;
+	
+	var arr = [100,90,80,70,60,50,40,30];
+
+	for (var i=0;i<arr.length;i++)
+	{
+		ZOOMX = arr[i];
+
+		$( "#mockupContent" ).css( "zoom" ,  ZOOMX + "%");
+
+		var div= document.getElementById('mockupContentHolder'); // need real DOM Node, not jQuery wrapper
+		var hasVerticalScrollbar= div.scrollHeight>div.clientHeight;
+		var hasHorizontalScrollbar= div.scrollWidth>div.clientWidth;
+
+		if(!hasVerticalScrollbar && !hasHorizontalScrollbar)
+			break; 
+		
+	}
+}
+
+$(document).ready(function(){
+
+	if ($.browser.webkit) {
+
+	}
+	else
+	{
+		$('#mockupTools').hide();
+		
+	}
+						   
+	$(window).resize(function(){
+ 
+		$('#initloader').css({
+			position:'absolute',
+			top: ($(window).height() - 300)/2,
+			left: (($(window).width() - 300)/2)-100
+		});
+
+
+		var div= document.getElementById('mockupControl');
+		 
+		$('#mockupMap').css({			
+			height: ((div.clientHeight - 200)) +"px"
+		});
+
+		
+	});
+	// To initially run the function:
+	$(window).resize();
+
+	
+	//$( "#fitButton" ).button();
+
+	$( "#fitButton" ).click(function() {zoomToFit(); });
+	$( "#fitButton100" ).click(function() {zoomReset(); });
+ 
+});
+</script> 
+
+</head> 
+<body onload="initApp()" style="margin: 0;" id="mbody"> 
+
+<script  type="text/javascript" > 
+	
+	function initApp() 
+	{
+		xmlParser(mfxdata);
+	}
+
+	
+</script>
+
+<div id="mockupViewer" style="overflow: hidden;"> 
+ 
+ <div id="mockupContentHolder" style="overflow: auto;" >
+  <div id="mockupContent" style="overflow: hidden;" > 
+		<br/><br/><br/><br/><center><img id='initloader' src='assets/loading.gif' style="margin: 0 auto; text-align: center;vertical-align: middle;"/></center>
+  </div> 
+   </div>
+  
+	<div id="mockupControl" style="display:none; background-color: #444444; color: #FFF; font-family: Arial;  overflow: hidden; height: 100%; "  > 
+	
+		<!--  <h2 style="padding-left: 10px; text-align: center; ">Title</h2> -->
+		
+		<br/>
+		&nbsp;&nbsp;<font style='font-family: Arial; font-size: 12px;'><input type="checkbox" name="anontations" value="annotations" id="annotations"  checked="checked"  /> Show Annotations<br /></font>
+		&nbsp;&nbsp;<font style='font-family: Arial; font-size: 12px;'><input type="checkbox" name="linkhighlights" value="linkhighlights" id="linkhighlights"  checked="checked"  /> Show LinkHighlights<br /></font><br/>
+		
+		<div id='mockupTools' style="position: relative; width:100%; height: 50px;  " >
+		
+			
+		<div  style="width:45%;  padding-left: 5px; padding-right: 5px; float:left;"><button class="button"  style="width: 100%; height: 30px;" id='fitButton100'>Zoom Reset</button></div>
+		<div  style="width:45%;  padding-left: 5px; padding-right: 5px; float:right;"><button class="button" style="width: 100%; height: 30px;" id='fitButton'>Zoom Fit</button></div>
+			
+		</div>
+		
+		<div id="mockupMap" style="background-color: #737373; height:88% ; width: 100%; ccolor: #FFFFFF; font-family: Arial;  font-size: 11px; overflow: auto;" > 
+		
+		</div>
+		<br/>
+		
+		
+		<div  style="width:70%;  height: 30px; padding-left: 10px; padding-right: 10px; left: 10px;"><br/></div>
+		
+	</div> 
+	
+	
+  
+</div> 
+ 
+</body> 
+</html>
