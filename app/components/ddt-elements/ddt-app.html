@@ -19,6 +19,7 @@
 	</core-animated-pages>
 	<core-media-query query="min-width: {{responsiveWidth}}" queryMatches=""></core-media-query>
 </template>
+<script type="text/javascript" src="main.js"></script>
 <script>
 (function(){
 	window.setDDTTransitionSpeed = function(ms){
@@ -39,7 +40,8 @@
 			this.startup();
 		},
 		startup:function(){
-			if(this.family1)
+
+			if(findIndexOfKey('family1') != -1)
 			{
 				this.selected = 'home';
 			} else {

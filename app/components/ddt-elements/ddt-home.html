@@ -3,6 +3,8 @@
 <link rel="import" href="../paper-input/paper-input.html">
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-toast/paper-toast.html">
+<link rel="import" href="../paper-tabs/paper-tabs.html">
+<link rel="import" href="../core-pages/core-pages.html">
 <polymer-element name="ddt-home" flex layout vertical>
 <template>
 	<style type="text/css">
@@ -14,15 +16,70 @@
         top:0;
         left: 0;
     }
+    core-toolbar {
+		background: #288ebd;
+		color: white;
+		border-bottom: solid 2px #F4FF0D;
+	}
+	.colored {
+		background: white;
+		box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+		color: #5e82a8;
+		font-size: 14px;
+		line-height: 30px;
+	}
+	.content {
+		top:64px;
+		display: block;
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+	paper-tabs paper-tab.core-selected {
+      color: #ffffff;
+      background: #288ebd;
+    }
+    
+    paper-tabs.transparent-teal {
+      background-color: white;
+      color: #00bcd4;
+      box-shadow: 0px 5px 10px rgba(0,0,0,0.1);
+    }
+    
+    paper-tabs.transparent-teal::shadow #selectionBar {
+      background-color: #eeeeee;
+    }
+    
+    paper-tabs.transparent-teal paper-tab::shadow #ink {
+      color: #00bcd4;
+    }
 	</style>
 	<div class="bg" cross-fade></div>
-		<core-toolbar fit>
-			<div>Document Driven Typedesign</div>
-		</core-toolbar>
+			<core-toolbar fit>
+				<core-icon id="core_icon" src="images/logo.png" style="width: 42px; height: 42px;"></core-icon>
+				<div flex>Document Driven Typedesign</div>
+				<paper-button label="Collections (1)" tabindex="0"class="colored" role="button"></paper-button>
+			</core-toolbar>
+			<div class="content">
+				<paper-tabs selected="0" id="menuBar" class="transparent-teal" role="tablist">
+  				    <paper-tab role="tab" class="core-selected" active>CHOOSE</paper-tab>
+				    <paper-tab role="tab" class="">REVIEW</paper-tab>
+				    <paper-tab role="tab" class="">TEST</paper-tab>
+   				</paper-tabs>
+   				<core-pages selected="{{$.menuBar.selected}}" >
+   					<div>CHOOSE PAGE</div>
+   					<div>REVIEW PAGE</div>
+   					<div>TEST PAGE</div>
+   				</core-pages>
+			</div>
 </template>
+<script type="text/javascript" src="main.js"></script>
 <script>
-	Polymer('ddt-home',{
+(function(){
+  	Polymer('ddt-home',{
 
 	});
+})();
 </script>
 </polymer-element>

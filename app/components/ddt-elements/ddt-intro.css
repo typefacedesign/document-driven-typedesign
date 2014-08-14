@@ -1,7 +1,7 @@
 core-toolbar {
-	background: #ffffff;
-	color: black;
-	border-bottom: solid 2px rgba(0,0,0,1);
+	background: #288ebd;
+	color: white;
+	border-bottom: solid 2px rgba(255,255,255,1);
 }
 .main {
     position: relative;
@@ -72,4 +72,7 @@ core-toolbar {
         position: absolute;
         top:0;
         left: 0;
+    }
+    .logo {
+        background: url('images/logo.png');
     }

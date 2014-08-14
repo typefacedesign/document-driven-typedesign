@@ -3,7 +3,7 @@
 <link rel="import" href="../paper-input/paper-input.html">
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-toast/paper-toast.html">
-<link rel="import" href="../core-header-panel/core-header-panel.html">
+<link rel="import" href="../core-icons/core-icons.html">
 
 <polymer-element name="ddt-intro" center layout vertical>
 <template>
@@ -11,6 +11,7 @@
 	<style></style>
 	<div class="bg" cross-fade></div>
 		<core-toolbar fit>
+			<core-icon id="core_icon" src="images/logo.png" style="width: 42px; height: 42px;"></core-icon>
 			<div>Document Driven Typedesign</div>
 		</core-toolbar>
 		<div center layout vertical flex class="main {{ {wide: wide} | tokenList }}" cross-fade-delayed?="{{parentElement.lastSelected === 'splash'}}">
@@ -38,15 +39,18 @@
 		</div>
 		</section>-->
 </template>
+<script type="text/javascript" src="main.js"></script>
 <script>
 	Polymer('ddt-intro', {
 		valueChanged: function(){
 			if(this.familyName != "")
 			{
-				this.family1 = {
+				var family1 = {
 					name: this.familyName
 				}
 				this.parentElement.selected = "home";
+				localStorage.setItem('family1', JSON.stringify(family1));
+				localStorage.setItem('collection', 1);
 			}
 			else
 			{
