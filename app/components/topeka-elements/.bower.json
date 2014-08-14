@@ -1,0 +1,40 @@
+{
+  "name": "topeka-elements",
+  "homepage": "https://github.com/Polymer/topeka-elements",
+  "authors": [],
+  "description": "",
+  "license": "BSD",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "core-animated-pages": "Polymer/core-animated-pages#master",
+    "core-drawer-panel": "Polymer/core-drawer-panel#master",
+    "core-icon-button": "Polymer/core-icon-button#master",
+    "core-icons": "Polymer/core-icons#master",
+    "core-ajax": "Polymer/core-ajax#master",
+    "core-scroll-header-panel": "Polymer/core-scroll-header-panel#master",
+    "core-style": "Polymer/core-style#master",
+    "font-roboto": "Polymer/font-roboto#master",
+    "paper-elements": "Polymer/paper-elements#master",
+    "platform": "Polymer/platform#master",
+    "polymer": "Polymer/polymer#master",
+    "firebase-element": "Polymer/firebase-element#master",
+    "firebase": "*",
+    "firebase-simple-login": "*"
+  },
+  "_release": "636f7c8a15",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "636f7c8a1552f316e2ef222277f507bb10a8902f"
+  },
+  "_source": "git://github.com/Polymer/topeka-elements.git",
+  "_target": "master",
+  "_originalSource": "Polymer/topeka-elements"
+}

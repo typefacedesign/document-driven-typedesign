@@ -1,0 +1,75 @@
+core-toolbar {
+	background: #ffffff;
+	color: black;
+	border-bottom: solid 2px rgba(0,0,0,1);
+}
+.main {
+    position: relative;
+    min-width: 300px;
+    max-width: 512px;
+    max-height: 480px;
+    width: 35%;
+    background: white;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    border-radius: 2px;
+    box-sizing: border-box;
+    padding:20px 16px;
+    margin-top: 100px;
+}
+    paper-button {
+      margin: 1em;
+      width: 10em;
+    }
+
+    paper-button.colored {
+      color: #4285f4;
+      fill: #4285f4;
+    }
+
+    paper-button[raisedButton].colored {
+      background: #4285f4;
+      color: #fff;
+    }
+
+    paper-button[raisedButton].colored #ripple,
+    paper-button[raisedButton].colored::shadow #ripple {
+      color: #2a56c6;
+    }
+
+    paper-button[raisedButton].colored #focusBg,
+    paper-button[raisedButton].colored::shadow #focusBg {
+      background: #3367d6;
+    }
+    section {
+    	background: #eee;
+    	padding-top: 100px;
+        height: 80%;
+    }
+    div.container {
+    	margin-left: auto;
+    	margin-right: auto;
+    	width:40%;
+    	min-width: 300px;
+    	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    	background: white;
+    	padding: 2em;
+    }
+    h1 {
+    	text-align: center;
+    }
+    p {
+    	text-align: justify;
+    	line-height: 1.5em;
+    }
+    div.input-fields {
+    	margin-left: auto;
+    	margin-right: auto;
+    }
+    .bg {
+        background-color: #eee;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top:0;
+        left: 0;
+    }

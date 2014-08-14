@@ -1,0 +1,28 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-toolbar/core-toolbar.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-toast/paper-toast.html">
+<polymer-element name="ddt-home" flex layout vertical>
+<template>
+	<style type="text/css">
+	    .bg {
+        background-color: #eee;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top:0;
+        left: 0;
+    }
+	</style>
+	<div class="bg" cross-fade></div>
+		<core-toolbar fit>
+			<div>Document Driven Typedesign</div>
+		</core-toolbar>
+</template>
+<script>
+	Polymer('ddt-home',{
+
+	});
+</script>
+</polymer-element>
