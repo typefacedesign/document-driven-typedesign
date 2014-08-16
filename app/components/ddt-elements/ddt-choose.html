@@ -1,0 +1,41 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-toolbar/core-toolbar.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-toast/paper-toast.html">
+<link rel="import" href="../paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../paper-tabs/paper-tabs.html">
+<link rel="import" href="../paper-tabs/paper-tab.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../core-icons/core-icons.html">
+<link rel="import" href="side-menu.html">
+<polymer-element name="ddt-choose" flex vertical>
+<template>
+	<style type="text/css">
+	.menu-item {
+	}
+	.choose-menu {
+		background: #e1e1e1;
+	}
+	</style>
+	<div flex horizontal layout class="choose-menu">
+		<side-menu></side-menu>
+		<div flex horizontal class="menu-item">
+			<paper-tabs selected="0" role="tablist">
+				<paper-tab>Sentence</paper-tab>
+				<paper-tab>Paragraph</paper-tab>
+				<paper-tab>Letter</paper-tab>
+				<paper-tab>Layout</paper-tab>
+			</paper-tabs>
+		</div>
+		<div flex class="menu-item">Ajan</div>
+	</div>
+</template>
+<script>
+	(function(){
+		Polymer('ddt-choose',{
+
+		});
+	})();
+</script>
+</polymer-element>

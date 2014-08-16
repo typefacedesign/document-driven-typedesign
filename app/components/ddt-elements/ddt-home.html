@@ -4,7 +4,11 @@
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-toast/paper-toast.html">
 <link rel="import" href="../paper-tabs/paper-tabs.html">
+<link rel="import" href="../paper-tabs/paper-tab.html">
 <link rel="import" href="../core-pages/core-pages.html">
+<link rel="import" href="ddt-choose.html">
+<link rel="import" href="ddt-test.html">
+<link rel="import" href="ddt-review.html">
 <polymer-element name="ddt-home" flex layout vertical>
 <template>
 	<style type="text/css">
@@ -17,9 +21,9 @@
         left: 0;
     }
     core-toolbar {
-		background: #288ebd;
+		background: #66b4d8;
 		color: white;
-		border-bottom: solid 2px #F4FF0D;
+		border-bottom: solid 5px #424242;
 	}
 	.colored {
 		background: white;
@@ -37,22 +41,25 @@
 		bottom: 0;
 	}
 	paper-tabs paper-tab.core-selected {
-      color: #ffffff;
-      background: #288ebd;
+      color: #424242;
+      /*background: #626262;*/
     }
     
     paper-tabs.transparent-teal {
       background-color: white;
-      color: #00bcd4;
-      box-shadow: 0px 5px 10px rgba(0,0,0,0.1);
+      color: #424242;
+      /*box-shadow: 0px 5px 10px rgba(0,0,0,0.1);*/
     }
     
     paper-tabs.transparent-teal::shadow #selectionBar {
-      background-color: #eeeeee;
+      background-color: #66b4d8;
+      border-top:solid 3px #66b4d8;
     }
     
     paper-tabs.transparent-teal paper-tab::shadow #ink {
       color: #00bcd4;
+    }
+    core-pages div {
     }
 	</style>
 	<div class="bg" cross-fade></div>
@@ -68,9 +75,9 @@
 				    <paper-tab role="tab" class="">TEST</paper-tab>
    				</paper-tabs>
    				<core-pages selected="{{$.menuBar.selected}}" >
-   					<div>CHOOSE PAGE</div>
-   					<div>REVIEW PAGE</div>
-   					<div>TEST PAGE</div>
+   					<ddt-choose></ddt-choose>
+   					<ddt-review></ddt-review>
+   					<ddt-test></ddt-test>
    				</core-pages>
 			</div>
 </template>

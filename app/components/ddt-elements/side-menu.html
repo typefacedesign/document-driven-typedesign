@@ -1,0 +1,98 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-toolbar/core-toolbar.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-toast/paper-toast.html">
+<link rel="import" href="../paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../paper-tabs/paper-tabs.html">
+<link rel="import" href="../paper-tabs/paper-tab.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-slider/paper-slider.html">
+<link rel="import" href="../core-icons/core-icons.html">
+<link rel="import" href="../core-icon-button/core-icon-button.html">
+<link rel="import" href="../core-dropdown/core-dropdown.html">
+<link rel="import" href="../core-item/core-item.html">
+<link rel="import" href="../core-selector/core-selector.html">
+<polymer-element name="side-menu">
+<template>
+	<style type="text/css">
+	.side-menu-item {
+		padding: 10px;
+	}
+	.bg {
+        background-color: #eee;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top:0;
+        left: 0;
+    }
+    .side-menu-wrapper {
+    	position: absolute;
+    	background: white;
+    	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    	padding: 10px;
+    }
+    core-selector div {
+    	margin: 5px;
+    	display: inline-block;
+    	width: 20px;
+    	height: 20px;
+    }
+    core-icon-button {
+    	padding:10px;
+    }
+	</style>
+	<div>
+		<core-icon-button icon="menu" on-click></core-icon-button>
+		<div class="side-menu-wrapper">
+			<div>Preview Text</div>
+			<core-dropdown>
+				<core-item>Ajanthan</core-item>
+				<core-item>Ajanthan</core-item>
+				<core-item>Ajanthan</core-item>
+				<core-item>Ajanthan</core-item>
+			</core-dropdown>
+			<div>Case</div>
+			<paper-tabs>
+				<paper-tab>Lowercase</paper-tab>
+				<paper-tab>Titlecase</paper-tab>
+				<paper-tab>Uppercase</paper-tab>
+			</paper-tabs>
+			<div>Font Size</div>
+			<paper-slider pin value="10" max="100"></paper-slider>
+			<div>Line Height</div>
+			<paper-slider pin value="30" max="100"></paper-slider>
+			<div>Letter Spacing</div>
+			<paper-slider pin value="70" max="100"></paper-slider>
+			<div>Word Spacing</div>
+			<paper-slider pin value="50" max="100"></paper-slider>
+			<div>Colour</div>
+			<core-selector>
+				<div style="background:black;"></div>
+				<div style="background:#333333;"></div>
+				<div style="background:#666666;"></div>
+				<div style="background:#cccccc;"></div>
+				<div style="background:#ff0000;"></div>
+				<div style="background:#00ff00;"></div>
+				<div style="background:#0000ff;"></div>
+				<div style="background:#ffff00;"></div>
+				<div style="background:#00ffff;"></div>
+				<div style="background:#ff00ff;"></div>
+			</core-selector>
+
+		</div>
+		<div class="bg"></div>
+		<!--<paper-menu-button icon="menu" valign="bottom">
+			
+		</paper-menu-button>-->
+	</div>
+</template>
+<script>
+	(function(){
+		Polymer('side-menu',{
+
+		});
+	})();
+</script>
+</polymer-element>
