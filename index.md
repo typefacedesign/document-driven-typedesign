@@ -6,10 +6,9 @@ title: Document Driven Typedesign
 We are developing a small web application for testing typeface design quality. 
 
 * [User Journeys](https://docs.google.com/document/d/1YtGaKEW8oU42HJ9CnhUa2b4SWEQ0Meew01PAPakcJb0/edit#heading=h.fn5nr55nvb6u)
-
 * [Wireframe Sketches](/ux/sketches/)
-
 * [Wireframe Mocks](/ux/mocks/008)
+* [Work In Progress](/app)
 
 #### Similar Projects
 
