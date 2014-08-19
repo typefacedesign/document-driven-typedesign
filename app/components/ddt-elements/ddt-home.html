@@ -61,6 +61,17 @@
     }
     core-pages div {
     }
+    div.tabs {
+    	background: white;
+    }
+    div.tabs div {
+    	padding: 10px;
+    }
+    paper-tabs {
+    	max-width: 500px;
+    	margin-left: auto;
+    	margin-right: auto;
+    }
 	</style>
 	<div class="bg" cross-fade></div>
 			<core-toolbar fit>
@@ -69,11 +80,13 @@
 				<paper-button label="Collections (1)" tabindex="0"class="colored" role="button"></paper-button>
 			</core-toolbar>
 			<div class="content">
+				<div class="tabs" layout center-justified>
 				<paper-tabs selected="0" id="menuBar" class="transparent-teal" role="tablist">
   				    <paper-tab role="tab" class="core-selected" active>CHOOSE</paper-tab>
 				    <paper-tab role="tab" class="">REVIEW</paper-tab>
 				    <paper-tab role="tab" class="">TEST</paper-tab>
    				</paper-tabs>
+   				</div>
    				<core-pages selected="{{$.menuBar.selected}}" >
    					<ddt-choose></ddt-choose>
    					<ddt-review></ddt-review>
