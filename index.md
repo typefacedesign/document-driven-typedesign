@@ -7,7 +7,7 @@ We are developing a small web application for testing type design quality qualit
 
 * [User Journeys](https://docs.google.com/document/d/1YtGaKEW8oU42HJ9CnhUa2b4SWEQ0Meew01PAPakcJb0/edit#heading=h.fn5nr55nvb6u)
 * [Wireframe Sketches](/ux/sketches/)
-* [Wireframe Mocks](/ux/mocks/010)
+* [Wireframe Mocks](/ux/mocks/011)
 * [Work In Progress](/app)
 
 ## Related Projects
