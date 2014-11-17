@@ -2,4 +2,4 @@
 
 var app = require('../../lib/angular').module('ddt');
 
-app.controller('FontsChooserCtrl', require('./fonts_chooser'));
+app.controller('FontsChooserCtrl', require('./fontsChooser'));

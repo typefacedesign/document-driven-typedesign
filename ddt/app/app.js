@@ -18,6 +18,6 @@ app.config(function($routeProvider) {
         })
         .when('/choose', {
             controller: 'FontsChooserCtrl',
-            templateUrl: 'app/fontsChooser/fonts_chooser.html'
+            templateUrl: 'app/fontsChooser/fontsChooser.html'
         });
 });
