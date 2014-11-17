@@ -50,7 +50,7 @@ gulp.task('lint', function() {
 
 gulp.task('browserify', function() {
     // This used to be bundle({debug: true}). That option is deprecated now.
-    return browserify('./ddt/app/app.js')
+    return browserify('./ddt/app.js')
         .bundle()
         .pipe(source('app.js'))
         .pipe(gulp.dest('./build/dist/'))
@@ -64,7 +64,7 @@ gulp.task('ngannotate', ['lint', 'copy:vendor_js'], function() {
 });
 
 gulp.task('browserify-min', ['ngannotate'], function() {
-    return browserify('./build/ngannotate/app/app.js')
+    return browserify('./build/ngannotate/app.js')
         .bundle()
         .pipe(source('app.min.js'))
         .pipe(streamify(uglify({mangle: false})))

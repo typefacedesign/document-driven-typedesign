@@ -2,13 +2,14 @@
 
 window.jQuery = require('jquery');
 require('bootstrap');
-var angular = require('../lib/angular');
+var angular = require('./lib/angular');
 require('angular-route');
 
 var app = angular.module('ddt', ['ngRoute']);
 
-// Require all our components.
-require('./fontsChooser');
+require('./lib/services');
+
+require('./app');
 
 // Set up routes.
 app.config(function($routeProvider) {
