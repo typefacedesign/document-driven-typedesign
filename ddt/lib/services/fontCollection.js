@@ -10,7 +10,12 @@ angular.module('ddt').factory('fontFamilyCollection', function() {
         fontFamilies.push(family);
     };
 
+    var count = function() {
+        return fontFamilies.length;
+    };
+
     return {
-        add: add
+        add: add,
+        count: count
     };
 });
