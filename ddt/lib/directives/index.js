@@ -4,3 +4,4 @@ require('./fontCardTitlebar');
 require('./fontCardsView');
 require('./fontCardAdd');
 require('./fontCardWord');
+require('./filePickerButton');
