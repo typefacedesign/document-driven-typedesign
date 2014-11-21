@@ -5,6 +5,9 @@ module.exports = function() {
     return {
         restrict: 'E',
         templateUrl: 'lib/directives/filePickerButton/filePickerButton.html',
+        scope: {
+            onPick: '&'
+        },
         link: function(scope, element, attrs, controllers) {
             var filePickerProxyButton = element.find('.ddt-file-picker-proxy-button')[0];
             var filePickerInput = element.find('.ddt-file-picker-input')[0];
@@ -14,7 +17,7 @@ module.exports = function() {
             });
 
             filePickerInput.addEventListener('change', function(event) {
-                var files = event.target.files;
+                 scope.onPick({pickedFiles: event.target.files});
             });
         }
     };
