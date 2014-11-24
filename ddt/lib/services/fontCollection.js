@@ -4,15 +4,7 @@ var angular = require('../angular');
 var _ = require('lodash');
 
 
-var ddt = angular.module('ddt');
-
-
-ddt.constant('FontFamilyCollectionEvents', {
-    ADDED: 'fontFamilyCollection:added'
-});
-
-
-ddt.factory('fontFamilyCollection', function($rootScope, FontFamilyCollectionEvents) {
+angular.module('ddt').factory('fontFamilyCollection', function() {
     var fontFamilies = [];
 
     // When adding a new family, we name it "Font Family X" by default,
@@ -27,7 +19,6 @@ ddt.factory('fontFamilyCollection', function($rootScope, FontFamilyCollectionEve
 
     var add = function(family) {
         fontFamilies.push(family);
-        $rootScope.$broadcast(FontFamilyCollectionEvents.ADDED);
         fontFamiliesCounter++;
     };
 
