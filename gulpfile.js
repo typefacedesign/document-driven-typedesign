@@ -71,22 +71,11 @@ gulp.task('browserify-min', ['ngannotate'], function() {
         .pipe(gulp.dest('./build/dist/'));
 });
 
-gulp.task('server', ['browserify', 'copy:app_html', 'compile:less'], function() {
+gulp.task('server', function() {
     connect.server({
         root: 'build/dist',
         livereload: false
     });
-});
-
-gulp.task('watch', function() {
-    gulp.start('server');
-    gulp.watch([
-        'ddt/**/*.js'
-    ], ['fast']);
-});
-
-gulp.task('fast', ['clean', 'copy:app_html', 'compile:less'], function() {
-    gulp.start('browserify');
 });
 
 gulp.task('copy:app_html', function() {
@@ -99,6 +88,11 @@ gulp.task('copy:vendor_js', function() {
         .pipe(gulp.dest('build/'));
 });
 
+gulp.task('copy:glyphicons', function() {
+    return gulp.src(['node_modules/bootstrap/fonts/**'])
+        .pipe(gulp.dest('build/dist/fonts/'));
+});
+
 gulp.task('compile:less', function() {
     return gulp.src('ddt/ddt.less')
         .pipe(less())
@@ -107,5 +101,5 @@ gulp.task('compile:less', function() {
 });
 
 gulp.task('default', ['clean'], function() {
-    gulp.start('browserify', 'browserify-min', 'copy:app_html', 'compile:less');
+    gulp.start('browserify', 'copy:app_html', 'copy:glyphicons', 'compile:less');
 });
