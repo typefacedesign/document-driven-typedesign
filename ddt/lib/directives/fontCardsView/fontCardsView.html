@@ -1,16 +1,21 @@
-<div class="row">
-  <div class="col-md-4">
-    <ddt-font-card-add></ddt-font-card-add>
+<div ng-if="isType(FontCardTypes.WORD)">
+  <div class="row">
+    <div class="col-md-4">
+      <ddt-font-card-add></ddt-font-card-add>
+    </div>
+
+    <div class="col-md-4" ng-if="families.length > 0">
+        <ddt-font-card-word font-family="families[0]"></ddt-font-card-word>
+    </div>
+
+    <div class="col-md-4" ng-if="families.length > 1">
+        <ddt-font-card-word font-family="families[1]"></ddt-font-card-word>
+    </div>
   </div>
 
-  <div class="col-md-4" ng-repeat="family in groupedFamilies[0]">
-    <ddt-font-card-word font-family="family"></ddt-font-card-word>
-  </div>
-</div>
-
-
-<div class="row" ng-repeat="group in groupedFamilies" ng-if="$index > 0">
-  <div class="col-md-4" ng-repeat="family in group">
-    <ddt-font-card-word font-family="family"></ddt-font-card-word>
+  <div class="row">
+    <div class="col-md-4" ng-repeat="family in families" ng-if="$index > 1">
+      <ddt-font-card-word font-family="family"></ddt-font-card-word>
+    </div>
   </div>
 </div>
