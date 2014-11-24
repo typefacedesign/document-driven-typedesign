@@ -1,10 +1,9 @@
 'use strict';
 
-var angular = require('../angular');
 var $ = require('jquery');
 
 
-angular.module('ddt').factory('filePicker', function($q) {
+module.exports = function($q) {
     // Services are only initialized once, so doing this here is safe.
     var fileInput = $('<input type="file" multiple class="ddt-file-picker-input"/>');
     $('body').append(fileInput);
@@ -26,4 +25,4 @@ angular.module('ddt').factory('filePicker', function($q) {
     return {
         pick: pick
     };
-});
+};
