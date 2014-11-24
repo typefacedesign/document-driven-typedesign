@@ -19,6 +19,6 @@ Install Gulp globally:
 Build DDT and run a server to serve up the built files:
 
     $ gulp
-    $ gulp serve
+    $ gulp server
 
 This will serve DDT on http://localhost:8080 on your computer.
