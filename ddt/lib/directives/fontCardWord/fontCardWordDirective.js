@@ -4,6 +4,9 @@
 module.exports = function() {
     return {
         templateUrl: 'lib/directives/fontCardWord/fontCardWord.html',
-        controller: 'FontCardWordCtrl'
+        controller: 'FontCardWordCtrl',
+        scope: {
+            fontFamily: '='
+        }
     };
 };
