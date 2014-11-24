@@ -5,6 +5,9 @@ module.exports = function() {
     return {
         restrict: 'E',
         templateUrl: 'lib/directives/fontCardTitlebar/fontCardTitlebar.html',
-        controller: 'FontCardTitlebarCtrl'
+        controller: 'FontCardTitlebarCtrl',
+        scope: {
+            fontFamily: '='
+        }
     };
 };
