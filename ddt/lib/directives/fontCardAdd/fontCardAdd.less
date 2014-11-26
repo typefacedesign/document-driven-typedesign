@@ -1,3 +1,28 @@
+.ddt-font-card-add {
+  position: relative;
+}
+
 .ddt-font-card-add-content {
   padding-top: @navbar-padding-vertical * 3;
+}
+
+.ddt-font-card-drag-overlay {
+  z-index: 1;
+  opacity: 0;
+  display: none;
+}
+
+.ddt-font-card-drag-overlay-active {
+  opacity: 0.25;
+  background-color: @brand-primary;
+  display: block;
+}
+
+.ddt-font-card-add-content,
+.ddt-font-card-drag-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }

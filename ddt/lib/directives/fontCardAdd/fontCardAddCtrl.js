@@ -11,6 +11,10 @@ module.exports = function ($scope, $q, FontFamily, fontFamilyCollection) {
     };
 
     $scope.addFontFamily = function(fontFiles) {
+        if (_.size(fontFiles) === 0) {
+            return;
+        }
+
         var family = new FontFamily($scope.fontFamily.name);
         var addPromise = $q.all(_.map(fontFiles, function(file) {
             return family.addFontFromFile(file);
