@@ -2,6 +2,7 @@
 
 var angular = require('../angular');
 var opentype = require('opentype.js');
+var _ = require('lodash');
 
 
 angular.module('ddt').constant('FontFamilySources', {
@@ -33,7 +34,10 @@ angular.module('ddt').factory('FontFamily', function($q, FontFamilySources) {
         var fileReader = new FileReader();
         fileReader.onload = function(e) {
             try {
-                family.fonts.push(opentype.parse(fileReader.result));
+                family.fonts.push({
+                    file: file,
+                    font: opentype.parse(fileReader.result)
+                });
                 deferred.resolve();
             } catch (e) {
                 deferred.reject({error: e, file: file});
@@ -45,6 +49,28 @@ angular.module('ddt').factory('FontFamily', function($q, FontFamilySources) {
     };
 
     FontFamily.prototype.addFontFromUrl = function () {
+    };
+
+    FontFamily.prototype.clone = function () {
+        // Why can't we just do an angular.copy to deep copy a font family?
+        // Because using angular.copy to copy the font object as returned by
+        // opentype.js freezes the browser. My current solution is to re-parse
+        // the font file.
+        var deferred = $q.defer();
+        var newFamily = new FontFamily(this.name + ' Copy', this.source);
+
+        var promises = _.map(this.fonts, function (font) {
+            if (newFamily.source === FontFamilySources.FILE) {
+                return newFamily.addFontFromFile(font.file);
+            }
+        });
+
+        $q.all(promises)
+            .then(function () {
+                deferred.resolve(newFamily);
+            });
+
+        return deferred.promise;
     };
 
     return FontFamily;

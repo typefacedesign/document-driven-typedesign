@@ -22,6 +22,10 @@ angular.module('ddt').factory('fontFamilyCollection', function() {
         fontFamiliesCounter++;
     };
 
+    var remove = function(family) {
+        _.pull(fontFamilies, family);
+    };
+
     var count = function() {
         return _.size(fontFamilies);
     };
@@ -33,6 +37,7 @@ angular.module('ddt').factory('fontFamilyCollection', function() {
     return {
         families: families,
         add: add,
+        remove: remove,
         count: count,
         generatePlaceholderName: generatePlaceholderName
     };

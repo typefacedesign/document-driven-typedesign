@@ -3,7 +3,7 @@
 var _ = require('lodash');
 
 
-module.exports = function($scope, filePicker) {
+module.exports = function($scope, filePicker, confirmDialog, fontFamilyCollection) {
     $scope.addFont = function() {
         filePicker.pick()
             .then(function(files) {
@@ -17,6 +17,20 @@ module.exports = function($scope, filePicker) {
                             // rag on you all the time, Angular.
                         });
                 });
+            });
+    };
+
+    $scope.deleteFamily = function() {
+        confirmDialog('Confirm Delete', 'Do you want to delete this font family?')
+            .then(function () {
+                fontFamilyCollection.remove($scope.fontFamily);
+            });
+    };
+
+    $scope.duplicate = function () {
+        $scope.fontFamily.clone()
+            .then(function (newFamily) {
+                fontFamilyCollection.add(newFamily);
             });
     };
 };
