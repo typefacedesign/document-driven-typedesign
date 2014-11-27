@@ -2,7 +2,9 @@
 
   <div class="ddt-font-card-titlebar">
     <div class="row">
-      <div class="col-md-9">{{ fontFamily.name }}</div>
+      <div class="col-md-9">
+        <input type="text" ng-model="fontFamily.name" class="ddt-flat-input" ng-disabled="!editingFamilyName" ddt-focus="editingFamilyName" />
+      </div>
 
       <div class="col-md-3">
         <div class="btn-group ddt-float-right">
@@ -11,7 +13,7 @@
           </button>
           <ul class="dropdown-menu" role="menu">
             <li><a href="" ng-click="addFont()">Add Font</a></li>
-            <li><a href="#">Rename</a></li>
+            <li><a href="" ng-click="rename()">Rename</a></li>
             <li><a href="" ng-click="duplicate()">Duplicate</a></li>
             <li><a href="" ng-click="deleteFamily()">Delete</a></li>
           </ul>

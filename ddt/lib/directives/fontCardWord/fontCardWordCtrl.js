@@ -4,6 +4,10 @@ var _ = require('lodash');
 
 
 module.exports = function($scope, filePicker, confirmDialog, fontFamilyCollection) {
+    var init = function() {
+        $scope.editingFamilyName = false;
+    };
+
     $scope.addFont = function() {
         filePicker.pick()
             .then(function(files) {
@@ -27,10 +31,16 @@ module.exports = function($scope, filePicker, confirmDialog, fontFamilyCollectio
             });
     };
 
-    $scope.duplicate = function () {
+    $scope.duplicate = function() {
         $scope.fontFamily.clone()
             .then(function (newFamily) {
                 fontFamilyCollection.add(newFamily);
             });
     };
+
+    $scope.rename = function() {
+        $scope.editingFamilyName = true;
+    };
+
+    init();
 };
