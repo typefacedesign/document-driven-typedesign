@@ -5,3 +5,4 @@ require('./fontCardsView');
 require('./fontCardAdd');
 require('./fontCardWord');
 require('./filePickerButton');
+require('./focus');
