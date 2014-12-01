@@ -12,7 +12,7 @@ angular.module('ddt').constant('FontFamilySources', {
 });
 
 
-angular.module('ddt').factory('FontFamily', function($q, FontFamilySources) {
+angular.module('ddt').factory('FontFamily', function($q, $http, FontFamilySources) {
     var FontFamily = function(name, source) {
         if (angular.isUndefined(name)) {
             throw new Error('No name specified for new FontFamily.');
@@ -36,6 +36,7 @@ angular.module('ddt').factory('FontFamily', function($q, FontFamilySources) {
             try {
                 family.fonts.push({
                     file: file,
+                    rawFontData: fileReader.result,
                     font: opentype.parse(fileReader.result)
                 });
                 deferred.resolve();
@@ -48,7 +49,24 @@ angular.module('ddt').factory('FontFamily', function($q, FontFamilySources) {
         return deferred.promise;
     };
 
-    FontFamily.prototype.addFontFromUrl = function () {
+    FontFamily.prototype.addFontFromUrl = function(url) {
+        var family = this;
+        var deferred = $q.defer();
+
+        $http.get(url, {responseType: 'arraybuffer'})
+            .then(function(response) {
+                try {
+                    family.fonts.push({
+                        rawFontData: response.data,
+                        font: opentype.parse(response.data)
+                    });
+                    deferred.resolve();
+                } catch (e) {
+                    deferred.reject({error: e, url: url});
+                }
+            });
+
+        return deferred.promise;
     };
 
     FontFamily.prototype.clone = function () {
