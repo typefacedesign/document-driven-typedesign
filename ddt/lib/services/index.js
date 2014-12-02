@@ -1,6 +1,6 @@
 'use strict';
 
 require('./fontFamily');
-require('./fontCollection');
+require('./fontFamilyCollection');
 require('./filePicker');
 require('./confirmDialog');
