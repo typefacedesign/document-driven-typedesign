@@ -23,6 +23,14 @@ angular.module('ddt').factory('FontFamily', function($q, $http, FontFamilySource
         this.fonts = [];
     };
 
+    FontFamily.prototype.addFont = function(fileName, rawFontData) {
+        this.fonts.push({
+            fileName: fileName,
+            rawFontData: rawFontData,
+            font: opentype.parse(rawFontData)
+        });
+    };
+
     FontFamily.prototype.addFontFromFile = function(file) {
         if (this.source !== FontFamilySources.FILE) {
             throw new Error('Cannot add font from file to font family with source: ' + this.source);
@@ -34,11 +42,7 @@ angular.module('ddt').factory('FontFamily', function($q, $http, FontFamilySource
         var fileReader = new FileReader();
         fileReader.onload = function(e) {
             try {
-                family.fonts.push({
-                    file: file,
-                    rawFontData: fileReader.result,
-                    font: opentype.parse(fileReader.result)
-                });
+                family.addFont(file.name, fileReader.result);
                 deferred.resolve();
             } catch (e) {
                 deferred.reject({error: e, file: file});
@@ -56,10 +60,7 @@ angular.module('ddt').factory('FontFamily', function($q, $http, FontFamilySource
         $http.get(url, {responseType: 'arraybuffer'})
             .then(function(response) {
                 try {
-                    family.fonts.push({
-                        rawFontData: response.data,
-                        font: opentype.parse(response.data)
-                    });
+                    family.addFont(url.replace(/^.*[\\\/]/, ''), response.data);
                     deferred.resolve();
                 } catch (e) {
                     deferred.reject({error: e, url: url});
