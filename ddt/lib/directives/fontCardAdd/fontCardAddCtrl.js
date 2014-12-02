@@ -4,11 +4,13 @@ var _ = require('lodash');
 
 
 module.exports = function ($scope, $q, $http, FontFamily, FontFamilySources, fontFamilyCollection) {
+    var PLACEHOLDER_URL = {name: 'url1'};
+
     var init = function() {
         $scope.fontFamily = {
             name: fontFamilyCollection.generatePlaceholderName()
         };
-        $scope.urlFields = [{name: 'url1'}];
+        $scope.urlFields = [angular.copy(PLACEHOLDER_URL)];
         $scope.currentView = 'main';
     };
 
@@ -55,6 +57,14 @@ module.exports = function ($scope, $q, $http, FontFamily, FontFamilySources, fon
             }, function() {
                 // TODO: pop up an error.
             });
+    };
+
+    $scope.removeUrl = function(index) {
+        if ($scope.urlFields.length > 1) {
+            $scope.urlFields.splice(index, 1);
+        } else {
+            $scope.urlFields[0] = angular.copy(PLACEHOLDER_URL);
+        }
     };
 
     init();

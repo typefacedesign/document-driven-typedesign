@@ -36,8 +36,9 @@
     <div class="row ">
       <div class="col-md-12">
         <form role="form" name="urlUploadForm" ng-submit="createFamilyFromUrls()" novalidate>
-          <div class="form-group" ng-repeat="field in urlFields">
-            <input type="url" class="form-control" placeholder="Enter a URL" name="" ng-model="field.url">
+          <div class="form-group clearfix ddt-text-input-group" ng-repeat="field in urlFields">
+            <input type="url" class="form-control pull-left" placeholder="Enter a URL" ng-model="field.url">
+            <button class="ddt-circle-button pull-right" ng-click="removeUrl($index)">✕</button>
           </div>
 
           <div class="form-group">
