@@ -1,6 +1,6 @@
 <div class="ddt-font-card ddt-font-card-add">
   <div class="ddt-font-card-drag-overlay"></div>
-  <div class="ddt-font-card-content ddt-font-card-add-content" ng-show="!currentView || currentView === 'main'">
+  <div class="ddt-font-card-content ddt-font-card-add-content" ng-show="!currentView || currentView === VIEW_MAIN">
     <div class="row ">
       <div class="col-md-12 text-center">
         <h4 class="text-muted">Drag files here</h4>
@@ -21,7 +21,7 @@
 
     <div class="row">
       <div class="col-md-12 text-center">
-        <button class="btn btn-default ddt-margin-vertical" ng-click="currentView = 'url'">Upload files from URLs</button>
+        <button class="btn btn-default ddt-margin-vertical" ng-click="currentView = VIEW_URL">Upload files from URLs</button>
       </div>
     </div>
 
@@ -32,7 +32,7 @@
     </div>
   </div>
 
-  <div class="ddt-font-card-content ddt-font-card-add-content" ng-show="currentView === 'url'">
+  <div class="ddt-font-card-content ddt-font-card-add-content" ng-show="currentView === VIEW_URL">
     <div class="row ">
       <div class="col-md-12">
         <form role="form" name="urlUploadForm" ng-submit="createFamilyFromUrls()" novalidate>
@@ -43,7 +43,7 @@
 
           <div class="form-group">
             <div class="pull-right">
-              <button type="button" class="btn btn-default" ng-click="currentView = 'main'">Cancel</button>
+              <button type="button" class="btn btn-default" ng-click="currentView = VIEW_MAIN">Cancel</button>
               <button type="button" class="btn btn-default" ng-click="addUrlField()">Add Another</button>
               <button type="submit" class="btn btn-primary">Upload</button>
             </div>
@@ -51,5 +51,9 @@
         </form>
       </div>
     </div>
+  </div>
+
+  <div class="ddt-font-card-content ddt-font-card-add-content" ng-show="currentView === VIEW_LOADING">
+    <ddt-loading-spinner></ddt-loading-spinner>
   </div>
 </div>

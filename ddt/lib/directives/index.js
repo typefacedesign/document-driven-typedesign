@@ -6,3 +6,4 @@ require('./fontCardAdd');
 require('./fontCardWord');
 require('./filePickerButton');
 require('./focus');
+require('./loadingSpinner');

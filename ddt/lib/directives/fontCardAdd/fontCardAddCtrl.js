@@ -6,12 +6,16 @@ var _ = require('lodash');
 module.exports = function ($scope, $q, $http, FontFamily, FontFamilySources, fontFamilyCollection) {
     var PLACEHOLDER_URL = {name: 'url1'};
 
+    $scope.VIEW_MAIN = 'main';
+    $scope.VIEW_URL = 'url';
+    $scope.VIEW_LOADING = 'loading';
+
     var init = function() {
         $scope.fontFamily = {
             name: fontFamilyCollection.generatePlaceholderName()
         };
         $scope.urlFields = [angular.copy(PLACEHOLDER_URL)];
-        $scope.currentView = 'main';
+        $scope.currentView = $scope.VIEW_MAIN
     };
 
     $scope.addFontFamily = function(fontFiles) {
@@ -42,6 +46,8 @@ module.exports = function ($scope, $q, $http, FontFamily, FontFamilySources, fon
             return;
         }
 
+        $scope.currentView = $scope.VIEW_LOADING;
+
         var family = new FontFamily(
             fontFamilyCollection.generatePlaceholderName(),
             FontFamilySources.URL);
@@ -56,6 +62,7 @@ module.exports = function ($scope, $q, $http, FontFamily, FontFamilySources, fon
                 init();
             }, function() {
                 // TODO: pop up an error.
+                init();
             });
     };
 
