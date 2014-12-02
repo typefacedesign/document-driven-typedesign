@@ -78,17 +78,11 @@ angular.module('ddt').factory('FontFamily', function($q, $http, FontFamilySource
         var deferred = $q.defer();
         var newFamily = new FontFamily(this.name + ' Copy', this.source);
 
-        var promises = _.map(this.fonts, function (font) {
-            if (newFamily.source === FontFamilySources.FILE) {
-                return newFamily.addFontFromFile(font.file);
-            }
+        _.each(this.fonts, function (font) {
+            newFamily.addFont(font.fileName, font.rawFontData);
         });
 
-        $q.all(promises)
-            .then(function () {
-                deferred.resolve(newFamily);
-            });
-
+        deferred.resolve(newFamily);
         return deferred.promise;
     };
 
