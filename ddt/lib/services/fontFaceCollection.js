@@ -32,13 +32,20 @@ angular.module('ddt').factory('fontFaceCollection', function(FontSources) {
             throw new Error('A font face with name "' + name + '" already exists.');
         }
 
-        font.getDataUrl()
-            .then(function(dataUrl) {
-                var cssRule = '' +
-                    'font-family: "' + font.fileName + '";' +
-                    'src: url(' + dataUrl + ');';
-                _addCSSRule('@font-face', cssRule);
-            });
+        if (font.source === FontSources.FILE) {
+            font.getDataUrl()
+                .then(function (dataUrl) {
+                    var cssRule = '' +
+                        'font-family: "' + font.fileName + '";' +
+                        'src: url(' + dataUrl + ');';
+                    _addCSSRule('@font-face', cssRule);
+                });
+        } else if (font.source === FontSources.URL) {
+            var cssRule = '' +
+                'font-family: "' + font.fileName + '";' +
+                'src: url(' + font.url + ');';
+            _addCSSRule('@font-face', cssRule);
+        }
     };
 
     return {
