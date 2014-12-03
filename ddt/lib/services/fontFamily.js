@@ -31,9 +31,5 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
         this.fonts.push(new Font({source: FontSources.URL, url: url}));
     };
 
-    FontFamily.prototype.clone = function () {
-        throw new Error('Not implemented.');
-    };
-
     return FontFamily;
 });

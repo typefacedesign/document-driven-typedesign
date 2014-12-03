@@ -12,14 +12,7 @@ module.exports = function($scope, filePicker, confirmDialog, fontFamilyCollectio
         filePicker.pick()
             .then(function(files) {
                 _.each(files, function(file) {
-                    $scope.fontFamily.addFontFromFile(file)
-                        .then(function() {
-                            // Okay, so here's the rub: if I don't have a .then() calling
-                            // this empty function here, the digest cycle is never run.
-                            // I can't figure out why this happens. Just having this empty
-                            // function here triggers the digest cycle. This is why people
-                            // rag on you all the time, Angular.
-                        });
+                    $scope.fontFamily.addFontFromFile(file);
                 });
             });
     };
@@ -32,10 +25,9 @@ module.exports = function($scope, filePicker, confirmDialog, fontFamilyCollectio
     };
 
     $scope.duplicate = function() {
-        $scope.fontFamily.clone()
-            .then(function (newFamily) {
-                fontFamilyCollection.add(newFamily);
-            });
+        var newFamily = angular.copy($scope.fontFamily);
+        newFamily.name = newFamily.name + ' Copy';
+        fontFamilyCollection.add(newFamily);
     };
 
     $scope.rename = function() {
