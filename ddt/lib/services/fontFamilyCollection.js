@@ -4,7 +4,7 @@ var angular = require('../angular');
 var _ = require('lodash');
 
 
-angular.module('ddt').factory('fontFamilyCollection', function() {
+angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollection) {
     var fontFamilies = [];
 
     // When adding a new family, we name it "Font Family X" by default,
@@ -18,6 +18,10 @@ angular.module('ddt').factory('fontFamilyCollection', function() {
     };
 
     var add = function(family) {
+        _.each(family.fonts, function(font) {
+            fontFaceCollection.add(font);
+        });
+
         fontFamilies.push(family);
         fontFamiliesCounter++;
     };

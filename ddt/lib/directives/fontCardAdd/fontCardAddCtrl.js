@@ -3,7 +3,7 @@
 var _ = require('lodash');
 
 
-module.exports = function ($scope, $q, $http, FontFamily, FontFamilySources, fontFamilyCollection) {
+module.exports = function ($scope, $q, $http, FontFamily, FontSources, fontFamilyCollection) {
     var PLACEHOLDER_URL = {name: 'url1'};
 
     $scope.VIEW_MAIN = 'main';
@@ -50,7 +50,7 @@ module.exports = function ($scope, $q, $http, FontFamily, FontFamilySources, fon
 
         var family = new FontFamily(
             fontFamilyCollection.generatePlaceholderName(),
-            FontFamilySources.URL);
+            FontSources.URL);
 
         var promises = _.map($scope.urlFields, function(urlField) {
             return family.addFontFromUrl(urlField.url);
