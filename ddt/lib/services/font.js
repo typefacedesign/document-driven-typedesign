@@ -15,14 +15,18 @@ angular.module('ddt').factory('Font', function($q, FontSources) {
     var Font = function(opts) {
         this.source = opts.source;
 
+        var fileSplit;
         if (opts.source === FontSources.URL) {
             this.url = opts.url;
+            this.fileName = this.url.split(/[\\/]/).pop();
+            fileSplit = _splitFileName(this.fileName);
+            this.fileName = fileSplit[0];
+            this.fileExt = fileSplit[1];
         } else if (opts.source === FontSources.FILE) {
             this.file = opts.file;
-
-            var fileSplit = this.file.name.split('.');
-            this.fileExt = _.last(fileSplit);
-            this.fileName = _.first(fileSplit, fileSplit.length - 1).join('');
+            fileSplit = _splitFileName(this.file.name);
+            this.fileName = fileSplit[0];
+            this.fileExt = fileSplit[1];
         } else {
             throw new Error('Unrecognized font source: ' + opts.source);
         }
@@ -31,7 +35,7 @@ angular.module('ddt').factory('Font', function($q, FontSources) {
     Font.prototype.getDataUrl = function() {
         var font = this;
 
-        if (!this.source === FontSources.FILE) {
+        if (this.source !== FontSources.FILE) {
             throw new Error('Only fonts loaded from files can be read as data URLs. Source for this font: ' + font.source);
         }
 
@@ -49,6 +53,11 @@ angular.module('ddt').factory('Font', function($q, FontSources) {
         }
 
         return deferred.promise;
+    };
+
+    var _splitFileName = function(fileName) {
+        var fileSplit = fileName.split('.');
+        return [_.first(fileSplit, fileSplit.length - 1).join(''), _.last(fileSplit)];
     };
 
     return Font;
