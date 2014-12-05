@@ -2,6 +2,7 @@
 
 require('./fontRenderer');
 require('./fontCardsView');
+require('./fontCardsTypeSwitcher');
 require('./fontCardAdd');
 require('./fontCardWord');
 require('./filePickerButton');
