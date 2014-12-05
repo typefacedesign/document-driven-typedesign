@@ -1,7 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
-
 
 module.exports = function ($scope, FontCardTypes, fontFamilyCollection) {
     $scope.FontCardTypes = FontCardTypes;

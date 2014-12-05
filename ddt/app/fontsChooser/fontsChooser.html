@@ -1,1 +1,12 @@
+<ul class="nav nav-pills">
+  <li><a ng-click="switchCardType(FontCardTypes.LETTER)" href="">Letter</a></li>
+  <li><a ng-click="switchCardType(FontCardTypes.WORD)" href="">Word</a></li>
+  <li><a ng-click="switchCardType(FontCardTypes.SENTENCE)" href="">Sentence</a></li>
+  <li><a ng-click="switchCardType(FontCardTypes.PARAGRAPH)" href="">Paragraph</a></li>
+  <li><a ng-click="switchCardType(FontCardTypes.RICH_TEXT)" href="">Rich Text</a></li>
+  <li><a ng-click="switchCardType(FontCardTypes.LAYOUT)" href="">Layout</a></li>
+</ul>
+
+<hr/>
+
 <ddt-font-cards-view type="{{cardType}}"></ddt-font-cards-view>

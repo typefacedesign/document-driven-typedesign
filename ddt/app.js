@@ -24,10 +24,7 @@ app.config(function($routeProvider) {
         })
         .when('/choose', {
             controller: 'FontsChooserCtrl',
-            templateUrl: 'app/fontsChooser/fontsChooser.html'
-        })
-        .when('/choose/:cardType', {
-            controller: 'FontsChooserCtrl',
-            templateUrl: 'app/fontsChooser/fontsChooser.html'
+            templateUrl: 'app/fontsChooser/fontsChooser.html',
+            reloadOnSearch: false
         });
 });
