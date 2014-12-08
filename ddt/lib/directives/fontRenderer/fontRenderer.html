@@ -1,4 +1,13 @@
 <div class="ddt-font-renderer">
   <div>{{ font.fileName }}</div>
-  <div class="ddt-font-renderer-text" style="{{ style }}" ng-class="{'ddt-text-overflow-ellipsis': wrap}">{{ text }}</div>
+
+  <div ng-if="!html"
+       class="ddt-font-renderer-text"
+       style="{{ style }}"
+       ng-class="{'ddt-text-overflow-ellipsis': wrap}">{{ text }}</div>
+
+  <div ng-if="html"
+       class="ddt-font-renderer-text"
+       style="{{ style }}"
+       ng-bind-html="text"></div>
 </div>

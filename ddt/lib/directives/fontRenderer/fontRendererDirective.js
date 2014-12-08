@@ -9,7 +9,8 @@ module.exports = function () {
         scope: {
             font: '=',
             text: '@?',
-            wrap: '&?'
+            wrap: '&?',
+            html: '&?'
         }
     };
 };
