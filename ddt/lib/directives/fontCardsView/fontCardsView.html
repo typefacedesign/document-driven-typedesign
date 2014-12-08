@@ -5,11 +5,21 @@
     </div>
 
     <div class="col-md-4" ng-if="families.length > 0">
-        <ddt-font-card-simple font-family="families[0]"></ddt-font-card-simple>
+      <ddt-font-card-simple ng-if="isType(FontCardTypes.WORD)" font-family="families[0]"></ddt-font-card-simple>
+      <ddt-font-card-simple
+              ng-if="isType(FontCardTypes.PARAGRAPH)"
+              font-family="families[0]"
+              text="{{TestParagraphs.INSECT_BITE}}"
+              html="true"></ddt-font-card-simple>
     </div>
 
     <div class="col-md-4" ng-if="families.length > 1">
-        <ddt-font-card-simple font-family="families[1]"></ddt-font-card-simple>
+      <ddt-font-card-simple ng-if="isType(FontCardTypes.WORD)" font-family="families[1]"></ddt-font-card-simple>
+      <ddt-font-card-simple
+              ng-if="isType(FontCardTypes.PARAGRAPH)"
+              font-family="families[1]"
+              text="{{TestParagraphs.INSECT_BITE}}"
+              html="true"></ddt-font-card-simple>
     </div>
   </div>
 
@@ -17,7 +27,12 @@
   <!--three font cards per row.-->
   <div class="row">
     <div class="col-md-4" ng-repeat="family in families" ng-if="$index > 1">
-      <ddt-font-card-simple font-family="family"></ddt-font-card-simple>
+      <ddt-font-card-simple ng-if="isType(FontCardTypes.WORD)" font-family="family"></ddt-font-card-simple>
+      <ddt-font-card-simple
+              ng-if="isType(FontCardTypes.PARAGRAPH)"
+              font-family="family"
+              text="{{TestParagraphs.INSECT_BITE}}"
+              html="true"></ddt-font-card-simple>
     </div>
   </div>
 </div>
@@ -31,7 +46,7 @@
 
   <div class="row">
     <div class="col-md-12" ng-repeat="family in families">
-      <ddt-font-card-simple font-family="family"></ddt-font-card-simple>
+      <ddt-font-card-simple font-family="family" text="{{TestSentences.SIX_GUNBOATS}}"></ddt-font-card-simple>
     </div>
   </div>
 </div>
