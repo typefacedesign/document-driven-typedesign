@@ -5,7 +5,7 @@ require('./fontCardTitlebar');
 require('./fontCardsView');
 require('./fontCardsTypeSwitcher');
 require('./fontCardAdd');
-require('./fontCardWord');
+require('./fontCardSimple');
 require('./filePickerButton');
 require('./focus');
 require('./loadingSpinner');

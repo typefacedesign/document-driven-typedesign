@@ -3,8 +3,8 @@
 
 module.exports = function() {
     return {
-        templateUrl: 'lib/directives/fontCardWord/fontCardWord.html',
-        controller: 'FontCardWordCtrl',
+        templateUrl: 'lib/directives/fontCardSimple/fontCardSimple.html',
+        controller: 'FontCardSimpleCtrl',
         scope: {
             fontFamily: '='
         }
