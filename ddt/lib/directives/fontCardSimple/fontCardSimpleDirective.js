@@ -6,7 +6,8 @@ module.exports = function() {
         templateUrl: 'lib/directives/fontCardSimple/fontCardSimple.html',
         controller: 'FontCardSimpleCtrl',
         scope: {
-            fontFamily: '='
+            fontFamily: '=',
+            text: '@?'
         }
     };
 };
