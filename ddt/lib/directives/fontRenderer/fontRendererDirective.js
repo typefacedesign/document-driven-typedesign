@@ -8,7 +8,8 @@ module.exports = function () {
         controller: 'FontRendererCtrl',
         scope: {
             font: '=',
-            text: '@?'
+            text: '@?',
+            wrap: '&?'
         }
     };
 };
