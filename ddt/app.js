@@ -4,10 +4,12 @@ window.jQuery = require('jquery');
 require('bootstrap');
 var angular = require('./lib/angular');
 require('angular-route');
+require('angular-sanitize');
 
-var app = angular.module('ddt', ['ngRoute']);
+var app = angular.module('ddt', ['ngRoute', 'ngSanitize']);
 
 require('./constants');
+require('./testStrings');
 require('./lib/services');
 require('./lib/directives');
 
