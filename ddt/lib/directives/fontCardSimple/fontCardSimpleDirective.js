@@ -8,7 +8,7 @@ module.exports = function() {
         scope: {
             fontFamily: '=',
             text: '@?',
-            html: '&?'
+            allowHtml: '=?'
         }
     };
 };

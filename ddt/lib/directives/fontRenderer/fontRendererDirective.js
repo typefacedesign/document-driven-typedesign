@@ -9,8 +9,8 @@ module.exports = function () {
         scope: {
             font: '=',
             text: '@?',
-            wrap: '&?',
-            html: '&?'
+            wrap: '=?',
+            allowHtml: '=?'
         }
     };
 };
