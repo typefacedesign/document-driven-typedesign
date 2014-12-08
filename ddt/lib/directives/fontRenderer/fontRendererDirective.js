@@ -10,7 +10,8 @@ module.exports = function () {
             font: '=',
             text: '@?',
             wrap: '=?',
-            allowHtml: '=?'
+            allowHtml: '=?',
+            fontSize: '=?'
         }
     };
 };
