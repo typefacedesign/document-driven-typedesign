@@ -13,6 +13,7 @@
               text="{{TestParagraphs.INSECT_BITE}}"
               allow-html="true"
               font-size="14"></ddt-font-card-simple>
+      <ddt-font-card-letters ng-if="isType(FontCardTypes.LETTER)" font-family="families[0]"></ddt-font-card-letters>
     </div>
 
     <div class="col-md-4" ng-if="families.length > 1">
@@ -23,6 +24,7 @@
               text="{{TestParagraphs.INSECT_BITE}}"
               allow-html="true"
               font-size="14"></ddt-font-card-simple>
+      <ddt-font-card-letters ng-if="isType(FontCardTypes.LETTER)" font-family="families[1]"></ddt-font-card-letters>
     </div>
   </div>
 
@@ -37,6 +39,7 @@
               text="{{TestParagraphs.INSECT_BITE}}"
               allow-html="true"
               font-size="14"></ddt-font-card-simple>
+      <ddt-font-card-letters ng-if="isType(FontCardTypes.LETTER)" font-family="family"></ddt-font-card-letters>
     </div>
   </div>
 </div>
