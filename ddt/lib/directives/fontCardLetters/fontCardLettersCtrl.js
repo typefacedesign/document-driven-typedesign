@@ -12,6 +12,7 @@ module.exports = function($scope) {
             $scope.letters.push(letters.slice(i, i + LETTERS_PER_ROW));
         }
         $scope.fontSize = $scope.fontSize || 36;
+        $scope.currentPage = 1;
     };
 
     init();

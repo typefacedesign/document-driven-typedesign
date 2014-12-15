@@ -10,3 +10,4 @@ require('./fontCardLetters');
 require('./filePickerButton');
 require('./focus');
 require('./loadingSpinner');
+require('./dottedPaginator');
