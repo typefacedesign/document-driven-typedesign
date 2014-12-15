@@ -4,6 +4,7 @@
       <ddt-font-card-add></ddt-font-card-add>
     </div>
 
+    <!--FIXME: There is a lot of code duplication in this view.-->
     <div class="col-md-4" ng-if="families.length > 0">
       <ddt-font-card-simple ng-if="isType(FontCardTypes.WORD)" font-family="families[0]"></ddt-font-card-simple>
       <ddt-font-card-simple
