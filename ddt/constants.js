@@ -11,3 +11,7 @@ angular.module('ddt').constant('FontCardTypes', {
     RICH_TEXT: 'rich_text',
     LAYOUT: 'layout'
 });
+
+angular.module('ddt').constant('ErrorMessages', {
+    UNRECOGNIZED_FONT_SOURCE: 'Unrecognized font source: '
+});
