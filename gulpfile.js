@@ -9,38 +9,17 @@ var browserify = require('browserify'),
     streamify = require('gulp-streamify'),
     uglify = require('gulp-uglify'),
     del = require('del'),
-    less = require('gulp-less');
+    less = require('gulp-less'),
+    shell = require('gulp-shell'),
+    git = require('gulp-git');
 
-/*
- * Useful tasks:
- * - gulp fast:
- *   - linting
- *   - unit tests
- *   - browserification
- *   - no minification, does not start server.
- * - gulp watch:
- *   - starts server with live reload enabled
- *   - lints, unit tests, browserifies and live-reloads changes in browser
- *   - no minification
- * - gulp:
- *   - linting
- *   - unit tests
- *   - browserification
- *   - minification and browserification of minified sources
- *   - start server for e2e tests
- *   - run Protractor End-to-end tests
- *   - stop server immediately when e2e tests have finished
- *
- * At development time, you should usually just have 'gulp watch' running in the
- * background all the time. Use 'gulp' before releases.
- */
 
 gulp.task('clean', function(cb) {
     del(['build/**'], cb);
 });
 
 gulp.task('lint', function() {
-    return gulp.src([
+    gulp.src([
         'gulpfile.js',
         'ddt/**/*.js'
     ])
@@ -48,12 +27,11 @@ gulp.task('lint', function() {
         .pipe(eslint.format());
 });
 
-gulp.task('browserify', function() {
-    // This used to be bundle({debug: true}). That option is deprecated now.
+gulp.task('compile:browserify', ['clean'], function() {
     return browserify('./ddt/app.js')
         .bundle()
         .pipe(source('app.js'))
-        .pipe(gulp.dest('./build/dist/'))
+        .pipe(gulp.dest('./build/debug/'))
         .pipe(connect.reload());
 });
 
@@ -63,43 +41,96 @@ gulp.task('ngannotate', ['lint', 'copy:vendor_js'], function() {
         .pipe(gulp.dest('./build/ngannotate/'));
 });
 
-gulp.task('browserify-min', ['ngannotate'], function() {
+gulp.task('compile:browserify-min', ['ngannotate'], function() {
     return browserify('./build/ngannotate/app.js')
         .bundle()
         .pipe(source('app.min.js'))
         .pipe(streamify(uglify({mangle: false})))
-        .pipe(gulp.dest('./build/dist/'));
+        .pipe(gulp.dest('./build/debug/'));
 });
 
 gulp.task('server', function() {
     connect.server({
-        root: 'build/dist',
+        root: 'build/debug',
         livereload: false
     });
 });
 
-gulp.task('copy:app_html', function() {
+gulp.task('copy:app_html', ['clean'], function() {
     return gulp.src(['ddt/**/*.html'], {base: './ddt/'})
-        .pipe(gulp.dest('build/dist/'));
+        .pipe(gulp.dest('build/debug/'));
 });
 
-gulp.task('copy:vendor_js', function() {
+gulp.task('copy:vendor_js', ['clean'], function() {
     return gulp.src(['vendor/**/*.js'], {base: './'})
         .pipe(gulp.dest('build/'));
 });
 
-gulp.task('copy:glyphicons', function() {
+gulp.task('copy:glyphicons', ['clean'], function() {
     return gulp.src(['node_modules/bootstrap/fonts/**'])
-        .pipe(gulp.dest('build/dist/fonts/'));
+        .pipe(gulp.dest('build/debug/fonts/'));
 });
 
-gulp.task('compile:less', function() {
+gulp.task('compile:less', ['clean'], function() {
     return gulp.src('ddt/ddt.less')
         .pipe(less())
-        .pipe(gulp.dest('build/dist/'))
-        .pipe(gulp.dest('build/ngannotate/'));
+        .pipe(gulp.dest('build/debug/'));
 });
 
-gulp.task('default', ['clean'], function() {
-    gulp.start('browserify', 'copy:app_html', 'copy:glyphicons', 'compile:less');
+gulp.task('copy', ['copy:app_html', 'copy:glyphicons']);
+
+gulp.task('compile', ['compile:browserify', 'compile:less']);
+
+gulp.task('debug', ['compile', 'copy']);
+
+gulp.task('gh-pages:stash', ['debug'], shell.task('git stash'));
+
+gulp.task('gh-pages:checkout-gh-pages', ['debug', 'gh-pages:stash'], function(cb) {
+    git.checkout('gh-pages', function(err) {
+        if (err) {
+            cb(err);
+        } else {
+            cb(null);
+        }
+    });
 });
+
+gulp.task('gh-pages:clean', ['debug', 'gh-pages:checkout-gh-pages'], function(cb) {
+    del(['demo/**'], cb);
+});
+
+gulp.task('gh-pages:copy', ['debug', 'gh-pages:clean'], function() {
+    return gulp.src('build/debug/**', {base: './build/debug/'})
+        .pipe(gulp.dest('demo/'));
+});
+
+gulp.task('gh-pages:commit', ['debug', 'gh-pages:copy'], function() {
+    return gulp.src('./demo/*')
+        .pipe(git.commit('Committing built files for the DDT demo.'));
+});
+
+gulp.task('gh-pages:push', ['debug', 'gh-pages:commit'], function(cb) {
+    git.push('origin', 'gh-pages', function(err) {
+        if (err) {
+            cb(err);
+        } else {
+            cb(null);
+        }
+    });
+});
+
+gulp.task('gh-pages:checkout-master', ['debug', 'gh-pages:push'], function(cb) {
+    git.checkout('master', function(err) {
+        if (err) {
+            cb(err);
+        } else {
+            cb(null);
+        }
+    });
+});
+
+gulp.task('gh-pages:pop-stash', ['debug', 'gh-pages:checkout-master'], shell.task('git stash pop'));
+
+gulp.task('gh-pages', ['gh-pages:pop-stash']);
+
+gulp.task('default', ['debug']);
