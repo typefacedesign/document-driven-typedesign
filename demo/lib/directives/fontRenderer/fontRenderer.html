@@ -1,0 +1,11 @@
+<span class="ddt-font-renderer">
+  <span ng-if="!allowHtml"
+       class="ddt-font-renderer-text"
+       style="{{ style }}"
+       ng-class="{'ddt-text-overflow-ellipsis': wrap}">{{ text }}</span>
+
+  <span ng-if="allowHtml"
+       class="ddt-font-renderer-text"
+       style="{{ style }}"
+       ng-bind-html="text"></span>
+</span>
