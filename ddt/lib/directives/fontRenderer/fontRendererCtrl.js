@@ -7,7 +7,7 @@ module.exports = function($scope) {
         $scope.wrap = $scope.wrap || false;
         $scope.allowHtml = $scope.allowHtml || false;
         $scope.fontSize = $scope.fontSize || 36;
-        $scope.style = 'font-family: "' + $scope.font.fileName + '"; font-size: ' + $scope.fontSize.toString() + 'px;';
+        $scope.style = 'font-family: "' + $scope.font.name + '"; font-size: ' + $scope.fontSize.toString() + 'px;';
     };
 
     init();

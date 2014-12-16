@@ -1,6 +1,7 @@
 'use strict';
 
 var angular = require('../angular');
+var opentype = require('opentype.js');
 var _ = require('lodash');
 
 
@@ -11,7 +12,7 @@ angular.module('ddt').constant('FontSources', {
 });
 
 
-angular.module('ddt').factory('Font', function($q, FontSources) {
+angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
     var Font = function(opts) {
         this.source = opts.source;
 
@@ -28,8 +29,38 @@ angular.module('ddt').factory('Font', function($q, FontSources) {
             this.fileName = fileSplit[0];
             this.fileExt = fileSplit[1];
         } else {
-            throw new Error('Unrecognized font source: ' + opts.source);
+            throw new Error(ErrorMessages.UNRECOGNIZED_FONT_SOURCE + opts.source);
         }
+    };
+
+    Font.make = function(opts) {
+        var deferred = $q.defer();
+
+        var ddtFont = new Font(opts);
+
+        if (opts.source === FontSources.URL) {
+            opentype.load(opts.url, function(err, openTypeFont) {
+                if (err) {
+                    deferred.reject(err);
+                    return;
+                }
+
+                _copyMetadata(ddtFont, openTypeFont);
+                deferred.resolve(ddtFont);
+            });
+        } else if (opts.source === FontSources.FILE) {
+            var fileReader = new FileReader();
+            fileReader.onload = function() {
+                var openTypeFont = opentype.parse(fileReader.result);
+                _copyMetadata(ddtFont, openTypeFont);
+                deferred.resolve(ddtFont);
+            };
+            fileReader.readAsArrayBuffer(ddtFont.file);
+        } else {
+            deferred.reject(new Error(ErrorMessages.UNRECOGNIZED_FONT_SOURCE + opts.source));
+        }
+
+        return deferred.promise;
     };
 
     Font.prototype.getDataUrl = function() {
@@ -58,6 +89,12 @@ angular.module('ddt').factory('Font', function($q, FontSources) {
     var _splitFileName = function(fileName) {
         var fileSplit = fileName.split('.');
         return [_.first(fileSplit, fileSplit.length - 1).join(''), _.last(fileSplit)];
+    };
+
+    var _copyMetadata = function(ddtFont, openTypeFont) {
+        ddtFont.familyName = openTypeFont.familyName;
+        ddtFont.styleName = openTypeFont.styleName;
+        ddtFont.name = ddtFont.familyName + ' ' + ddtFont.styleName;
     };
 
     return Font;

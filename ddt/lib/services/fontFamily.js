@@ -20,7 +20,18 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
             throw new Error('Mismatching font family source. This family: ' + this.source);
         }
 
-        this.fonts.push(new Font({source: FontSources.FILE, file: file}));
+        var family = this;
+        var deferred = $q.defer();
+
+        Font.make({source: FontSources.FILE, file: file})
+            .then(function(font) {
+                family.fonts.push(font);
+                deferred.resolve();
+            }, function(error) {
+                deferred.reject(error);
+            });
+
+        return deferred.promise;
     };
 
     FontFamily.prototype.addFontFromUrl = function(url) {
@@ -28,7 +39,18 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
             throw new Error('Mismatching font family source. This family: ' + this.source);
         }
 
-        this.fonts.push(new Font({source: FontSources.URL, url: url}));
+        var family = this;
+        var deferred = $q.defer();
+
+        Font.make({source: FontSources.URL, url: url})
+            .then(function(font) {
+                family.fonts.push(font);
+                deferred.resolve();
+            }, function(error) {
+                deferred.reject(error);
+            });
+
+        return deferred.promise;
     };
 
     return FontFamily;
