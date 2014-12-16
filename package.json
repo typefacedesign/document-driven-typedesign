@@ -12,7 +12,7 @@
     "bootstrap": "^3.3.1",
     "jquery": "^2.1.1",
     "lodash": "^2.4.1",
-    "opentype.js": "^0.4.1"
+    "opentype.js": "^0.4.4"
   },
   "devDependencies": {
     "browserify": "^6.3.2",
