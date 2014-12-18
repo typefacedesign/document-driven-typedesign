@@ -68,7 +68,8 @@ angular.module('ddt').constant('FontCardTypes', {
 });
 
 angular.module('ddt').constant('ErrorMessages', {
-    UNRECOGNIZED_FONT_SOURCE: 'Unrecognized font source: '
+    UNRECOGNIZED_FONT_SOURCE: 'Unrecognized font source: ',
+    MISMATCHING_FAMILY: 'Cannot add font to this family. Family names don\'t match.'
 });
 
 },{"./lib/angular":6}],6:[function(require,module,exports){
@@ -206,7 +207,7 @@ angular.module('ddt').directive('ddtFocus', function() {
 var _ = require('lodash');
 
 
-module.exports = function ($scope, $q, $http, FontFamily, FontSources, fontFamilyCollection) {
+module.exports = function ($scope, $q, $http, FontFamily, FontSources, fontFamilyCollection, Font) {
     var PLACEHOLDER_URL = {name: 'url1'};
 
     $scope.VIEW_MAIN = 'main';
@@ -226,16 +227,29 @@ module.exports = function ($scope, $q, $http, FontFamily, FontSources, fontFamil
             return;
         }
 
-        var family = new FontFamily($scope.fontFamily.name);
-        var addPromise = $q.all(_.map(fontFiles, function(file) {
-            return family.addFontFromFile(file);
+        var makeFontPromise = $q.all(_.map(fontFiles, function(file) {
+            return Font.make({source: FontSources.FILE, file: file});
         }));
 
-        addPromise.then(function() {
-            fontFamilyCollection.add(family);
-            init();
-        }, function() {
-            // TODO: pop up an error.
+        makeFontPromise.then(function(fonts) {
+            var fontGroups = _.groupBy(fonts, function(font) {
+                return font.familyName;
+            });
+
+            _.each(_.keys(fontGroups), function(familyName) {
+                var family = fontFamilyCollection.findByName(familyName);
+                var newFamily = false;
+                if (!angular.isDefined(family)) {
+                    family = new FontFamily(familyName);
+                    newFamily = true;
+                }
+
+                family.addFonts(fontGroups[familyName]);
+
+                if (newFamily) {
+                    fontFamilyCollection.add(family);
+                }
+            });
         });
     };
 
@@ -756,12 +770,18 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
         }
     };
 
+    // Static method to create a new font. Returns a promise that
+    // resolves with the newly created font object.
     Font.make = function(opts) {
         var deferred = $q.defer();
 
         var ddtFont = new Font(opts);
 
         if (opts.source === FontSources.URL) {
+            // TODO: keep raw font data around for fonts loaded from URLs so we can get their data URLs.
+            // We shouldn't have to handle fonts loaded from different sources differently in the code,
+            // except at the construction phase. The way to do that is to parse them using opentype.js
+            // here, and create data URLs for them here.
             opentype.load(opts.url, function(err, openTypeFont) {
                 if (err) {
                     deferred.reject(err);
@@ -888,7 +908,7 @@ var angular = require('../angular');
 var _ = require('lodash');
 
 
-angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSources) {
+angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSources, ErrorMessages) {
     var FontFamily = function(name, source) {
         if (angular.isUndefined(name)) {
             throw new Error('No name specified for new FontFamily.');
@@ -909,7 +929,7 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
 
         Font.make({source: FontSources.FILE, file: file})
             .then(function(font) {
-                family.fonts.push(font);
+                family._pushFont(font);
                 deferred.resolve();
             }, function(error) {
                 deferred.reject(error);
@@ -928,13 +948,29 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
 
         Font.make({source: FontSources.URL, url: url})
             .then(function(font) {
-                family.fonts.push(font);
+                family._pushFont(font);
                 deferred.resolve();
             }, function(error) {
                 deferred.reject(error);
             });
 
         return deferred.promise;
+    };
+
+    // Adds an array of Font objects to this family.
+    FontFamily.prototype.addFonts = function(fonts) {
+        var family = this;
+        _.each(fonts, function(font) {
+            family._pushFont(font);
+        });
+    };
+
+    FontFamily.prototype._pushFont = function(font) {
+        if (font.familyName !== this.name) {
+            throw new Error(ErrorMessages.MISMATCHING_FAMILY);
+        }
+
+        this.fonts.push(font);
     };
 
     return FontFamily;
@@ -981,11 +1017,18 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
         return 'New Family ' + fontFamiliesCounter.toString();
     };
 
+    var findByName = function(name) {
+        return _.find(fontFamilies, function(family) {
+            return family.name === name;
+        });
+    };
+
     return {
         families: families,
         add: add,
         remove: remove,
         count: count,
+        findByName: findByName,
         generatePlaceholderName: generatePlaceholderName
     };
 });
