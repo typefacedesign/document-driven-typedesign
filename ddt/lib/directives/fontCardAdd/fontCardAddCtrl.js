@@ -3,7 +3,7 @@
 var _ = require('lodash');
 
 
-module.exports = function ($scope, $q, $http, FontFamily, FontSources, fontFamilyCollection) {
+module.exports = function ($scope, $q, $http, FontFamily, FontSources, fontFamilyCollection, Font) {
     var PLACEHOLDER_URL = {name: 'url1'};
 
     $scope.VIEW_MAIN = 'main';
@@ -23,16 +23,29 @@ module.exports = function ($scope, $q, $http, FontFamily, FontSources, fontFamil
             return;
         }
 
-        var family = new FontFamily($scope.fontFamily.name);
-        var addPromise = $q.all(_.map(fontFiles, function(file) {
-            return family.addFontFromFile(file);
+        var makeFontPromise = $q.all(_.map(fontFiles, function(file) {
+            return Font.make({source: FontSources.FILE, file: file});
         }));
 
-        addPromise.then(function() {
-            fontFamilyCollection.add(family);
-            init();
-        }, function() {
-            // TODO: pop up an error.
+        makeFontPromise.then(function(fonts) {
+            var fontGroups = _.groupBy(fonts, function(font) {
+                return font.familyName;
+            });
+
+            _.each(_.keys(fontGroups), function(familyName) {
+                var family = fontFamilyCollection.findByName(familyName);
+                var newFamily = false;
+                if (!angular.isDefined(family)) {
+                    family = new FontFamily(familyName);
+                    newFamily = true;
+                }
+
+                family.addFonts(fontGroups[familyName]);
+
+                if (newFamily) {
+                    fontFamilyCollection.add(family);
+                }
+            });
         });
     };
 

@@ -33,12 +33,18 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
         }
     };
 
+    // Static method to create a new font. Returns a promise that
+    // resolves with the newly created font object.
     Font.make = function(opts) {
         var deferred = $q.defer();
 
         var ddtFont = new Font(opts);
 
         if (opts.source === FontSources.URL) {
+            // TODO: keep raw font data around for fonts loaded from URLs so we can get their data URLs.
+            // We shouldn't have to handle fonts loaded from different sources differently in the code,
+            // except at the construction phase. The way to do that is to parse them using opentype.js
+            // here, and create data URLs for them here.
             opentype.load(opts.url, function(err, openTypeFont) {
                 if (err) {
                     deferred.reject(err);

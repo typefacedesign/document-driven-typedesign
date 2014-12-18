@@ -4,7 +4,7 @@ var angular = require('../angular');
 var _ = require('lodash');
 
 
-angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSources) {
+angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSources, ErrorMessages) {
     var FontFamily = function(name, source) {
         if (angular.isUndefined(name)) {
             throw new Error('No name specified for new FontFamily.');
@@ -25,7 +25,7 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
 
         Font.make({source: FontSources.FILE, file: file})
             .then(function(font) {
-                family.fonts.push(font);
+                family._pushFont(font);
                 deferred.resolve();
             }, function(error) {
                 deferred.reject(error);
@@ -44,13 +44,29 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
 
         Font.make({source: FontSources.URL, url: url})
             .then(function(font) {
-                family.fonts.push(font);
+                family._pushFont(font);
                 deferred.resolve();
             }, function(error) {
                 deferred.reject(error);
             });
 
         return deferred.promise;
+    };
+
+    // Adds an array of Font objects to this family.
+    FontFamily.prototype.addFonts = function(fonts) {
+        var family = this;
+        _.each(fonts, function(font) {
+            family._pushFont(font);
+        });
+    };
+
+    FontFamily.prototype._pushFont = function(font) {
+        if (font.familyName !== this.name) {
+            throw new Error(ErrorMessages.MISMATCHING_FAMILY);
+        }
+
+        this.fonts.push(font);
     };
 
     return FontFamily;

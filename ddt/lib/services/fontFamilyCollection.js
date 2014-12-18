@@ -38,11 +38,18 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
         return 'New Family ' + fontFamiliesCounter.toString();
     };
 
+    var findByName = function(name) {
+        return _.find(fontFamilies, function(family) {
+            return family.name === name;
+        });
+    };
+
     return {
         families: families,
         add: add,
         remove: remove,
         count: count,
+        findByName: findByName,
         generatePlaceholderName: generatePlaceholderName
     };
 });
