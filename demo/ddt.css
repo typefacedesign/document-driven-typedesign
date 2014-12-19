@@ -6411,6 +6411,26 @@ button.close {
 .ddt-dotted-paginator a {
   color: #333333;
 }
+.ddt-font-parameters-menu-content {
+  position: absolute;
+  border: solid 1px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  width: 350px;
+  left: auto;
+  right: 0;
+  padding: 6px 12px;
+}
+.ddt-font-parameters-menu-content .ddt-slider-label {
+  width: 100%;
+}
+.ddt-display-none {
+  display: none;
+}
+.ddt-display-block {
+  display: block;
+}
 .ddt-file-picker-input {
   visibility: hidden;
   position: absolute;
