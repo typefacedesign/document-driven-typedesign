@@ -11,3 +11,4 @@ require('./filePickerButton');
 require('./focus');
 require('./loadingSpinner');
 require('./dottedPaginator');
+require('./fontParametersMenu');
