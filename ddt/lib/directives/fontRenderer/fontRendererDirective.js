@@ -8,10 +8,10 @@ module.exports = function () {
         controller: 'FontRendererCtrl',
         scope: {
             font: '=',
-            text: '@?',
+            fontParameters: '=',
+            text: '=?',
             wrap: '=?',
-            allowHtml: '=?',
-            fontSize: '=?'
+            allowHtml: '=?'
         }
     };
 };

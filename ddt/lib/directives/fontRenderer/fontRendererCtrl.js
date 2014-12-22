@@ -3,11 +3,19 @@
 
 module.exports = function($scope) {
     var init = function() {
-        $scope.text = $scope.text || 'Comfortably';
         $scope.wrap = $scope.wrap || false;
         $scope.allowHtml = $scope.allowHtml || false;
-        $scope.fontSize = $scope.fontSize || 36;
-        $scope.style = 'font-family: "' + $scope.font.name + '"; font-size: ' + $scope.fontSize.toString() + 'px;';
+        $scope.style = calculateInlineStyle();
+
+        $scope.$watch('fontParameters', function() {
+            $scope.style = calculateInlineStyle();
+        }, true);
+    };
+
+    var calculateInlineStyle = function() {
+        return '' +
+            'font-family: "' + $scope.font.name +
+            '"; font-size: ' + $scope.fontParameters.fontSize.toString() + 'px;';
     };
 
     init();

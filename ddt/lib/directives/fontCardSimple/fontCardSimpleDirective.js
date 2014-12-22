@@ -7,9 +7,9 @@ module.exports = function() {
         controller: 'FontCardSimpleCtrl',
         scope: {
             fontFamily: '=',
-            text: '@?',
-            allowHtml: '=?',
-            fontSize: '=?'
+            fontParameters: '=',
+            text: '=',
+            allowHtml: '=?'
         }
     };
 };

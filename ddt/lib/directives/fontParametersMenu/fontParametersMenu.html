@@ -28,26 +28,9 @@
             <div class="form-group">
                 <label for="fontSizeSlider" class="ddt-slider-label">
                     <span>Font size</span>
-                    <span class="pull-right">72px</span>
+                    <span class="pull-right">{{ fontParameters.fontSize }}px</span>
                 </label>
-                <input type="range" id="fontSizeSlider" min="9" max="288" step="1" list="fontSizeSliderDatalist">
-                <datalist id="fontSizeSliderDatalist">
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>18</option>
-                    <option>24</option>
-                    <option>36</option>
-                    <option>48</option>
-                    <option>64</option>
-                    <option>72</option>
-                    <option>96</option>
-                    <option>144</option>
-                    <option>288</option>
-                </datalist>
+                <input type="range" ng-model="fontParameters.fontSize" id="fontSizeSlider" min="9" max="288" step="1">
             </div>
 
             <div class="form-group">

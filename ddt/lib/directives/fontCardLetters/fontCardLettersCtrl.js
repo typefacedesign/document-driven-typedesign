@@ -1,7 +1,7 @@
 'use strict';
 
 
-module.exports = function($scope) {
+module.exports = function($scope, fontParameters, FontCardTypes) {
     var LETTERS_PER_ROW = 5;
 
     var init = function() {
@@ -13,6 +13,7 @@ module.exports = function($scope) {
         }
         $scope.fontSize = $scope.fontSize || 36;
         $scope.currentPage = 1;
+        $scope.fontParameters = fontParameters[FontCardTypes.LETTER];
     };
 
     init();
