@@ -22,3 +22,6 @@ angular.module('ddt').constant('FontCases', {
     LOWERCASE: 'lowercase',
     TITLECASE: 'titlecase'
 });
+
+
+angular.module('ddt').constant('DEFAULT_TEXT_COLOR', '#333');

@@ -14,8 +14,9 @@ module.exports = function($scope) {
 
     var calculateInlineStyle = function() {
         var style = '' +
-            'font-family: "' + $scope.font.name +
-            '"; font-size: ' + $scope.fontParameters.fontSize.toString() + 'px;';
+            'font-family: "' + $scope.font.name + '";' +
+            'font-size: ' + $scope.fontParameters.fontSize.toString() + 'px;' +
+            'color: ' + $scope.fontParameters.color + ';';
 
         if (angular.isDefined($scope.fontParameters.lineHeight)) {
             style += 'line-height: ' + $scope.fontParameters.lineHeight.toString() + ';';
