@@ -6421,6 +6421,7 @@ button.close {
   left: auto;
   right: 0;
   padding: 6px 12px;
+  z-index: 1;
 }
 .ddt-font-parameters-menu-content .ddt-slider-label {
   width: 100%;
@@ -6430,6 +6431,16 @@ button.close {
 }
 .ddt-display-block {
   display: block;
+}
+.ddt-color-swatch {
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  margin: 5px;
+  cursor: pointer;
+}
+.ddt-color-swatch-active {
+  border: solid 3px #8AFF93;
 }
 .ddt-file-picker-input {
   visibility: hidden;
