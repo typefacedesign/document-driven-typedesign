@@ -8,7 +8,9 @@ module.exports = function() {
         restrict: 'E',
         templateUrl: 'lib/directives/fontParametersMenu/fontParametersMenu.html',
         controller: 'FontParametersMenuCtrl',
-        scope: {},
+        scope: {
+            parameterSet: '='
+        },
         link: function(scope, element, attrs, controllers) {
             var menu = element.find('.ddt-font-parameters-menu')[0];
 
