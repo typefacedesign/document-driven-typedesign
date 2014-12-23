@@ -13,15 +13,21 @@ angular.module('ddt').factory('fontParameters', function(FontCardTypes) {
     };
 
     fontParameters[FontCardTypes.WORD] = {
-        fontSize: 32
+        fontSize: 32,
+        letterSpacing: 'normal'
     };
 
     fontParameters[FontCardTypes.SENTENCE] = {
-        fontSize: 24
+        fontSize: 24,
+        letterSpacing: 'normal',
+        wordSpacing: 'normal'
     };
 
     fontParameters[FontCardTypes.PARAGRAPH] = {
-        fontSize: 16
+        fontSize: 16,
+        lineHeight: 1.2,
+        letterSpacing: 'normal',
+        wordSpacing: 'normal'
     };
 
     return fontParameters;
