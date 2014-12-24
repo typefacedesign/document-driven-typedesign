@@ -74,9 +74,10 @@ angular.module('ddt').constant('ErrorMessages', {
 });
 
 angular.module('ddt').constant('FontCases', {
+    UNSPECIFIED: 'unspecified',
     UPPERCASE: 'uppercase',
     LOWERCASE: 'lowercase',
-    TITLECASE: 'titlecase'
+    TITLECASE: 'capitalize'
 });
 
 
@@ -629,13 +630,22 @@ angular.module('ddt').directive('ddtFontCardsView', require('./fontCardsViewDire
 'use strict';
 
 
-module.exports = function($scope, fontParameters) {
+module.exports = function($scope, FontCases) {
     var init = function() {
         $scope.menuVisible = false;
+        $scope.FontCases = FontCases;
     };
 
     $scope.toggleMenu = function() {
         $scope.menuVisible = !$scope.menuVisible;
+    };
+
+    $scope.isCase = function(_case) {
+        return $scope.parameterSet.fontCase === _case;
+    };
+
+    $scope.switchCase = function(_case) {
+        $scope.parameterSet.fontCase = _case;
     };
 
     init();
@@ -682,7 +692,7 @@ angular.module('ddt').directive('ddtFontParametersMenu', require('./fontParamete
 'use strict';
 
 
-module.exports = function($scope) {
+module.exports = function($scope, FontCases) {
     var init = function() {
         $scope.wrap = $scope.wrap || false;
         $scope.allowHtml = $scope.allowHtml || false;
@@ -713,6 +723,10 @@ module.exports = function($scope) {
             if ($scope.fontParameters.wordSpacing !== 'normal') {
                 style += 'word-spacing: ' + $scope.fontParameters.wordSpacing.toString() + 'px;';
             }
+        }
+
+        if ($scope.fontParameters.fontCase !== FontCases.UNSPECIFIED) {
+            style += 'text-transform: ' + $scope.fontParameters.fontCase + ';';
         }
 
         return style;
@@ -1185,27 +1199,30 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
 var angular = require('../angular');
 
 
-angular.module('ddt').factory('fontParameters', function(FontCardTypes, DEFAULT_TEXT_COLOR) {
+angular.module('ddt').factory('fontParameters', function(FontCardTypes, DEFAULT_TEXT_COLOR, FontCases) {
     // This service keeps track of font parameters in the choose fonts view.
     // fontSize, letterSpacing, wordSpacing are in px. lineHeight is unitless.
     var fontParameters = {};
 
     fontParameters[FontCardTypes.LETTER] = {
         fontSize: 24,
-        color: DEFAULT_TEXT_COLOR
+        color: DEFAULT_TEXT_COLOR,
+        fontCase: FontCases.UNSPECIFIED
     };
 
     fontParameters[FontCardTypes.WORD] = {
         fontSize: 32,
         letterSpacing: 'normal',
-        color: DEFAULT_TEXT_COLOR
+        color: DEFAULT_TEXT_COLOR,
+        fontCase: FontCases.UNSPECIFIED
     };
 
     fontParameters[FontCardTypes.SENTENCE] = {
         fontSize: 24,
         letterSpacing: 'normal',
         wordSpacing: 'normal',
-        color: DEFAULT_TEXT_COLOR
+        color: DEFAULT_TEXT_COLOR,
+        fontCase: FontCases.UNSPECIFIED
     };
 
     fontParameters[FontCardTypes.PARAGRAPH] = {
@@ -1213,7 +1230,8 @@ angular.module('ddt').factory('fontParameters', function(FontCardTypes, DEFAULT_
         lineHeight: 1.2,
         letterSpacing: 'normal',
         wordSpacing: 'normal',
-        color: DEFAULT_TEXT_COLOR
+        color: DEFAULT_TEXT_COLOR,
+        fontCase: FontCases.UNSPECIFIED
     };
 
     return fontParameters;
