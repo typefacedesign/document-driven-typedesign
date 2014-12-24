@@ -104,7 +104,12 @@ gulp.task('gh-pages:copy', ['debug', 'gh-pages:clean'], function() {
         .pipe(gulp.dest('demo/'));
 });
 
-gulp.task('gh-pages:commit', ['debug', 'gh-pages:copy'], function() {
+gulp.task('gh-pages:add', ['debug', 'gh-pages:copy'], function() {
+    return gulp.src('./demo/*')
+        .pipe(git.add());
+});
+
+gulp.task('gh-pages:commit', ['debug', 'gh-pages:add'], function() {
     return gulp.src('./demo/*')
         .pipe(git.commit('Committing built files for the DDT demo.'));
 });
