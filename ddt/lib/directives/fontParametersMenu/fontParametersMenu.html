@@ -12,16 +12,19 @@
 
             <div class="form-group">
                 <label>Font case</label>
-                <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-primary active">
-                        <input type="radio" name="options" id="option1" autocomplete="off">Lowercase
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option2" autocomplete="off">Titlecase
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option3" autocomplete="off">Uppercase
-                    </label>
+                <div class="btn-group" role="group">
+                    <button class="btn btn-primary"
+                            ng-click="switchCase(FontCases.UNSPECIFIED)"
+                            ng-class="{active: isCase(FontCases.UNSPECIFIED)}">Unspecified</button>
+                    <button class="btn btn-primary"
+                            ng-click="switchCase(FontCases.UPPERCASE)"
+                            ng-class="{active: isCase(FontCases.UPPERCASE)}">Uppercase</button>
+                    <button class="btn btn-primary"
+                            ng-click="switchCase(FontCases.LOWERCASE)"
+                            ng-class="{active: isCase(FontCases.LOWERCASE)}">Lowercase</button>
+                    <button class="btn btn-primary"
+                            ng-click="switchCase(FontCases.TITLECASE)"
+                            ng-class="{active: isCase(FontCases.TITLECASE)}">Titlecase</button>
                 </div>
             </div>
             

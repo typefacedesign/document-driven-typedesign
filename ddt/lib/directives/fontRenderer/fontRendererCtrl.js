@@ -1,7 +1,7 @@
 'use strict';
 
 
-module.exports = function($scope) {
+module.exports = function($scope, FontCases) {
     var init = function() {
         $scope.wrap = $scope.wrap || false;
         $scope.allowHtml = $scope.allowHtml || false;
@@ -32,6 +32,10 @@ module.exports = function($scope) {
             if ($scope.fontParameters.wordSpacing !== 'normal') {
                 style += 'word-spacing: ' + $scope.fontParameters.wordSpacing.toString() + 'px;';
             }
+        }
+
+        if ($scope.fontParameters.fontCase !== FontCases.UNSPECIFIED) {
+            style += 'text-transform: ' + $scope.fontParameters.fontCase + ';';
         }
 
         return style;

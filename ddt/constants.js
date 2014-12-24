@@ -18,9 +18,10 @@ angular.module('ddt').constant('ErrorMessages', {
 });
 
 angular.module('ddt').constant('FontCases', {
+    UNSPECIFIED: 'unspecified',
     UPPERCASE: 'uppercase',
     LOWERCASE: 'lowercase',
-    TITLECASE: 'titlecase'
+    TITLECASE: 'capitalize'
 });
 
 
