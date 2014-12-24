@@ -1,0 +1,8 @@
+<div class="ddt-color-picker">
+    <div ng-repeat="currentColor in colors"
+         class="ddt-color-swatch"
+         ng-click="switchColor(currentColor)"
+         ng-class="{'ddt-color-swatch-active': currentColor == color}"
+         style="background-color: {{currentColor}};">
+    </div>
+</div>
