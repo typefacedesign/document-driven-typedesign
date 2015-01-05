@@ -7,9 +7,9 @@ angular.module('ddt').constant('TestParagraphs', {
     INSECT_BITE: '' +
         '<p>An investigation has concluded that there is little evidence that creams, painkillers and ' +
         'anti-inflammatories often used for bites actually work. In any case, said Drug and Therapeutics Bulletin ' +
-        'researchers, the reactions got better by themselves in most cases.</p>' +
-        '<p>Midges, mosquitoes, flies, fleas and bed-bugs account for most bites. A variety of remedies are sold over' +
-        'the counter in pharmacies to relieve the itching, pain and swelling. Other scientists have suggested that' +
+        'researchers, the reactions got better by themselves in most cases.</p> ' +
+        '<p>Midges, mosquitoes, flies, fleas and bed-bugs account for most bites. A variety of remedies are sold over ' +
+        'the counter in pharmacies to relieve the itching, pain and swelling. Other scientists have suggested that ' +
         'swapping thicker fur for clothes was a way of making insect bites and parasitic infestations less likely.</p>'
 });
 
