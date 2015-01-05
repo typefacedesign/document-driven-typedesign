@@ -9,7 +9,7 @@ module.exports = function ($scope, FontCardTypes, fontFamilyCollection, TestWord
         $scope.TestSentences = TestSentences;
         $scope.TestParagraphs = TestParagraphs;
         $scope.families = fontFamilyCollection.families();
-        $scope.fontParameters = fontParameters;
+        $scope.fontParameters = fontParameters.current;
 
         $scope.testWord = testStrings[FontCardTypes.WORD].text;
         $scope.testSentence = testStrings[FontCardTypes.SENTENCE].text;

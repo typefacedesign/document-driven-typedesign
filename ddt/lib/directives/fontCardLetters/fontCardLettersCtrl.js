@@ -13,7 +13,7 @@ module.exports = function($scope, fontParameters, FontCardTypes) {
         }
         $scope.fontSize = $scope.fontSize || 36;
         $scope.currentPage = 1;
-        $scope.fontParameters = fontParameters[FontCardTypes.LETTER];
+        $scope.fontParameters = fontParameters.current[FontCardTypes.LETTER];
     };
 
     init();

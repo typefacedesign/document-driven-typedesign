@@ -1,7 +1,7 @@
 'use strict';
 
 
-module.exports = function($scope, FontCases, testStrings, $rootScope) {
+module.exports = function($scope, FontCases, testStrings, fontParameters) {
     var init = function() {
         $scope.menuVisible = false;
         $scope.FontCases = FontCases;
@@ -18,6 +18,10 @@ module.exports = function($scope, FontCases, testStrings, $rootScope) {
 
     $scope.switchCase = function(_case) {
         $scope.parameterSet.fontCase = _case;
+    };
+
+    $scope.reset = function() {
+        fontParameters.resetParameters($scope.parameterSet.parameterSetId);
     };
 
     init();
