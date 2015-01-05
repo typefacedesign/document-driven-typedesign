@@ -19,9 +19,7 @@
                                 Collection <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Family 1</a></li>
-                                <li><a href="#">Family 2</a></li>
-                                <li><a href="#">Family 3</a></li>
+                                <li ng-repeat="family in families"><a href="">{{family.name}}</a></li>
                             </ul>
                         </li>
                     </ul>

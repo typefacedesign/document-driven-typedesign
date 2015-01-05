@@ -34,5 +34,9 @@ module.exports = function($scope, filePicker, confirmDialog, fontFamilyCollectio
         $scope.editingFamilyName = true;
     };
 
+    $scope.select = function() {
+        fontFamilyCollection.addToComparison($scope.fontFamily);
+    };
+
     init();
 };

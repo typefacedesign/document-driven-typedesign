@@ -14,7 +14,8 @@ angular.module('ddt').constant('FontCardTypes', {
 
 angular.module('ddt').constant('ErrorMessages', {
     UNRECOGNIZED_FONT_SOURCE: 'Unrecognized font source: ',
-    MISMATCHING_FAMILY: 'Cannot add font to this family. Family names don\'t match.'
+    MISMATCHING_FAMILY: 'Cannot add font to this family. Family names don\'t match.',
+    FAMILY_DOES_NOT_EXIST: 'This family does not exist in this collection.'
 });
 
 angular.module('ddt').constant('FontCases', {

@@ -4,8 +4,9 @@ var angular = require('../angular');
 var _ = require('lodash');
 
 
-angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollection) {
+angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollection, ErrorMessages) {
     var fontFamilies = [];
+    var fontFamiliesToCompare = [];
 
     // When adding a new family, we name it "Font Family X" by default,
     // where X is an integer. fontFamiliesCounter is X, and it's bumped
@@ -17,6 +18,11 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
         return fontFamilies;
     };
 
+    var familiesToCompare = function() {
+        // TODO: expose this read-only.
+        return fontFamiliesToCompare;
+    };
+
     var add = function(family) {
         _.each(family.fonts, function(font) {
             fontFaceCollection.add(font);
@@ -24,6 +30,24 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
 
         fontFamilies.push(family);
         fontFamiliesCounter++;
+    };
+
+    var addToComparison = function(familyToCompare) {
+        // First ensure the family exists in this collection.
+        var familyInCollection = _.find(fontFamilies, function(f) {
+            return f === familyToCompare;
+        });
+
+        if (!angular.isDefined(familyInCollection)) {
+            throw new Error(ErrorMessages.FAMILY_DOES_NOT_EXIST);
+        }
+
+        // TODO: ensure no duplicates.
+        fontFamiliesToCompare.push(familyToCompare);
+    };
+
+    var removeFromComparison = function(family) {
+        _.pull(fontFamiliesToCompare, family);
     };
 
     var remove = function(family) {
@@ -46,8 +70,11 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
 
     return {
         families: families,
+        familiesToCompare: familiesToCompare,
         add: add,
         remove: remove,
+        addToComparison: addToComparison,
+        removeFromComparison: removeFromComparison,
         count: count,
         findByName: findByName,
         generatePlaceholderName: generatePlaceholderName
