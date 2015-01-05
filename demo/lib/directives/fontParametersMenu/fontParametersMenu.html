@@ -7,7 +7,8 @@
         <form role="form">
             <div class="form-group">
                 <label for="previewText">Preview text</label>
-                <input type="text" class="form-control" id="previewText">
+                <input type="text" class="form-control" id="previewText"
+                       ng-model="testStrings[parameterSet.parameterSetId].text">
             </div>
 
             <div class="form-group">
@@ -72,6 +73,10 @@
             <div class="form-group">
                 <label>Color</label>
                 <ddt-color-picker color="parameterSet.color"></ddt-color-picker>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary pull-right" ng-click="reset()">Reset</button>
             </div>
         </form>
     </div>

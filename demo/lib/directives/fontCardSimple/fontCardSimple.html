@@ -2,7 +2,7 @@
   <ddt-font-card-titlebar></ddt-font-card-titlebar>
   <div class="ddt-font-card-content">
     <div ng-repeat="font in fontFamily.fonts">
-      <div class="ddt-font-card-font-name">{{font.name}}</div>
+      <ddt-font-header font="font" font-family="fontFamily"></ddt-font-header>
       <ddt-font-renderer ng-if="!allowHtml"
                          font="font"
                          font-parameters="fontParameters"

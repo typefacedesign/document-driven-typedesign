@@ -17,6 +17,9 @@
   background-color: #777777;
   width: 100%;
 }
+.ddt-cursor-pointer {
+  cursor: pointer;
+}
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -6318,7 +6321,7 @@ button.close {
 .ddt-font-card-content canvas {
   width: 100%;
 }
-.ddt-font-card-font-name {
+.ddt-font-card-font-header {
   border-bottom: solid 1px silver;
   margin-bottom: 8px;
   font-weight: bold;
