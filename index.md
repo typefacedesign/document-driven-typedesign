@@ -9,7 +9,7 @@ We are developing a small web application for testing type design quality qualit
 * [Wireframe Sketches](/ux/sketches/)
 * [Wireframe Mocks (HTML)](/ux/mocks/012)
 * [Wireframe Mocks (PNG)](/ux/mocks/012/designs.zip)
-* [Work In Progress](/app)
+* [Work In Progress](/demo)
 
 ## Related Projects
 
