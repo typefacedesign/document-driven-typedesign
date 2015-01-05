@@ -2,6 +2,7 @@
 
 require('./navbar');
 require('./fontRenderer');
+require('./fontHeader');
 require('./fontCardTitlebar');
 require('./fontCardsView');
 require('./fontCardsTypeSwitcher');

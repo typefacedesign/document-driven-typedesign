@@ -69,5 +69,13 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
         this.fonts.push(font);
     };
 
+    FontFamily.prototype.removeFont = function(font) {
+        _.pull(this.fonts, font);
+    };
+
+    FontFamily.prototype.size = function() {
+        return this.fonts.length;
+    };
+
     return FontFamily;
 });
