@@ -1,10 +1,11 @@
 'use strict';
 
 
-module.exports = function($scope, FontCases) {
+module.exports = function($scope, FontCases, testStrings, $rootScope) {
     var init = function() {
         $scope.menuVisible = false;
         $scope.FontCases = FontCases;
+        $scope.testStrings = testStrings;
     };
 
     $scope.toggleMenu = function() {
