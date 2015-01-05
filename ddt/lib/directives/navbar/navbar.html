@@ -1,0 +1,32 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">DDT</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li ng-class="{active: isCurrent('/choose')}"><a href="#/choose">Choose</a></li>
+                        <li ng-class="{active: isCurrent('/review')}"><a href="#/review">Review</a></li>
+                        <li ng-class="{active: isCurrent('/test')}"><a href="#/test">Test</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Collection <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Family 1</a></li>
+                                <li><a href="#">Family 2</a></li>
+                                <li><a href="#">Family 3</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

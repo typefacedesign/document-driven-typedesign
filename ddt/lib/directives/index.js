@@ -1,5 +1,6 @@
 'use strict';
 
+require('./navbar');
 require('./fontRenderer');
 require('./fontCardTitlebar');
 require('./fontCardsView');
