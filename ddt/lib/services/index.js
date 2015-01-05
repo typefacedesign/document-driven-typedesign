@@ -7,3 +7,4 @@ require('./fontFaceCollection');
 require('./filePicker');
 require('./fontParameters');
 require('./confirmDialog');
+require('./testStrings');
