@@ -9,12 +9,14 @@ angular.module('ddt').factory('fontParameters', function(FontCardTypes, DEFAULT_
     var fontParameters = {};
 
     fontParameters[FontCardTypes.LETTER] = {
+        parameterSetId: FontCardTypes.LETTER,
         fontSize: 24,
         color: DEFAULT_TEXT_COLOR,
         fontCase: FontCases.UNSPECIFIED
     };
 
     fontParameters[FontCardTypes.WORD] = {
+        parameterSetId: FontCardTypes.WORD,
         fontSize: 32,
         letterSpacing: 'normal',
         color: DEFAULT_TEXT_COLOR,
@@ -22,6 +24,7 @@ angular.module('ddt').factory('fontParameters', function(FontCardTypes, DEFAULT_
     };
 
     fontParameters[FontCardTypes.SENTENCE] = {
+        parameterSetId: FontCardTypes.SENTENCE,
         fontSize: 24,
         letterSpacing: 'normal',
         wordSpacing: 'normal',
@@ -30,6 +33,7 @@ angular.module('ddt').factory('fontParameters', function(FontCardTypes, DEFAULT_
     };
 
     fontParameters[FontCardTypes.PARAGRAPH] = {
+        parameterSetId: FontCardTypes.PARAGRAPH,
         fontSize: 16,
         lineHeight: 1.2,
         letterSpacing: 'normal',
