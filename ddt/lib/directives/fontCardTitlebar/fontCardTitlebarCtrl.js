@@ -38,5 +38,13 @@ module.exports = function($scope, filePicker, confirmDialog, fontFamilyCollectio
         fontFamilyCollection.addToComparison($scope.fontFamily);
     };
 
+    $scope.deselect = function() {
+        fontFamilyCollection.removeFromComparison($scope.fontFamily);
+    };
+
+    $scope.isAddedToComparison = function() {
+        return fontFamilyCollection.isAddedToComparison($scope.fontFamily);
+    };
+
     init();
 };
