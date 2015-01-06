@@ -17,8 +17,11 @@
   background-color: #777777;
   width: 100%;
 }
-.ddt-cursor-pointer {
+.ddt-remove-button {
   cursor: pointer;
+}
+.ddt-remove-button:hover {
+  color: #337ab7;
 }
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
@@ -6313,6 +6316,9 @@ button.close {
   border: solid 1px #e7e7e7;
   margin-bottom: 20px;
 }
+.ddt-font-card.active {
+  border: solid 1px #337ab7;
+}
 .ddt-font-card-content {
   padding: 15px 15px;
   height: 290px;
@@ -6444,6 +6450,13 @@ button.close {
 }
 .ddt-color-swatch-active {
   border: solid 3px #8AFF93;
+}
+.ddt-comparison-menu > li > span,
+.ddt-comparison-menu > li > div {
+  display: inline-block;
+  padding: 3px 20px;
+  white-space: nowrap;
+  min-width: 300px;
 }
 .ddt-file-picker-input {
   visibility: hidden;
