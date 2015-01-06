@@ -24,5 +24,9 @@ module.exports = function($scope, FontCases, testStrings, fontParameters) {
         fontParameters.resetParameters($scope.parameterSet.parameterSetId);
     };
 
+    $scope.isDefined = function(thing) {
+        return angular.isDefined(thing);
+    };
+
     init();
 };

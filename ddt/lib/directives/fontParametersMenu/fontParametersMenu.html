@@ -42,32 +42,29 @@
                     <span>Line height</span>
                     <span class="pull-right" ng-show="parameterSet.lineHeight">{{ parameterSet.lineHeight }}</span>
                 </label>
-                <input type="range" min="0.1" max="10" step="0.01" id="lineHeightSlider"
-                       ng-disabled="!parameterSet.lineHeight" ng-model="parameterSet.lineHeight">
+                <input type="range" min="0.5" max="2.5" step="0.01" id="lineHeightSlider"
+                       ng-disabled="!isDefined(parameterSet.lineHeight)"
+                       ng-model="parameterSet.lineHeight">
             </div>
 
             <div class="form-group">
                 <label for="letterSpacingSlider" class="ddt-slider-label">
                     <span>Letter spacing</span>
-                    <span class="pull-right" ng-show="parameterSet.letterSpacing">
-                        <span ng-hide="parameterSet.letterSpacing === 'normal'">{{parameterSet.letterSpacing}}px</span>
-                        <span ng-show="parameterSet.letterSpacing === 'normal'">normal</span>
-                    </span>
+                    <span class="pull-right">{{parameterSet.letterSpacing}}px</span>
                 </label>
-                <input type="range" min="0" max="50" step="1" id="letterSpacingSlider"
-                        ng-disabled="!parameterSet.letterSpacing" ng-model="parameterSet.letterSpacing">
+                <input type="range" min="-5" max="5" step="1" id="letterSpacingSlider"
+                        ng-disabled="!isDefined(parameterSet.letterSpacing)"
+                        ng-model="parameterSet.letterSpacing">
             </div>
 
             <div class="form-group">
                 <label for="wordSpacingSlider" class="ddt-slider-label">
                     <span>Word spacing</span>
-                    <span class="pull-right" ng-show="parameterSet.wordSpacing">
-                        <span ng-hide="parameterSet.wordSpacing == 'normal'">{{parameterSet.wordSpacing}}px</span>
-                        <span ng-show="parameterSet.wordSpacing == 'normal'">normal</span>
-                    </span>
+                    <span class="pull-right">{{parameterSet.wordSpacing}}px</span>
                 </label>
-                <input type="range" min="0" max="50" step="1" id="wordSpacingSlider"
-                        ng-disabled="!parameterSet.wordSpacing" ng-model="parameterSet.wordSpacing">
+                <input type="range" min="-10" max="10" step="1" id="wordSpacingSlider"
+                        ng-disabled="!isDefined(parameterSet.wordSpacing)"
+                        ng-model="parameterSet.wordSpacing">
             </div>
 
             <div class="form-group">
