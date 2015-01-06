@@ -15,11 +15,23 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Collection <span class="caret"></span>
+                            <a href="" class="dropdown-toggle ddt-comparison-menu-toggle"
+                               role="button"
+                               ng-click="openMenu()"
+                               aria-expanded="false">Collection <span class="caret"></span>
                             </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li ng-repeat="family in families"><a href="">{{family.name}}</a></li>
+                            <ul class="dropdown-menu ddt-comparison-menu" role="menu">
+                                <li ng-repeat="family in families" ng-hide="families.length == 0">
+                                    <div>
+                                        <span>{{family.name}}</span>
+                                        <span class="glyphicon glyphicon-remove pull-right ddt-remove-button"
+                                              ng-click="removeFromComparison(family)"></span>
+                                    </div>
+                                </li>
+
+                                <li ng-show="families.length == 0">
+                                    <span class="text-muted">No fonts added to comparison</span>
+                                </li>
                             </ul>
                         </li>
                     </ul>

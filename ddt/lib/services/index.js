@@ -8,3 +8,4 @@ require('./filePicker');
 require('./fontParameters');
 require('./confirmDialog');
 require('./testStrings');
+require('./comparisonMenu');
