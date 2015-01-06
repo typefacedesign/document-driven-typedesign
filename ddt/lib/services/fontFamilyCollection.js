@@ -42,8 +42,9 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
             throw new Error(ErrorMessages.FAMILY_DOES_NOT_EXIST);
         }
 
-        // TODO: ensure no duplicates.
-        fontFamiliesToCompare.push(familyToCompare);
+        if (!isAddedToComparison(familyToCompare)) {
+            fontFamiliesToCompare.push(familyToCompare);
+        }
     };
 
     var removeFromComparison = function(family) {
@@ -68,6 +69,12 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
         });
     };
 
+    var isAddedToComparison = function(family) {
+        return angular.isDefined(_.find(fontFamiliesToCompare, function(f) {
+            return f.name === family.name;
+        }));
+    };
+
     return {
         families: families,
         familiesToCompare: familiesToCompare,
@@ -77,6 +84,7 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
         removeFromComparison: removeFromComparison,
         count: count,
         findByName: findByName,
+        isAddedToComparison: isAddedToComparison,
         generatePlaceholderName: generatePlaceholderName
     };
 });

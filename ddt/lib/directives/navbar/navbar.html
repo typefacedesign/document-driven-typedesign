@@ -18,7 +18,9 @@
                             <a href="" class="dropdown-toggle ddt-comparison-menu-toggle"
                                role="button"
                                ng-click="openMenu()"
-                               aria-expanded="false">Collection <span class="caret"></span>
+                               aria-expanded="false">
+                                Collection ({{families.length}})
+                                <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu ddt-comparison-menu" role="menu">
                                 <li ng-repeat="family in families" ng-hide="families.length == 0">
