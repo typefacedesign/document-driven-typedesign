@@ -6464,3 +6464,22 @@ button.close {
   top: -50px;
   left: -50px;
 }
+.ddt-review-card-letter {
+  padding: 15px 15px;
+  border-radius: 4px;
+  border: solid 1px #e7e7e7;
+  margin-bottom: 20px;
+}
+.ddt-review-card-letter-header,
+.ddt-review-card-letter-letter-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+.ddt-font-reviewer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}

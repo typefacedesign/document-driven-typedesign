@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-11">
+    <ddt-font-cards-type-switcher></ddt-font-cards-type-switcher>
+  </div>
+  <div class="col-md-1">
+    <ddt-font-parameters-menu class="pull-right" parameter-set="fontParameters">
+    </ddt-font-parameters-menu>
+  </div>
+</div>
+
+<hr>
+
+<div class="ddt-font-reviewer">
+  <div class="ddt-review-card-letter" ng-repeat="comparisonGroup in comparisonMatrix">
+    <div class="ddt-review-card-letter-header">
+      <span ng-repeat="font in comparisonGroup">{{font.name}}</span>
+    </div>
+    <div class="ddt-review-card-letter-letter-group" ng-repeat="letter in letters">
+      <ddt-font-renderer
+          ng-repeat="font in comparisonGroup"
+          font="font"
+          font-parameters="fontParameters"
+          text="letter"></ddt-font-renderer>
+    </div>
+  </div>
+</div>
