@@ -28,5 +28,9 @@ app.config(function($routeProvider) {
             controller: 'FontsChooserCtrl',
             templateUrl: 'app/fontsChooser/fontsChooser.html',
             reloadOnSearch: false
+        })
+        .when('/review', {
+            controller: 'FontsReviewerCtrl',
+            templateUrl: 'app/fontsReviewer/fontsReviewer.html'
         });
 });
