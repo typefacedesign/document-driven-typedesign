@@ -7,6 +7,7 @@ var _ = require('lodash');
 angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollection, ErrorMessages) {
     var fontFamilies = [];
     var fontFamiliesToCompare = [];
+    var fontComparisonMatrix;
 
     // When adding a new family, we name it "Font Family X" by default,
     // where X is an integer. fontFamiliesCounter is X, and it's bumped
@@ -45,14 +46,18 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
         if (!isAddedToComparison(familyToCompare)) {
             fontFamiliesToCompare.push(familyToCompare);
         }
-    };
 
-    var removeFromComparison = function(family) {
-        _.pull(fontFamiliesToCompare, family);
+        fontComparisonMatrix = _buildComparisonMatrix(fontFamiliesToCompare);
     };
 
     var remove = function(family) {
         _.pull(fontFamilies, family);
+        removeFromComparison(family);
+    };
+
+    var removeFromComparison = function(family) {
+        _.pull(fontFamiliesToCompare, family);
+        fontComparisonMatrix = _buildComparisonMatrix(fontFamiliesToCompare);
     };
 
     var count = function() {
@@ -75,6 +80,22 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
         }));
     };
 
+    var comparisonMatrix = function() {
+        return fontComparisonMatrix;
+    };
+
+    var _buildComparisonMatrix = function(fontFamilies) {
+        var minLength = _.size(_.min(fontFamilies, function(family) {
+            return family.fonts.length;
+        }).fonts);
+
+        var truncatedFonts = _.map(fontFamilies, function(family) {
+            return _.take(family.fonts, minLength);
+        });
+
+        return _.zip.apply(undefined, truncatedFonts);
+    };
+
     return {
         families: families,
         familiesToCompare: familiesToCompare,
@@ -85,6 +106,7 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
         count: count,
         findByName: findByName,
         isAddedToComparison: isAddedToComparison,
+        comparisonMatrix: comparisonMatrix,
         generatePlaceholderName: generatePlaceholderName
     };
 });
