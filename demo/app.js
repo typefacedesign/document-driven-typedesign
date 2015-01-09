@@ -59,7 +59,10 @@ app.controller('FontsChooserCtrl', require('./fontsChooser'));
 module.exports = function($scope, fontFamilyCollection, fontParameters, FontCardTypes, $timeout) {
     var init = function() {
         $scope.comparisonMatrix = fontFamilyCollection.comparisonMatrix();
+        $scope.fontsInComparisonMatrix = fontFamilyCollection.fontsInComparisonMatrix();
         $scope.fontParameters = fontParameters.current[FontCardTypes.LETTER];
+
+        // TODO: make this a constant.
         $scope.letters = 'abcdefghjklmnopqrstuvwxyz'.split('');
 
         $scope.$watch(function() {
@@ -67,6 +70,10 @@ module.exports = function($scope, fontFamilyCollection, fontParameters, FontCard
         }, function() {
             $scope.comparisonMatrix = fontFamilyCollection.comparisonMatrix();
         });
+    };
+
+    $scope.swapFontsToCompare = function(font1, font2) {
+        fontFamilyCollection.swapFontsToCompare(font1, font2);
     };
 
     init();
@@ -103,7 +110,8 @@ angular.module('ddt').constant('FontCardTypes', {
 angular.module('ddt').constant('ErrorMessages', {
     UNRECOGNIZED_FONT_SOURCE: 'Unrecognized font source: ',
     MISMATCHING_FAMILY: 'Cannot add font to this family. Family names don\'t match.',
-    FAMILY_DOES_NOT_EXIST: 'This family does not exist in this collection.'
+    FAMILY_DOES_NOT_EXIST: 'This family does not exist in this collection.',
+    FONT_ALREADY_HAS_FAMILY: 'This font belongs to a different family. You cannot add it to this family.'
 });
 
 angular.module('ddt').constant('FontCases', {
@@ -1099,6 +1107,7 @@ angular.module('ddt').constant('FontSources', {
 angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
     var Font = function(opts) {
         this.source = opts.source;
+        this.family = null;
 
         var fileSplit;
         if (opts.source === FontSources.URL) {
@@ -1317,10 +1326,21 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
             throw new Error(ErrorMessages.MISMATCHING_FAMILY);
         }
 
+        // Each font can only belong to one family. If the family
+        // property on the font is non-null, that means someone
+        // is trying to add a font that has already been added to
+        // another family to this family, which is illegal.
+        if (font.family !== null) {
+            throw new Error(ErrorMessages.FONT_ALREADY_HAS_FAMILY);
+        } else {
+            font.family = this;
+        }
+
         this.fonts.push(font);
     };
 
     FontFamily.prototype.removeFont = function(font) {
+        font.family = null;
         _.pull(this.fonts, font);
     };
 
@@ -1418,6 +1438,42 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
         return fontComparisonMatrix;
     };
 
+    var fontsInComparisonMatrix = function() {
+        return _.flatten(fontComparisonMatrix);
+    };
+
+    var swapFontsToCompare = function(font1, font2) {
+        var _findInComparisonMatrix = function(font) {
+            for (var i = 0; i < fontComparisonMatrix.length; i++) {
+                for (var j = 0; j < fontComparisonMatrix[i].length; j++) {
+                    if (fontComparisonMatrix[i][j] === font) {
+                        return [i, j];
+                    }
+                }
+            }
+
+            return -1;
+        };
+
+        var index1 = _findInComparisonMatrix(font1);
+        var index2 = _findInComparisonMatrix(font2);
+
+        if ((index1 === -1 || index2 === -1) && !(index1 === -1 && index2 === -1)) {
+            // If one, but not both, fonts are not in the matrix, then
+            // we're not swapping positions within the matrix but simply
+            // replacing one font with another.
+            if (index1 === -1) {
+                fontComparisonMatrix[index2[0]][index2[1]] = font1;
+            } else if (index2 === -1) {
+                fontComparisonMatrix[index1[0]][index1[1]] = font2;
+            }
+        } else {
+            // Otherwise, do a regular swap.
+            fontComparisonMatrix[index1[0]][index1[1]] = font2;
+            fontComparisonMatrix[index2[0]][index2[1]] = font1;
+        }
+    };
+
     var _buildComparisonMatrix = function(fontFamilies) {
         var minLength = _.size(_.min(fontFamilies, function(family) {
             return family.fonts.length;
@@ -1441,6 +1497,8 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
         findByName: findByName,
         isAddedToComparison: isAddedToComparison,
         comparisonMatrix: comparisonMatrix,
+        fontsInComparisonMatrix: fontsInComparisonMatrix,
+        swapFontsToCompare: swapFontsToCompare,
         generatePlaceholderName: generatePlaceholderName
     };
 });

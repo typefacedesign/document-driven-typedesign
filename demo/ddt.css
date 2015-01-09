@@ -6483,3 +6483,12 @@ button.close {
   flex-wrap: wrap;
   justify-content: space-around;
 }
+.ddt-review-card-letter-header {
+  margin-bottom: 20px;
+}
+.ddt-review-card-letter-header .btn-group {
+  margin-left: 20px;
+}
+.ddt-review-card-letter-header .btn-group:first-child {
+  margin-left: 0;
+}
