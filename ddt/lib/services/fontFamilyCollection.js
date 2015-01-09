@@ -84,6 +84,42 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
         return fontComparisonMatrix;
     };
 
+    var fontsInComparisonMatrix = function() {
+        return _.flatten(fontComparisonMatrix);
+    };
+
+    var swapFontsToCompare = function(font1, font2) {
+        var _findInComparisonMatrix = function(font) {
+            for (var i = 0; i < fontComparisonMatrix.length; i++) {
+                for (var j = 0; j < fontComparisonMatrix[i].length; j++) {
+                    if (fontComparisonMatrix[i][j] === font) {
+                        return [i, j];
+                    }
+                }
+            }
+
+            return -1;
+        };
+
+        var index1 = _findInComparisonMatrix(font1);
+        var index2 = _findInComparisonMatrix(font2);
+
+        if ((index1 === -1 || index2 === -1) && !(index1 === -1 && index2 === -1)) {
+            // If one, but not both, fonts are not in the matrix, then
+            // we're not swapping positions within the matrix but simply
+            // replacing one font with another.
+            if (index1 === -1) {
+                fontComparisonMatrix[index2[0]][index2[1]] = font1;
+            } else if (index2 === -1) {
+                fontComparisonMatrix[index1[0]][index1[1]] = font2;
+            }
+        } else {
+            // Otherwise, do a regular swap.
+            fontComparisonMatrix[index1[0]][index1[1]] = font2;
+            fontComparisonMatrix[index2[0]][index2[1]] = font1;
+        }
+    };
+
     var _buildComparisonMatrix = function(fontFamilies) {
         var minLength = _.size(_.min(fontFamilies, function(family) {
             return family.fonts.length;
@@ -107,6 +143,8 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
         findByName: findByName,
         isAddedToComparison: isAddedToComparison,
         comparisonMatrix: comparisonMatrix,
+        fontsInComparisonMatrix: fontsInComparisonMatrix,
+        swapFontsToCompare: swapFontsToCompare,
         generatePlaceholderName: generatePlaceholderName
     };
 });
