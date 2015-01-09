@@ -66,10 +66,21 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
             throw new Error(ErrorMessages.MISMATCHING_FAMILY);
         }
 
+        // Each font can only belong to one family. If the family
+        // property on the font is non-null, that means someone
+        // is trying to add a font that has already been added to
+        // another family to this family, which is illegal.
+        if (font.family !== null) {
+            throw new Error(ErrorMessages.FONT_ALREADY_HAS_FAMILY);
+        } else {
+            font.family = this;
+        }
+
         this.fonts.push(font);
     };
 
     FontFamily.prototype.removeFont = function(font) {
+        font.family = null;
         _.pull(this.fonts, font);
     };
 
