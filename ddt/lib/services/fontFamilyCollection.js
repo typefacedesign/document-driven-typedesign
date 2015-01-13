@@ -4,10 +4,16 @@ var angular = require('../angular');
 var _ = require('lodash');
 
 
-angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollection, ErrorMessages) {
+angular.module('ddt').factory('fontFamilyCollection', function($rootScope,
+                                                               fontFaceCollection,
+                                                               ErrorMessages) {
+    var MATRIX_ACTION_ADD = 'add',
+        MATRIX_ACTION_REMOVE = 'remove';
+
     var fontFamilies = [];
     var fontFamiliesToCompare = [];
     var fontComparisonMatrix;
+    var fontFamilyWatchers = new Map();
 
     // When adding a new family, we name it "Font Family X" by default,
     // where X is an integer. fontFamiliesCounter is X, and it's bumped
@@ -33,21 +39,40 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
         fontFamiliesCounter++;
     };
 
-    var addToComparison = function(familyToCompare) {
+    var addToComparison = function(familyToAdd) {
         // First ensure the family exists in this collection.
         var familyInCollection = _.find(fontFamilies, function(f) {
-            return f === familyToCompare;
+            return f === familyToAdd;
         });
 
         if (!angular.isDefined(familyInCollection)) {
             throw new Error(ErrorMessages.FAMILY_DOES_NOT_EXIST);
         }
 
-        if (!isAddedToComparison(familyToCompare)) {
-            fontFamiliesToCompare.push(familyToCompare);
+        if (!isAddedToComparison(familyToAdd)) {
+            fontFamiliesToCompare.push(familyToAdd);
+        } else {
+            // Adding an existing family to collection is a no-op.
+            return;
         }
 
-        fontComparisonMatrix = _buildComparisonMatrix(fontFamiliesToCompare);
+        // Set up a watcher so if the number of fonts in the family
+        // changes, we can recalculate the comparison matrix.
+        var watcher = $rootScope.$watch(function() {
+            return familyToAdd.fonts.length;
+        }, function(oldVal, newVal) {
+            // When the fonts array changes, we just remove and
+            // re-add this family to comparison.
+            if (oldVal !== newVal) {
+                removeFromComparison(familyToAdd);
+                addToComparison(familyToAdd);
+            }
+        });
+
+        fontFamilyWatchers.set(familyToAdd, watcher);
+
+        // Now update the comparison matrix.
+        _updateComparisonMatrix(familyToAdd, MATRIX_ACTION_ADD)
     };
 
     var remove = function(family) {
@@ -55,9 +80,14 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
         removeFromComparison(family);
     };
 
-    var removeFromComparison = function(family) {
-        _.pull(fontFamiliesToCompare, family);
-        fontComparisonMatrix = _buildComparisonMatrix(fontFamiliesToCompare);
+    var removeFromComparison = function(familyToRemove) {
+        _.pull(fontFamiliesToCompare, familyToRemove);
+
+        // Now update the comparison matrix.
+        _updateComparisonMatrix(familyToRemove, MATRIX_ACTION_REMOVE);
+
+        // Remove the watcher.
+        fontFamilyWatchers.get(familyToRemove)();
     };
 
     var count = function() {
@@ -120,7 +150,12 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
         }
     };
 
+    // Builds a new comparison matrix and returns it.
     var _buildComparisonMatrix = function(fontFamilies) {
+        if (fontFamilies.length < 2) {
+            return;
+        }
+
         var minLength = _.size(_.min(fontFamilies, function(family) {
             return family.fonts.length;
         }).fonts);
@@ -130,6 +165,70 @@ angular.module('ddt').factory('fontFamilyCollection', function(fontFaceCollectio
         });
 
         return _.zip.apply(undefined, truncatedFonts);
+    };
+
+    var _updateComparisonMatrix = function(family, action) {
+        if (action === MATRIX_ACTION_ADD) {
+            // If the matrix is undefined, build it from scratch.
+            if (angular.isUndefined(fontComparisonMatrix)) {
+                fontComparisonMatrix = _buildComparisonMatrix(fontFamiliesToCompare);
+            } else {
+                // If the new family has fewer fonts than the comparison matrix,
+                // truncate the matrix.
+                if (family.fonts.length < fontComparisonMatrix.length) {
+                    fontComparisonMatrix = _.take(fontComparisonMatrix, family.fonts.length);
+                }
+
+                // Now add fonts from the new family to the matrix.
+                for (var i = 0; i < fontComparisonMatrix.length; i++) {
+                    fontComparisonMatrix[i].push(family.fonts[i]);
+                }
+            }
+        } else if (action === MATRIX_ACTION_REMOVE) {
+            // If there are no more families to compare, set the matrix to undefined.
+            if (fontFamiliesToCompare.length < 2) {
+                fontComparisonMatrix = undefined;
+                return;
+            }
+
+            // Otherwise, get rid of all fonts from the family we just removed.
+            _.each(fontComparisonMatrix, function(fontGroup) {
+                _.each(fontGroup, function(font) {
+                    if (_.contains(family.fonts, font)) {
+                        _.pull(fontGroup, font);
+                    }
+                });
+            });
+
+            // Next, find the new minLength.
+            var minLength = _.size(_.min(fontFamiliesToCompare, function(family) {
+                return family.fonts.length;
+            }).fonts);
+
+            // Do we need to add more fonts to the comparison matrix?
+            if (minLength > fontComparisonMatrix.length) {
+                var fontsInMatrix = fontsInComparisonMatrix();
+
+                // Figure out which fonts from each family have not been added
+                // to the comparison matrix yet.
+                var fontsNotInMatrix = _.map(fontFamiliesToCompare, function(family) {
+                    return _.filter(family.fonts, function(font) {
+                        return !_.contains(fontsInMatrix, font);
+                    });
+                });
+
+                // minLength - fontComparisonMatrix.length gives us the extra fonts
+                // that we need to add to the matrix. Pick these out from the fonts
+                // that are not in the matrix yet.
+                var truncatedFonts = _.map(fontsNotInMatrix, function(fontGroup) {
+                    return _.take(fontGroup, minLength - fontComparisonMatrix.length);
+                });
+
+                // Zip selected fonts and push them into the matrix.
+                var zippedFonts = _.zip(truncatedFonts);
+                fontComparisonMatrix = fontComparisonMatrix.concat(zippedFonts);
+            }
+        }
     };
 
     return {
