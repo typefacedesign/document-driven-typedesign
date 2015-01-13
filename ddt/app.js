@@ -5,6 +5,7 @@ require('bootstrap');
 var angular = require('./lib/angular');
 require('angular-route');
 require('angular-sanitize');
+require('es6-shim');
 
 var app = angular.module('ddt', ['ngRoute', 'ngSanitize']);
 
