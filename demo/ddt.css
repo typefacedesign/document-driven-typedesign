@@ -1,3 +1,6 @@
+body {
+  overflow-y: scroll;
+}
 .ddt-margin-vertical {
   margin-top: 20px;
   margin-bottom: 20px;
