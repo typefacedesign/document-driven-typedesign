@@ -57,8 +57,11 @@ app.controller('FontsChooserCtrl', require('./fontsChooser'));
 'use strict';
 
 
-module.exports = function($scope, fontFamilyCollection, fontParameters, FontCardTypes, $timeout) {
+module.exports = function($scope, $routeParams, fontFamilyCollection,
+                          fontParameters, FontCardTypes, FontComparisonTypes) {
     var init = function() {
+        $scope.cardType = $routeParams.cardType || FontCardTypes.WORD;
+        $scope.comparisonType = $routeParams.comparisonType || FontComparisonTypes.SIDE_BY_SIDE;
         $scope.comparisonMatrix = fontFamilyCollection.comparisonMatrix();
         $scope.fontsInComparisonMatrix = fontFamilyCollection.fontsInComparisonMatrix();
         $scope.fontParameters = fontParameters.current[FontCardTypes.LETTER];
@@ -106,6 +109,13 @@ angular.module('ddt').constant('FontCardTypes', {
     PARAGRAPH: 'paragraph',
     RICH_TEXT: 'rich_text',
     LAYOUT: 'layout'
+});
+
+angular.module('ddt').constant('FontComparisonTypes', {
+    SIDE_BY_SIDE: 'side_by_side',
+    OPACITY: 'opacity',
+    MASK: 'mask',
+    DIFF: 'diff'
 });
 
 angular.module('ddt').constant('ErrorMessages', {
@@ -781,6 +791,7 @@ module.exports = function() {
     return {
         restrict: 'E',
         templateUrl: 'lib/directives/fontParametersMenu/fontParametersMenu.html',
+        replace: true,
         controller: 'FontParametersMenuCtrl',
         scope: {
             parameterSet: '='
@@ -1415,11 +1426,13 @@ angular.module('ddt').factory('fontFamilyCollection', function($rootScope,
         // changes, we can recalculate the comparison matrix.
         var watcher = $rootScope.$watch(function() {
             return familyToAdd.fonts.length;
-        }, function() {
+        }, function(oldVal, newVal) {
             // When the fonts array changes, we just remove and
             // re-add this family to comparison.
-            removeFromComparison(familyToAdd);
-            //addToComparison(familyToAdd);
+            if (oldVal !== newVal) {
+                removeFromComparison(familyToAdd);
+                addToComparison(familyToAdd);
+            }
         });
 
         fontFamilyWatchers.set(familyToAdd, watcher);

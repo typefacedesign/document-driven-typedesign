@@ -6495,3 +6495,12 @@ button.close {
 .ddt-review-card-letter-header .btn-group:first-child {
   margin-left: 0;
 }
+.ddt-font-reviewer-controls {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+.ddt-font-reviewer-controls .btn {
+  margin-left: 20px;
+}
