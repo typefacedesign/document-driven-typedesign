@@ -4,7 +4,8 @@
       <ddt-font-card-add></ddt-font-card-add>
     </div>
 
-    <!--FIXME: There is a lot of code duplication in this view.-->
+    <!-- FIXME: There is a lot of code duplication in this view. -->
+    <!-- This is the perfect use case for flexbox. -->
     <div class="col-md-4" ng-if="families.length > 0">
       <ddt-font-card-simple ng-show="isType(FontCardTypes.WORD)"
                             ng-class="{active: isAddedToComparison(families[0])}"

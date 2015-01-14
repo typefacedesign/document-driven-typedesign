@@ -6417,6 +6417,19 @@ button.close {
 .ddt-font-card-letter {
   height: 369px;
 }
+.ddt-review-card-side-by-side {
+  padding: 15px 15px;
+  border-radius: 4px;
+  border: solid 1px #e7e7e7;
+  margin-bottom: 20px;
+}
+.ddt-review-card-side-by-side-header,
+.ddt-review-card-side-by-side-letter-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
 .ddt-dotted-paginator {
   text-align: center;
 }
@@ -6461,39 +6474,24 @@ button.close {
   white-space: nowrap;
   min-width: 300px;
 }
+div > .ddt-matrix-swap-dropdown {
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+div > .ddt-matrix-swap-dropdown:first-child {
+  margin-left: 0;
+}
 .ddt-file-picker-input {
   visibility: hidden;
   position: absolute;
   top: -50px;
   left: -50px;
 }
-.ddt-review-card-letter {
-  padding: 15px 15px;
-  border-radius: 4px;
-  border: solid 1px #e7e7e7;
-  margin-bottom: 20px;
-}
-.ddt-review-card-letter-header,
-.ddt-review-card-letter-letter-group {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-}
 .ddt-font-reviewer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-}
-.ddt-review-card-letter-header {
-  margin-bottom: 20px;
-}
-.ddt-review-card-letter-header .btn-group {
-  margin-left: 20px;
-}
-.ddt-review-card-letter-header .btn-group:first-child {
-  margin-left: 0;
 }
 .ddt-font-reviewer-controls {
   display: flex;
@@ -6503,4 +6501,8 @@ button.close {
 }
 .ddt-font-reviewer-controls .btn {
   margin-left: 20px;
+}
+.ddt-font-reviewer-controls > .dropdown > .dropdown-toggle,
+.ddt-font-reviewer-controls > .dropdown > .dropdown-menu {
+  text-transform: capitalize;
 }

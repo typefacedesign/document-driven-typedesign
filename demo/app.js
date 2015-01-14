@@ -33,11 +33,12 @@ app.config(function($routeProvider) {
         })
         .when('/review', {
             controller: 'FontsReviewerCtrl',
-            templateUrl: 'app/fontsReviewer/fontsReviewer.html'
+            templateUrl: 'app/fontsReviewer/fontsReviewer.html',
+            reloadOnSearch: false
         });
 });
 
-},{"./app/index.js":6,"./constants":7,"./lib/angular":8,"./lib/directives":46,"./lib/services":61,"./testStrings":63,"angular-route":65,"angular-sanitize":66,"bootstrap":68,"es6-shim":83,"jquery":84}],2:[function(require,module,exports){
+},{"./app/index.js":6,"./constants":7,"./lib/angular":8,"./lib/directives":46,"./lib/services":67,"./testStrings":69,"angular-route":71,"angular-sanitize":72,"bootstrap":74,"es6-shim":89,"jquery":90}],2:[function(require,module,exports){
 'use strict';
 
 
@@ -56,34 +57,42 @@ app.controller('FontsChooserCtrl', require('./fontsChooser'));
 },{"../../lib/angular":8,"./fontsChooser":2}],4:[function(require,module,exports){
 'use strict';
 
+var _ = require('lodash');
 
-module.exports = function($scope, $routeParams, fontFamilyCollection,
+
+module.exports = function($scope, $routeParams, $location, fontFamilyCollection,
                           fontParameters, FontCardTypes, FontComparisonTypes) {
     var init = function() {
         $scope.cardType = $routeParams.cardType || FontCardTypes.WORD;
         $scope.comparisonType = $routeParams.comparisonType || FontComparisonTypes.SIDE_BY_SIDE;
-        $scope.comparisonMatrix = fontFamilyCollection.comparisonMatrix();
-        $scope.fontsInComparisonMatrix = fontFamilyCollection.fontsInComparisonMatrix();
         $scope.fontParameters = fontParameters.current[FontCardTypes.LETTER];
+        $scope.FontComparisonTypes = FontComparisonTypes;
+        $scope.comparisonMatrix = fontFamilyCollection.comparisonMatrix();
 
-        // TODO: make this a constant.
-        $scope.letters = 'abcdefghjklmnopqrstuvwxyz'.split('');
-
-        $scope.$watch(function() {
+        $scope.$watch(function () {
             return fontFamilyCollection.comparisonMatrix();
-        }, function() {
+        }, function () {
             $scope.comparisonMatrix = fontFamilyCollection.comparisonMatrix();
         });
     };
 
-    $scope.swapFontsToCompare = function(font1, font2) {
-        fontFamilyCollection.swapFontsToCompare(font1, font2);
+    $scope.isCurrentComparison = function(comparison) {
+        return comparison === $scope.comparisonType;
+    };
+
+    $scope.switchComparisonType = function(comparisonType) {
+        $scope.comparisonType = comparisonType;
+        $location.search('comparisonType', $scope.comparisonType);
+    };
+
+    $scope.replaceUnderscores = function(text) {
+        return text.replace(/_/g, ' ');
     };
 
     init();
 };
 
-},{}],5:[function(require,module,exports){
+},{"lodash":91}],5:[function(require,module,exports){
 'use strict';
 
 var app = require('../../lib/angular').module('ddt');
@@ -141,7 +150,7 @@ angular.module('ddt').constant('DEFAULT_TEXT_COLOR', '#333');
 require('angular');
 module.exports = angular;
 
-},{"angular":67}],9:[function(require,module,exports){
+},{"angular":73}],9:[function(require,module,exports){
 'use strict';
 
 
@@ -216,7 +225,7 @@ module.exports = function($scope) {
     init();
 };
 
-},{"lodash":85}],13:[function(require,module,exports){
+},{"lodash":91}],13:[function(require,module,exports){
 'use strict';
 
 
@@ -409,7 +418,7 @@ module.exports = function ($scope, $q, $http, FontFamily, FontSources, fontFamil
     init();
 };
 
-},{"lodash":85}],20:[function(require,module,exports){
+},{"lodash":91}],20:[function(require,module,exports){
 'use strict';
 
 var _ = require('lodash');
@@ -447,7 +456,7 @@ module.exports = function() {
     };
 };
 
-},{"lodash":85}],21:[function(require,module,exports){
+},{"lodash":91}],21:[function(require,module,exports){
 'use strict';
 
 
@@ -594,7 +603,7 @@ module.exports = function($scope, filePicker, confirmDialog, fontFamilyCollectio
     init();
 };
 
-},{"lodash":85}],29:[function(require,module,exports){
+},{"lodash":91}],29:[function(require,module,exports){
 'use strict';
 
 
@@ -791,7 +800,6 @@ module.exports = function() {
     return {
         restrict: 'E',
         templateUrl: 'lib/directives/fontParametersMenu/fontParametersMenu.html',
-        replace: true,
         controller: 'FontParametersMenuCtrl',
         scope: {
             parameterSet: '='
@@ -810,7 +818,7 @@ module.exports = function() {
     };
 };
 
-},{"jquery":84}],42:[function(require,module,exports){
+},{"jquery":90}],42:[function(require,module,exports){
 'use strict';
 
 var angular = require('../../angular');
@@ -905,6 +913,8 @@ require('./fontCardsTypeSwitcher');
 require('./fontCardAdd');
 require('./fontCardSimple');
 require('./fontCardLetters');
+require('./reviewCardSideBySide');
+require('./matrixSwapDropdown');
 require('./filePickerButton');
 require('./focus');
 require('./loadingSpinner');
@@ -912,7 +922,7 @@ require('./dottedPaginator');
 require('./fontParametersMenu');
 require('./colorPicker');
 
-},{"./colorPicker":11,"./dottedPaginator":14,"./filePickerButton":17,"./focus":18,"./fontCardAdd":21,"./fontCardLetters":24,"./fontCardSimple":27,"./fontCardTitlebar":30,"./fontCardsTypeSwitcher":33,"./fontCardsView":36,"./fontHeader":39,"./fontParametersMenu":42,"./fontRenderer":45,"./loadingSpinner":47,"./navbar":49}],47:[function(require,module,exports){
+},{"./colorPicker":11,"./dottedPaginator":14,"./filePickerButton":17,"./focus":18,"./fontCardAdd":21,"./fontCardLetters":24,"./fontCardSimple":27,"./fontCardTitlebar":30,"./fontCardsTypeSwitcher":33,"./fontCardsView":36,"./fontHeader":39,"./fontParametersMenu":42,"./fontRenderer":45,"./loadingSpinner":47,"./matrixSwapDropdown":49,"./navbar":52,"./reviewCardSideBySide":55}],47:[function(require,module,exports){
 'use strict';
 
 var angular = require('../../angular');
@@ -935,7 +945,42 @@ module.exports = function() {
         }
     };
 };
-},{"../../../vendor/spin.js":64}],49:[function(require,module,exports){
+},{"../../../vendor/spin.js":70}],49:[function(require,module,exports){
+'use strict';
+
+var angular = require('../../angular');
+
+
+angular.module('ddt').controller('MatrixSwapDropdownCtrl', require('./matrixSwapDropdownCtrl'));
+angular.module('ddt').directive('ddtMatrixSwapDropdown', require('./matrixSwapDropdownDirective'));
+
+},{"../../angular":8,"./matrixSwapDropdownCtrl":50,"./matrixSwapDropdownDirective":51}],50:[function(require,module,exports){
+'use strict';
+
+
+module.exports = function($scope, fontFamilyCollection) {
+    $scope.swapFontsToCompare = function(font1, font2) {
+        fontFamilyCollection.swapFontsToCompare(font1, font2);
+    };
+};
+
+},{}],51:[function(require,module,exports){
+'use strict';
+
+
+module.exports = function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'lib/directives/matrixSwapDropdown/matrixSwapDropdown.html',
+        replace: true,
+        controller: 'MatrixSwapDropdownCtrl',
+        scope: {
+            font: '='
+        }
+    };
+};
+
+},{}],52:[function(require,module,exports){
 'use strict';
 
 var angular = require('../../angular');
@@ -944,7 +989,7 @@ var angular = require('../../angular');
 angular.module('ddt').controller('NavbarCtrl', require('./navbarCtrl'));
 angular.module('ddt').directive('ddtNavbar', require('./navbarDirective'));
 
-},{"../../angular":8,"./navbarCtrl":50,"./navbarDirective":51}],50:[function(require,module,exports){
+},{"../../angular":8,"./navbarCtrl":53,"./navbarDirective":54}],53:[function(require,module,exports){
 'use strict';
 
 
@@ -970,7 +1015,7 @@ module.exports = function($scope, $location, $timeout, fontFamilyCollection, com
     init();
 };
 
-},{}],51:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 'use strict';
 
 
@@ -982,7 +1027,48 @@ module.exports = function() {
     };
 };
 
-},{}],52:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
+'use strict';
+
+var angular = require('../../angular');
+
+
+angular.module('ddt').controller('ReviewCardSideBySideCtrl', require('./reviewCardSideBySideCtrl'));
+angular.module('ddt').directive('ddtReviewCardSideBySide', require('./reviewCardSideBySideDirective'));
+
+},{"../../angular":8,"./reviewCardSideBySideCtrl":56,"./reviewCardSideBySideDirective":57}],56:[function(require,module,exports){
+'use strict';
+
+
+module.exports = function($scope, fontFamilyCollection, FontCardTypes, testStrings) {
+    var init = function() {
+        // TODO: make this a constant.
+        $scope.letters = 'abcdefghjklmnopqrstuvwxyz'.split('');
+        $scope.FontCardTypes = FontCardTypes;
+        $scope.testWord = testStrings[FontCardTypes.WORD].text;
+    };
+
+    init();
+};
+
+},{}],57:[function(require,module,exports){
+'use strict';
+
+
+module.exports = function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'lib/directives/reviewCardSideBySide/reviewCardSideBySide.html',
+        controller: 'ReviewCardSideBySideCtrl',
+        scope: {
+            fontParameters: '=',
+            comparisonGroup: '=',
+            cardType: '='
+        }
+    };
+};
+
+},{}],58:[function(require,module,exports){
 'use strict';
 
 var angular = require('../angular');
@@ -1009,7 +1095,7 @@ angular.module('ddt').factory('comparisonMenu', function() {
     };
 });
 
-},{"../angular":8,"jquery":84}],53:[function(require,module,exports){
+},{"../angular":8,"jquery":90}],59:[function(require,module,exports){
 'use strict';
 
 var angular = require('../angular');
@@ -1064,7 +1150,7 @@ angular.module('ddt').factory('confirmDialog', function($rootScope, $compile, $q
     };
 });
 
-},{"../angular":8,"jquery":84}],54:[function(require,module,exports){
+},{"../angular":8,"jquery":90}],60:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -1094,14 +1180,14 @@ module.exports = function($q) {
     };
 };
 
-},{"jquery":84}],55:[function(require,module,exports){
+},{"jquery":90}],61:[function(require,module,exports){
 'use strict';
 
 var angular = require('../../angular');
 
 
 angular.module('ddt').factory('filePicker', require('./filePicker'));
-},{"../../angular":8,"./filePicker":54}],56:[function(require,module,exports){
+},{"../../angular":8,"./filePicker":60}],62:[function(require,module,exports){
 'use strict';
 
 var angular = require('../angular');
@@ -1211,7 +1297,7 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
     return Font;
 });
 
-},{"../angular":8,"lodash":85,"opentype.js":91}],57:[function(require,module,exports){
+},{"../angular":8,"lodash":91,"opentype.js":97}],63:[function(require,module,exports){
 'use strict';
 
 var angular = require('../angular');
@@ -1269,7 +1355,7 @@ angular.module('ddt').factory('fontFaceCollection', function(FontSources) {
     };
 });
 
-},{"../angular":8,"lodash":85}],58:[function(require,module,exports){
+},{"../angular":8,"lodash":91}],64:[function(require,module,exports){
 'use strict';
 
 var angular = require('../angular');
@@ -1363,7 +1449,7 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
     return FontFamily;
 });
 
-},{"../angular":8,"lodash":85}],59:[function(require,module,exports){
+},{"../angular":8,"lodash":91}],65:[function(require,module,exports){
 'use strict';
 
 var angular = require('../angular');
@@ -1614,7 +1700,7 @@ angular.module('ddt').factory('fontFamilyCollection', function($rootScope,
     };
 });
 
-},{"../angular":8,"lodash":85}],60:[function(require,module,exports){
+},{"../angular":8,"lodash":91}],66:[function(require,module,exports){
 'use strict';
 
 var angular = require('../angular');
@@ -1689,7 +1775,7 @@ angular.module('ddt').factory('fontParameters', function(FontCardTypes, DEFAULT_
     };
 });
 
-},{"../angular":8,"lodash":85}],61:[function(require,module,exports){
+},{"../angular":8,"lodash":91}],67:[function(require,module,exports){
 'use strict';
 
 require('./font');
@@ -1702,7 +1788,7 @@ require('./confirmDialog');
 require('./testStrings');
 require('./comparisonMenu');
 
-},{"./comparisonMenu":52,"./confirmDialog":53,"./filePicker":55,"./font":56,"./fontFaceCollection":57,"./fontFamily":58,"./fontFamilyCollection":59,"./fontParameters":60,"./testStrings":62}],62:[function(require,module,exports){
+},{"./comparisonMenu":58,"./confirmDialog":59,"./filePicker":61,"./font":62,"./fontFaceCollection":63,"./fontFamily":64,"./fontFamilyCollection":65,"./fontParameters":66,"./testStrings":68}],68:[function(require,module,exports){
 'use strict';
 
 var angular = require('../angular');
@@ -1727,7 +1813,7 @@ angular.module('ddt').factory('testStrings', function(FontCardTypes, TestWords, 
     return testStrings;
 });
 
-},{"../angular":8}],63:[function(require,module,exports){
+},{"../angular":8}],69:[function(require,module,exports){
 'use strict';
 
 var angular = require('./lib/angular');
@@ -1782,7 +1868,7 @@ angular.module('ddt').constant('TestWords', {
     ZWEIBACK: 'Zweiback'
 });
 
-},{"./lib/angular":8}],64:[function(require,module,exports){
+},{"./lib/angular":8}],70:[function(require,module,exports){
 /**
  * Copyright (c) 2011-2014 Felix Gnass
  * Licensed under the MIT license
@@ -2133,7 +2219,7 @@ angular.module('ddt').constant('TestWords', {
 
 }));
 
-},{}],65:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 /**
  * @license AngularJS v1.3.2
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -3117,7 +3203,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 })(window, window.angular);
 
-},{}],66:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 /**
  * @license AngularJS v1.3.5
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -3797,7 +3883,7 @@ angular.module('ngSanitize').filter('linky', ['$sanitize', function($sanitize) {
 
 })(window, window.angular);
 
-},{}],67:[function(require,module,exports){
+},{}],73:[function(require,module,exports){
 /**
  * @license AngularJS v1.3.2
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -29520,7 +29606,7 @@ var styleDirective = valueFn({
 })(window, document);
 
 !window.angular.$$csp() && window.angular.element(document).find('head').prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}</style>');
-},{}],68:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 // This file is autogenerated via the `commonjs` Grunt task. You can require() this file in a CommonJS environment.
 require('../../js/transition.js')
 require('../../js/alert.js')
@@ -29534,7 +29620,7 @@ require('../../js/popover.js')
 require('../../js/scrollspy.js')
 require('../../js/tab.js')
 require('../../js/affix.js')
-},{"../../js/affix.js":69,"../../js/alert.js":70,"../../js/button.js":71,"../../js/carousel.js":72,"../../js/collapse.js":73,"../../js/dropdown.js":74,"../../js/modal.js":75,"../../js/popover.js":76,"../../js/scrollspy.js":77,"../../js/tab.js":78,"../../js/tooltip.js":79,"../../js/transition.js":80}],69:[function(require,module,exports){
+},{"../../js/affix.js":75,"../../js/alert.js":76,"../../js/button.js":77,"../../js/carousel.js":78,"../../js/collapse.js":79,"../../js/dropdown.js":80,"../../js/modal.js":81,"../../js/popover.js":82,"../../js/scrollspy.js":83,"../../js/tab.js":84,"../../js/tooltip.js":85,"../../js/transition.js":86}],75:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: affix.js v3.3.1
  * http://getbootstrap.com/javascript/#affix
@@ -29698,7 +29784,7 @@ require('../../js/affix.js')
 
 }(jQuery);
 
-},{}],70:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: alert.js v3.3.1
  * http://getbootstrap.com/javascript/#alerts
@@ -29794,7 +29880,7 @@ require('../../js/affix.js')
 
 }(jQuery);
 
-},{}],71:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: button.js v3.3.1
  * http://getbootstrap.com/javascript/#buttons
@@ -29912,7 +29998,7 @@ require('../../js/affix.js')
 
 }(jQuery);
 
-},{}],72:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: carousel.js v3.3.1
  * http://getbootstrap.com/javascript/#carousel
@@ -30154,7 +30240,7 @@ require('../../js/affix.js')
 
 }(jQuery);
 
-},{}],73:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: collapse.js v3.3.1
  * http://getbootstrap.com/javascript/#collapse
@@ -30367,7 +30453,7 @@ require('../../js/affix.js')
 
 }(jQuery);
 
-},{}],74:[function(require,module,exports){
+},{}],80:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: dropdown.js v3.3.1
  * http://getbootstrap.com/javascript/#dropdowns
@@ -30530,7 +30616,7 @@ require('../../js/affix.js')
 
 }(jQuery);
 
-},{}],75:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: modal.js v3.3.1
  * http://getbootstrap.com/javascript/#modals
@@ -30856,7 +30942,7 @@ require('../../js/affix.js')
 
 }(jQuery);
 
-},{}],76:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: popover.js v3.3.1
  * http://getbootstrap.com/javascript/#popovers
@@ -30977,7 +31063,7 @@ require('../../js/affix.js')
 
 }(jQuery);
 
-},{}],77:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: scrollspy.js v3.3.1
  * http://getbootstrap.com/javascript/#scrollspy
@@ -31154,7 +31240,7 @@ require('../../js/affix.js')
 
 }(jQuery);
 
-},{}],78:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: tab.js v3.3.1
  * http://getbootstrap.com/javascript/#tabs
@@ -31309,7 +31395,7 @@ require('../../js/affix.js')
 
 }(jQuery);
 
-},{}],79:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: tooltip.js v3.3.1
  * http://getbootstrap.com/javascript/#tooltip
@@ -31789,7 +31875,7 @@ require('../../js/affix.js')
 
 }(jQuery);
 
-},{}],80:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: transition.js v3.3.1
  * http://getbootstrap.com/javascript/#transitions
@@ -31850,9 +31936,9 @@ require('../../js/affix.js')
 
 }(jQuery);
 
-},{}],81:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 
-},{}],82:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -31940,7 +32026,7 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],83:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 (function (process){
  /*!
   * https://github.com/paulmillr/es6-shim
@@ -34054,7 +34140,7 @@ process.chdir = function (dir) {
 }));
 
 }).call(this,require('_process'))
-},{"_process":82}],84:[function(require,module,exports){
+},{"_process":88}],90:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.1
  * http://jquery.com/
@@ -43246,7 +43332,7 @@ return jQuery;
 
 }));
 
-},{}],85:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -50035,7 +50121,7 @@ return jQuery;
 }.call(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],86:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 // Run-time checking of preconditions.
 
 'use strict';
@@ -50052,7 +50138,7 @@ exports.argument = function (predicate, message) {
 // If not, it will throw an error.
 exports.assert = exports.argument;
 
-},{}],87:[function(require,module,exports){
+},{}],93:[function(require,module,exports){
 // Drawing utility functions.
 
 'use strict';
@@ -50067,7 +50153,7 @@ function line(ctx, x1, y1, x2, y2) {
 
 exports.line = line;
 
-},{}],88:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 // Glyph encoding
 
 'use strict';
@@ -50302,7 +50388,7 @@ exports.CffEncoding = CffEncoding;
 exports.GlyphNames = GlyphNames;
 exports.addGlyphNames = addGlyphNames;
 
-},{}],89:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
 // The Font object
 
 'use strict';
@@ -50570,7 +50656,7 @@ Font.prototype.download = function () {
 
 exports.Font = Font;
 
-},{"./encoding":88,"./path":93,"./tables/sfnt":108}],90:[function(require,module,exports){
+},{"./encoding":94,"./path":99,"./tables/sfnt":114}],96:[function(require,module,exports){
 // The Glyph object
 
 'use strict';
@@ -50782,7 +50868,7 @@ Glyph.prototype.drawMetrics = function (ctx, x, y, fontSize) {
 
 exports.Glyph = Glyph;
 
-},{"./check":86,"./draw":87,"./path":93}],91:[function(require,module,exports){
+},{"./check":92,"./draw":93,"./path":99}],97:[function(require,module,exports){
 // opentype.js
 // https://github.com/nodebox/opentype.js
 // (c) 2014 Frederik De Bleser
@@ -50997,7 +51083,7 @@ exports.Path = path.Path;
 exports.parse = parseBuffer;
 exports.load = load;
 
-},{"./encoding":88,"./font":89,"./glyph":90,"./parse":92,"./path":93,"./tables/cff":95,"./tables/cmap":96,"./tables/glyf":97,"./tables/gpos":98,"./tables/head":99,"./tables/hhea":100,"./tables/hmtx":101,"./tables/kern":102,"./tables/loca":103,"./tables/maxp":104,"./tables/name":105,"./tables/os2":106,"./tables/post":107,"fs":81}],92:[function(require,module,exports){
+},{"./encoding":94,"./font":95,"./glyph":96,"./parse":98,"./path":99,"./tables/cff":101,"./tables/cmap":102,"./tables/glyf":103,"./tables/gpos":104,"./tables/head":105,"./tables/hhea":106,"./tables/hmtx":107,"./tables/kern":108,"./tables/loca":109,"./tables/maxp":110,"./tables/name":111,"./tables/os2":112,"./tables/post":113,"fs":87}],98:[function(require,module,exports){
 // Parsing utility functions
 
 'use strict';
@@ -51206,7 +51292,7 @@ Parser.prototype.skip = function (type, amount) {
 
 exports.Parser = Parser;
 
-},{}],93:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 // Geometric objects
 
 'use strict';
@@ -51369,7 +51455,7 @@ Path.prototype.toSVG = function (decimalPlaces) {
 
 exports.Path = Path;
 
-},{}],94:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 // Table metadata
 
 'use strict';
@@ -51423,7 +51509,7 @@ Table.prototype.encode = function () {
 
 exports.Table = Table;
 
-},{"./check":86,"./types":109}],95:[function(require,module,exports){
+},{"./check":92,"./types":115}],101:[function(require,module,exports){
 // The `CFF` table contains the glyph outlines in PostScript format.
 // https://www.microsoft.com/typography/OTSPEC/cff.htm
 // http://download.microsoft.com/download/8/0/1/801a191c-029d-4af3-9642-555f6fe514ee/cff.pdf
@@ -52349,7 +52435,7 @@ function makeCFFTable(glyphs, options) {
 exports.parse = parseCFFTable;
 exports.make = makeCFFTable;
 
-},{"../encoding":88,"../glyph":90,"../parse":92,"../path":93,"../table":94}],96:[function(require,module,exports){
+},{"../encoding":94,"../glyph":96,"../parse":98,"../path":99,"../table":100}],102:[function(require,module,exports){
 // The `cmap` table stores the mappings from characters to glyphs.
 // https://www.microsoft.com/typography/OTSPEC/cmap.htm
 
@@ -52522,7 +52608,7 @@ function makeCmapTable(glyphs) {
 exports.parse = parseCmapTable;
 exports.make = makeCmapTable;
 
-},{"../check":86,"../parse":92,"../table":94}],97:[function(require,module,exports){
+},{"../check":92,"../parse":98,"../table":100}],103:[function(require,module,exports){
 // The `glyf` table describes the glyphs in TrueType outline format.
 // http://www.microsoft.com/typography/otspec/glyf.htm
 
@@ -52813,7 +52899,7 @@ function parseGlyfTable(data, start, loca, font) {
 
 exports.parse = parseGlyfTable;
 
-},{"../check":86,"../glyph":90,"../parse":92,"../path":93}],98:[function(require,module,exports){
+},{"../check":92,"../glyph":96,"../parse":98,"../path":99}],104:[function(require,module,exports){
 // The `GPOS` table contains kerning pairs, among other things.
 // https://www.microsoft.com/typography/OTSPEC/gpos.htm
 
@@ -53050,7 +53136,7 @@ function parseGposTable(data, start, font) {
 
 exports.parse = parseGposTable;
 
-},{"../check":86,"../parse":92}],99:[function(require,module,exports){
+},{"../check":92,"../parse":98}],105:[function(require,module,exports){
 // The `head` table contains global information about the font.
 // https://www.microsoft.com/typography/OTSPEC/head.htm
 
@@ -53110,7 +53196,7 @@ function makeHeadTable(options) {
 exports.parse = parseHeadTable;
 exports.make = makeHeadTable;
 
-},{"../check":86,"../parse":92,"../table":94}],100:[function(require,module,exports){
+},{"../check":92,"../parse":98,"../table":100}],106:[function(require,module,exports){
 // The `hhea` table contains information for horizontal layout.
 // https://www.microsoft.com/typography/OTSPEC/hhea.htm
 
@@ -53165,7 +53251,7 @@ function makeHheaTable(options) {
 exports.parse = parseHheaTable;
 exports.make = makeHheaTable;
 
-},{"../parse":92,"../table":94}],101:[function(require,module,exports){
+},{"../parse":98,"../table":100}],107:[function(require,module,exports){
 // The `hmtx` table contains the horizontal metrics for all glyphs.
 // https://www.microsoft.com/typography/OTSPEC/hmtx.htm
 
@@ -53209,7 +53295,7 @@ exports.make = makeHmtxTable;
 
 
 
-},{"../parse":92,"../table":94}],102:[function(require,module,exports){
+},{"../parse":98,"../table":100}],108:[function(require,module,exports){
 // The `kern` table contains kerning pairs.
 // Note that some fonts use the GPOS OpenType layout table to specify kerning.
 // https://www.microsoft.com/typography/OTSPEC/kern.htm
@@ -53247,7 +53333,7 @@ function parseKernTable(data, start) {
 
 exports.parse = parseKernTable;
 
-},{"../check":86,"../parse":92}],103:[function(require,module,exports){
+},{"../check":92,"../parse":98}],109:[function(require,module,exports){
 // The `loca` table stores the offsets to the locations of the glyphs in the font.
 // https://www.microsoft.com/typography/OTSPEC/loca.htm
 
@@ -53281,7 +53367,7 @@ function parseLocaTable(data, start, numGlyphs, shortVersion) {
 
 exports.parse = parseLocaTable;
 
-},{"../parse":92}],104:[function(require,module,exports){
+},{"../parse":98}],110:[function(require,module,exports){
 // The `maxp` table establishes the memory requirements for the font.
 // We need it just to get the number of glyphs in the font.
 // https://www.microsoft.com/typography/OTSPEC/maxp.htm
@@ -53325,7 +53411,7 @@ function makeMaxpTable(numGlyphs) {
 exports.parse = parseMaxpTable;
 exports.make = makeMaxpTable;
 
-},{"../parse":92,"../table":94}],105:[function(require,module,exports){
+},{"../parse":98,"../table":100}],111:[function(require,module,exports){
 // The `name` naming table.
 // https://www.microsoft.com/typography/OTSPEC/name.htm
 
@@ -53476,7 +53562,7 @@ function makeNameTable(options) {
 exports.parse = parseNameTable;
 exports.make = makeNameTable;
 
-},{"../parse":92,"../table":94,"../types":109}],106:[function(require,module,exports){
+},{"../parse":98,"../table":100,"../types":115}],112:[function(require,module,exports){
 // The `OS/2` table contains metrics required in OpenType fonts.
 // https://www.microsoft.com/typography/OTSPEC/os2.htm
 
@@ -53590,7 +53676,7 @@ function makeOS2Table(options) {
 exports.parse = parseOS2Table;
 exports.make = makeOS2Table;
 
-},{"../parse":92,"../table":94}],107:[function(require,module,exports){
+},{"../parse":98,"../table":100}],113:[function(require,module,exports){
 // The `post` table stores additional PostScript information, such as glyph names.
 // https://www.microsoft.com/typography/OTSPEC/post.htm
 
@@ -53660,7 +53746,7 @@ function makePostTable() {
 exports.parse = parsePostTable;
 exports.make = makePostTable;
 
-},{"../encoding":88,"../parse":92,"../table":94}],108:[function(require,module,exports){
+},{"../encoding":94,"../parse":98,"../table":100}],114:[function(require,module,exports){
 // The `sfnt` wrapper provides organization for the tables in the font.
 // It is the top-level data structure in a font.
 // https://www.microsoft.com/typography/OTSPEC/otff.htm
@@ -53940,7 +54026,7 @@ exports.computeCheckSum = computeCheckSum;
 exports.make = makeSfntTable;
 exports.fontToTable = fontToSfntTable;
 
-},{"../check":86,"../table":94,"./cff":95,"./cmap":96,"./head":99,"./hhea":100,"./hmtx":101,"./maxp":104,"./name":105,"./os2":106,"./post":107}],109:[function(require,module,exports){
+},{"../check":92,"../table":100,"./cff":101,"./cmap":102,"./head":105,"./hhea":106,"./hmtx":107,"./maxp":110,"./name":111,"./os2":112,"./post":113}],115:[function(require,module,exports){
 // Data types used in the OpenType font file.
 // All OpenType fonts use Motorola-style byte ordering (Big Endian)
 
@@ -54310,4 +54396,4 @@ exports.decode = decode;
 exports.encode = encode;
 exports.sizeOf = sizeOf;
 
-},{"./check":86}]},{},[1]);
+},{"./check":92}]},{},[1]);

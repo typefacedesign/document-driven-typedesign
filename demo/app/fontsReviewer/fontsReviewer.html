@@ -5,14 +5,15 @@
   <div class="col-md-4 ddt-font-reviewer-controls">
     <div class="dropdown">
       <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-        {{comparisonType}}
+        {{ replaceUnderscores(comparisonType) }}
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        <li><a href="#">Side by Side</a></li>
-        <li><a href="#">Opacity</a></li>
-        <li><a href="#">Mask</a></li>
-        <li><a href="#">Diff</a></li>
+        <li ng-repeat="comparisonType in FontComparisonTypes">
+          <a href=""
+              ng-hide="isCurrentComparison(comparisonType)"
+              ng-click="switchComparisonType(comparisonType)">{{ replaceUnderscores(comparisonType) }}</a>
+        </li>
       </ul>
     </div>
 
@@ -24,29 +25,9 @@
 <hr>
 
 <div class="ddt-font-reviewer">
-  <div class="ddt-review-card-letter" ng-repeat="comparisonGroup in comparisonMatrix">
-
-    <div class="ddt-review-card-letter-header">
-      <div class="btn-group" ng-repeat="font in comparisonGroup">
-        <button
-            class="btn btn-default dropdown-toggle"
-            data-toggle="dropdown"
-            aria-expanded="false">{{font.name}}<span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-          <li ng-repeat="menuFont in font.family.fonts" ng-if="!(font == menuFont)">
-            <a href="" ng-click="swapFontsToCompare(font, menuFont)">{{menuFont.name}}</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="ddt-review-card-letter-letter-group" ng-repeat="letter in letters">
-      <ddt-font-renderer
-          ng-repeat="font in comparisonGroup"
-          font="font"
-          font-parameters="fontParameters"
-          text="letter"></ddt-font-renderer>
-    </div>
-  </div>
+  <ddt-review-card-side-by-side
+      ng-repeat="comparisonGroup in comparisonMatrix"
+      comparison-group="comparisonGroup"
+      card-type="cardType"
+      font-parameters="fontParameters"></ddt-review-card-side-by-side>
 </div>
