@@ -8,7 +8,8 @@ module.exports = function() {
         controller: 'ReviewCardSideBySideCtrl',
         scope: {
             fontParameters: '=',
-            comparisonGroup: '='
+            comparisonGroup: '=',
+            cardType: '='
         }
     };
 };

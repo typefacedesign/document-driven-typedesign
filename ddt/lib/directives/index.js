@@ -10,6 +10,7 @@ require('./fontCardAdd');
 require('./fontCardSimple');
 require('./fontCardLetters');
 require('./reviewCardSideBySide');
+require('./matrixSwapDropdown');
 require('./filePickerButton');
 require('./focus');
 require('./loadingSpinner');
