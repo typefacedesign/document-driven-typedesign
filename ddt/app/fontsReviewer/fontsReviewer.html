@@ -1,9 +1,23 @@
 <div class="row">
-  <div class="col-md-11">
+  <div class="col-md-8">
     <ddt-font-cards-type-switcher></ddt-font-cards-type-switcher>
   </div>
-  <div class="col-md-1">
-    <ddt-font-parameters-menu class="pull-right" parameter-set="fontParameters">
+  <div class="col-md-4 ddt-font-reviewer-controls">
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        {{ replaceUnderscores(comparisonType) }}
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li ng-repeat="comparisonType in FontComparisonTypes">
+          <a href=""
+              ng-hide="isCurrentComparison(comparisonType)"
+              ng-click="switchComparisonType(comparisonType)">{{ replaceUnderscores(comparisonType) }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <ddt-font-parameters-menu parameter-set="fontParameters">
     </ddt-font-parameters-menu>
   </div>
 </div>

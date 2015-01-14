@@ -32,6 +32,7 @@ app.config(function($routeProvider) {
         })
         .when('/review', {
             controller: 'FontsReviewerCtrl',
-            templateUrl: 'app/fontsReviewer/fontsReviewer.html'
+            templateUrl: 'app/fontsReviewer/fontsReviewer.html',
+            reloadOnSearch: false
         });
 });

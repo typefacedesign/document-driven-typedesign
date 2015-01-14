@@ -31,3 +31,19 @@
     margin-left: 0;
   }
 }
+
+.ddt-font-reviewer-controls {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+
+  .btn {
+    margin-left: @line-height-computed;
+  }
+}
+
+.ddt-font-reviewer-controls > .dropdown > .dropdown-toggle,
+.ddt-font-reviewer-controls > .dropdown > .dropdown-menu {
+  text-transform: capitalize;
+}

@@ -12,6 +12,13 @@ angular.module('ddt').constant('FontCardTypes', {
     LAYOUT: 'layout'
 });
 
+angular.module('ddt').constant('FontComparisonTypes', {
+    SIDE_BY_SIDE: 'side_by_side',
+    OPACITY: 'opacity',
+    MASK: 'mask',
+    DIFF: 'diff'
+});
+
 angular.module('ddt').constant('ErrorMessages', {
     UNRECOGNIZED_FONT_SOURCE: 'Unrecognized font source: ',
     MISMATCHING_FAMILY: 'Cannot add font to this family. Family names don\'t match.',
