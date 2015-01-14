@@ -9,6 +9,7 @@ require('./fontCardsTypeSwitcher');
 require('./fontCardAdd');
 require('./fontCardSimple');
 require('./fontCardLetters');
+require('./reviewCardSideBySide');
 require('./filePickerButton');
 require('./focus');
 require('./loadingSpinner');

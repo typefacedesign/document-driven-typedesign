@@ -1,0 +1,24 @@
+<div class="ddt-review-card-letter">
+  <div class="ddt-review-card-letter-header">
+    <div class="btn-group" ng-repeat="font in comparisonGroup">
+      <button
+          class="btn btn-default dropdown-toggle"
+          data-toggle="dropdown"
+          aria-expanded="false">{{font.name}}<span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li ng-repeat="menuFont in font.family.fonts" ng-if="!(font == menuFont)">
+          <a href="" ng-click="swapFontsToCompare(font, menuFont)">{{menuFont.name}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ddt-review-card-letter-letter-group" ng-repeat="letter in letters">
+    <ddt-font-renderer
+        ng-repeat="font in comparisonGroup"
+        font="font"
+        font-parameters="fontParameters"
+        text="letter"></ddt-font-renderer>
+  </div>
+</div>
