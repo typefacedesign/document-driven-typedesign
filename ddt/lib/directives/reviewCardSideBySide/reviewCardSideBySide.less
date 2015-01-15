@@ -6,9 +6,27 @@
 }
 
 .ddt-review-card-side-by-side-header,
-.ddt-review-card-side-by-side-letter-group {
+.ddt-review-card-side-by-side-letter-group,
+.ddt-review-card-side-by-side-paragraph-row {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-around;
+}
+
+.ddt-review-card-side-by-side-paragraph {
+  margin-left: @line-height-computed;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+.ddt-review-card-side-by-side-font-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: @line-height-computed/2;
 }

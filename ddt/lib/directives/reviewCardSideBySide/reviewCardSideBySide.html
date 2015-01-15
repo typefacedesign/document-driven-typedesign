@@ -1,24 +1,43 @@
-<div class="ddt-review-card-side-by-side" ng-show="cardType === FontCardTypes.WORD">
-  <div class="ddt-review-card-side-by-side-letter-group" ng-repeat="font in comparisonGroup">
-    <ddt-matrix-swap-dropdown font="font"></ddt-matrix-swap-dropdown>
-    <ddt-font-renderer
-        font="font"
-        font-parameters="fontParameters"
-        text="testWord"></ddt-font-renderer>
-  </div>
-</div>
+<div class="ddt-review-card-side-by-side">
+  <div ng-show="cardType == FontCardTypes.LETTER">
+    <div class="ddt-review-card-side-by-side-header">
+      <ddt-matrix-swap-dropdown ng-repeat="font in comparisonGroup" font="font">
+      </ddt-matrix-swap-dropdown>
+    </div>
 
-<div class="ddt-review-card-side-by-side" ng-show="cardType == FontCardTypes.LETTER">
-  <div class="ddt-review-card-side-by-side-header">
-    <ddt-matrix-swap-dropdown ng-repeat="font in comparisonGroup" font="font">
-    </ddt-matrix-swap-dropdown>
+    <div class="ddt-review-card-side-by-side-letter-group" ng-repeat="letter in letters">
+      <ddt-font-renderer
+          ng-repeat="font in comparisonGroup"
+          font="font"
+          font-parameters="fontParameters"
+          text="letter"></ddt-font-renderer>
+    </div>
   </div>
 
-  <div class="ddt-review-card-side-by-side-letter-group" ng-repeat="letter in letters">
-    <ddt-font-renderer
-        ng-repeat="font in comparisonGroup"
-        font="font"
-        font-parameters="fontParameters"
-        text="letter"></ddt-font-renderer>
+  <div ng-show="cardType === FontCardTypes.WORD || cardType == FontCardTypes.SENTENCE">
+    <div class="ddt-review-card-side-by-side-font-row" ng-repeat="font in comparisonGroup">
+      <ddt-font-renderer
+          font="font"
+          font-parameters="fontParameters"
+          text="testString"></ddt-font-renderer>
+      <ddt-matrix-swap-dropdown font="font"></ddt-matrix-swap-dropdown>
+    </div>
+  </div>
+
+  <div ng-show="cardType == FontCardTypes.PARAGRAPH">
+    <div class="ddt-review-card-side-by-side-header">
+      <ddt-matrix-swap-dropdown ng-repeat="font in comparisonGroup" font="font">
+      </ddt-matrix-swap-dropdown>
+    </div>
+
+    <div class="ddt-review-card-side-by-side-paragraph-row">
+      <ddt-font-renderer
+          class="ddt-review-card-side-by-side-paragraph"
+          ng-repeat="font in comparisonGroup"
+          font="font"
+          font-parameters="fontParameters"
+          allow-html="true"
+          text="testString"></ddt-font-renderer>
+    </div>
   </div>
 </div>
