@@ -1045,7 +1045,13 @@ module.exports = function($scope, fontFamilyCollection, FontCardTypes, testStrin
         // TODO: make this a constant.
         $scope.letters = 'abcdefghjklmnopqrstuvwxyz'.split('');
         $scope.FontCardTypes = FontCardTypes;
-        $scope.testWord = testStrings[FontCardTypes.WORD].text;
+        $scope.testString = testStrings[$scope.cardType].text;
+
+        $scope.$watch('cardType', function() {
+            if (angular.isDefined(testStrings[$scope.cardType])) {
+                $scope.testString = testStrings[$scope.cardType].text;
+            }
+        });
     };
 
     init();
@@ -1059,6 +1065,7 @@ module.exports = function() {
     return {
         restrict: 'E',
         templateUrl: 'lib/directives/reviewCardSideBySide/reviewCardSideBySide.html',
+        replace: true,
         controller: 'ReviewCardSideBySideCtrl',
         scope: {
             fontParameters: '=',
