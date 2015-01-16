@@ -8,7 +8,7 @@ module.exports = function($scope, $routeParams, $location, fontFamilyCollection,
     var init = function() {
         $scope.cardType = $routeParams.cardType || FontCardTypes.WORD;
         $scope.comparisonType = $routeParams.comparisonType || FontComparisonTypes.SIDE_BY_SIDE;
-        $scope.fontParameters = fontParameters.current[FontCardTypes.LETTER];
+        $scope.fontParameters = fontParameters.current;
         $scope.FontComparisonTypes = FontComparisonTypes;
         $scope.comparisonMatrix = fontFamilyCollection.comparisonMatrix();
 
