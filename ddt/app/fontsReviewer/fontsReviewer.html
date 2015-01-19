@@ -26,6 +26,7 @@
 
 <div class="ddt-font-reviewer">
   <ddt-review-card-side-by-side
+      ng-show="comparisonType == FontComparisonTypes.SIDE_BY_SIDE"
       ng-repeat="comparisonGroup in comparisonMatrix"
       comparison-group="comparisonGroup"
       card-type="cardType"
