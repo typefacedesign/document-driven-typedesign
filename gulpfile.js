@@ -2,7 +2,7 @@
 
 var browserify = require('browserify'),
     connect = require('gulp-connect'),
-    eslint = require('gulp-eslint'),
+    jshint = require('gulp-jshint'),
     gulp = require('gulp'),
     ngannotate = require('gulp-ng-annotate'),
     source = require('vinyl-source-stream'),
@@ -23,8 +23,8 @@ gulp.task('lint', function() {
         'gulpfile.js',
         'ddt/**/*.js'
     ])
-        .pipe(eslint())
-        .pipe(eslint.format());
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
 });
 
 gulp.task('compile:browserify', ['clean'], function() {
@@ -81,7 +81,7 @@ gulp.task('copy', ['copy:app_html', 'copy:glyphicons']);
 
 gulp.task('compile', ['compile:browserify', 'compile:less']);
 
-gulp.task('debug', ['compile', 'copy']);
+gulp.task('debug', ['lint', 'compile', 'copy']);
 
 gulp.task('gh-pages:stash', ['debug'], shell.task('git stash'));
 
