@@ -1,4 +1,4 @@
-<div class="ddt-review-card-side-by-side">
+<div class="ddt-review-card ddt-review-card-side-by-side">
   <div ng-show="cardType == FontCardTypes.LETTER">
     <div class="ddt-review-card-side-by-side-header">
       <ddt-matrix-swap-dropdown ng-repeat="font in comparisonGroup" font="font">
@@ -9,7 +9,7 @@
       <ddt-font-renderer
           ng-repeat="font in comparisonGroup"
           font="font"
-          font-parameters="fontParameters"
+          font-parameters="fontParameters[cardType]"
           text="letter"></ddt-font-renderer>
     </div>
   </div>
@@ -18,7 +18,7 @@
     <div class="ddt-review-card-side-by-side-font-row" ng-repeat="font in comparisonGroup">
       <ddt-font-renderer
           font="font"
-          font-parameters="fontParameters"
+          font-parameters="fontParameters[cardType]"
           text="testString"></ddt-font-renderer>
       <ddt-matrix-swap-dropdown font="font"></ddt-matrix-swap-dropdown>
     </div>
@@ -35,7 +35,7 @@
           class="ddt-review-card-side-by-side-paragraph"
           ng-repeat="font in comparisonGroup"
           font="font"
-          font-parameters="fontParameters"
+          font-parameters="fontParameters[cardType]"
           allow-html="true"
           text="testString"></ddt-font-renderer>
     </div>

@@ -26,6 +26,44 @@ body {
 .ddt-remove-button:hover {
   color: #337ab7;
 }
+/* This bit of CSS lets us have submenus in Bootstrap dropdown. */
+/* TODO: use variables from Bootstrap LESS files. */
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+}
+.dropdown-submenu > a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-right-width: 0;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover > a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left > .dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -6330,6 +6368,13 @@ button.close {
 .ddt-font-card-content canvas {
   width: 100%;
 }
+.ddt-review-card {
+  padding: 15px 15px;
+  border-radius: 4px;
+  border: solid 1px #e7e7e7;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
 .ddt-font-card-font-header {
   border-bottom: solid 1px silver;
   margin-bottom: 8px;
@@ -6417,12 +6462,6 @@ button.close {
 .ddt-font-card-letter {
   height: 369px;
 }
-.ddt-review-card-side-by-side {
-  padding: 15px 15px;
-  border-radius: 4px;
-  border: solid 1px #e7e7e7;
-  margin-bottom: 20px;
-}
 .ddt-review-card-side-by-side-header,
 .ddt-review-card-side-by-side-letter-group,
 .ddt-review-card-side-by-side-paragraph-row {
@@ -6444,6 +6483,17 @@ button.close {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+}
+.ddt-review-card-opacity-selector {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ddt-review-card-opacity-selector .dropdown {
+  margin-bottom: 20px;
 }
 .ddt-dotted-paginator {
   text-align: center;
@@ -6510,7 +6560,8 @@ div > .ddt-matrix-swap-dropdown:first-child {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
+  margin-left: -20px;
 }
 .ddt-font-reviewer-controls {
   display: flex;
