@@ -1,0 +1,17 @@
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    <span>Choose font ...</span>
+    <span class="caret"></span>
+  </button>
+
+  <ul class="dropdown-menu">
+    <li class="dropdown-submenu" ng-repeat="fontFamily in families">
+      <a tabindex="-1" href="#">{{ fontFamily.name }}</a>
+      <ul class="dropdown-menu">
+        <li ng-repeat="font in fontFamily.fonts">
+          <a href="#" ng-click="selectFont(font)">{{ font.name }}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
