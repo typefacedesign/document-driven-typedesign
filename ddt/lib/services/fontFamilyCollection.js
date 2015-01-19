@@ -72,7 +72,7 @@ angular.module('ddt').factory('fontFamilyCollection', function($rootScope,
         fontFamilyWatchers.set(familyToAdd, watcher);
 
         // Now update the comparison matrix.
-        _updateComparisonMatrix(familyToAdd, MATRIX_ACTION_ADD)
+        _updateComparisonMatrix(familyToAdd, MATRIX_ACTION_ADD);
     };
 
     var remove = function(family) {

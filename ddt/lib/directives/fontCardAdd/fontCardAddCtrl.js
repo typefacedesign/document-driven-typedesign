@@ -1,3 +1,4 @@
+/* globals angular */
 'use strict';
 
 var _ = require('lodash');
@@ -15,7 +16,7 @@ module.exports = function ($scope, $q, $http, FontFamily, FontSources, fontFamil
             name: fontFamilyCollection.generatePlaceholderName()
         };
         $scope.urlFields = [angular.copy(PLACEHOLDER_URL)];
-        $scope.currentView = $scope.VIEW_MAIN
+        $scope.currentView = $scope.VIEW_MAIN;
     };
 
     $scope.addFontFamily = function(fontFiles) {
