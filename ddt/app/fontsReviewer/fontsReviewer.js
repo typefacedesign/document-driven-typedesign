@@ -12,6 +12,8 @@ module.exports = function($scope, $routeParams, $location, fontFamilyCollection,
         $scope.FontComparisonTypes = FontComparisonTypes;
         $scope.comparisonMatrix = fontFamilyCollection.comparisonMatrix();
 
+        $scope.opacityComparisonMatrix = [];
+
         $scope.$watch(function () {
             return fontFamilyCollection.comparisonMatrix();
         }, function () {
@@ -30,6 +32,10 @@ module.exports = function($scope, $routeParams, $location, fontFamilyCollection,
 
     $scope.replaceUnderscores = function(text) {
         return text.replace(/_/g, ' ');
+    };
+
+    $scope.addToOpacityComparison = function(font1, font2) {
+        $scope.opacityComparisonMatrix.push([font1, font2]);
     };
 
     init();
