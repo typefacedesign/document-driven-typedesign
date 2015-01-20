@@ -4,6 +4,10 @@
 module.exports = function($scope, fontFamilyCollection) {
     var init = function() {
         $scope.families = fontFamilyCollection.families();
+
+        if (angular.isDefined($scope.onInit)) {
+            $scope.onInit($scope.key, $scope.clearFont);
+        }
     };
 
     $scope.selectFont = function(font) {
@@ -15,7 +19,11 @@ module.exports = function($scope, fontFamilyCollection) {
         // and assumes that the callback will remember to
         // store the state somewhere in the calling scope.
         $scope.selectedFont = font;
-        $scope.onSelect(font);
+        $scope.onSelect($scope.key, font);
+    };
+
+    $scope.clearFont = function() {
+        delete $scope.selectedFont;
     };
 
     init();

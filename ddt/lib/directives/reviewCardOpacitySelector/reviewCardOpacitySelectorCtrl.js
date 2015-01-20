@@ -1,13 +1,31 @@
+/* globals angular */
 'use strict';
+
+var _ = require('lodash');
 
 
 module.exports = function($scope) {
-    var selectFont = function(fontName) {
-        return function(font) {
-            $scope[fontName] = font;
-        };
+    var init = function() {
+        $scope.registeredFontSelectors = {};
     };
 
-    $scope.selectFont1 = selectFont('font1');
-    $scope.selectFont2 = selectFont('font2');
+    $scope.selectFont = function(fontName, font) {
+        $scope[fontName] = font;
+    };
+
+    $scope.fontSelectorInitialized = function(key, clearFn) {
+        $scope.registeredFontSelectors[key] = clearFn;
+    };
+
+    $scope.addToComparison = function(font1, font2) {
+        if (angular.isDefined(font1) && angular.isDefined(font2)) {
+            $scope.onSelect(font1, font2);
+
+            _.each(_.values($scope.registeredFontSelectors), function(clearFn) {
+                clearFn();
+            });
+        }
+    };
+
+    init();
 };
