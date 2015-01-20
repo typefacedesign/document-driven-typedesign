@@ -6,7 +6,7 @@ module.exports = function($scope, fontFamilyCollection) {
         $scope.families = fontFamilyCollection.families();
     };
 
-    $scope.selectFont = function(fontName, font) {
+    $scope.selectFont = function(font) {
         // This design is not entirely ideal. The dropdown
         // keeps track of the currently selected font and
         // displays its name in the UI, but it has no way of
@@ -15,7 +15,7 @@ module.exports = function($scope, fontFamilyCollection) {
         // and assumes that the callback will remember to
         // store the state somewhere in the calling scope.
         $scope.selectedFont = font;
-        $scope.callback(fontName, font);
+        $scope.onSelect(font);
     };
 
     init();

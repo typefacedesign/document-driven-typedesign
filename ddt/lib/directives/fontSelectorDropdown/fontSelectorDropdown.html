@@ -7,10 +7,10 @@
 
   <ul class="dropdown-menu">
     <li class="dropdown-submenu" ng-repeat="fontFamily in families">
-      <a tabindex="-1" href="#">{{ fontFamily.name }}</a>
+      <a href="">{{ fontFamily.name }}</a>
       <ul class="dropdown-menu">
         <li ng-repeat="font in fontFamily.fonts">
-          <a href="" ng-click="selectFont(fontName, font)">{{ font.name }}</a>
+          <a href="" ng-click="selectFont(font)">{{ font.name }}</a>
         </li>
       </ul>
     </li>
