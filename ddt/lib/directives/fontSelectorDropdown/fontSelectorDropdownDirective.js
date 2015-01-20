@@ -7,7 +7,8 @@ module.exports = function() {
         templateUrl: 'lib/directives/fontSelectorDropdown/fontSelectorDropdown.html',
         controller: 'FontSelectorDropdownCtrl',
         scope: {
-            selectFont: '='
+            fontName: '@',
+            callback: '='
         }
     };
 };
