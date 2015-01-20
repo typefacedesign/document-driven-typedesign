@@ -1,0 +1,19 @@
+<div class="ddt-review-card ddt-review-card-opacity">
+  <div class="ddt-review-card-opacity-header">
+    <div>{{ font1.name }}</div>
+    <div>{{ font2.name }}</div>
+  </div>
+  <input type="range" min="0" max="1" step="0.001" ng-model="opacity">
+  <ddt-font-renderer
+      class="ddt-review-card-opacity-font-renderer ddt-position-absolute"
+      font="font1"
+      font-parameters="fontParameters[cardType]"
+      opacity="1 - opacity"
+      text="'hello world'"></ddt-font-renderer>
+  <ddt-font-renderer
+      class="ddt-review-card-opacity-font-renderer"
+      font="font2"
+      font-parameters="fontParameters[cardType]"
+      opacity="opacity"
+      text="'hello world'"></ddt-font-renderer>
+</div>

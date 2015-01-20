@@ -64,6 +64,9 @@ body {
   margin-left: 10px;
   border-radius: 6px 0 6px 6px;
 }
+.ddt-position-absolute {
+  position: absolute;
+}
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -6484,13 +6487,21 @@ button.close {
   align-items: center;
   margin-bottom: 10px;
 }
+.ddt-review-card-opacity-header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  min-width: 300px;
+}
 .ddt-review-card-opacity-selector {
   width: 300px;
-  height: 300px;
+  min-height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #f8f8f8;
 }
 .ddt-review-card-opacity-selector .dropdown {
   margin-bottom: 20px;

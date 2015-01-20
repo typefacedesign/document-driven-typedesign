@@ -64,10 +64,12 @@ module.exports = function($scope, $routeParams, $location, fontFamilyCollection,
                           fontParameters, FontCardTypes, FontComparisonTypes) {
     var init = function() {
         $scope.cardType = $routeParams.cardType || FontCardTypes.WORD;
-        $scope.comparisonType = $routeParams.comparisonType || FontComparisonTypes.SIDE_BY_SIDE;
+        $scope.comparisonType = $routeParams.comparisonType || FontComparisonTypes.OPACITY;
         $scope.fontParameters = fontParameters.current;
         $scope.FontComparisonTypes = FontComparisonTypes;
         $scope.comparisonMatrix = fontFamilyCollection.comparisonMatrix();
+
+        $scope.opacityComparisonMatrix = [];
 
         $scope.$watch(function () {
             return fontFamilyCollection.comparisonMatrix();
@@ -87,6 +89,10 @@ module.exports = function($scope, $routeParams, $location, fontFamilyCollection,
 
     $scope.replaceUnderscores = function(text) {
         return text.replace(/_/g, ' ');
+    };
+
+    $scope.addToOpacityComparison = function(font1, font2) {
+        $scope.opacityComparisonMatrix.push([font1, font2]);
     };
 
     init();
@@ -842,9 +848,12 @@ module.exports = function($scope, FontCases) {
         $scope.allowHtml = $scope.allowHtml || false;
         $scope.style = calculateInlineStyle();
 
-        $scope.$watch('fontParameters', function() {
-            $scope.style = calculateInlineStyle();
-        }, true);
+        $scope.$watch('fontParameters', updateInlineStyle, true);
+        $scope.$watch('opacity', updateInlineStyle);
+    };
+
+    var updateInlineStyle = function() {
+        $scope.style = calculateInlineStyle();
     };
 
     var calculateInlineStyle = function() {
@@ -873,6 +882,10 @@ module.exports = function($scope, FontCases) {
             style += 'text-transform: ' + $scope.fontParameters.fontCase + ';';
         }
 
+        if (angular.isDefined($scope.opacity)) {
+            style += 'opacity: ' + $scope.opacity + ';';
+        }
+
         return style;
     };
 
@@ -891,6 +904,7 @@ module.exports = function () {
         scope: {
             font: '=',
             fontParameters: '=',
+            opacity: '=?',
             text: '=?',
             wrap: '=?',
             allowHtml: '=?'
@@ -907,16 +921,33 @@ angular.module('ddt').controller('FontRendererCtrl', require('./fontRendererCtrl
 angular.module('ddt').directive('ddtFontRenderer', require('./fontRendererDirective'));
 
 },{"../../angular":8,"./fontRendererCtrl":43,"./fontRendererDirective":44}],46:[function(require,module,exports){
+/* globals angular */
 'use strict';
 
 
 module.exports = function($scope, fontFamilyCollection) {
     var init = function() {
         $scope.families = fontFamilyCollection.families();
+
+        if (angular.isDefined($scope.onInit)) {
+            $scope.onInit($scope.key, $scope.clearFont);
+        }
     };
 
     $scope.selectFont = function(font) {
-        $scope.selectFont = font;
+        // This design is not entirely ideal. The dropdown
+        // keeps track of the currently selected font and
+        // displays its name in the UI, but it has no way of
+        // knowing whether the calling code is keeping track
+        // of this state as well. It just calls $scope.callback
+        // and assumes that the callback will remember to
+        // store the state somewhere in the calling scope.
+        $scope.selectedFont = font;
+        $scope.onSelect($scope.key, font);
+    };
+
+    $scope.clearFont = function() {
+        delete $scope.selectedFont;
     };
 
     init();
@@ -932,7 +963,9 @@ module.exports = function() {
         templateUrl: 'lib/directives/fontSelectorDropdown/fontSelectorDropdown.html',
         controller: 'FontSelectorDropdownCtrl',
         scope: {
-            selectFont: '='
+            key: '@',
+            onSelect: '=',
+            onInit: '=?'
         }
     };
 };
@@ -1088,8 +1121,12 @@ angular.module('ddt').directive('ddtReviewCardOpacity', require('./reviewCardOpa
 'use strict';
 
 
-module.exports = function() {
+module.exports = function($scope) {
+    var init = function() {
+        $scope.opacity = 0.5;
+    };
 
+    init();
 };
 
 },{}],60:[function(require,module,exports){
@@ -1100,7 +1137,13 @@ module.exports = function() {
     return {
         restrict: 'E',
         templateUrl: 'lib/directives/reviewCardOpacity/reviewCardOpacity.html',
-        controller: 'ReviewCardOpacityCtrl'
+        controller: 'ReviewCardOpacityCtrl',
+        scope: {
+            fontParameters: '=',
+            cardType: '=',
+            font1: '=',
+            font2: '='
+        }
     };
 };
 
@@ -1114,19 +1157,39 @@ angular.module('ddt').controller('ReviewCardOpacitySelectorCtrl', require('./rev
 angular.module('ddt').directive('ddtReviewCardOpacitySelector', require('./reviewCardOpacitySelectorDirective'));
 
 },{"../../angular":8,"./reviewCardOpacitySelectorCtrl":62,"./reviewCardOpacitySelectorDirective":63}],62:[function(require,module,exports){
+/* globals angular */
 'use strict';
+
+var _ = require('lodash');
 
 
 module.exports = function($scope) {
     var init = function() {
-        $scope.font1 = undefined;
-        $scope.font2 = undefined;
+        $scope.registeredFontSelectors = {};
+    };
+
+    $scope.selectFont = function(fontName, font) {
+        $scope[fontName] = font;
+    };
+
+    $scope.fontSelectorInitialized = function(key, clearFn) {
+        $scope.registeredFontSelectors[key] = clearFn;
+    };
+
+    $scope.addToComparison = function(font1, font2) {
+        if (angular.isDefined(font1) && angular.isDefined(font2)) {
+            $scope.onSelect(font1, font2);
+
+            _.each(_.values($scope.registeredFontSelectors), function(clearFn) {
+                clearFn();
+            });
+        }
     };
 
     init();
 };
 
-},{}],63:[function(require,module,exports){
+},{"lodash":100}],63:[function(require,module,exports){
 'use strict';
 
 
@@ -1134,7 +1197,10 @@ module.exports = function() {
     return {
         restrict: 'E',
         templateUrl: 'lib/directives/reviewCardOpacitySelector/reviewCardOpacitySelector.html',
-        controller: 'ReviewCardOpacitySelectorCtrl'
+        controller: 'ReviewCardOpacitySelectorCtrl',
+        scope: {
+            onSelect: '='
+        }
     };
 };
 
