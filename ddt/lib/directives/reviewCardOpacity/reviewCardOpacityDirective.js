@@ -5,6 +5,12 @@ module.exports = function() {
     return {
         restrict: 'E',
         templateUrl: 'lib/directives/reviewCardOpacity/reviewCardOpacity.html',
-        controller: 'ReviewCardOpacityCtrl'
+        controller: 'ReviewCardOpacityCtrl',
+        scope: {
+            fontParameters: '=',
+            cardType: '=',
+            font1: '=',
+            font2: '='
+        }
     };
 };

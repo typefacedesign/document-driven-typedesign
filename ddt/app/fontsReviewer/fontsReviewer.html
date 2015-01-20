@@ -37,5 +37,9 @@
       on-select="addToOpacityComparison"></ddt-review-card-opacity-selector>
   <ddt-review-card-opacity
       ng-repeat="comparisonGroup in opacityComparisonMatrix"
+      font1="comparisonGroup[0]"
+      font2="comparisonGroup[1]"
+      font-parameters="fontParameters"
+      card-type="cardType"
       ng-show="comparisonType == FontComparisonTypes.OPACITY"></ddt-review-card-opacity>
 </div>

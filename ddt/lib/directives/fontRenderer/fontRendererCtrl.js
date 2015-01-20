@@ -8,9 +8,12 @@ module.exports = function($scope, FontCases) {
         $scope.allowHtml = $scope.allowHtml || false;
         $scope.style = calculateInlineStyle();
 
-        $scope.$watch('fontParameters', function() {
-            $scope.style = calculateInlineStyle();
-        }, true);
+        $scope.$watch('fontParameters', updateInlineStyle, true);
+        $scope.$watch('opacity', updateInlineStyle);
+    };
+
+    var updateInlineStyle = function() {
+        $scope.style = calculateInlineStyle();
     };
 
     var calculateInlineStyle = function() {
@@ -37,6 +40,10 @@ module.exports = function($scope, FontCases) {
 
         if ($scope.fontParameters.fontCase !== FontCases.UNSPECIFIED) {
             style += 'text-transform: ' + $scope.fontParameters.fontCase + ';';
+        }
+
+        if (angular.isDefined($scope.opacity)) {
+            style += 'opacity: ' + $scope.opacity + ';';
         }
 
         return style;

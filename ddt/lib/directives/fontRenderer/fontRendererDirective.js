@@ -9,6 +9,7 @@ module.exports = function () {
         scope: {
             font: '=',
             fontParameters: '=',
+            opacity: '=?',
             text: '=?',
             wrap: '=?',
             allowHtml: '=?'
