@@ -4,9 +4,7 @@ var angular = require('../angular');
 var _ = require('lodash');
 
 
-angular.module('ddt').factory('fontFamilyCollection', function($rootScope,
-                                                               fontFaceCollection,
-                                                               ErrorMessages) {
+angular.module('ddt').factory('fontFamilyCollection', function($rootScope, ErrorMessages) {
     var MATRIX_ACTION_ADD = 'add',
         MATRIX_ACTION_REMOVE = 'remove';
 
@@ -31,10 +29,6 @@ angular.module('ddt').factory('fontFamilyCollection', function($rootScope,
     };
 
     var add = function(family) {
-        _.each(family.fonts, function(font) {
-            fontFaceCollection.add(font);
-        });
-
         fontFamilies.push(family);
         fontFamiliesCounter++;
     };

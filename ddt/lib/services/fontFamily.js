@@ -4,7 +4,8 @@ var angular = require('../angular');
 var _ = require('lodash');
 
 
-angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSources, ErrorMessages) {
+angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSources,
+                                                     ErrorMessages, fontFaceCollection) {
     var FontFamily = function(name, source) {
         if (angular.isUndefined(name)) {
             throw new Error('No name specified for new FontFamily.');
@@ -77,6 +78,7 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
         }
 
         this.fonts.push(font);
+        fontFaceCollection.add(font);
     };
 
     FontFamily.prototype.removeFont = function(font) {
