@@ -4,15 +4,16 @@ var _ = require('lodash');
 
 
 module.exports = function($scope, $routeParams, $location, fontFamilyCollection,
-                          fontParameters, FontCardTypes, FontComparisonTypes) {
+                          fontParameters, FontCardTypes, FontComparisonTypes, comparisonMatrices) {
     var init = function() {
         $scope.cardType = $routeParams.cardType || FontCardTypes.WORD;
         $scope.comparisonType = $routeParams.comparisonType || FontComparisonTypes.OPACITY;
         $scope.fontParameters = fontParameters.current;
         $scope.FontComparisonTypes = FontComparisonTypes;
-        $scope.comparisonMatrix = fontFamilyCollection.comparisonMatrix();
 
-        $scope.opacityComparisonMatrix = [];
+        // NOTE: this comparison matrix will soon be stored in the comparisonMatrices service.
+        $scope.comparisonMatrix = fontFamilyCollection.comparisonMatrix();
+        $scope.comparisonMatrices = comparisonMatrices.comparisonMatrices();
 
         $scope.$watch(function () {
             return fontFamilyCollection.comparisonMatrix();
@@ -35,7 +36,7 @@ module.exports = function($scope, $routeParams, $location, fontFamilyCollection,
     };
 
     $scope.addToOpacityComparison = function(font1, font2) {
-        $scope.opacityComparisonMatrix.push([font1, font2]);
+        comparisonMatrices.comparisonMatrices()[FontComparisonTypes.OPACITY].push([font1, font2]);
     };
 
     init();

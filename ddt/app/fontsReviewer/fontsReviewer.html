@@ -36,10 +36,11 @@
       ng-show="comparisonType == FontComparisonTypes.OPACITY"
       on-select="addToOpacityComparison"></ddt-review-card-opacity-selector>
   <ddt-review-card-opacity
-      ng-repeat="comparisonGroup in opacityComparisonMatrix"
+      ng-repeat="comparisonGroup in comparisonMatrices[FontComparisonTypes.OPACITY]"
       font1="comparisonGroup[0]"
       font2="comparisonGroup[1]"
       font-parameters="fontParameters"
       card-type="cardType"
+      index="$index"
       ng-show="comparisonType == FontComparisonTypes.OPACITY"></ddt-review-card-opacity>
 </div>

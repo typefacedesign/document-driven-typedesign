@@ -9,3 +9,4 @@ require('./fontParameters');
 require('./confirmDialog');
 require('./testStrings');
 require('./comparisonMenu');
+require('./comparisonMatrices');
