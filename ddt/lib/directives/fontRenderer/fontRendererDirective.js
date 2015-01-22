@@ -10,9 +10,23 @@ module.exports = function () {
             font: '=',
             fontParameters: '=',
             opacity: '=?',
+            followWidth: '@?',
             text: '=?',
             wrap: '=?',
             allowHtml: '=?'
+        },
+        link: function(scope, element, attributes) {
+            scope.adjustWidth = function() {
+                var referenceElt = angular.element(document.getElementById(scope.followWidth));
+
+                if (angular.isUndefined(referenceElt)) {
+                    return;
+                }
+
+                setTimeout(function() {
+                    element.width(referenceElt.width());
+                }, 0);
+            };
         }
     };
 };
