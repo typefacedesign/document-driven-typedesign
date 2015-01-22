@@ -35,3 +35,4 @@ angular.module('ddt').constant('FontCases', {
 
 
 angular.module('ddt').constant('DEFAULT_TEXT_COLOR', '#333');
+angular.module('ddt').constant('LETTERS', 'abcdefghijklmnopqrstuvwxyz'.split(''));
