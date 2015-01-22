@@ -36,5 +36,26 @@
           allow-html="cardType == FontCardTypes.PARAGRAPH"
           text="testStrings[cardType].text"></ddt-font-renderer>
       </div>
+
+      <div class="ddt-review-card-opacity-renderer-container"
+           ng-show="cardType == FontCardTypes.LETTER"
+           ng-repeat="letter in letters">
+        <ddt-font-renderer
+            class="ddt-review-card-opacity-font-renderer ddt-position-absolute"
+            font="font1"
+            font-parameters="fontParameters[cardType]"
+            opacity="1 - opacity"
+            allow-html="cardType == FontCardTypes.PARAGRAPH"
+            follow-width="reviewCardOpacityFontRenderer1"
+            text="letter"></ddt-font-renderer>
+        <ddt-font-renderer
+            class="ddt-review-card-opacity-font-renderer"
+            id="reviewCardOpacityFontRenderer1"
+            font="font2"
+            font-parameters="fontParameters[cardType]"
+            opacity="opacity"
+            allow-html="cardType == FontCardTypes.PARAGRAPH"
+            text="letter"></ddt-font-renderer>
+      </div>
     </div>
 </div>
