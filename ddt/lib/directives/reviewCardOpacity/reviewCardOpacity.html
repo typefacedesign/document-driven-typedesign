@@ -15,19 +15,26 @@
 
     <input type="range" min="0" max="1" step="0.001" ng-model="opacity">
 
-    <div class="ddt-review-card-opacity-renderer-container">
+    <div class="ddt-review-card-opacity-renderer-container"
+         ng-show="cardType == FontCardTypes.WORD ||
+                  cardType == FontCardTypes.SENTENCE ||
+                  cardType == FontCardTypes.PARAGRAPH">
       <ddt-font-renderer
           class="ddt-review-card-opacity-font-renderer ddt-position-absolute"
           font="font1"
           font-parameters="fontParameters[cardType]"
           opacity="1 - opacity"
-          text="'hello world'"></ddt-font-renderer>
+          allow-html="cardType == FontCardTypes.PARAGRAPH"
+          follow-width="reviewCardOpacityFontRenderer1"
+          text="testStrings[cardType].text"></ddt-font-renderer>
       <ddt-font-renderer
           class="ddt-review-card-opacity-font-renderer"
+          id="reviewCardOpacityFontRenderer1"
           font="font2"
           font-parameters="fontParameters[cardType]"
           opacity="opacity"
-          text="'hello world'"></ddt-font-renderer>
+          allow-html="cardType == FontCardTypes.PARAGRAPH"
+          text="testStrings[cardType].text"></ddt-font-renderer>
       </div>
     </div>
 </div>
