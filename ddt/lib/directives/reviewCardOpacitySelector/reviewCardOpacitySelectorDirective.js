@@ -7,7 +7,8 @@ module.exports = function() {
         templateUrl: 'lib/directives/reviewCardOpacitySelector/reviewCardOpacitySelector.html',
         controller: 'ReviewCardOpacitySelectorCtrl',
         scope: {
-            onSelect: '='
+            onSelect: '=',
+            allowMore: '=?'
         }
     };
 };

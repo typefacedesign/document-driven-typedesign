@@ -7,7 +7,7 @@ module.exports = function() {
         templateUrl: 'lib/directives/fontSelectorDropdown/fontSelectorDropdown.html',
         controller: 'FontSelectorDropdownCtrl',
         scope: {
-            key: '@',
+            key: '=',
             onSelect: '=',
             onInit: '=?'
         }

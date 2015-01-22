@@ -1,11 +1,11 @@
 <div class="ddt-review-card ddt-review-card-opacity-selector">
   <ddt-font-selector-dropdown
-      key="font1"
+      ng-repeat="i in selectorCount track by $index"
+      key="makeKey($index)"
       on-select="selectFont"
       on-init="fontSelectorInitialized"></ddt-font-selector-dropdown>
-  <ddt-font-selector-dropdown
-      key="font2"
-      on-select="selectFont"
-      on-init="fontSelectorInitialized"></ddt-font-selector-dropdown>
-  <button class="btn btn-primary" ng-click="addToComparison(font1, font2)">Add to Comparison</button>
+  <div class="ddt-review-card-selector-buttons-container">
+    <button ng-show="allowMore" class="btn btn-default" ng-click="addAnother()">Add Another</button>
+    <button class="btn btn-primary" ng-click="addToComparison()">Compare</button>
+  </div>
 </div>

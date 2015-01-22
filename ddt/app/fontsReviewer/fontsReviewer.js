@@ -35,8 +35,8 @@ module.exports = function($scope, $routeParams, $location, fontFamilyCollection,
         return text.replace(/_/g, ' ');
     };
 
-    $scope.addToOpacityComparison = function(font1, font2) {
-        comparisonMatrices.comparisonMatrices()[FontComparisonTypes.OPACITY].push([font1, font2]);
+    $scope.addToOpacityComparison = function(fonts) {
+        comparisonMatrices.comparisonMatrices()[FontComparisonTypes.OPACITY].push(fonts);
     };
 
     init();
