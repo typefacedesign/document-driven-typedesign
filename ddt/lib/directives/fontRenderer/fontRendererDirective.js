@@ -1,3 +1,4 @@
+/* globals angular */
 'use strict';
 
 
@@ -17,7 +18,7 @@ module.exports = function () {
         },
         link: function(scope, element, attributes) {
             scope.adjustWidth = function() {
-                var referenceElt = angular.element(document.getElementById(scope.followWidth));
+                var referenceElt = angular.element('#' + scope.followWidth);
 
                 if (angular.isUndefined(referenceElt)) {
                     return;
