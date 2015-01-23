@@ -7,19 +7,10 @@ module.exports = function($scope, $routeParams, $location, fontFamilyCollection,
                           fontParameters, FontCardTypes, FontComparisonTypes, comparisonMatrices) {
     var init = function() {
         $scope.cardType = $routeParams.cardType || FontCardTypes.WORD;
-        $scope.comparisonType = $routeParams.comparisonType || FontComparisonTypes.OPACITY;
+        $scope.comparisonType = $routeParams.comparisonType || FontComparisonTypes.SIDE_BY_SIDE;
         $scope.fontParameters = fontParameters.current;
         $scope.FontComparisonTypes = FontComparisonTypes;
-
-        // NOTE: this comparison matrix will soon be stored in the comparisonMatrices service.
-        $scope.comparisonMatrix = fontFamilyCollection.comparisonMatrix();
         $scope.comparisonMatrices = comparisonMatrices.comparisonMatrices();
-
-        $scope.$watch(function () {
-            return fontFamilyCollection.comparisonMatrix();
-        }, function () {
-            $scope.comparisonMatrix = fontFamilyCollection.comparisonMatrix();
-        });
     };
 
     $scope.isCurrentComparison = function(comparison) {
@@ -36,7 +27,11 @@ module.exports = function($scope, $routeParams, $location, fontFamilyCollection,
     };
 
     $scope.addToOpacityComparison = function(fonts) {
-        comparisonMatrices.comparisonMatrices()[FontComparisonTypes.OPACITY].push(fonts);
+        comparisonMatrices.addComparisonGroup(FontComparisonTypes.OPACITY, fonts);
+    };
+
+    $scope.addToSideBySideComparison = function(fonts) {
+        comparisonMatrices.addComparisonGroup(FontComparisonTypes.SIDE_BY_SIDE, fonts);
     };
 
     init();

@@ -32,7 +32,8 @@
       on-select="addToSideBySideComparison"></ddt-review-card-opacity-selector>
   <ddt-review-card-side-by-side
       ng-show="comparisonType == FontComparisonTypes.SIDE_BY_SIDE"
-      ng-repeat="comparisonGroup in comparisonMatrix"
+      ng-repeat="comparisonGroup in comparisonMatrices[FontComparisonTypes.SIDE_BY_SIDE]"
+      index="$index"
       comparison-group="comparisonGroup"
       card-type="cardType"
       font-parameters="fontParameters"></ddt-review-card-side-by-side>
