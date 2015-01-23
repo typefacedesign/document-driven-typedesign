@@ -1,13 +1,31 @@
 .ddt-review-card-opacity-selector {
   width: @ddt-review-card-opacity-min-width;
   min-height: @ddt-review-card-opacity-min-width;
+  background-color: @navbar-default-bg;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: @navbar-default-bg;
+}
+
+.ddt-review-card-opacity-selector-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .ddt-review-card-opacity-selector .dropdown {
   margin-bottom: @line-height-computed;
+}
+
+.ddt-review-card-opacity-selector-dropdown-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: baseline;
+
+  .dropdown {
+    margin-right: @line-height-computed/2;
+  }
 }

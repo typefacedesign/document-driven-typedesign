@@ -7,8 +7,12 @@ var _ = require('lodash');
 module.exports = function($scope) {
     var init = function() {
         $scope.selectedFonts = {};
-        $scope.registeredFontSelectors = {};
-        $scope.selectorCount = new Array(2);
+        $scope.fontSelectorDropdowns = {};
+
+        // We need two dropdowns by default.
+        for (var i = 0; i < 2; i++) {
+            $scope.addAnother();
+        }
     };
 
     $scope.selectFont = function(key, font) {
@@ -16,25 +20,39 @@ module.exports = function($scope) {
     };
 
     $scope.fontSelectorInitialized = function(key, clearFn) {
-        $scope.registeredFontSelectors[key] = clearFn;
+        $scope.fontSelectorDropdowns[key] = clearFn;
     };
 
     $scope.addToComparison = function() {
         $scope.onSelect(_.values($scope.selectedFonts));
 
-        _.each(_.values($scope.registeredFontSelectors), function(clearFn) {
+        _.each(_.values($scope.fontSelectorDropdowns), function(clearFn) {
             clearFn();
         });
     };
 
     $scope.addAnother = function() {
         if (angular.isDefined($scope.allowMore) && $scope.allowMore) {
-            $scope.selectorCount = new Array($scope.selectorCount.length + 1);
+            $scope.fontSelectorDropdowns[$scope.makeKey()] = true;
         }
     };
 
-    $scope.makeKey = function(index) {
-        return 'font' + index.toString();
+    $scope.removeFontSelector = function(index, key) {
+        delete $scope.fontSelectorDropdowns[key];
+        delete $scope.selectedFonts[key];
+    };
+
+    $scope.makeKey = function() {
+        var key;
+        do {
+            key = 'font' + _.random(9999);
+        } while(angular.isDefined($scope.fontSelectorDropdowns[key]));
+
+        return key;
+    };
+
+    $scope.totalSelectors = function() {
+        return _.size($scope.fontSelectorDropdowns);
     };
 
     init();
