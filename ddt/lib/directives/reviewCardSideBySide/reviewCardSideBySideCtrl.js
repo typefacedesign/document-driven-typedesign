@@ -2,10 +2,10 @@
 'use strict';
 
 
-module.exports = function($scope, fontFamilyCollection, FontCardTypes, testStrings) {
+module.exports = function($scope, fontFamilyCollection, FontCardTypes, testStrings, LETTERS,
+                          comparisonMatrices, FontComparisonTypes, confirmDialog) {
     var init = function() {
-        // TODO: make this a constant.
-        $scope.letters = 'abcdefghjklmnopqrstuvwxyz'.split('');
+        $scope.letters = LETTERS;
         $scope.FontCardTypes = FontCardTypes;
         $scope.testString = testStrings[$scope.cardType].text;
 
@@ -14,6 +14,16 @@ module.exports = function($scope, fontFamilyCollection, FontCardTypes, testStrin
                 $scope.testString = testStrings[$scope.cardType].text;
             }
         });
+    };
+
+    $scope.removeFromComparison = function() {
+        confirmDialog('Confirm Delete', 'Do you want to delete this comparison?')
+            .then(function() {
+                comparisonMatrices.removeComparisonGroup(
+                    FontComparisonTypes.SIDE_BY_SIDE,
+                    $scope.index
+                );
+            });
     };
 
     init();

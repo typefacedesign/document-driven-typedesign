@@ -1,11 +1,13 @@
 <div class="ddt-review-card ddt-review-card-side-by-side">
+  <div class="ddt-titlebar">
+    <button class="ddt-float-right btn btn-default btn-xs" ng-click="removeFromComparison()">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+    <div class="clearfix"></div>
+  </div>
+
   <div class="ddt-review-card-content">
     <div ng-show="cardType == FontCardTypes.LETTER">
-      <div class="ddt-review-card-side-by-side-header">
-        <ddt-matrix-swap-dropdown ng-repeat="font in comparisonGroup" font="font">
-        </ddt-matrix-swap-dropdown>
-      </div>
-
       <div class="ddt-review-card-side-by-side-letter-group" ng-repeat="letter in letters">
         <ddt-font-renderer
             ng-repeat="font in comparisonGroup"
@@ -21,16 +23,10 @@
             font="font"
             font-parameters="fontParameters[cardType]"
             text="testString"></ddt-font-renderer>
-        <ddt-matrix-swap-dropdown font="font"></ddt-matrix-swap-dropdown>
       </div>
     </div>
 
     <div ng-show="cardType == FontCardTypes.PARAGRAPH">
-      <div class="ddt-review-card-side-by-side-header">
-        <ddt-matrix-swap-dropdown ng-repeat="font in comparisonGroup" font="font">
-        </ddt-matrix-swap-dropdown>
-      </div>
-
       <div class="ddt-review-card-side-by-side-paragraph-row">
         <ddt-font-renderer
             class="ddt-review-card-side-by-side-paragraph"

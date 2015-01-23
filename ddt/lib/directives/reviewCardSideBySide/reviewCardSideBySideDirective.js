@@ -10,7 +10,8 @@ module.exports = function() {
         scope: {
             fontParameters: '=',
             comparisonGroup: '=',
-            cardType: '='
+            cardType: '=',
+            index: '='
         }
     };
 };
