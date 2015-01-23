@@ -19,8 +19,15 @@ angular.module('ddt').factory('comparisonMatrices', function(FontComparisonTypes
         _comparisonMatrices[type].splice(index, 1);
     };
 
+    var addComparisonGroup = function(type, comparisonGroup) {
+        if (comparisonGroup.length > 0 && _.all(comparisonGroup, angular.isDefined)) {
+            _comparisonMatrices[type].push(comparisonGroup);
+        }
+    };
+
     return {
         comparisonMatrices: comparisonMatrices,
+        addComparisonGroup: addComparisonGroup,
         removeComparisonGroup: removeComparisonGroup
     };
 });
