@@ -13,7 +13,6 @@ require('./reviewCardSideBySide');
 require('./reviewCardOpacitySelector');
 require('./reviewCardOpacity');
 require('./fontSelectorDropdown');
-require('./matrixSwapDropdown');
 require('./filePickerButton');
 require('./focus');
 require('./loadingSpinner');
