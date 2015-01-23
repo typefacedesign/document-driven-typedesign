@@ -20,9 +20,5 @@ module.exports = function ($scope, FontCardTypes, fontFamilyCollection, TestWord
         return $scope.fontCardType === typeToCheck;
     };
 
-    $scope.isAddedToComparison = function(family) {
-        return fontFamilyCollection.isAddedToComparison(family);
-    };
-
     init();
 };
