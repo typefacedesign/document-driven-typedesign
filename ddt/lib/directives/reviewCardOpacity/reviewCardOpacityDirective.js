@@ -10,8 +10,7 @@ module.exports = function() {
             fontParameters: '=',
             cardType: '=',
             font1: '=',
-            font2: '=',
-            index: '='
+            font2: '='
         }
     };
 };

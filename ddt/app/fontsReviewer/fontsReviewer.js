@@ -4,13 +4,13 @@ var _ = require('lodash');
 
 
 module.exports = function($scope, $routeParams, $location, fontFamilyCollection,
-                          fontParameters, FontCardTypes, FontComparisonTypes, comparisonMatrices) {
+                          fontParameters, FontCardTypes, FontComparisonTypes, comparisonMatrix) {
     var init = function() {
         $scope.cardType = $routeParams.cardType || FontCardTypes.WORD;
         $scope.comparisonType = $routeParams.comparisonType || FontComparisonTypes.SIDE_BY_SIDE;
         $scope.fontParameters = fontParameters.current;
         $scope.FontComparisonTypes = FontComparisonTypes;
-        $scope.comparisonMatrices = comparisonMatrices.comparisonMatrices();
+        $scope.comparisonMatrix = comparisonMatrix.comparisonMatrix();
     };
 
     $scope.isCurrentComparison = function(comparison) {
@@ -24,14 +24,6 @@ module.exports = function($scope, $routeParams, $location, fontFamilyCollection,
 
     $scope.replaceUnderscores = function(text) {
         return text.replace(/_/g, ' ');
-    };
-
-    $scope.addToOpacityComparison = function(fonts) {
-        comparisonMatrices.addComparisonGroup(FontComparisonTypes.OPACITY, fonts);
-    };
-
-    $scope.addToSideBySideComparison = function(fonts) {
-        comparisonMatrices.addComparisonGroup(FontComparisonTypes.SIDE_BY_SIDE, fonts);
     };
 
     init();

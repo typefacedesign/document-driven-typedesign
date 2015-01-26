@@ -2,8 +2,7 @@
 'use strict';
 
 
-module.exports = function($scope, fontFamilyCollection, FontCardTypes, testStrings, LETTERS,
-                          comparisonMatrices, FontComparisonTypes, confirmDialog) {
+module.exports = function($scope, fontFamilyCollection, FontCardTypes, testStrings, LETTERS) {
     var init = function() {
         $scope.letters = LETTERS;
         $scope.FontCardTypes = FontCardTypes;
@@ -14,16 +13,6 @@ module.exports = function($scope, fontFamilyCollection, FontCardTypes, testStrin
                 $scope.testString = testStrings[$scope.cardType].text;
             }
         });
-    };
-
-    $scope.removeFromComparison = function() {
-        confirmDialog('Confirm Delete', 'Do you want to delete this comparison?')
-            .then(function() {
-                comparisonMatrices.removeComparisonGroup(
-                    FontComparisonTypes.SIDE_BY_SIDE,
-                    $scope.index
-                );
-            });
     };
 
     init();
