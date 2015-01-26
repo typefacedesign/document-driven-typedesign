@@ -8,40 +8,34 @@
     <!-- This is the perfect use case for flexbox. -->
     <div class="col-md-4" ng-if="families.length > 0">
       <ddt-font-card-simple ng-show="isType(FontCardTypes.WORD)"
-                            ng-class="{active: isAddedToComparison(families[0])}"
                             font-family="families[0]"
                             font-parameters="fontParameters[FontCardTypes.WORD]"
                             text="testWord"></ddt-font-card-simple>
       <ddt-font-card-simple
               ng-show="isType(FontCardTypes.PARAGRAPH)"
-              ng-class="{active: isAddedToComparison(families[0])}"
               font-family="families[0]"
               font-parameters="fontParameters[FontCardTypes.PARAGRAPH]"
               text="testParagraph"
               allow-html="true"></ddt-font-card-simple>
       <ddt-font-card-letters
           ng-show="isType(FontCardTypes.LETTER)"
-          ng-class="{active: isAddedToComparison(families[0])}"
           font-family="families[0]"></ddt-font-card-letters>
     </div>
 
     <div class="col-md-4" ng-if="families.length > 1">
       <ddt-font-card-simple
               ng-show="isType(FontCardTypes.WORD)"
-              ng-class="{active: isAddedToComparison(families[1])}"
               font-family="families[1]"
               font-parameters="fontParameters[FontCardTypes.WORD]"
               text="testWord"></ddt-font-card-simple>
       <ddt-font-card-simple
               ng-show="isType(FontCardTypes.PARAGRAPH)"
-              ng-class="{active: isAddedToComparison(families[1])}"
               font-family="families[1]"
               allow-html="true"
               text="testParagraph"
               font-parameters="fontParameters[FontCardTypes.PARAGRAPH]"></ddt-font-card-simple>
       <ddt-font-card-letters
           ng-show="isType(FontCardTypes.LETTER)"
-          ng-class="{active: isAddedToComparison(families[1])}"
           font-family="families[1]"></ddt-font-card-letters>
     </div>
   </div>
@@ -52,20 +46,17 @@
     <div class="col-md-4" ng-repeat="family in families" ng-if="$index > 1">
       <ddt-font-card-simple
               ng-show="isType(FontCardTypes.WORD)"
-              ng-class="{active: isAddedToComparison(family)}"
               font-family="family"
               font-parameters="fontParameters[FontCardTypes.WORD]"
               text="testWord"></ddt-font-card-simple>
       <ddt-font-card-simple
               ng-show="isType(FontCardTypes.PARAGRAPH)"
-              ng-class="{active: isAddedToComparison(family)}"
               font-family="family"
               allow-html="true"
               text="testParagraph"
               font-parameters="fontParameters[FontCardTypes.PARAGRAPH]"></ddt-font-card-simple>
       <ddt-font-card-letters
           ng-show="isType(FontCardTypes.LETTER)"
-          ng-class="{active: isAddedToComparison(family)}"
           font-family="family"></ddt-font-card-letters>
     </div>
   </div>
@@ -82,7 +73,6 @@
     <div class="col-md-12" ng-repeat="family in families">
       <ddt-font-card-simple
           font-family="family"
-          ng-class="{active: isAddedToComparison(family)}"
           font-parameters="fontParameters[FontCardTypes.SENTENCE]"
           text="testSentence"></ddt-font-card-simple>
     </div>

@@ -72,6 +72,9 @@ body {
   color: #ffffff;
   background-color: #777777;
 }
+.ddt-visibility-hidden {
+  visibility: hidden;
+}
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -6386,9 +6389,9 @@ button.close {
   padding: 15px 15px;
 }
 .ddt-font-card-font-header {
-  border-bottom: solid 1px silver;
-  margin-bottom: 8px;
-  font-weight: bold;
+  margin-bottom: 4px;
+  font-size: 8px;
+  color: #555555;
 }
 .ddt-font-card-add {
   position: relative;
@@ -6471,7 +6474,6 @@ button.close {
 .ddt-font-card-letter {
   height: 369px;
 }
-.ddt-review-card-side-by-side-header,
 .ddt-review-card-side-by-side-letter-group,
 .ddt-review-card-side-by-side-paragraph-row {
   display: flex;
@@ -6515,14 +6517,29 @@ button.close {
 .ddt-review-card-opacity-selector {
   width: 300px;
   min-height: 300px;
+  background-color: #f8f8f8;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f8f8f8;
+}
+.ddt-review-card-opacity-selector-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .ddt-review-card-opacity-selector .dropdown {
   margin-bottom: 20px;
+}
+.ddt-review-card-opacity-selector-dropdown-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: baseline;
+}
+.ddt-review-card-opacity-selector-dropdown-container .dropdown {
+  margin-right: 10px;
 }
 .ddt-dotted-paginator {
   text-align: center;
@@ -6567,17 +6584,6 @@ button.close {
   padding: 3px 20px;
   white-space: nowrap;
   min-width: 300px;
-}
-div > .ddt-matrix-swap-dropdown {
-  margin-bottom: 20px;
-  margin-left: 20px;
-}
-div > .ddt-matrix-swap-dropdown:first-child {
-  margin-left: 0;
-}
-.ddt-review-card-side-by-side-font-row .ddt-matrix-swap-dropdown {
-  margin-bottom: 0px;
-  margin-left: 40px;
 }
 .ddt-file-picker-input {
   visibility: hidden;
