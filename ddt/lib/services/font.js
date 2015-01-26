@@ -99,9 +99,20 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
     };
 
     var _copyMetadata = function(ddtFont, openTypeFont) {
-        ddtFont.familyName = openTypeFont.familyName;
-        ddtFont.styleName = openTypeFont.styleName;
-        ddtFont.name = ddtFont.familyName + ' ' + ddtFont.styleName;
+        if (angular.isDefined(openTypeFont.tables.name.preferredFamily) &&
+            angular.isDefined(openTypeFont.tables.name.preferredSubfamily)) {
+            ddtFont.familyName = openTypeFont.tables.name.preferredFamily;
+            ddtFont.subFamilyName = openTypeFont.tables.name.preferredSubfamily;
+        } else if (angular.isDefined(openTypeFont.tables.name.postScriptName)) {
+            var postScriptMetadata = openTypeFont.tables.name.postScriptName.split('-');
+            ddtFont.familyName = postScriptMetadata[0];
+            ddtFont.subFamilyName = postScriptMetadata[1];
+        } else {
+            ddtFont.familyName = openTypeFont.familyName;
+            ddtFont.subFamilyName = openTypeFont.styleName;
+        }
+
+        ddtFont.name = ddtFont.familyName + ' ' + ddtFont.subFamilyName;
         ddtFont.weight = openTypeFont.tables.os2.usWeightClass;
     };
 
