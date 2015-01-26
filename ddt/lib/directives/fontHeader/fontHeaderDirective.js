@@ -7,8 +7,7 @@ module.exports = function() {
         templateUrl: 'lib/directives/fontHeader/fontHeader.html',
         controller: 'FontHeaderCtrl',
         scope: {
-            font: '=',
-            fontFamily: '='
+            font: '='
         }
     };
 };

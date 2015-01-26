@@ -102,6 +102,7 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
         ddtFont.familyName = openTypeFont.familyName;
         ddtFont.styleName = openTypeFont.styleName;
         ddtFont.name = ddtFont.familyName + ' ' + ddtFont.styleName;
+        ddtFont.weight = openTypeFont.tables.os2.usWeightClass;
     };
 
     return Font;
