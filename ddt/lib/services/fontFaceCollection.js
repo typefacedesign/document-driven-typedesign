@@ -5,7 +5,7 @@ var _ = require('lodash');
 
 
 angular.module('ddt').factory('fontFaceCollection', function(FontSources) {
-    var fontFaces = [];
+    var fontFaces = new Map();
 
     var _addCSSRule = function(selector, rules) {
         var styleElement = document.createElement('style');
@@ -24,30 +24,32 @@ angular.module('ddt').factory('fontFaceCollection', function(FontSources) {
     };
 
     var add = function(font) {
-        var existingFace = _.find(fontFaces, function(face) {
-            return face.name === font.name;
-        });
+        var faceName = font.name;
 
-        if (angular.isDefined(existingFace)) {
-            throw new Error('A font face with name "' + font.name + '" already exists.');
+        if (angular.isDefined(fontFaces.get(faceName))) {
+            for (var i = 2; angular.isDefined(fontFaces.get(faceName + ' ' + i.toString)); i++) {}
+            faceName = faceName + ' ' + i.toString();
         }
 
         if (font.source === FontSources.FILE) {
             font.getDataUrl()
                 .then(function (dataUrl) {
                     var cssRule = '' +
-                        'font-family: "' + font.name + '";' +
+                        'font-family: "' + faceName + '";' +
                         'src: url(' + dataUrl + ');';
                     _addCSSRule('@font-face', cssRule);
                 });
         } else if (font.source === FontSources.URL) {
             var cssRule = '' +
-                'font-family: "' + font.name + '";' +
+                'font-family: "' + faceName + '";' +
                 'src: url(' + font.url + ');';
             _addCSSRule('@font-face', cssRule);
         }
 
-        fontFaces.push(font.name);
+        fontFaces.set(faceName, font);
+
+        // TODO: not a good idea to modify the parameter like this. Do this more elegantly.
+        font.faceName = faceName;
     };
 
     return {

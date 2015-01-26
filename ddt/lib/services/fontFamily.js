@@ -63,10 +63,6 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
     };
 
     FontFamily.prototype._pushFont = function(font) {
-        if (font.familyName !== this.name) {
-            throw new Error(ErrorMessages.MISMATCHING_FAMILY);
-        }
-
         // Each font can only belong to one family. If the family
         // property on the font is non-null, that means someone
         // is trying to add a font that has already been added to

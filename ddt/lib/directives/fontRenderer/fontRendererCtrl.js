@@ -18,7 +18,7 @@ module.exports = function($scope, FontCases) {
 
     var calculateInlineStyle = function() {
         var style = '' +
-            'font-family: "' + $scope.font.name + '";' +
+            'font-family: "' + $scope.font.faceName + '";' +
             'font-size: ' + $scope.fontParameters.fontSize.toString() + 'px;' +
             'color: ' + $scope.fontParameters.color + ';';
 

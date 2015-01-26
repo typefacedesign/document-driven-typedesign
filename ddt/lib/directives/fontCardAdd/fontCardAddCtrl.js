@@ -34,18 +34,19 @@ module.exports = function ($scope, $q, $http, FontFamily, FontSources, fontFamil
             });
 
             _.each(_.keys(fontGroups), function(familyName) {
-                var family = fontFamilyCollection.findByName(familyName);
-                var newFamily = false;
-                if (!angular.isDefined(family)) {
-                    family = new FontFamily(familyName);
-                    newFamily = true;
+                var newFamilyName = familyName;
+                if (angular.isDefined(fontFamilyCollection.findByName(newFamilyName))) {
+                    for (var counter = 2;
+                         angular.isDefined(fontFamilyCollection.findByName(newFamilyName + counter.toString()));
+                         counter++) {
+                    }
+
+                    newFamilyName = newFamilyName + ' ' + counter.toString();
                 }
 
+                var family = new FontFamily(newFamilyName);
                 family.addFonts(fontGroups[familyName]);
-
-                if (newFamily) {
-                    fontFamilyCollection.add(family);
-                }
+                fontFamilyCollection.add(family);
             });
         });
     };

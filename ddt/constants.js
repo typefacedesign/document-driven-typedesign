@@ -23,7 +23,8 @@ angular.module('ddt').constant('ErrorMessages', {
     UNRECOGNIZED_FONT_SOURCE: 'Unrecognized font source: ',
     MISMATCHING_FAMILY: 'Cannot add font to this family. Family names don\'t match.',
     FAMILY_DOES_NOT_EXIST: 'This family does not exist in this collection.',
-    FONT_ALREADY_HAS_FAMILY: 'This font belongs to a different family. You cannot add it to this family.'
+    FONT_ALREADY_HAS_FAMILY: 'This font belongs to a different family. You cannot add it to this family.',
+    FAMILY_ALREADY_EXISTS: 'A font family with this name already exists.'
 });
 
 angular.module('ddt').constant('FontCases', {
