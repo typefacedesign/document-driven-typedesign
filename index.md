@@ -3,7 +3,7 @@ layout: default
 title: Rigorous font quality testing
 ---
 
-We are developing a small web application for testing type design quality quality.
+We are developing a small web application for testing type design quality.
 
 * [User Journeys](https://docs.google.com/document/d/1YtGaKEW8oU42HJ9CnhUa2b4SWEQ0Meew01PAPakcJb0/edit#heading=h.fn5nr55nvb6u)
 * [Wireframe Sketches](/ux/sketches/)
