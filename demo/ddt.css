@@ -20,10 +20,10 @@ body {
   background-color: #777777;
   width: 100%;
 }
-.ddt-remove-button {
+.ddt-glyph-button {
   cursor: pointer;
 }
-.ddt-remove-button:hover {
+.ddt-glyph-button:hover {
   color: #337ab7;
 }
 /* This bit of CSS lets us have submenus in Bootstrap dropdown. */
@@ -6389,9 +6389,16 @@ button.close {
   padding: 15px 15px;
 }
 .ddt-font-card-font-header {
-  margin-bottom: 4px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  height: 20px;
   font-size: 8px;
   color: #555555;
+}
+.ddt-font-card-font-header-edit-controls {
+  font-size: 12px;
 }
 .ddt-font-card-add {
   position: relative;
