@@ -93,6 +93,10 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
         return deferred.promise;
     };
 
+    Font.prototype.updateName = function() {
+        this.name = this.familyName + ' ' + this.subFamilyName;
+    };
+
     var _splitFileName = function(fileName) {
         var fileSplit = fileName.split('.');
         return [_.first(fileSplit, fileSplit.length - 1).join(''), _.last(fileSplit)];
@@ -112,7 +116,7 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
             ddtFont.subFamilyName = openTypeFont.styleName;
         }
 
-        ddtFont.name = ddtFont.familyName + ' ' + ddtFont.subFamilyName;
+        ddtFont.updateName();
         ddtFont.weight = openTypeFont.tables.os2.usWeightClass;
     };
 

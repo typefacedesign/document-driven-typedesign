@@ -2,7 +2,7 @@
   <ddt-font-card-titlebar></ddt-font-card-titlebar>
   <div class="ddt-font-card-content">
     <div ng-repeat="font in fontFamily.fonts" ng-if="$index + 1 == currentPage">
-      <ddt-font-header font="font"></ddt-font-header>
+      <ddt-font-header font="font" edit-mode="editMode"></ddt-font-header>
       <div ng-repeat="letterGroup in letters">
         <span class="ddt-single-letter" ng-repeat="letter in letterGroup">
           <ddt-font-renderer font="font" font-parameters="fontParameters" text="letter">

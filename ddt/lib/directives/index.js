@@ -19,3 +19,4 @@ require('./loadingSpinner');
 require('./dottedPaginator');
 require('./fontParametersMenu');
 require('./colorPicker');
+require('./fontMetadataEditor');

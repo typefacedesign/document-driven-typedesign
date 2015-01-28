@@ -7,6 +7,7 @@ var _ = require('lodash');
 module.exports = function($scope, filePicker, confirmDialog, fontFamilyCollection) {
     var init = function() {
         $scope.editingFamilyName = false;
+        $scope.editMode = false;
     };
 
     $scope.addFont = function() {
@@ -41,6 +42,10 @@ module.exports = function($scope, filePicker, confirmDialog, fontFamilyCollectio
 
     $scope.deselect = function() {
         fontFamilyCollection.removeFromComparison($scope.fontFamily);
+    };
+
+    $scope.toggleEditMode = function() {
+        $scope.editMode = !$scope.editMode;
     };
 
     init();
