@@ -6455,6 +6455,22 @@ button.close {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.ddt-titlebar,
+.ddt-titlebar-controls {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.ddt-titlebar {
+  justify-content: space-between;
+}
+.ddt-titlebar .btn-group {
+  margin-right: 20px;
+}
+.ddt-titlebar .ddt-star {
+  font-size: 18px;
+  cursor: pointer;
+}
 .ddt-letter-row {
   text-align: center;
 }

@@ -558,7 +558,7 @@ angular.module('ddt').directive('ddtFontCardSimple', require('./fontCardSimpleDi
 var _ = require('lodash');
 
 
-module.exports = function($scope, filePicker, confirmDialog, fontFamilyCollection) {
+module.exports = function($scope, filePicker, confirmDialog, fontFamilyCollection, comparisonMatrix) {
     var init = function() {
         $scope.editingFamilyName = false;
         $scope.editMode = false;
@@ -590,12 +590,16 @@ module.exports = function($scope, filePicker, confirmDialog, fontFamilyCollectio
         $scope.editingFamilyName = true;
     };
 
-    $scope.select = function() {
-        fontFamilyCollection.addToComparison($scope.fontFamily);
+    $scope.addToComparison = function() {
+        comparisonMatrix.addFamily($scope.fontFamily);
     };
 
-    $scope.deselect = function() {
-        fontFamilyCollection.removeFromComparison($scope.fontFamily);
+    $scope.removeFromComparison = function() {
+        comparisonMatrix.removeFamily($scope.fontFamily);
+    };
+
+    $scope.isAddedToComparison = function() {
+        return comparisonMatrix.isAddedToComparison($scope.fontFamily);
     };
 
     $scope.toggleEditMode = function() {
@@ -1314,6 +1318,7 @@ var _ = require('lodash');
 
 
 angular.module('ddt').factory('comparisonMatrix', function() {
+    var _fontFamilies = [];
     var _comparisonMatrix = [];
 
     var comparisonMatrix = function() {
@@ -1321,17 +1326,29 @@ angular.module('ddt').factory('comparisonMatrix', function() {
     };
 
     var addFamily = function(family) {
-
+        _fontFamilies.push(family);
+        _buildComparisonMatrix();
     };
 
     var removeFamily = function(family) {
+        _.pull(_fontFamilies, family);
+    };
 
+    var isAddedToComparison = function(family) {
+        return _.find(_fontFamilies, function(f) {
+            return family === f;
+        });
+    };
+
+    var _buildComparisonMatrix = function() {
+        // First, group fonts in each family by
     };
 
     return {
         comparisonMatrix: comparisonMatrix,
         addFamily: addFamily,
-        removeFamily: removeFamily
+        removeFamily: removeFamily,
+        isAddedToComparison: isAddedToComparison
     };
 });
 
