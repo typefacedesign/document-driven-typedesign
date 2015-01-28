@@ -1,25 +1,32 @@
 <div class="ddt-titlebar">
-  <div class="row">
-    <div class="col-md-9">
-      <input type="text" ng-model="fontFamily.name" class="ddt-flat-input" ng-disabled="!editingFamilyName" ddt-focus="editingFamilyName" />
+  <input type="text" ng-model="fontFamily.name" class="ddt-flat-input" ng-disabled="!editingFamilyName"
+         ddt-focus="editingFamilyName">
+
+  <div class="ddt-titlebar-controls">
+    <div class="btn-group" ng-hide="editMode">
+      <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-tasks"></span> <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="" ng-click="addFont()">Add Font</a></li>
+        <li><a href="" ng-click="toggleEditMode()">Edit</a></li>
+        <li><a href="" ng-click="rename()">Rename</a></li>
+        <li><a href="" ng-click="duplicate()">Duplicate</a></li>
+        <li><a href="" ng-click="deleteFamily()">Delete</a></li>
+      </ul>
     </div>
 
-    <div class="col-md-3">
-      <div class="btn-group ddt-float-right" ng-hide="editMode">
-        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-          <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-          <li><a href="" ng-click="addFont()">Add Font</a></li>
-          <li><a href="" ng-click="toggleEditMode()">Edit</a></li>
-          <li><a href="" ng-click="rename()">Rename</a></li>
-          <li><a href="" ng-click="duplicate()">Duplicate</a></li>
-          <li><a href="" ng-click="deleteFamily()">Delete</a></li>
-        </ul>
-      </div>
-      <button class="btn btn-default btn-xs pull-right" ng-show="editMode" ng-click="toggleEditMode()">
-        Done
-      </button>
+    <button class="btn btn-default btn-xs pull-right" ng-show="editMode" ng-click="toggleEditMode()">
+      Done
+    </button>
+
+    <div ng-hide="editMode">
+      <span class="glyphicon glyphicon-star ddt-star"
+            ng-show="isAddedToComparison()"
+            ng-click="removeFromComparison()"></span>
+      <span class="glyphicon glyphicon-star-empty ddt-star"
+            ng-hide="isAddedToComparison()"
+            ng-click="addToComparison()"></span>
     </div>
   </div>
 </div>

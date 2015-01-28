@@ -4,7 +4,7 @@
 var _ = require('lodash');
 
 
-module.exports = function($scope, filePicker, confirmDialog, fontFamilyCollection) {
+module.exports = function($scope, filePicker, confirmDialog, fontFamilyCollection, comparisonMatrix) {
     var init = function() {
         $scope.editingFamilyName = false;
         $scope.editMode = false;
@@ -36,12 +36,16 @@ module.exports = function($scope, filePicker, confirmDialog, fontFamilyCollectio
         $scope.editingFamilyName = true;
     };
 
-    $scope.select = function() {
-        fontFamilyCollection.addToComparison($scope.fontFamily);
+    $scope.addToComparison = function() {
+        comparisonMatrix.addFamily($scope.fontFamily);
     };
 
-    $scope.deselect = function() {
-        fontFamilyCollection.removeFromComparison($scope.fontFamily);
+    $scope.removeFromComparison = function() {
+        comparisonMatrix.removeFamily($scope.fontFamily);
+    };
+
+    $scope.isAddedToComparison = function() {
+        return comparisonMatrix.isAddedToComparison($scope.fontFamily);
     };
 
     $scope.toggleEditMode = function() {
