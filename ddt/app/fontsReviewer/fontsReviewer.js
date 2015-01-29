@@ -10,7 +10,12 @@ module.exports = function($scope, $routeParams, $location, fontFamilyCollection,
         $scope.comparisonType = $routeParams.comparisonType || FontComparisonTypes.SIDE_BY_SIDE;
         $scope.fontParameters = fontParameters.current;
         $scope.FontComparisonTypes = FontComparisonTypes;
-        $scope.comparisonMatrix = comparisonMatrix.comparisonMatrix();
+
+        $scope.$watch(function() {
+            return comparisonMatrix.comparisonMatrix();
+        }, function() {
+            $scope.comparisonMatrix = comparisonMatrix.comparisonMatrix();
+        });
     };
 
     $scope.isCurrentComparison = function(comparison) {
