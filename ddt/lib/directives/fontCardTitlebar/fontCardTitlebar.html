@@ -13,6 +13,16 @@
         <li><a href="" ng-click="rename()">Rename</a></li>
         <li><a href="" ng-click="duplicate()">Duplicate</a></li>
         <li><a href="" ng-click="deleteFamily()">Delete</a></li>
+        <li>
+          <a href="" ng-click="addToComparison()" ng-hide="isAddedToComparison()">
+            Select for review
+          </a>
+        </li>
+        <li>
+          <a href="" ng-click="removeFromComparison()" ng-show="isAddedToComparison()">
+            Remove from review
+          </a>
+        </li>
       </ul>
     </div>
 
@@ -23,10 +33,16 @@
     <div ng-hide="editMode">
       <span class="glyphicon glyphicon-star ddt-star"
             ng-show="isAddedToComparison()"
-            ng-click="removeFromComparison()"></span>
+            ng-click="removeFromComparison()"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Remove from review"></span>
       <span class="glyphicon glyphicon-star-empty ddt-star"
             ng-hide="isAddedToComparison()"
-            ng-click="addToComparison()"></span>
+            ng-click="addToComparison()"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Select for review"></span>
     </div>
   </div>
 </div>
