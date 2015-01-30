@@ -2,3 +2,4 @@
 
 require('./fontsChooser');
 require('./fontsReviewer');
+require('./fontsTester');
