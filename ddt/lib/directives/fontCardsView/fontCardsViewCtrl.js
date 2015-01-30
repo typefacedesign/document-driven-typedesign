@@ -5,19 +5,23 @@ module.exports = function ($scope, FontCardTypes, fontFamilyCollection, TestWord
                            TestParagraphs, fontParameters, testStrings) {
     var init = function() {
         $scope.FontCardTypes = FontCardTypes;
-        $scope.TestWords = TestWords;
-        $scope.TestSentences = TestSentences;
-        $scope.TestParagraphs = TestParagraphs;
         $scope.families = fontFamilyCollection.families();
         $scope.fontParameters = fontParameters.current;
-
-        $scope.testWord = testStrings[FontCardTypes.WORD].text;
-        $scope.testSentence = testStrings[FontCardTypes.SENTENCE].text;
-        $scope.testParagraph = testStrings[FontCardTypes.PARAGRAPH].text;
+        $scope.testStrings = testStrings;
     };
 
     $scope.isType = function(typeToCheck) {
         return $scope.fontCardType === typeToCheck;
+    };
+
+    $scope.cardSizeClass = function() {
+        if ($scope.fontCardType === FontCardTypes.SENTENCE) {
+            return 'ddt-font-card-full';
+        } else if ($scope.fontCardType === FontCardTypes.LAYOUT) {
+            return 'ddt-font-card-half';
+        } else {
+            return 'ddt-font-card-third';
+        }
     };
 
     init();

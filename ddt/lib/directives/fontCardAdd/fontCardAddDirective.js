@@ -7,6 +7,7 @@ module.exports = function() {
     return {
         restrict: 'E',
         templateUrl: 'lib/directives/fontCardAdd/fontCardAdd.html',
+        replace: true,
         controller: 'FontCardAddCtrl',
         link: function(scope, element, attrs, controllers) {
             var dragOverlay = element.find('.ddt-font-card-drag-overlay');
