@@ -1,98 +1,18 @@
-<div ng-show="isType(FontCardTypes.LETTER) || isType(FontCardTypes.WORD) || isType(FontCardTypes.PARAGRAPH) || isType(FontCardTypes.RICH_TEXT)">
-  <div class="row">
-    <div class="col-md-4">
-      <ddt-font-card-add></ddt-font-card-add>
-    </div>
+<div class="ddt-font-cards-view">
+  <ddt-font-card-simple
+    ng-hide="isType(FontCardTypes.LETTER) || isType(FontCardTypes.RICH_TEXT) || isType(FontCardTypes.LAYOUT)"
+    ng-class="cardSizeClass()"
+    ng-repeat="family in families"
+    font-family="family"
+    font-parameters="fontParameters[fontCardType]"
+    allow-html="isType(FontCardTypes.PARAGRAPH)"
+    text="testStrings[fontCardType].text"></ddt-font-card-simple>
 
-    <!-- FIXME: There is a lot of code duplication in this view. -->
-    <!-- This is the perfect use case for flexbox. -->
-    <div class="col-md-4" ng-if="families.length > 0">
-      <ddt-font-card-simple ng-show="isType(FontCardTypes.WORD)"
-                            font-family="families[0]"
-                            font-parameters="fontParameters[FontCardTypes.WORD]"
-                            text="testWord"></ddt-font-card-simple>
-      <ddt-font-card-simple
-              ng-show="isType(FontCardTypes.PARAGRAPH)"
-              font-family="families[0]"
-              font-parameters="fontParameters[FontCardTypes.PARAGRAPH]"
-              text="testParagraph"
-              allow-html="true"></ddt-font-card-simple>
-      <ddt-font-card-letters
-          ng-show="isType(FontCardTypes.LETTER)"
-          font-family="families[0]"></ddt-font-card-letters>
-    </div>
+  <ddt-font-card-letters
+    ng-show="isType(FontCardTypes.LETTER)"
+    ng-class="cardSizeClass()"
+    ng-repeat="family in families"
+    font-family="family"></ddt-font-card-letters>
 
-    <div class="col-md-4" ng-if="families.length > 1">
-      <ddt-font-card-simple
-              ng-show="isType(FontCardTypes.WORD)"
-              font-family="families[1]"
-              font-parameters="fontParameters[FontCardTypes.WORD]"
-              text="testWord"></ddt-font-card-simple>
-      <ddt-font-card-simple
-              ng-show="isType(FontCardTypes.PARAGRAPH)"
-              font-family="families[1]"
-              allow-html="true"
-              text="testParagraph"
-              font-parameters="fontParameters[FontCardTypes.PARAGRAPH]"></ddt-font-card-simple>
-      <ddt-font-card-letters
-          ng-show="isType(FontCardTypes.LETTER)"
-          font-family="families[1]"></ddt-font-card-letters>
-    </div>
-  </div>
-
-  <!--FIXME: This works, but it isn't ideal or elegant. We need-->
-  <!--three font cards per row.-->
-  <div class="row">
-    <div class="col-md-4" ng-repeat="family in families" ng-if="$index > 1">
-      <ddt-font-card-simple
-              ng-show="isType(FontCardTypes.WORD)"
-              font-family="family"
-              font-parameters="fontParameters[FontCardTypes.WORD]"
-              text="testWord"></ddt-font-card-simple>
-      <ddt-font-card-simple
-              ng-show="isType(FontCardTypes.PARAGRAPH)"
-              font-family="family"
-              allow-html="true"
-              text="testParagraph"
-              font-parameters="fontParameters[FontCardTypes.PARAGRAPH]"></ddt-font-card-simple>
-      <ddt-font-card-letters
-          ng-show="isType(FontCardTypes.LETTER)"
-          font-family="family"></ddt-font-card-letters>
-    </div>
-  </div>
-</div>
-
-<div ng-show="isType(FontCardTypes.SENTENCE)">
-  <div class="row">
-    <div class="col-md-12">
-      <ddt-font-card-add></ddt-font-card-add>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12" ng-repeat="family in families">
-      <ddt-font-card-simple
-          font-family="family"
-          font-parameters="fontParameters[FontCardTypes.SENTENCE]"
-          text="testSentence"></ddt-font-card-simple>
-    </div>
-  </div>
-</div>
-
-<div ng-show="isType(FontCardTypes.LAYOUT)">
-  <div class="row">
-    <div class="col-md-6">
-      <ddt-font-card-add></ddt-font-card-add>
-    </div>
-
-    <div class="col-md-6" ng-if="families.length > 0">
-    </div>
-  </div>
-
-  <!--FIXME: This works, but it isn't ideal or elegant. We need-->
-  <!--three font cards per row.-->
-  <div class="row">
-    <div class="col-md-6" ng-repeat="family in families" ng-if="$index > 0">
-    </div>
-  </div>
+  <ddt-font-card-add ng-class="cardSizeClass()"></ddt-font-card-add>
 </div>

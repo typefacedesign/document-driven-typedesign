@@ -10,9 +10,9 @@
       </button>
       <ul class="dropdown-menu">
         <li ng-repeat="comparisonType in FontComparisonTypes">
-          <a href=""
-              ng-hide="isCurrentComparison(comparisonType)"
-              ng-click="switchComparisonType(comparisonType)">{{ replaceUnderscores(comparisonType) }}</a>
+          <a href="" ng-click="switchComparisonType(comparisonType)">
+            {{ replaceUnderscores(comparisonType) }}
+          </a>
         </li>
       </ul>
     </div>

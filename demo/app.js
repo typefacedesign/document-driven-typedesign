@@ -433,6 +433,7 @@ module.exports = function() {
     return {
         restrict: 'E',
         templateUrl: 'lib/directives/fontCardAdd/fontCardAdd.html',
+        replace: true,
         controller: 'FontCardAddCtrl',
         link: function(scope, element, attrs, controllers) {
             var dragOverlay = element.find('.ddt-font-card-drag-overlay');
@@ -622,7 +623,11 @@ module.exports = function() {
     return {
         restrict: 'E',
         controller: 'FontCardTitlebarCtrl',
-        templateUrl: 'lib/directives/fontCardTitlebar/fontCardTitlebar.html'
+        templateUrl: 'lib/directives/fontCardTitlebar/fontCardTitlebar.html',
+        link: function(scope, element, attributes) {
+            // Initialize tooltips.
+            element.find('[data-toggle="tooltip"]').tooltip();
+        }
     };
 };
 
@@ -680,19 +685,23 @@ module.exports = function ($scope, FontCardTypes, fontFamilyCollection, TestWord
                            TestParagraphs, fontParameters, testStrings) {
     var init = function() {
         $scope.FontCardTypes = FontCardTypes;
-        $scope.TestWords = TestWords;
-        $scope.TestSentences = TestSentences;
-        $scope.TestParagraphs = TestParagraphs;
         $scope.families = fontFamilyCollection.families();
         $scope.fontParameters = fontParameters.current;
-
-        $scope.testWord = testStrings[FontCardTypes.WORD].text;
-        $scope.testSentence = testStrings[FontCardTypes.SENTENCE].text;
-        $scope.testParagraph = testStrings[FontCardTypes.PARAGRAPH].text;
+        $scope.testStrings = testStrings;
     };
 
     $scope.isType = function(typeToCheck) {
         return $scope.fontCardType === typeToCheck;
+    };
+
+    $scope.cardSizeClass = function() {
+        if ($scope.fontCardType === FontCardTypes.SENTENCE) {
+            return 'ddt-font-card-full';
+        } else if ($scope.fontCardType === FontCardTypes.LAYOUT) {
+            return 'ddt-font-card-half';
+        } else {
+            return 'ddt-font-card-third';
+        }
     };
 
     init();
@@ -1608,10 +1617,6 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
             angular.isDefined(openTypeFont.tables.name.preferredSubfamily)) {
             ddtFont.familyName = openTypeFont.tables.name.preferredFamily;
             ddtFont.subFamilyName = openTypeFont.tables.name.preferredSubfamily;
-        } else if (angular.isDefined(openTypeFont.tables.name.postScriptName)) {
-            var postScriptMetadata = openTypeFont.tables.name.postScriptName.split('-');
-            ddtFont.familyName = postScriptMetadata[0];
-            ddtFont.subFamilyName = postScriptMetadata[1];
         } else {
             ddtFont.familyName = openTypeFont.familyName;
             ddtFont.subFamilyName = openTypeFont.styleName;

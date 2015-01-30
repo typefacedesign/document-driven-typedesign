@@ -6367,6 +6367,7 @@ button.close {
   border-radius: 4px;
   border: solid 1px #e7e7e7;
   margin-bottom: 20px;
+  margin-left: 30px;
 }
 .ddt-font-card.active {
   border: solid 1px #337ab7;
@@ -6379,11 +6380,20 @@ button.close {
 .ddt-font-card-content canvas {
   width: 100%;
 }
+.ddt-font-card-full {
+  width: 1140px;
+}
+.ddt-font-card-half {
+  width: 555px;
+}
+.ddt-font-card-third {
+  width: 360px;
+}
 .ddt-review-card {
   border-radius: 4px;
   border: solid 1px #e7e7e7;
   margin-bottom: 20px;
-  margin-left: 20px;
+  margin-left: 30px;
 }
 .ddt-review-card-content {
   padding: 15px 15px;
@@ -6399,6 +6409,12 @@ button.close {
 }
 .ddt-font-card-font-header-edit-controls {
   font-size: 12px;
+}
+.ddt-font-cards-view {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: -30px;
 }
 .ddt-font-card-add {
   position: relative;
@@ -6619,7 +6635,7 @@ button.close {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin-left: -20px;
+  margin-left: -30px;
 }
 .ddt-font-reviewer-controls {
   display: flex;
