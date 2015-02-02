@@ -1,0 +1,49 @@
+<div class="modal fade ddt-confirm-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+            class="sr-only">Close</span></button>
+        <h4 class="modal-title">Choose Google Fonts</h4>
+      </div>
+
+      <div class="modal-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Version</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr ng-repeat="font in fonts" ng-class="{success: isFontSelected(font)}">
+              <td>{{ font.family }}</td>
+              <td>{{ font.version }}</td>
+              <td>
+                <button class="btn btn-xs btn-default"
+                        ng-click="selectFont(font)"
+                        ng-hide="isFontSelected(font)">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </button>
+                <button class="btn btn-xs btn-default"
+                        ng-click="deselectFont(font)"
+                        ng-show="isFontSelected(font)">
+                  <span class="glyphicon glyphicon-minus"></span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="close()">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="addToComparison()">
+          Compare ({{ selectedFonts.length }})
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

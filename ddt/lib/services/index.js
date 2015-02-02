@@ -9,3 +9,4 @@ require('./fontParameters');
 require('./confirmDialog');
 require('./testStrings');
 require('./comparisonMatrix');
+require('./googleFontsList');

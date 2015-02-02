@@ -4,7 +4,8 @@
 var _ = require('lodash');
 
 
-module.exports = function ($scope, $q, $http, FontFamily, FontSources, fontFamilyCollection, Font) {
+module.exports = function ($scope, $q, $http, FontFamily, FontSources, fontFamilyCollection,
+                           Font, googleFontsChooser) {
     var PLACEHOLDER_URL = {name: 'url1'};
 
     $scope.VIEW_MAIN = 'main';
@@ -87,6 +88,10 @@ module.exports = function ($scope, $q, $http, FontFamily, FontSources, fontFamil
         } else {
             $scope.urlFields[0] = angular.copy(PLACEHOLDER_URL);
         }
+    };
+
+    $scope.openFontsChooser = function() {
+        googleFontsChooser();
     };
 
     init();

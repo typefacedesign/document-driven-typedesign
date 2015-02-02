@@ -37,3 +37,5 @@ angular.module('ddt').constant('FontCases', {
 
 angular.module('ddt').constant('DEFAULT_TEXT_COLOR', '#333');
 angular.module('ddt').constant('LETTERS', 'abcdefghijklmnopqrstuvwxyz'.split(''));
+angular.module('ddt').constant('GOOGLE_FONTS_API_URL', 'https://www.googleapis.com/webfonts/v1/webfonts?key=');
+angular.module('ddt').constant('GOOGLE_FONTS_API_KEY', 'AIzaSyAhOJNHWlDWFcp410Bzrr3TYw6NvkrQmAw');
