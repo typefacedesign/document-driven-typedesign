@@ -35,17 +35,7 @@ module.exports = function ($scope, $q, $http, FontFamily, FontSources, fontFamil
             });
 
             _.each(_.keys(fontGroups), function(familyName) {
-                var newFamilyName = familyName;
-                if (angular.isDefined(fontFamilyCollection.findByName(newFamilyName))) {
-                    for (var counter = 2;
-                         angular.isDefined(fontFamilyCollection.findByName(newFamilyName + counter.toString()));
-                         counter++) {
-                    }
-
-                    newFamilyName = newFamilyName + ' ' + counter.toString();
-                }
-
-                var family = new FontFamily(newFamilyName);
+                var family = FontFamily.make(familyName);
                 family.addFonts(fontGroups[familyName]);
                 fontFamilyCollection.add(family);
             });

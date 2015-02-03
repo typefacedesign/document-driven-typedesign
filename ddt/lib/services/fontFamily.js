@@ -5,7 +5,8 @@ var _ = require('lodash');
 
 
 angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSources,
-                                                     ErrorMessages, fontFaceCollection) {
+                                                     ErrorMessages, fontFaceCollection,
+                                                     fontFamilyCollection) {
     var FontFamily = function(name, source) {
         if (angular.isUndefined(name)) {
             throw new Error('No name specified for new FontFamily.');
@@ -14,6 +15,20 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
         this.name = name;
         this.source = source || FontSources.FILE;
         this.fonts = [];
+    };
+
+    FontFamily.make = function(name, source) {
+        var newFamilyName = name;
+        if (angular.isDefined(fontFamilyCollection.findByName(newFamilyName))) {
+            for (var counter = 2;
+                 angular.isDefined(fontFamilyCollection.findByName(newFamilyName + counter.toString()));
+                 counter++) {
+            }
+
+            newFamilyName = newFamilyName + ' ' + counter.toString();
+        }
+
+        return new FontFamily(newFamilyName, source);
     };
 
     FontFamily.prototype.addFontFromFile = function(file) {
