@@ -8,6 +8,12 @@
       </div>
 
       <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Filter" ng-model="filterText.family">
+          </div>
+        </form>
+
         <table class="table table-hover">
           <thead>
             <tr>
@@ -18,7 +24,7 @@
           </thead>
 
           <tbody>
-            <tr ng-repeat="font in fonts" ng-class="{success: isFontSelected(font)}">
+            <tr ng-repeat="font in fonts | filter:filterText" ng-class="{success: isFontSelected(font)}">
               <td>{{ font.family }}</td>
               <td>{{ font.version }}</td>
               <td>
