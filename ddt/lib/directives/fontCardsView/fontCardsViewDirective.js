@@ -7,7 +7,7 @@ module.exports = function () {
         templateUrl: 'lib/directives/fontCardsView/fontCardsView.html',
         controller: 'FontCardsViewCtrl',
         scope: {
-            fontCardType: '@type'
+            fontCardType: '='
         }
     };
 };

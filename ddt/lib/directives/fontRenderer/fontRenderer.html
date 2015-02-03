@@ -1,11 +1,15 @@
 <div class="ddt-font-renderer">
-  <div ng-if="!allowHtml"
+  <div ng-model="text"
+       ng-if="!allowHtml"
        class="ddt-font-renderer-text"
        style="{{ style }}"
-       ng-class="{'ddt-text-overflow-ellipsis': wrap}">{{ text }}</div>
+       ng-class="{'ddt-text-overflow-ellipsis': wrap}"
+       ng-attr-contenteditable="{{ editable }}"></div>
 
-  <div ng-if="allowHtml"
+  <div ng-model="text"
+       ng-if="allowHtml"
        class="ddt-font-renderer-text"
        style="{{ style }}"
-       ng-bind-html="text"></div>
+       ng-bind-html="text"
+       ng-attr-contenteditable="{{ editable }}"></div>
 </div>

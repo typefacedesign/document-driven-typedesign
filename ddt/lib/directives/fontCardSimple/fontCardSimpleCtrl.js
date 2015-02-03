@@ -1,9 +1,10 @@
 'use strict';
 
 
-module.exports = function($scope) {
+module.exports = function($scope, fontParameters, testStrings) {
     var init = function() {
-        $scope.allowHtml = $scope.allowHtml || false;
+        $scope.fontParameters = fontParameters;
+        $scope.testStrings = testStrings;
     };
 
     init();

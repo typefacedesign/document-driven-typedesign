@@ -14,7 +14,8 @@ module.exports = function () {
             followWidth: '@?',
             text: '=?',
             wrap: '=?',
-            allowHtml: '=?'
+            allowHtml: '=?',
+            editable: '=?'
         },
         link: function(scope, element, attributes) {
             scope.adjustWidth = function() {
