@@ -4,9 +4,7 @@
     ng-class="cardSizeClass()"
     ng-repeat="family in families"
     font-family="family"
-    font-parameters="fontParameters[fontCardType]"
-    allow-html="isType(FontCardTypes.PARAGRAPH)"
-    text="testStrings[fontCardType].text"></ddt-font-card-simple>
+    font-card-type="fontCardType"></ddt-font-card-simple>
 
   <ddt-font-card-letters
     ng-show="isType(FontCardTypes.LETTER)"

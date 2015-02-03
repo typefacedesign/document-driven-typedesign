@@ -3,6 +3,25 @@
          ddt-focus="editingFamilyName">
 
   <div class="ddt-titlebar-controls">
+    <button class="btn btn-default btn-xs pull-right" ng-show="editMode" ng-click="toggleEditMode()">
+      Done
+    </button>
+
+    <div ng-hide="editMode">
+      <span class="glyphicon glyphicon-star ddt-star"
+            ng-show="isAddedToComparison()"
+            ng-click="removeFromComparison()"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Remove from review"></span>
+      <span class="glyphicon glyphicon-star-empty ddt-star"
+            ng-hide="isAddedToComparison()"
+            ng-click="addToComparison()"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Select for review"></span>
+    </div>
+
     <div class="btn-group" ng-hide="editMode">
       <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
         <span class="glyphicon glyphicon-tasks"></span> <span class="caret"></span>
@@ -24,25 +43,6 @@
           </a>
         </li>
       </ul>
-    </div>
-
-    <button class="btn btn-default btn-xs pull-right" ng-show="editMode" ng-click="toggleEditMode()">
-      Done
-    </button>
-
-    <div ng-hide="editMode">
-      <span class="glyphicon glyphicon-star ddt-star"
-            ng-show="isAddedToComparison()"
-            ng-click="removeFromComparison()"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Remove from review"></span>
-      <span class="glyphicon glyphicon-star-empty ddt-star"
-            ng-hide="isAddedToComparison()"
-            ng-click="addToComparison()"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Select for review"></span>
     </div>
   </div>
 </div>

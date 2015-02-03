@@ -6484,7 +6484,7 @@ button.close {
   justify-content: space-between;
 }
 .ddt-titlebar .btn-group {
-  margin-right: 20px;
+  margin-left: 10px;
 }
 .ddt-titlebar .ddt-star {
   font-size: 18px;

@@ -4,10 +4,11 @@
     <div ng-repeat="font in fontFamily.fonts">
       <ddt-font-header font="font" edit-mode="editMode"></ddt-font-header>
       <ddt-font-renderer font="font"
-                         font-parameters="fontParameters"
-                         text="text"
-                         allow-html="allowHtml"
-                         wrap="!allowHtml"></ddt-font-renderer>
+                         font-parameters="fontParameters.current[fontCardType]"
+                         text="testStrings[fontCardType].text"
+                         allow-html="isType(FontCardTypes.PARAGRAPH)"
+                         wrap="!isType(FontCardTypes.PARAGRAPH)"
+                         editable="editMode"></ddt-font-renderer>
     </div>
   </div>
 </div>
