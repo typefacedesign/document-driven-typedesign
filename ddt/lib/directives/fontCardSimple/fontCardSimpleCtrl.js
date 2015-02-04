@@ -7,5 +7,9 @@ module.exports = function($scope, fontParameters, testStrings) {
         $scope.testStrings = testStrings;
     };
 
+    $scope.isType = function(type) {
+        return $scope.cardType === type;
+    };
+
     init();
 };
