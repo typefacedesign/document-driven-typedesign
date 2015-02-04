@@ -80,10 +80,15 @@ angular.module('ddt').factory('comparisonMatrix', function() {
         return comparisonMatrix;
     };
 
+    var familyCount = function() {
+        return _fontFamilies.length;
+    };
+
     return {
         comparisonMatrix: comparisonMatrix,
         addFamily: addFamily,
         removeFamily: removeFamily,
-        isAddedToComparison: isAddedToComparison
+        isAddedToComparison: isAddedToComparison,
+        familyCount: familyCount
     };
 });
