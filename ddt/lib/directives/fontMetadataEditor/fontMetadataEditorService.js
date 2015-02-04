@@ -14,7 +14,6 @@ module.exports = function($rootScope, $compile) {
     modalScope.save = function() {
         modalScope.font.subFamilyName = modalScope.metadata.subFamilyName;
         modalScope.font.weight = modalScope.metadata.weight;
-        modalScope.font.updateName();
         modalScope.close();
     };
 

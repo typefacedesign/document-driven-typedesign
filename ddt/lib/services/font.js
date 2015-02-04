@@ -32,6 +32,25 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
         } else {
             throw new Error(ErrorMessages.UNRECOGNIZED_FONT_SOURCE + opts.source);
         }
+
+        Object.defineProperty(this, 'weight', {
+            get: function() {
+                return this._weight;
+            },
+            set: function(weight) {
+                this._weight = weight;
+
+                if (angular.isDefined(this.family) && this.family !== null) {
+                    this.family.sortFonts();
+                }
+            }
+        });
+
+        Object.defineProperty(this, 'name', {
+            get: function() {
+                return this.familyName + ' ' + this.subFamilyName;
+            }
+        });
     };
 
     // Static method to create a new font. Returns a promise that
@@ -93,10 +112,6 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
         return deferred.promise;
     };
 
-    Font.prototype.updateName = function() {
-        this.name = this.familyName + ' ' + this.subFamilyName;
-    };
-
     var _splitFileName = function(fileName) {
         var fileSplit = fileName.split('.');
         return [_.first(fileSplit, fileSplit.length - 1).join(''), _.last(fileSplit)];
@@ -112,8 +127,10 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
             ddtFont.subFamilyName = openTypeFont.styleName;
         }
 
-        ddtFont.updateName();
         ddtFont.weight = openTypeFont.tables.os2.usWeightClass;
+
+        // The first bit of fsSelection tells us whether the font is italic.
+        ddtFont.isItalic = (openTypeFont.tables.os2.fsSelection & 1) === 1;
     };
 
     return Font;

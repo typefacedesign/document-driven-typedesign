@@ -90,6 +90,7 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
 
         this.fonts.push(font);
         fontFaceCollection.add(font);
+        this.sortFonts();
     };
 
     FontFamily.prototype.removeFont = function(font) {
@@ -99,6 +100,28 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
 
     FontFamily.prototype.size = function() {
         return this.fonts.length;
+    };
+
+    FontFamily.prototype.sortFonts = function() {
+        // First, we group fonts by whether they are roman or italic.
+        var groupedFonts = _.groupBy(this.fonts, function(font) {
+            return font.isItalic;
+        });
+
+        // Then sort each group by weight.
+        _.each(_.keys(groupedFonts), function(key) {
+            groupedFonts[key] = _.sortBy(groupedFonts[key], function(font) {
+                return font.weight;
+            });
+        });
+
+        // Finally, splice it back together.
+        var fonts = [];
+        _.each(_.values(groupedFonts), function(values) {
+            fonts.push(values);
+        });
+
+        this.fonts = _.flatten(fonts);
     };
 
     return FontFamily;
