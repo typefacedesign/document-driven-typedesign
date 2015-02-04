@@ -570,6 +570,10 @@ module.exports = function($scope, fontParameters, testStrings) {
         $scope.testStrings = testStrings;
     };
 
+    $scope.isType = function(type) {
+        return $scope.cardType === type;
+    };
+
     init();
 };
 
@@ -844,7 +848,6 @@ module.exports = function($rootScope, $compile) {
     modalScope.save = function() {
         modalScope.font.subFamilyName = modalScope.metadata.subFamilyName;
         modalScope.font.weight = modalScope.metadata.weight;
-        modalScope.font.updateName();
         modalScope.close();
     };
 
@@ -1258,9 +1261,13 @@ angular.module('ddt').directive('ddtNavbar', require('./navbarDirective'));
 'use strict';
 
 
-module.exports = function($scope, $location) {
+module.exports = function($scope, $location, comparisonMatrix) {
     $scope.isCurrent = function(location) {
         return location === $location.path();
+    };
+
+    $scope.fontFamilyCount = function() {
+        return comparisonMatrix.familyCount();
     };
 };
 
@@ -1272,7 +1279,16 @@ module.exports = function() {
     return {
         restrict: 'E',
         templateUrl: 'lib/directives/navbar/navbar.html',
-        controller: 'NavbarCtrl'
+        controller: 'NavbarCtrl',
+        link: function(scope, element, attributes) {
+            element.find('[data-toggle="popover"]').on('mouseover', function() {
+                angular.element(this).popover('show');
+            });
+
+            element.find('[data-toggle="popover"]').on('mouseout', function() {
+                angular.element(this).popover('hide');
+            });
+        }
     };
 };
 
@@ -1422,13 +1438,7 @@ module.exports = function($scope, fontFamilyCollection, FontCardTypes, testStrin
     var init = function() {
         $scope.letters = LETTERS;
         $scope.FontCardTypes = FontCardTypes;
-        $scope.testString = testStrings[$scope.cardType].text;
-
-        $scope.$watch('cardType', function() {
-            if (angular.isDefined(testStrings[$scope.cardType])) {
-                $scope.testString = testStrings[$scope.cardType].text;
-            }
-        });
+        $scope.testStrings = testStrings;
     };
 
     init();
@@ -1536,11 +1546,16 @@ angular.module('ddt').factory('comparisonMatrix', function() {
         return comparisonMatrix;
     };
 
+    var familyCount = function() {
+        return _fontFamilies.length;
+    };
+
     return {
         comparisonMatrix: comparisonMatrix,
         addFamily: addFamily,
         removeFamily: removeFamily,
-        isAddedToComparison: isAddedToComparison
+        isAddedToComparison: isAddedToComparison,
+        familyCount: familyCount
     };
 });
 
@@ -1671,6 +1686,25 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
         } else {
             throw new Error(ErrorMessages.UNRECOGNIZED_FONT_SOURCE + opts.source);
         }
+
+        Object.defineProperty(this, 'weight', {
+            get: function() {
+                return this._weight;
+            },
+            set: function(weight) {
+                this._weight = weight;
+
+                if (angular.isDefined(this.family) && this.family !== null) {
+                    this.family.sortFonts();
+                }
+            }
+        });
+
+        Object.defineProperty(this, 'name', {
+            get: function() {
+                return this.familyName + ' ' + this.subFamilyName;
+            }
+        });
     };
 
     // Static method to create a new font. Returns a promise that
@@ -1732,10 +1766,6 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
         return deferred.promise;
     };
 
-    Font.prototype.updateName = function() {
-        this.name = this.familyName + ' ' + this.subFamilyName;
-    };
-
     var _splitFileName = function(fileName) {
         var fileSplit = fileName.split('.');
         return [_.first(fileSplit, fileSplit.length - 1).join(''), _.last(fileSplit)];
@@ -1751,8 +1781,10 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
             ddtFont.subFamilyName = openTypeFont.styleName;
         }
 
-        ddtFont.updateName();
         ddtFont.weight = openTypeFont.tables.os2.usWeightClass;
+
+        // The first bit of fsSelection tells us whether the font is italic.
+        ddtFont.isItalic = (openTypeFont.tables.os2.fsSelection & 1) === 1;
     };
 
     return Font;
@@ -1911,6 +1943,7 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
 
         this.fonts.push(font);
         fontFaceCollection.add(font);
+        this.sortFonts();
     };
 
     FontFamily.prototype.removeFont = function(font) {
@@ -1920,6 +1953,28 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
 
     FontFamily.prototype.size = function() {
         return this.fonts.length;
+    };
+
+    FontFamily.prototype.sortFonts = function() {
+        // First, we group fonts by whether they are roman or italic.
+        var groupedFonts = _.groupBy(this.fonts, function(font) {
+            return font.isItalic;
+        });
+
+        // Then sort each group by weight.
+        _.each(_.keys(groupedFonts), function(key) {
+            groupedFonts[key] = _.sortBy(groupedFonts[key], function(font) {
+                return font.weight;
+            });
+        });
+
+        // Finally, splice it back together.
+        var fonts = [];
+        _.each(_.values(groupedFonts), function(values) {
+            fonts.push(values);
+        });
+
+        this.fonts = _.flatten(fonts);
     };
 
     return FontFamily;
