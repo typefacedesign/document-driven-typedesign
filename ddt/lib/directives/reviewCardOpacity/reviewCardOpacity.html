@@ -26,7 +26,8 @@
           opacity="1 - opacity"
           allow-html="cardType == FontCardTypes.PARAGRAPH"
           follow-width="reviewCardOpacityFontRenderer1"
-          text="testStrings[cardType]"></ddt-font-renderer>
+          text="testStrings[cardType]"
+          editable="true"></ddt-font-renderer>
       <ddt-font-renderer
           class="ddt-review-card-opacity-font-renderer"
           id="reviewCardOpacityFontRenderer1"
@@ -34,7 +35,8 @@
           font-parameters="fontParameters[cardType]"
           opacity="opacity"
           allow-html="cardType == FontCardTypes.PARAGRAPH"
-          text="testStrings[cardType]"></ddt-font-renderer>
+          text="testStrings[cardType]"
+          editable="true"></ddt-font-renderer>
       </div>
 
       <div class="ddt-review-card-opacity-renderer-container"
@@ -45,7 +47,6 @@
             font="font1"
             font-parameters="fontParameters[cardType]"
             opacity="1 - opacity"
-            allow-html="cardType == FontCardTypes.PARAGRAPH"
             follow-width="reviewCardOpacityFontRenderer1"
             text="letter"></ddt-font-renderer>
         <ddt-font-renderer
@@ -54,7 +55,6 @@
             font="font2"
             font-parameters="fontParameters[cardType]"
             opacity="opacity"
-            allow-html="cardType == FontCardTypes.PARAGRAPH"
             text="letter"></ddt-font-renderer>
       </div>
     </div>
