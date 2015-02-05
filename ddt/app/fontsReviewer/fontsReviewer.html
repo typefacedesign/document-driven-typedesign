@@ -29,6 +29,10 @@
   <ddt-review-card-side-by-side
       ng-show="comparisonType == FontComparisonTypes.SIDE_BY_SIDE"
       ng-repeat="comparisonGroup in comparisonMatrix"
+      ng-class="{
+        'ddt-review-card-side-by-side-sentence': isType(FontCardTypes.SENTENCE),
+        'ddt-review-card-side-by-side-paragraph': isType(FontCardTypes.PARAGRAPH)
+      }"
       index="$index"
       comparison-group="comparisonGroup"
       card-type="cardType"
@@ -37,6 +41,9 @@
   <!-- Opacity comparison. -->
   <ddt-review-card-opacity
       ng-repeat="comparisonGroup in comparisonMatrix"
+      ng-class="{
+        'ddt-review-card-opacity-paragraph': isType(FontCardTypes.PARAGRAPH)
+      }"
       font1="comparisonGroup[0]"
       font2="comparisonGroup[1]"
       font-parameters="fontParameters"
