@@ -20,16 +20,18 @@ module.exports = function ($scope, $q, $http, FontFamily, FontSources, fontFamil
         $scope.currentView = $scope.VIEW_MAIN;
     };
 
-    $scope.addFontFamily = function(fontFiles) {
+    $scope.createFamilyFromFiles = function(fontFiles) {
         if (_.size(fontFiles) === 0) {
             return;
         }
 
+        // Create Font objects to add to the family.
         var makeFontPromise = $q.all(_.map(fontFiles, function(file) {
             return Font.make({source: FontSources.FILE, file: file});
         }));
 
         makeFontPromise.then(function(fonts) {
+            // Group fonts by their family names.
             var fontGroups = _.groupBy(fonts, function(font) {
                 return font.familyName;
             });

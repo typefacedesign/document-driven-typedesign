@@ -30,7 +30,7 @@ module.exports = function() {
                 e.stopPropagation();
                 e.preventDefault();
                 dragOverlay.removeClass(activeClass);
-                scope.addFontFamily(e.originalEvent.dataTransfer.files);
+                scope.createFamilyFromFiles(e.originalEvent.dataTransfer.files);
             });
         }
     };

@@ -82,7 +82,7 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
         // property on the font is non-null, that means someone
         // is trying to add a font that has already been added to
         // another family to this family, which is illegal.
-        if (font.family !== null) {
+        if (!(font.family === null || angular.isUndefined(font.family))) {
             throw new Error(ErrorMessages.FONT_ALREADY_HAS_FAMILY);
         } else {
             font.family = this;
