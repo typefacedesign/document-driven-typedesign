@@ -5,7 +5,7 @@
       <ddt-font-header font="font" edit-mode="editMode"></ddt-font-header>
       <div ng-repeat="letterGroup in letters">
         <span class="ddt-single-letter" ng-repeat="letter in letterGroup">
-          <ddt-font-renderer font="font" font-parameters="fontParameters" text="letter">
+          <ddt-font-renderer font="font" font-parameters="fontParameters" text="{text: letter}">
           </ddt-font-renderer>
         </span>
       </div>
