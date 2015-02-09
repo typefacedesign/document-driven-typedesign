@@ -1,14 +1,14 @@
 <div class="ddt-font-card">
   <ddt-font-card-titlebar></ddt-font-card-titlebar>
   <div class="ddt-font-card-content">
-    <div ng-repeat="font in fontFamily.fonts">
+    <div class="ddt-font-card-font-display" ng-repeat="font in fontFamily.fonts">
       <ddt-font-header font="font" edit-mode="editMode"></ddt-font-header>
       <ddt-font-renderer font="font"
                          font-parameters="fontParameters.current[fontCardType]"
                          text="testStrings[fontCardType]"
                          allow-html="isType(FontCardTypes.PARAGRAPH)"
                          wrap="!isType(FontCardTypes.PARAGRAPH)"
-                         editable="editMode"></ddt-font-renderer>
+                         editable="true"></ddt-font-renderer>
     </div>
   </div>
 </div>

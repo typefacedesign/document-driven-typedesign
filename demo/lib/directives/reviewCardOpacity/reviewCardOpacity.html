@@ -1,16 +1,13 @@
 <div class="ddt-review-card ddt-review-card-opacity"
      ng-hide="cardType == FontCardTypes.RICH_TEXT || cardType == FontCardTypes.LAYOUT">
   <div class="ddt-titlebar">
-    <button class="ddt-float-right btn btn-default btn-xs" ng-click="removeFromComparison()">
-      <span class="glyphicon glyphicon-remove"></span>
-    </button>
-    <div class="clearfix"></div>
+    <span>{{ font1.subFamilyName }} {{ font1.weight }}</span>
   </div>
 
   <div class="ddt-review-card-content">
     <div class="ddt-review-card-opacity-header">
-      <div>{{ font1.name }}</div>
-      <div>{{ font2.name }}</div>
+      <div>{{ font1.family.name }}</div>
+      <div>{{ font2.family.name }}</div>
     </div>
 
     <input type="range" min="0" max="1" step="0.001" ng-model="opacity">
@@ -23,10 +20,11 @@
           class="ddt-review-card-opacity-font-renderer ddt-position-absolute"
           font="font1"
           font-parameters="fontParameters[cardType]"
-          opacity="1 - opacity"
+          opacity="inverseOpacity"
           allow-html="cardType == FontCardTypes.PARAGRAPH"
           follow-width="reviewCardOpacityFontRenderer1"
-          text="testStrings[cardType]"></ddt-font-renderer>
+          text="testStrings[cardType]"
+          editable="true"></ddt-font-renderer>
       <ddt-font-renderer
           class="ddt-review-card-opacity-font-renderer"
           id="reviewCardOpacityFontRenderer1"
@@ -34,7 +32,8 @@
           font-parameters="fontParameters[cardType]"
           opacity="opacity"
           allow-html="cardType == FontCardTypes.PARAGRAPH"
-          text="testStrings[cardType]"></ddt-font-renderer>
+          text="testStrings[cardType]"
+          editable="true"></ddt-font-renderer>
       </div>
 
       <div class="ddt-review-card-opacity-renderer-container"
@@ -44,18 +43,16 @@
             class="ddt-review-card-opacity-font-renderer ddt-position-absolute"
             font="font1"
             font-parameters="fontParameters[cardType]"
-            opacity="1 - opacity"
-            allow-html="cardType == FontCardTypes.PARAGRAPH"
+            opacity="inverseOpacity"
             follow-width="reviewCardOpacityFontRenderer1"
-            text="letter"></ddt-font-renderer>
+            text="{text: letter}"></ddt-font-renderer>
         <ddt-font-renderer
             class="ddt-review-card-opacity-font-renderer"
             id="reviewCardOpacityFontRenderer1"
             font="font2"
             font-parameters="fontParameters[cardType]"
             opacity="opacity"
-            allow-html="cardType == FontCardTypes.PARAGRAPH"
-            text="letter"></ddt-font-renderer>
+            text="{text: letter}"></ddt-font-renderer>
       </div>
     </div>
 </div>

@@ -6392,6 +6392,12 @@ button.close {
 .ddt-font-card-third {
   width: 360px;
 }
+.ddt-font-card-font-display {
+  margin-bottom: 20px;
+}
+.ddt-font-card-font-display:last-child {
+  margin-bottom: 0;
+}
 .ddt-review-card {
   border-radius: 4px;
   border: solid 1px #e7e7e7;
@@ -6463,7 +6469,6 @@ button.close {
   background-color: #eeeeee;
 }
 .ddt-font-renderer {
-  margin-bottom: 20px;
   display: inline-block;
 }
 .ddt-font-renderer > div {
@@ -6523,19 +6528,31 @@ button.close {
   flex-wrap: nowrap;
   justify-content: space-around;
 }
-.ddt-review-card-side-by-side-paragraph {
-  margin-left: 20px;
-}
-.ddt-review-card-side-by-side-paragraph:first-child {
-  margin-left: 0;
+.ddt-review-card-side-by-side-header {
+  margin-bottom: 10px;
 }
 .ddt-review-card-side-by-side-font-row {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  margin-bottom: 10px;
+}
+.ddt-review-card-side-by-side-font-row-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+}
+.ddt-review-card-side-by-side-labels-column,
+.ddt-review-card-side-by-side-text-column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+.ddt-review-card-side-by-side-labels-column {
+  margin-right: 20px;
 }
 .ddt-review-card-opacity-header {
   display: flex;
@@ -6588,6 +6605,10 @@ button.close {
 }
 .ddt-dotted-paginator a {
   color: #333333;
+}
+.ddt-dotted-paginator a:hover,
+.ddt-dotted-paginator a:focus {
+  text-decoration: none;
 }
 .ddt-font-parameters-menu-content {
   position: absolute;
@@ -6652,4 +6673,25 @@ button.close {
 .ddt-font-reviewer-controls > .dropdown > .dropdown-toggle,
 .ddt-font-reviewer-controls > .dropdown > .dropdown-menu {
   text-transform: capitalize;
+}
+.ddt-review-card-side-by-side-sentence,
+.ddt-review-card-side-by-side-paragraph {
+  width: 100%;
+}
+.ddt-review-card-opacity-paragraph {
+  width: 50%;
+}
+.ddt-fonts-reviewer-legend {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.ddt-fonts-reviewer-legend .ddt-fonts-reviewer-legend-container {
+  display: inline-block;
+  margin-left: 20px;
+}
+.ddt-fonts-reviewer-legend .ddt-fonts-reviewer-legend-container:first-child {
+  margin-left: 0;
+}
+.ddt-review-card-side-by-side-letter {
+  min-width: 360px;
 }

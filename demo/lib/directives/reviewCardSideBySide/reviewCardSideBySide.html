@@ -1,33 +1,54 @@
 <div class="ddt-review-card ddt-review-card-side-by-side"
      ng-hide="cardType == FontCardTypes.RICH_TEXT || cardType == FontCardTypes.LAYOUT">
   <div class="ddt-titlebar">
-    <button class="ddt-float-right btn btn-default btn-xs" ng-click="removeFromComparison()">
-      <span class="glyphicon glyphicon-remove"></span>
-    </button>
-    <div class="clearfix"></div>
+    <span>{{ comparisonGroup[0].subFamilyName }} {{ comparisonGroup[0].weight }}</span>
   </div>
 
   <div class="ddt-review-card-content">
     <div ng-show="cardType == FontCardTypes.LETTER">
+      <div class="ddt-review-card-side-by-side-letter-group ddt-review-card-side-by-side-header">
+        <span ng-repeat="(label, familyDetails) in comparisonMatrix.familyLabels()"
+              class="badge"
+              style="background-color: {{ familyDetails.color }}"
+              data-toggle="tooltip" data-placement="top"
+              title="{{ familyDetails.family.name }}">{{ label }}</span>
+      </div>
       <div class="ddt-review-card-side-by-side-letter-group" ng-repeat="letter in letters">
         <ddt-font-renderer
             ng-repeat="font in comparisonGroup"
             font="font"
             font-parameters="fontParameters[cardType]"
-            text="letter"></ddt-font-renderer>
+            text="{text: letter}"></ddt-font-renderer>
       </div>
     </div>
 
-    <div ng-show="cardType === FontCardTypes.WORD || cardType == FontCardTypes.SENTENCE">
-      <div class="ddt-review-card-side-by-side-font-row" ng-repeat="font in comparisonGroup">
+    <div class="ddt-review-card-side-by-side-font-row"
+         ng-show="cardType === FontCardTypes.WORD || cardType == FontCardTypes.SENTENCE">
+      <div class="ddt-review-card-side-by-side-labels-column">
+        <span ng-repeat="(label, familyDetails) in comparisonMatrix.familyLabels()"
+              class="badge"
+              style="background-color: {{ familyDetails.color }}"
+              data-toggle="tooltip" data-placement="top"
+              title="{{ familyDetails.family.name }}">{{ label }}</span>
+      </div>
+      <div class="ddt-review-card-side-by-side-text-column">
         <ddt-font-renderer
+            ng-repeat="font in comparisonGroup"
             font="font"
             font-parameters="fontParameters[cardType]"
-            text="testStrings[cardType]"></ddt-font-renderer>
+            text="testStrings[cardType]"
+            editable="true"></ddt-font-renderer>
       </div>
     </div>
 
     <div ng-show="cardType == FontCardTypes.PARAGRAPH">
+      <div class="ddt-review-card-side-by-side-letter-group ddt-review-card-side-by-side-header">
+        <span ng-repeat="(label, familyDetails) in comparisonMatrix.familyLabels()"
+              class="badge"
+              style="background-color: {{ familyDetails.color }}"
+              data-toggle="tooltip" data-placement="top"
+              title="{{ familyDetails.family.name }}">{{ label }}</span>
+      </div>
       <div class="ddt-review-card-side-by-side-paragraph-row">
         <ddt-font-renderer
             class="ddt-review-card-side-by-side-paragraph"
@@ -35,7 +56,8 @@
             font="font"
             font-parameters="fontParameters[cardType]"
             allow-html="true"
-            text="testStrings[cardType]"></ddt-font-renderer>
+            text="testStrings[cardType]"
+            editable="true"></ddt-font-renderer>
       </div>
     </div>
   </div>
