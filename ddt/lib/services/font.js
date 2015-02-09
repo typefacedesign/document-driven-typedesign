@@ -128,6 +128,7 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
         }
 
         ddtFont.weight = openTypeFont.tables.os2.usWeightClass;
+        ddtFont.versionString = openTypeFont.tables.name.version.replace(/[vV]ersion\s*/, '');
 
         // The first bit of fsSelection tells us whether the font is italic.
         ddtFont.isItalic = (openTypeFont.tables.os2.fsSelection & 1) === 1;
