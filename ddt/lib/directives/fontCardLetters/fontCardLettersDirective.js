@@ -1,7 +1,7 @@
 'use strict';
 
 
-module.exports = function() {
+module.exports = function($timeout) {
     return {
         restrict: 'E',
         replace: true,
@@ -10,6 +10,11 @@ module.exports = function() {
         scope: {
             fontFamily: '=',
             fontSize: '=?'
+        },
+        link: function(scope, element, attributes) {
+            $timeout(function() {
+                element.find('[data-toggle="tooltip"]').tooltip();
+            }, 0);
         }
     };
 };

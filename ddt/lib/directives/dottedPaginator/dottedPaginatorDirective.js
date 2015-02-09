@@ -8,7 +8,8 @@ module.exports = function() {
         controller: 'DottedPaginatorCtrl',
         scope: {
             totalPages: '=',
-            currentPage: '='
+            currentPage: '=',
+            tooltips: '=?'
         }
     };
 };
