@@ -3,7 +3,9 @@
 var angular = require('./lib/angular');
 
 
-angular.module('ddt').constant('FontCardTypes', {
+var app = angular.module('ddt');
+
+app.constant('FontCardTypes', {
     LETTER: 'letter',
     WORD: 'word',
     SENTENCE: 'sentence',
@@ -12,14 +14,14 @@ angular.module('ddt').constant('FontCardTypes', {
     LAYOUT: 'layout'
 });
 
-angular.module('ddt').constant('FontComparisonTypes', {
+app.constant('FontComparisonTypes', {
     SIDE_BY_SIDE: 'side_by_side',
     OPACITY: 'opacity',
     MASK: 'mask',
     DIFF: 'diff'
 });
 
-angular.module('ddt').constant('ErrorMessages', {
+app.constant('ErrorMessages', {
     UNRECOGNIZED_FONT_SOURCE: 'Unrecognized font source: ',
     MISMATCHING_FAMILY: 'Cannot add font to this family. Family names don\'t match.',
     FAMILY_DOES_NOT_EXIST: 'This family does not exist in this collection.',
@@ -27,7 +29,7 @@ angular.module('ddt').constant('ErrorMessages', {
     FAMILY_ALREADY_EXISTS: 'A font family with this name already exists.'
 });
 
-angular.module('ddt').constant('FontCases', {
+app.constant('FontCases', {
     UNSPECIFIED: 'unspecified',
     UPPERCASE: 'uppercase',
     LOWERCASE: 'lowercase',
@@ -35,7 +37,15 @@ angular.module('ddt').constant('FontCases', {
 });
 
 
-angular.module('ddt').constant('DEFAULT_TEXT_COLOR', '#333');
-angular.module('ddt').constant('LETTERS', 'abcdefghijklmnopqrstuvwxyz'.split(''));
-angular.module('ddt').constant('GOOGLE_FONTS_API_URL', 'https://www.googleapis.com/webfonts/v1/webfonts?key=');
-angular.module('ddt').constant('GOOGLE_FONTS_API_KEY', 'AIzaSyAhOJNHWlDWFcp410Bzrr3TYw6NvkrQmAw');
+app.constant('DEFAULT_TEXT_COLOR', '#333');
+app.constant('LETTERS', 'abcdefghijklmnopqrstuvwxyz'.split(''));
+app.constant('GOOGLE_FONTS_API_URL', 'https://www.googleapis.com/webfonts/v1/webfonts?key=');
+app.constant('GOOGLE_FONTS_API_KEY', 'AIzaSyAhOJNHWlDWFcp410Bzrr3TYw6NvkrQmAw');
+
+app.constant('COLORS', [
+    '#337ab7',
+    '#5cb85c',
+    '#5bc0de',
+    '#f0ad4e',
+    '#d9534f'
+]);

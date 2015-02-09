@@ -4,22 +4,53 @@ var angular = require('../angular');
 var _ = require('lodash');
 
 
-angular.module('ddt').factory('comparisonMatrix', function() {
+angular.module('ddt').factory('comparisonMatrix', function(LETTERS, COLORS) {
     var _fontFamilies = [];
     var _comparisonMatrix = [];
+    var _familyLabels = [];
 
     var comparisonMatrix = function() {
         return _comparisonMatrix;
     };
 
+    var fontFamilies = function() {
+        return _fontFamilies;
+    };
+
+    var familyLabels = function() {
+        return _familyLabels;
+    };
+
+    var _generateFamilyLabels = function() {
+        if (_fontFamilies.length === 0) {
+            return;
+        }
+
+        var familyColors = _.filter(_.zip(COLORS, _fontFamilies), function(v) { return _.every(v); });
+        var familyDetails = [];
+        _.each(familyColors, function(pair) {
+            familyDetails.push({
+                color: pair[0],
+                family: pair[1]
+            });
+        });
+
+        return _.pick(
+            _.zipObject(LETTERS, familyDetails),
+            function(value) { return angular.isDefined(value); }
+        );
+    };
+
     var addFamily = function(family) {
         _fontFamilies.push(family);
         _comparisonMatrix = _buildComparisonMatrix();
+        _familyLabels = _generateFamilyLabels();
     };
 
     var removeFamily = function(family) {
         _.pull(_fontFamilies, family);
         _comparisonMatrix = _buildComparisonMatrix();
+        _familyLabels = _generateFamilyLabels();
     };
 
     var isAddedToComparison = function(family) {
@@ -86,6 +117,8 @@ angular.module('ddt').factory('comparisonMatrix', function() {
 
     return {
         comparisonMatrix: comparisonMatrix,
+        fontFamilies: fontFamilies,
+        familyLabels: familyLabels,
         addFamily: addFamily,
         removeFamily: removeFamily,
         isAddedToComparison: isAddedToComparison,

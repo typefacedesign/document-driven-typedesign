@@ -6,11 +6,33 @@
   justify-content: space-around;
 }
 
+.ddt-review-card-side-by-side-header {
+  margin-bottom: @line-height-computed/2;
+}
+
 .ddt-review-card-side-by-side-font-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: @line-height-computed/2;
+}
+
+.ddt-review-card-side-by-side-font-row-container {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: @line-height-computed/2;
+}
+
+.ddt-review-card-side-by-side-labels-column,
+.ddt-review-card-side-by-side-text-column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.ddt-review-card-side-by-side-labels-column {
+  margin-right: @line-height-computed;
 }
