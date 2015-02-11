@@ -22,13 +22,8 @@ module.exports = function($scope, $routeParams, $location, fontFamilyCollection,
         return comparison === $scope.comparisonType;
     };
 
-    $scope.isType = function(cardType) {
+    $scope.isCardType = function(cardType) {
         return cardType === $scope.cardType;
-    };
-
-    $scope.switchComparisonType = function(comparisonType) {
-        $scope.comparisonType = comparisonType;
-        $location.search('comparisonType', $scope.comparisonType);
     };
 
     $scope.replaceUnderscores = function(text) {

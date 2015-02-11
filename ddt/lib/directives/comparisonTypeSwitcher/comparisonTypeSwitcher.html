@@ -1,0 +1,14 @@
+<ul class="nav nav-pills">
+  <li ng-class="{active: isComparisonType(FontComparisonTypes.SIDE_BY_SIDE)}">
+    <a ng-click="switchComparisonType(FontComparisonTypes.SIDE_BY_SIDE)" href="">Side by Side</a>
+  </li>
+  <li ng-class="{active: isComparisonType(FontComparisonTypes.OPACITY)}">
+    <a ng-click="switchComparisonType(FontComparisonTypes.OPACITY)" href="">Opacity</a>
+  </li>
+  <li ng-class="{active: isComparisonType(FontComparisonTypes.MASK)}">
+    <a class="ddt-in-development" ng-click="switchComparisonType(FontComparisonTypes.MASK)" href="">Mask</a>
+  </li>
+  <li ng-class="{active: isComparisonType(FontComparisonTypes.DIFF)}">
+    <a class="ddt-in-development" ng-click="switchComparisonType(FontComparisonTypes.DIFF)" href="">Diff</a>
+  </li>
+</ul>

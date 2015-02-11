@@ -1,30 +1,16 @@
-<div class="row">
-  <div class="col-md-8">
+<div class="ddt-toolbar">
+  <div class="ddt-toolbar-left">
     <ddt-font-cards-type-switcher></ddt-font-cards-type-switcher>
   </div>
-  <div class="col-md-4 ddt-font-reviewer-controls">
-    <div class="dropdown">
-      <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-        {{ replaceUnderscores(comparisonType) }}
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li ng-repeat="comparisonType in FontComparisonTypes">
-          <a href="" ng-click="switchComparisonType(comparisonType)">
-            {{ replaceUnderscores(comparisonType) }}
-          </a>
-        </li>
-      </ul>
-    </div>
-
-    <ddt-font-parameters-menu parameter-set="fontParameters[cardType]">
-    </ddt-font-parameters-menu>
+  <div class="ddt-toolbar-right">
+    <ddt-comparison-type-switcher></ddt-comparison-type-switcher>
+    <ddt-font-parameters-menu parameter-set="fontParameters[cardType]"></ddt-font-parameters-menu>
   </div>
 </div>
 
 <hr>
 
-<div class="ddt-fonts-reviewer-legend">
+<div class="ddt-fonts-reviewer-legend" ng-show="comparisonType == FontComparisonTypes.SIDE_BY_SIDE">
     <div class="ddt-fonts-reviewer-legend-container"
          ng-repeat="(label, familyDetails) in comparisonMatrix.familyLabels()">
       <span class="badge" style="background-color: {{ familyDetails.color }}">{{ label }}</span>
@@ -38,9 +24,9 @@
       ng-show="comparisonType == FontComparisonTypes.SIDE_BY_SIDE"
       ng-repeat="comparisonGroup in comparisonMatrix.comparisonMatrix()"
       ng-class="{
-        'ddt-review-card-side-by-side-sentence': isType(FontCardTypes.SENTENCE),
-        'ddt-review-card-side-by-side-paragraph': isType(FontCardTypes.PARAGRAPH),
-        'ddt-review-card-side-by-side-letter': isType(FontCardTypes.LETTER)
+        'ddt-review-card-side-by-side-sentence': isCardType(FontCardTypes.SENTENCE),
+        'ddt-review-card-side-by-side-paragraph': isCardType(FontCardTypes.PARAGRAPH),
+        'ddt-review-card-side-by-side-letter': isCardType(FontCardTypes.LETTER)
       }"
       index="$index"
       comparison-group="comparisonGroup"
@@ -51,7 +37,7 @@
   <ddt-review-card-opacity
       ng-repeat="comparisonGroup in comparisonMatrix.comparisonMatrix()"
       ng-class="{
-        'ddt-review-card-opacity-paragraph': isType(FontCardTypes.PARAGRAPH)
+        'ddt-review-card-opacity-paragraph': isCardType(FontCardTypes.PARAGRAPH)
       }"
       font1="comparisonGroup[0]"
       font2="comparisonGroup[1]"
