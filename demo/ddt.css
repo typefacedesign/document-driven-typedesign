@@ -78,6 +78,20 @@ body {
 .ddt-in-development {
   cursor: not-allowed !important;
 }
+.ddt-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.ddt-toolbar .ddt-font-parameters-menu {
+  margin-left: 20px;
+}
+.ddt-toolbar-left,
+.ddt-toolbar-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -6471,6 +6485,9 @@ button.close {
 .ddt-font-renderer {
   display: inline-block;
 }
+.ddt-font-renderer-text {
+  padding: 5px;
+}
 .ddt-font-renderer > div {
   display: inline-block;
 }
@@ -6632,14 +6649,16 @@ button.close {
   display: block;
 }
 .ddt-color-swatch {
-  height: 30px;
-  width: 30px;
+  height: 20px;
+  width: 20px;
   display: inline-block;
   margin: 5px;
   cursor: pointer;
+  border: solid 1px black;
 }
 .ddt-color-swatch-active {
-  border: solid 3px #8AFF93;
+  height: 25px;
+  width: 25px;
 }
 .ddt-comparison-menu > li > span,
 .ddt-comparison-menu > li > div {

@@ -4,11 +4,13 @@
        class="ddt-font-renderer-text"
        style="{{ style }}"
        ng-class="{'ddt-text-overflow-ellipsis': wrap}"
-       ng-attr-contenteditable="{{ editable }}"></div>
+       ng-attr-contenteditable="{{ editable }}"
+       spellcheck="false"></div>
 
   <div ng-model="text.text"
        ng-if="allowHtml"
        class="ddt-font-renderer-text"
        style="{{ style }}"
-       ng-attr-contenteditable="{{ editable }}"></div>
+       ng-attr-contenteditable="{{ editable }}"
+       spellcheck="false"></div>
 </div>
