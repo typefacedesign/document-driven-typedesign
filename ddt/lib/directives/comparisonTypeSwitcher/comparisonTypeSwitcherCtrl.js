@@ -1,7 +1,7 @@
 'use strict';
 
 
-module.exports = function($scope, FontComparisonTypes) {
+module.exports = function($scope, $location, FontComparisonTypes) {
     var init = function() {
         $scope.FontComparisonTypes = FontComparisonTypes;
     };

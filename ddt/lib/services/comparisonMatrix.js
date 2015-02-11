@@ -71,20 +71,20 @@ angular.module('ddt').factory('comparisonMatrix', function(LETTERS, COLORS) {
                 return font.weight;
             });
 
-            // Then, group fonts in each group by sub-family name.
+            // Then, group fonts in each group by whether they're roman or italic.
             _.each(_.keys(groupedFonts), function(key) {
                 groupedFonts[key] = _.groupBy(groupedFonts[key], function(font) {
-                    return font.subFamilyName;
+                    return font.isItalic? 'italic' : 'roman';
                 });
             });
 
             var groupedFontsMap = new Map();
             _.each(_.keys(groupedFonts), function(weight) {
-                _.each(_.keys(groupedFonts[weight]), function(subFamilyName) {
-                    if (groupedFonts[weight][subFamilyName].length == 1) {
+                _.each(_.keys(groupedFonts[weight]), function(isItalic) {
+                    if (groupedFonts[weight][isItalic].length == 1) {
                         groupedFontsMap.set(
-                            weight.toString() + subFamilyName,
-                            groupedFonts[weight][subFamilyName][0]
+                            weight.toString() + isItalic,
+                            groupedFonts[weight][isItalic][0]
                         );
                     }
                 });
@@ -108,7 +108,33 @@ angular.module('ddt').factory('comparisonMatrix', function(LETTERS, COLORS) {
             }
         });
 
-        return comparisonMatrix;
+        return _sortComparisonMatrix(comparisonMatrix);
+    };
+
+    var _sortComparisonMatrix = function(matrix) {
+        // TODO: this is the exact same algorithm as the one in the FontFamily
+        // service, except this one operates on a slightly different data structure.
+        // Unify the two.
+
+        // First, we group fonts by whether they are roman or italic.
+        var groupedFonts = _.groupBy(matrix, function(pair) {
+            return pair[0].isItalic? 'italic' : 'roman';
+        });
+
+        // Then sort each group by weight.
+        _.each(_.keys(groupedFonts), function(key) {
+            groupedFonts[key] = _.sortBy(groupedFonts[key], function(pair) {
+                return pair[0].weight;
+            });
+        });
+
+        // Finally, splice it back together.
+        var fonts = [];
+        _.each(_.values(groupedFonts), function(values) {
+            fonts.push(values);
+        });
+
+        return _.flatten(fonts, true);
     };
 
     var familyCount = function() {
