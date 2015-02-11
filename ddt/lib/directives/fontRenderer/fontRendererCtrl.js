@@ -20,7 +20,8 @@ module.exports = function($scope, FontCases) {
         var style = '' +
             'font-family: "' + $scope.font.faceName + '";' +
             'font-size: ' + $scope.fontParameters.fontSize.toString() + 'px;' +
-            'color: ' + $scope.fontParameters.color + ';';
+            'color: ' + $scope.fontParameters.color + ';' +
+            'background-color: ' + $scope.fontParameters.backgroundColor + ';';
 
         if (angular.isDefined($scope.fontParameters.lineHeight)) {
             style += 'line-height: ' + $scope.fontParameters.lineHeight.toString() + ';';

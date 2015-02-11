@@ -38,6 +38,7 @@ app.constant('FontCases', {
 
 
 app.constant('DEFAULT_TEXT_COLOR', '#333');
+app.constant('DEFAULT_BACKGROUND_COLOR', '#ffffff');
 app.constant('LETTERS', 'abcdefghijklmnopqrstuvwxyz'.split(''));
 app.constant('GOOGLE_FONTS_API_URL', 'https://www.googleapis.com/webfonts/v1/webfonts?key=');
 app.constant('GOOGLE_FONTS_API_KEY', 'AIzaSyAhOJNHWlDWFcp410Bzrr3TYw6NvkrQmAw');

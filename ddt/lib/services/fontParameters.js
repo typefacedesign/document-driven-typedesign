@@ -4,7 +4,8 @@ var angular = require('../angular');
 var _ = require('lodash');
 
 
-angular.module('ddt').factory('fontParameters', function(FontCardTypes, DEFAULT_TEXT_COLOR, FontCases) {
+angular.module('ddt').factory('fontParameters', function(FontCardTypes, DEFAULT_TEXT_COLOR,
+                                                         DEFAULT_BACKGROUND_COLOR, FontCases) {
     // This service keeps track of font parameters in the choose fonts view.
     // fontSize, letterSpacing, wordSpacing are in px. lineHeight is unitless.
     var fontParameters = {};
@@ -13,6 +14,7 @@ angular.module('ddt').factory('fontParameters', function(FontCardTypes, DEFAULT_
         parameterSetId: FontCardTypes.LETTER,
         fontSize: 24,
         color: DEFAULT_TEXT_COLOR,
+        backgroundColor: DEFAULT_BACKGROUND_COLOR,
         fontCase: FontCases.UNSPECIFIED
     };
 
@@ -21,6 +23,7 @@ angular.module('ddt').factory('fontParameters', function(FontCardTypes, DEFAULT_
         fontSize: 32,
         letterSpacing: 0,
         color: DEFAULT_TEXT_COLOR,
+        backgroundColor: DEFAULT_BACKGROUND_COLOR,
         fontCase: FontCases.UNSPECIFIED
     };
 
@@ -30,6 +33,7 @@ angular.module('ddt').factory('fontParameters', function(FontCardTypes, DEFAULT_
         letterSpacing: 0,
         wordSpacing: 0,
         color: DEFAULT_TEXT_COLOR,
+        backgroundColor: DEFAULT_BACKGROUND_COLOR,
         fontCase: FontCases.UNSPECIFIED
     };
 
@@ -40,6 +44,7 @@ angular.module('ddt').factory('fontParameters', function(FontCardTypes, DEFAULT_
         letterSpacing: 0,
         wordSpacing: 0,
         color: DEFAULT_TEXT_COLOR,
+        backgroundColor: DEFAULT_BACKGROUND_COLOR,
         fontCase: FontCases.UNSPECIFIED
     };
 
@@ -50,6 +55,7 @@ angular.module('ddt').factory('fontParameters', function(FontCardTypes, DEFAULT_
         letterSpacing: 0,
         wordSpacing: 0,
         color: DEFAULT_TEXT_COLOR,
+        backgroundColor: DEFAULT_BACKGROUND_COLOR,
         fontCase: FontCases.UNSPECIFIED
     };
 
