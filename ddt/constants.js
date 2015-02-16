@@ -50,3 +50,7 @@ app.constant('COLORS', [
     '#f0ad4e',
     '#d9534f'
 ]);
+
+app.constant('EventTypes', {
+    COMPARISON_TYPE_CHANGED: 'ddt:comparisonTypeChanged'
+});

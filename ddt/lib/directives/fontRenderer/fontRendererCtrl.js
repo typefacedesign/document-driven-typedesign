@@ -2,7 +2,7 @@
 'use strict';
 
 
-module.exports = function($scope, FontCases) {
+module.exports = function($scope, $rootScope, FontCases, EventTypes) {
     var init = function() {
         $scope.wrap = $scope.wrap || false;
         $scope.allowHtml = $scope.allowHtml || false;
@@ -10,6 +10,7 @@ module.exports = function($scope, FontCases) {
 
         $scope.$watch('fontParameters', updateInlineStyle, true);
         $scope.$watch('opacity', updateInlineStyle);
+        $rootScope.$on(EventTypes.COMPARISON_TYPE_CHANGED, updateInlineStyle);
     };
 
     var updateInlineStyle = function() {
