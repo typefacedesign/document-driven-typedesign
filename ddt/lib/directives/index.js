@@ -14,7 +14,6 @@ require('./reviewCardOpacitySelector');
 require('./reviewCardOpacity');
 require('./fontSelectorDropdown');
 require('./filePickerButton');
-require('./focus');
 require('./loadingSpinner');
 require('./dottedPaginator');
 require('./fontParametersMenu');

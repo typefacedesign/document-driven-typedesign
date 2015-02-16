@@ -6,7 +6,6 @@ var _ = require('lodash');
 
 module.exports = function($scope, filePicker, confirmDialog, fontFamilyCollection, comparisonMatrix) {
     var init = function() {
-        $scope.editingFamilyName = false;
         $scope.editMode = false;
     };
 
@@ -30,10 +29,6 @@ module.exports = function($scope, filePicker, confirmDialog, fontFamilyCollectio
         var newFamily = angular.copy($scope.fontFamily);
         newFamily.name = newFamily.name + ' Copy';
         fontFamilyCollection.add(newFamily);
-    };
-
-    $scope.rename = function() {
-        $scope.editingFamilyName = true;
     };
 
     $scope.addToComparison = function() {
