@@ -1,6 +1,5 @@
 <div class="ddt-titlebar">
-  <input type="text" ng-model="fontFamily.name" class="ddt-flat-input" ng-disabled="!editingFamilyName"
-         ddt-focus="editingFamilyName">
+  <div ng-model="fontFamily.name" ng-attr-contenteditable="{{ editMode }}"></div>
 
   <div class="ddt-titlebar-controls">
     <button class="btn btn-default btn-xs pull-right" ng-show="editMode" ng-click="toggleEditMode()">
@@ -29,7 +28,6 @@
       <ul class="dropdown-menu">
         <li><a href="" ng-click="addFont()">Add Font</a></li>
         <li><a href="" ng-click="toggleEditMode()">Edit</a></li>
-        <li><a href="" ng-click="rename()">Rename</a></li>
         <li><a href="" ng-click="duplicate()">Duplicate</a></li>
         <li><a href="" ng-click="deleteFamily()">Delete</a></li>
         <li>

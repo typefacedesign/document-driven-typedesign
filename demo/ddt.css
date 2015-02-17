@@ -14,12 +14,6 @@ body {
 .ddt-drag-active {
   border: solid 1px #337ab7 !important;
 }
-.ddt-flat-input {
-  border: 0;
-  color: white;
-  background-color: #777777;
-  width: 100%;
-}
 .ddt-glyph-button {
   cursor: pointer;
 }
