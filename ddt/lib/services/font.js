@@ -16,6 +16,7 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
     var Font = function(opts) {
         this.source = opts.source;
         this.family = null;
+        this.faceName = null;
 
         var fileSplit;
         if (opts.source === FontSources.URL) {

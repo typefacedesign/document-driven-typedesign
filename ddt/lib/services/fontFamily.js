@@ -89,13 +89,14 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
         }
 
         this.fonts.push(font);
-        fontFaceCollection.add(font);
+        font.faceName = fontFaceCollection.add(font);
         this.sortFonts();
     };
 
     FontFamily.prototype.removeFont = function(font) {
         font.family = null;
         _.pull(this.fonts, font);
+        fontFaceCollection.remove(font);
     };
 
     FontFamily.prototype.size = function() {

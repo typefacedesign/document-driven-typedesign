@@ -5,9 +5,11 @@ var _ = require('lodash');
 
 
 angular.module('ddt').factory('fontFaceCollection', function(FontSources) {
-    var fontFaces = new Map();
+    var fontFaces, stylesheet;
 
-    var _addCSSRule = function(selector, rules) {
+    var init = function() {
+        fontFaces = new Map();
+
         var styleElement = document.createElement('style');
 
         // We need this to get around a Safari bug.
@@ -15,12 +17,19 @@ angular.module('ddt').factory('fontFaceCollection', function(FontSources) {
 
         document.head.appendChild(styleElement);
 
-        var stylesheet = styleElement.sheet;
+        stylesheet = styleElement.sheet;
+    };
+
+    var _addCSSRule = function(selector, rules) {
+        var index = stylesheet.cssRules.length;
+
         if ('insertRule' in stylesheet) {
-            stylesheet.insertRule(selector + '{' + rules + '}', stylesheet.cssRules.length);
+            stylesheet.insertRule(selector + '{' + rules + '}', index);
         } else if ('addRule' in stylesheet) {
             stylesheet.addRule(selector, rules);
         }
+
+        return index;
     };
 
     var add = function(font) {
@@ -47,12 +56,23 @@ angular.module('ddt').factory('fontFaceCollection', function(FontSources) {
         }
 
         fontFaces.set(faceName, font);
-
-        // TODO: not a good idea to modify the parameter like this. Do this more elegantly.
-        font.faceName = faceName;
+        return faceName;
     };
 
+    var remove = function(font) {
+        for (var i = 0; i < stylesheet.cssRules.length; i++) {
+            var name = stylesheet.cssRules[i].style.fontFamily.replace(/^'/, '').replace(/'$/, '');
+            if (name === font.faceName) {
+                stylesheet.removeRule(i);
+                return;
+            }
+        }
+    };
+
+    init();
+
     return {
-        add: add
+        add: add,
+        remove: remove
     };
 });
