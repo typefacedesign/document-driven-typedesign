@@ -86,6 +86,17 @@ body {
   flex-direction: row;
   justify-content: space-between;
 }
+.ddt-dropdown-menu-content {
+  position: absolute;
+  border: solid 1px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  left: auto;
+  right: 0;
+  padding: 6px 12px;
+  z-index: 1;
+}
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -6627,11 +6638,11 @@ button.close {
   background-color: #ffffff;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  width: 395px;
   left: auto;
   right: 0;
   padding: 6px 12px;
   z-index: 1;
+  width: 395px;
 }
 .ddt-font-parameters-menu-content .ddt-slider-label {
   width: 100%;
@@ -6660,6 +6671,34 @@ button.close {
   padding: 3px 20px;
   white-space: nowrap;
   min-width: 300px;
+}
+.ddt-fonts-comparison-dropdown-content {
+  position: absolute;
+  border: solid 1px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  left: auto;
+  right: 0;
+  padding: 6px 12px;
+  z-index: 1;
+  width: 275px;
+  padding: 0 ;
+}
+.ddt-fonts-comparison-dropdown-content p {
+  text-align: center;
+  padding: 5px;
+}
+.ddt-fonts-comparison-dropdown-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.ddt-fonts-comparison-dropdown-content ul li {
+  padding: 5px;
+}
+.ddt-fonts-comparison-dropdown-content ul li:hover {
+  background-color: #f8f8f8;
 }
 .ddt-file-picker-input {
   visibility: hidden;
