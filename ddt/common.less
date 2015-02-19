@@ -106,3 +106,14 @@ body {
   flex-direction: row;
   justify-content: space-between;
 }
+
+.ddt-dropdown-menu-content {
+  position: absolute;
+  border: solid 1px @dropdown-border;
+  background-color: @body-bg;
+  .box-shadow(0 6px 12px rgba(0, 0, 0, .175));
+  left: auto;
+  right: 0;
+  padding: @padding-base-vertical @padding-base-horizontal;
+  z-index: 1;
+}

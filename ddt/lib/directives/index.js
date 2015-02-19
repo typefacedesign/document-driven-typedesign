@@ -22,3 +22,4 @@ require('./fontMetadataEditor');
 require('./googleFontsChooser');
 require('./contenteditable');
 require('./comparisonTypeSwitcher');
+require('./fontsComparisonDropdown');

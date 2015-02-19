@@ -1,0 +1,18 @@
+<div class="ddt-fonts-comparison-dropdown">
+  <button class="btn btn-default" ng-click="toggleMenu()">
+    Collection <span class="badge">{{ comparisonMatrix.fontFamilies().length }}</span>
+  </button>
+
+  <div class="ddt-fonts-comparison-dropdown-content"
+       ng-class="{'ddt-display-none': !menuVisible, 'ddt-display-block': menuVisible}">
+    <p class="text-muted" ng-show="comparisonMatrix.fontFamilies().length == 0">
+      No families currently selected for comparison.
+    </p>
+    <ul ng-show="comparisonMatrix.fontFamilies().length > 0">
+      <li ng-repeat="family in comparisonMatrix.fontFamilies()">
+        {{ family.name }}
+        <span class="glyphicon glyphicon-remove ddt-float-right ddt-glyph-button" ng-click="removeFamily(family)"></span>
+      </li>
+    </ul>
+  </div>
+</div>
