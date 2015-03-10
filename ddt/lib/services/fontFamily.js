@@ -109,20 +109,20 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
             return font.isItalic;
         });
 
+        // We now have an object with two keys: 'true' and 'false'.
+        // Since the order of keys in an object is undefined, we
+        // extract our grouped fonts into a multidimensional array.
+        groupedFonts = [groupedFonts['false'], groupedFonts['true']];
+
         // Then sort each group by weight.
-        _.each(_.keys(groupedFonts), function(key) {
-            groupedFonts[key] = _.sortBy(groupedFonts[key], function(font) {
+        for (var i = 0; i < 2; i++) {
+            groupedFonts[i] = _.sortBy(groupedFonts[i], function (font) {
                 return font.weight;
             });
-        });
+        }
 
         // Finally, splice it back together.
-        var fonts = [];
-        _.each(_.values(groupedFonts), function(values) {
-            fonts.push(values);
-        });
-
-        this.fonts = _.flatten(fonts);
+        this.fonts = _.flatten(groupedFonts);
     };
 
     return FontFamily;
