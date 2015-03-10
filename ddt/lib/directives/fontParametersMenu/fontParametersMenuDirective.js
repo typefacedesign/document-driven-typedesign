@@ -21,6 +21,17 @@ module.exports = function() {
                     });
                 }
             });
+
+            scope.adjustPosition = function() {
+                var menuDimensions = menu.getBoundingClientRect();
+                var menuContent = $(menu).find('.ddt-font-parameters-menu-content');
+                var menuContentDimensions = menuContent.get(0).getBoundingClientRect();
+
+                var left = menuDimensions.right - menuContentDimensions.width;
+                if (menuContentDimensions.left !== left && menuContentDimensions.left !== 0) {
+                    menuContent.css('left', left);
+                }
+            };
         }
     };
 };

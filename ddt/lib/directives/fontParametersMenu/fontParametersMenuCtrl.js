@@ -2,7 +2,7 @@
 'use strict';
 
 
-module.exports = function($scope, FontCases, testStrings, fontParameters) {
+module.exports = function($scope, $timeout, FontCases, testStrings, fontParameters) {
     var init = function() {
         $scope.menuVisible = false;
         $scope.FontCases = FontCases;
@@ -11,6 +11,9 @@ module.exports = function($scope, FontCases, testStrings, fontParameters) {
 
     $scope.toggleMenu = function() {
         $scope.menuVisible = !$scope.menuVisible;
+        $timeout(function() {
+            $scope.adjustPosition();
+        }, 0);
     };
 
     $scope.isCase = function(_case) {
