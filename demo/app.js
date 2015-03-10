@@ -905,7 +905,7 @@ angular.module('ddt').directive('ddtFontMetadataEditor', require('./fontMetadata
 'use strict';
 
 
-module.exports = function($scope, FontCases, testStrings, fontParameters) {
+module.exports = function($scope, $timeout, FontCases, testStrings, fontParameters) {
     var init = function() {
         $scope.menuVisible = false;
         $scope.FontCases = FontCases;
@@ -914,6 +914,9 @@ module.exports = function($scope, FontCases, testStrings, fontParameters) {
 
     $scope.toggleMenu = function() {
         $scope.menuVisible = !$scope.menuVisible;
+        $timeout(function() {
+            $scope.adjustPosition();
+        }, 0);
     };
 
     $scope.isCase = function(_case) {
@@ -959,6 +962,17 @@ module.exports = function() {
                     });
                 }
             });
+
+            scope.adjustPosition = function() {
+                var menuDimensions = menu.getBoundingClientRect();
+                var menuContent = $(menu).find('.ddt-font-parameters-menu-content');
+                var menuContentDimensions = menuContent.get(0).getBoundingClientRect();
+
+                var left = menuDimensions.right - menuContentDimensions.width;
+                if (menuContentDimensions.left !== left && menuContentDimensions.left !== 0) {
+                    menuContent.css('left', left);
+                }
+            };
         }
     };
 };
@@ -1156,7 +1170,7 @@ angular.module('ddt').directive('ddtFontSelectorDropdown', require('./fontSelect
 'use strict';
 
 
-module.exports = function($scope, comparisonMatrix) {
+module.exports = function($scope, $timeout, comparisonMatrix) {
     var init = function() {
         $scope.menuVisible = false;
         $scope.comparisonMatrix = comparisonMatrix;
@@ -1164,6 +1178,9 @@ module.exports = function($scope, comparisonMatrix) {
 
     $scope.toggleMenu = function() {
         $scope.menuVisible = !$scope.menuVisible;
+        $timeout(function() {
+            $scope.adjustPosition();
+        }, 0);
     };
 
     $scope.removeFamily = function(family) {
@@ -1185,7 +1202,7 @@ module.exports = function() {
         templateUrl: 'lib/directives/fontsComparisonDropdown/fontsComparisonDropdown.html',
         controller: 'FontsComparisonDropdownCtrl',
         link: function(scope, element, attrs, controllers) {
-            var menu = element.find('.ddt-fonts-comparison-dropdown')[0];
+            var menu = element.find('.ddt-fonts-comparison-dropdown').get(0);
 
             $(document).on('click.fontParameterMenu', function(e) {
                 if (scope.menuVisible && !$.contains(menu, e.target)) {
@@ -1194,6 +1211,17 @@ module.exports = function() {
                     });
                 }
             });
+
+            scope.adjustPosition = function() {
+                var menuDimensions = menu.getBoundingClientRect();
+                var menuContent = $(menu).find('.ddt-fonts-comparison-dropdown-content');
+                var menuContentDimensions = menuContent.get(0).getBoundingClientRect();
+
+                var left = menuDimensions.right - menuContentDimensions.width;
+                if (menuContentDimensions.left !== left && menuContentDimensions.left !== 0) {
+                    menuContent.css('left', left);
+                }
+            };
         }
     };
 };
@@ -1239,7 +1267,7 @@ module.exports = function ($scope, $q, googleFontsList, FontFamily, FontSources,
 
     $scope.addToComparison = function() {
         _.each($scope.selectedFonts, function(font) {
-            var family = FontFamily.make(font.family, FontSources.URL);
+            var family = FontFamily.make(font.family + ' ' + 'GF', FontSources.URL);
 
             var promises = _.map(_.values(font.files), function(url) {
                 return family.addFontFromUrl(url);
@@ -2069,7 +2097,7 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
         var newFamilyName = name;
         if (angular.isDefined(fontFamilyCollection.findByName(newFamilyName))) {
             for (var counter = 2;
-                 angular.isDefined(fontFamilyCollection.findByName(newFamilyName + counter.toString()));
+                 angular.isDefined(fontFamilyCollection.findByName(newFamilyName + ' ' + counter.toString()));
                  counter++) {
             }
 
@@ -2157,20 +2185,20 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
             return font.isItalic;
         });
 
+        // We now have an object with two keys: 'true' and 'false'.
+        // Since the order of keys in an object is undefined, we
+        // extract our grouped fonts into a multidimensional array.
+        groupedFonts = [groupedFonts['false'], groupedFonts['true']];
+
         // Then sort each group by weight.
-        _.each(_.keys(groupedFonts), function(key) {
-            groupedFonts[key] = _.sortBy(groupedFonts[key], function(font) {
+        for (var i = 0; i < 2; i++) {
+            groupedFonts[i] = _.sortBy(groupedFonts[i], function (font) {
                 return font.weight;
             });
-        });
+        }
 
         // Finally, splice it back together.
-        var fonts = [];
-        _.each(_.values(groupedFonts), function(values) {
-            fonts.push(values);
-        });
-
-        this.fonts = _.flatten(fonts);
+        this.fonts = _.flatten(groupedFonts);
     };
 
     return FontFamily;
