@@ -1,16 +1,16 @@
 .ddt-font-reviewer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  .ddt-display-flex();
+  .ddt-flex-direction(row);
+  .ddt-flex-wrap(wrap);
+  .ddt-justify-content(flex-start);
   margin-left: -@grid-gutter-width;
 }
 
 .ddt-font-reviewer-controls {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
+  .ddt-display-flex();
+  .ddt-flex-direction(row);
+  .ddt-flex-wrap(nowrap);
+  .ddt-justify-content(flex-end);
 
   .btn {
     margin-left: @line-height-computed;

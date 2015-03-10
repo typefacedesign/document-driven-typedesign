@@ -2,17 +2,17 @@
   width: @ddt-review-card-opacity-min-width;
   min-height: @ddt-review-card-opacity-min-width;
   background-color: @navbar-default-bg;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  .ddt-display-flex();
+  .ddt-flex-direction(column);
+  .ddt-justify-content(center);
+  .ddt-align-items(center);
 }
 
 .ddt-review-card-opacity-selector-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  .ddt-display-flex();
+  .ddt-flex-direction(column);
+  .ddt-justify-content(center);
+  .ddt-align-items(center);
 }
 
 .ddt-review-card-opacity-selector .dropdown {
@@ -20,10 +20,10 @@
 }
 
 .ddt-review-card-opacity-selector-dropdown-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: baseline;
+  .ddt-display-flex();
+  .ddt-flex-direction(row);
+  .ddt-flex-wrap(nowrap);
+  .ddt-align-items(baseline);
 
   .dropdown {
     margin-right: @line-height-computed/2;

@@ -1,3 +1,33 @@
+.ddt-display-flex {
+  display: -ms-flexbox;  /* TWEENER - IE 10 */
+  display: -webkit-flex; /* Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex;         /* spec */
+}
+
+.ddt-flex-direction(@direction) {
+  -ms-flex-direction: @direction;
+  -webkit-flex-direction: @direction;
+  flex-direction: @direction;
+}
+
+.ddt-justify-content(@justify) {
+  /* What's the prefix for IE10? */
+  -webkit-justify-content: @justify;
+  justify-content: @justify;
+}
+
+.ddt-flex-wrap(@wrap) {
+  -ms-flex-wrap: @wrap;
+  -webkit-flex-wrap: @wrap;
+  flex-wrap: @wrap;
+}
+
+.ddt-align-items(@align) {
+  -ms-flex-align: @align;
+  -webkit-align-items: @align;
+  align-items: @align;
+}
+
 body {
   overflow-y: scroll;
   overflow-x: hidden;
@@ -92,9 +122,9 @@ body {
 }
 
 .ddt-toolbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  .ddt-display-flex();
+  .ddt-flex-direction(row);
+  .ddt-justify-content(space-between);
 
   .ddt-font-parameters-menu {
     margin-left: @line-height-computed;
@@ -103,9 +133,9 @@ body {
 
 .ddt-toolbar-left,
 .ddt-toolbar-right {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  .ddt-display-flex();
+  .ddt-flex-direction(row);
+  .ddt-justify-content(space-between);
 }
 
 .ddt-dropdown-menu-content {

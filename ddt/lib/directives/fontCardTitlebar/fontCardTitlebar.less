@@ -1,12 +1,12 @@
 .ddt-titlebar,
 .ddt-titlebar-controls {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  .ddt-display-flex();
+  .ddt-flex-direction(row);
+  .ddt-flex-wrap(nowrap);
 }
 
 .ddt-titlebar {
-  justify-content: space-between;
+  .ddt-justify-content(space-between);
 
   .btn-group {
     margin-left: @line-height-computed/2;
