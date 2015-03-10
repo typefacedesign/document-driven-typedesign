@@ -29,7 +29,7 @@ module.exports = function ($scope, $q, googleFontsList, FontFamily, FontSources,
 
     $scope.addToComparison = function() {
         _.each($scope.selectedFonts, function(font) {
-            var family = FontFamily.make(font.family, FontSources.URL);
+            var family = FontFamily.make(font.family + ' ' + 'GF', FontSources.URL);
 
             var promises = _.map(_.values(font.files), function(url) {
                 return family.addFontFromUrl(url);
