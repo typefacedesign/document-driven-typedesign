@@ -21,7 +21,7 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
         var newFamilyName = name;
         if (angular.isDefined(fontFamilyCollection.findByName(newFamilyName))) {
             for (var counter = 2;
-                 angular.isDefined(fontFamilyCollection.findByName(newFamilyName + counter.toString()));
+                 angular.isDefined(fontFamilyCollection.findByName(newFamilyName + ' ' + counter.toString()));
                  counter++) {
             }
 
