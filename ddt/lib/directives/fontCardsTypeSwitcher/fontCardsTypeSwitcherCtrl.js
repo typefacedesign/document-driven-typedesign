@@ -1,12 +1,12 @@
 'use strict';
 
 
-module.exports = function($scope, $location, FontCardTypes) {
+module.exports = function($scope, FontCardTypes) {
     $scope.FontCardTypes = FontCardTypes;
 
     $scope.switchCardType = function(type) {
         $scope.cardType = type;
-        $location.search('cardType', $scope.cardType);
+        localStorage.setItem('cardType', $scope.cardType);
     };
 
     $scope.isType = function(type) {

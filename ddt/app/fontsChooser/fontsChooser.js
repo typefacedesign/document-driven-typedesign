@@ -1,7 +1,7 @@
 'use strict';
 
 
-module.exports = function($scope, $routeParams, $location, FontCardTypes, fontParameters) {
-    $scope.cardType = $routeParams.cardType || FontCardTypes.WORD;
+module.exports = function($scope, FontCardTypes, fontParameters) {
+    $scope.cardType = localStorage.getItem('cardType') || FontCardTypes.WORD;
     $scope.fontParameters = fontParameters.current;
 };

@@ -4,76 +4,30 @@ var angular = require('../angular');
 var _ = require('lodash');
 
 
-angular.module('ddt').factory('fontParameters', function(FontCardTypes, DEFAULT_TEXT_COLOR,
-                                                         DEFAULT_BACKGROUND_COLOR, FontCases) {
+angular.module('ddt').factory('fontParameters', function($rootScope, DEFAULT_FONT_PARAMETERS) {
     // This service keeps track of font parameters in the choose fonts view.
     // fontSize, letterSpacing, wordSpacing are in px. lineHeight is unitless.
-    var fontParameters = {};
+    var fontParameters = JSON.parse(localStorage.getItem('fontParameters'));
 
-    fontParameters[FontCardTypes.LETTER] = {
-        parameterSetId: FontCardTypes.LETTER,
-        fontSize: 24,
-        color: DEFAULT_TEXT_COLOR,
-        backgroundColor: DEFAULT_BACKGROUND_COLOR,
-        fontCase: FontCases.UNSPECIFIED
-    };
-
-    fontParameters[FontCardTypes.WORD] = {
-        parameterSetId: FontCardTypes.WORD,
-        fontSize: 32,
-        letterSpacing: 0,
-        color: DEFAULT_TEXT_COLOR,
-        backgroundColor: DEFAULT_BACKGROUND_COLOR,
-        fontCase: FontCases.UNSPECIFIED
-    };
-
-    fontParameters[FontCardTypes.SENTENCE] = {
-        parameterSetId: FontCardTypes.SENTENCE,
-        fontSize: 24,
-        letterSpacing: 0,
-        wordSpacing: 0,
-        color: DEFAULT_TEXT_COLOR,
-        backgroundColor: DEFAULT_BACKGROUND_COLOR,
-        fontCase: FontCases.UNSPECIFIED
-    };
-
-    fontParameters[FontCardTypes.PARAGRAPH] = {
-        parameterSetId: FontCardTypes.PARAGRAPH,
-        fontSize: 16,
-        lineHeight: 1.2,
-        letterSpacing: 0,
-        wordSpacing: 0,
-        color: DEFAULT_TEXT_COLOR,
-        backgroundColor: DEFAULT_BACKGROUND_COLOR,
-        fontCase: FontCases.UNSPECIFIED
-    };
-
-    fontParameters[FontCardTypes.RICH_TEXT] = {
-        parameterSetId: FontCardTypes.RICH_TEXT,
-        fontSize: 16,
-        lineHeight: 1.2,
-        letterSpacing: 0,
-        wordSpacing: 0,
-        color: DEFAULT_TEXT_COLOR,
-        backgroundColor: DEFAULT_BACKGROUND_COLOR,
-        fontCase: FontCases.UNSPECIFIED
-    };
-
-    fontParameters[FontCardTypes.LAYOUT] = {
-        parameterSetId: FontCardTypes.LAYOUT
-    };
-
-    var defaults = angular.copy(fontParameters);
+    if (fontParameters === null) {
+        fontParameters = angular.copy(DEFAULT_FONT_PARAMETERS);
+    }
 
     var resetParameters = function(parameterSetId) {
-        _.each(_.keys(defaults[parameterSetId]), function(key) {
-            fontParameters[parameterSetId][key] = defaults[parameterSetId][key];
+        _.each(_.keys(DEFAULT_FONT_PARAMETERS[parameterSetId]), function(key) {
+            fontParameters[parameterSetId][key] = DEFAULT_FONT_PARAMETERS[parameterSetId][key];
         });
     };
 
+    $rootScope.$watch(function() {
+        return fontParameters;
+    }, function() {
+        localStorage.setItem('fontParameters', JSON.stringify(fontParameters));
+    }, true);
+
     return {
         resetParameters: resetParameters,
-        defaults: defaults,
+        defaults: DEFAULT_FONT_PARAMETERS,
         current: fontParameters
     };
 });
