@@ -18,6 +18,8 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
     };
 
     FontFamily.make = function(name, source) {
+        // TODO: I'm not entirely happy with FontFamily depending on fontFamilyCollection.
+        // Ideally, this service shouldn't even know about the fontFamilyCollection service.
         var newFamilyName = name;
         if (angular.isDefined(fontFamilyCollection.findByName(newFamilyName))) {
             for (var counter = 2;
@@ -144,8 +146,20 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
         return deferred.promise;
     };
 
-    FontFamily.deserialize = function() {
+    FontFamily.deserialize = function(serializedFamily) {
+        var deferred = $q.defer();
 
+        var fontFamily = FontFamily.make(serializedFamily.name, serializedFamily.source);
+        var fontsPromises = _.map(serializedFamily.fonts, function(serializedFont) {
+            return Font.deserialize(serializedFont);
+        });
+        $q.all(fontsPromises)
+            .then(function(fonts) {
+                fontFamily.addFonts(fonts);
+                deferred.resolve(fontFamily);
+            }, deferred.reject);
+
+        return deferred.promise;
     };
 
     return FontFamily;

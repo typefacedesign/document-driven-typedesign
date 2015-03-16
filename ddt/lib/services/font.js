@@ -137,6 +137,15 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
         return deferred.promise;
     };
 
+    Font.deserialize = function(deserializedFont) {
+        var deferred = $q.defer();
+
+        var font = _.create(Font.prototype, deserializedFont);
+        deferred.resolve(font);
+
+        return deferred.promise;
+    };
+
     var _splitFileName = function(fileName) {
         var fileSplit = fileName.split('.');
         return [_.first(fileSplit, fileSplit.length - 1).join(''), _.last(fileSplit)];

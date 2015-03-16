@@ -17,14 +17,17 @@ angular.module('ddt').factory('fontFamilyCollection', function(ErrorMessages, $l
         return fontFamilies;
     };
 
-    var add = function(family) {
+    var add = function(family, noPersist) {
         if (angular.isDefined(findByName(family.name))) {
             throw new Error(ErrorMessages.FAMILY_ALREADY_EXISTS);
         }
 
         fontFamilies.push(family);
         fontFamiliesCounter++;
-        _persistFontFamily(family);
+
+        if (!noPersist) {
+            _persistFontFamily(family);
+        }
     };
 
     var remove = function(family) {
