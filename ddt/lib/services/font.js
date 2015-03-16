@@ -113,6 +113,30 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
         return deferred.promise;
     };
 
+    Font.prototype.serialize = function() {
+        var font = this;
+        var deferred = $q.defer();
+
+        var serializedFont = _.pick(font, [
+            'source', 'faceName', 'fileName', 'fileExt', '_weight', 'familyName', 'subFamilyName',
+            'versionString', 'isItalic'
+        ]);
+
+        if (font.source === FontSources.URL) {
+            serializedFont.url = font.url;
+            deferred.resolve(serializedFont);
+        } else if (font.source === FontSources.FILE) {
+            this.getDataUrl()
+                .then(function(dataUrl) {
+                    serializedFont.file = _.pick(font.file, ['name']);
+                    serializedFont.dataUrl = dataUrl;
+                    deferred.resolve(serializedFont);
+                }, deferred.reject);
+        }
+
+        return deferred.promise;
+    };
+
     var _splitFileName = function(fileName) {
         var fileSplit = fileName.split('.');
         return [_.first(fileSplit, fileSplit.length - 1).join(''), _.last(fileSplit)];

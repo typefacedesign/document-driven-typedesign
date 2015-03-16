@@ -125,5 +125,28 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
         this.fonts = _.flatten(groupedFonts);
     };
 
+    FontFamily.prototype.serialize = function() {
+        // We only store attributes we need to recreate the family on app load.
+        // Basically, all the parameters that FontFamily.make needs, plus the fonts
+        // array. IndexedDB hates it if you try to put a non-JSONifiable object into
+        // it.
+        var deferred = $q.defer();
+        var serializedFamily = _.pick(this, ['name', 'source']);
+        var fontsPromises = _.map(this.fonts, function(font) {
+            return font.serialize();
+        });
+        $q.all(fontsPromises)
+            .then(function(serializedFonts) {
+                serializedFamily.fonts = serializedFonts;
+                deferred.resolve(serializedFamily);
+            }, deferred.reject);
+
+        return deferred.promise;
+    };
+
+    FontFamily.deserialize = function() {
+
+    };
+
     return FontFamily;
 });

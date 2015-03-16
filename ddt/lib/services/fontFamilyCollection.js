@@ -4,7 +4,7 @@ var angular = require('../angular');
 var _ = require('lodash');
 
 
-angular.module('ddt').factory('fontFamilyCollection', function(ErrorMessages) {
+angular.module('ddt').factory('fontFamilyCollection', function(ErrorMessages, $localForage) {
     var fontFamilies = [];
 
     // When adding a new family, we name it "Font Family X" by default,
@@ -24,6 +24,7 @@ angular.module('ddt').factory('fontFamilyCollection', function(ErrorMessages) {
 
         fontFamilies.push(family);
         fontFamiliesCounter++;
+        _persistFontFamily(family);
     };
 
     var remove = function(family) {
@@ -42,6 +43,18 @@ angular.module('ddt').factory('fontFamilyCollection', function(ErrorMessages) {
         return _.find(fontFamilies, function(family) {
             return family.name === name;
         });
+    };
+
+    var _persistFontFamily = function(family) {
+        $localForage.getItem(family.name)
+            .then(function(persistedFamily) {
+                if (angular.isUndefined(persistedFamily)) {
+                    family.serialize()
+                        .then(function(serializedFamily) {
+                            $localForage.setItem(family.name, serializedFamily);
+                        });
+                }
+            });
     };
 
     return {

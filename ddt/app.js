@@ -6,8 +6,10 @@ var angular = require('./lib/angular');
 require('angular-route');
 require('angular-sanitize');
 require('es6-shim');
+var localforage = require('localforage');
+require('angular-localforage');
 
-var app = angular.module('ddt', ['ngRoute', 'ngSanitize']);
+var app = angular.module('ddt', ['ngRoute', 'ngSanitize', 'LocalForageModule']);
 
 require('./constants');
 require('./testStrings');
@@ -20,7 +22,7 @@ require('./lib/directives');
 require('./app/index.js');
 
 // Set up routes.
-app.config(function($routeProvider) {
+app.config(function($routeProvider, $localForageProvider) {
     $routeProvider
         .when('/', {
             redirectTo: '/choose'
@@ -39,4 +41,11 @@ app.config(function($routeProvider) {
             controller: 'FontsTesterCtrl',
             templateUrl: 'app/fontsTester/fontsTester.html'
         });
+
+    $localForageProvider.config({
+        name: 'ddt',
+        driver: localforage.INDEXEDDB,
+        storeName: 'ddt_preferences',
+        description: 'Stores preferences and fonts for DDT.'
+    });
 });
