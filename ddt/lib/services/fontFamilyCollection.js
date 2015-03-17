@@ -31,6 +31,7 @@ angular.module('ddt').factory('fontFamilyCollection', function(ErrorMessages, $l
     };
 
     var remove = function(family) {
+        _removePersistedFontFamily(family);
         _.pull(fontFamilies, family);
     };
 
@@ -58,6 +59,10 @@ angular.module('ddt').factory('fontFamilyCollection', function(ErrorMessages, $l
                         });
                 }
             });
+    };
+
+    var _removePersistedFontFamily = function(family) {
+        $localForage.removeItem(family.name);
     };
 
     return {

@@ -132,6 +132,8 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
         // Basically, all the parameters that FontFamily.make needs, plus the fonts
         // array. IndexedDB hates it if you try to put a non-JSONifiable object into
         // it.
+        // NOTE: in the long run, it'll be cleaner to have a separate service to
+        // serialize font families and fonts.
         var deferred = $q.defer();
         var serializedFamily = _.pick(this, ['name', 'source']);
         var fontsPromises = _.map(this.fonts, function(font) {
