@@ -9,6 +9,7 @@ require('angular-sanitize');
 require('es6-shim');
 var localforage = require('localforage');
 require('angular-localforage');
+var _ = require('lodash');
 
 var app = angular.module('ddt', ['ngRoute', 'ngSanitize', 'LocalForageModule']);
 
@@ -51,27 +52,36 @@ app.config(function($routeProvider, $localForageProvider) {
     });
 });
 
-},{"./app/index.js":8,"./constants":9,"./lib/angular":10,"./lib/directives":65,"./lib/services":91,"./testStrings":93,"angular-localforage":95,"angular-route":96,"angular-sanitize":97,"bootstrap":99,"es6-shim":114,"jquery":115,"localforage":122}],2:[function(require,module,exports){
-'use strict';
-
-
-module.exports = function($scope, $localForage, FontCardTypes, fontParameters, FontFamily,
-                          fontFamilyCollection) {
+app.controller('DDTAppCtrl', function($localForage, fontFamilyCollection, FontFamily, comparisonMatrix) {
     var init = function() {
-        $scope.cardType = localStorage.getItem('cardType') || FontCardTypes.WORD;
-        $scope.fontParameters = fontParameters.current;
-
-        // Load serialized font families when service is initialized.
         _loadSerializedFontFamilies();
     };
 
     var _loadSerializedFontFamilies = function() {
+        var familiesToComparePref = JSON.parse(localStorage.getItem('familiesToCompare'));
         $localForage.iterate(function(serializedFamily) {
             FontFamily.deserialize(serializedFamily)
                 .then(function(fontFamily) {
                     fontFamilyCollection.add(fontFamily, true);
+                    if (angular.isDefined(familiesToComparePref) &&
+                        _.contains(familiesToComparePref, fontFamily.name)) {
+                        comparisonMatrix.addFamily(fontFamily, true);
+                    }
                 });
         });
+    };
+
+    init();
+});
+
+},{"./app/index.js":8,"./constants":9,"./lib/angular":10,"./lib/directives":65,"./lib/services":91,"./testStrings":93,"angular-localforage":95,"angular-route":96,"angular-sanitize":97,"bootstrap":99,"es6-shim":114,"jquery":115,"localforage":122,"lodash":124}],2:[function(require,module,exports){
+'use strict';
+
+
+module.exports = function($scope, $localForage, FontCardTypes, fontParameters) {
+    var init = function() {
+        $scope.cardType = localStorage.getItem('cardType') || FontCardTypes.WORD;
+        $scope.fontParameters = fontParameters.current;
     };
 
     init();
@@ -1615,7 +1625,6 @@ module.exports = function($timeout) {
     return {
         restrict: 'E',
         templateUrl: 'lib/directives/reviewCardSideBySide/reviewCardSideBySide.html',
-        replace: true,
         controller: 'ReviewCardSideBySideCtrl',
         scope: {
             fontParameters: '=',
@@ -1675,13 +1684,28 @@ angular.module('ddt').factory('comparisonMatrix', function(LETTERS, COLORS) {
         );
     };
 
-    var addFamily = function(family) {
+    var addFamily = function(family, noPersist) {
+        if (!noPersist) {
+            var familiesToComparePref = JSON.parse(localStorage.getItem('familiesToCompare'));
+            if (angular.isUndefined(familiesToComparePref) || !familiesToComparePref) {
+                familiesToComparePref = [];
+            }
+
+            familiesToComparePref.push(family.name);
+            localStorage.setItem('familiesToCompare', JSON.stringify(familiesToComparePref));
+        }
+
         _fontFamilies.push(family);
         _comparisonMatrix = _buildComparisonMatrix();
         _familyLabels = _generateFamilyLabels();
     };
 
     var removeFamily = function(family) {
+        var familiesToComparePref = JSON.parse(localStorage.getItem('familiesToCompare'));
+        if (angular.isDefined(familiesToComparePref)) {
+            _.pull(familiesToComparePref, family.name);
+            localStorage.setItem('familiesToCompare', JSON.stringify(familiesToComparePref));
+        }
         _.pull(_fontFamilies, family);
         _comparisonMatrix = _buildComparisonMatrix();
         _familyLabels = _generateFamilyLabels();
@@ -1983,6 +2007,10 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
             throw new Error(ErrorMessages.UNRECOGNIZED_FONT_SOURCE + opts.source);
         }
 
+        this._defineProperties();
+    };
+
+    Font.prototype._defineProperties = function() {
         Object.defineProperty(this, 'weight', {
             get: function() {
                 return this._weight;
@@ -2090,6 +2118,7 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
         var deferred = $q.defer();
 
         var font = _.create(Font.prototype, deserializedFont);
+        font._defineProperties();
         deferred.resolve(font);
 
         return deferred.promise;
@@ -2335,6 +2364,8 @@ angular.module('ddt').factory('FontFamily', function($q, $http, Font, FontSource
         // Basically, all the parameters that FontFamily.make needs, plus the fonts
         // array. IndexedDB hates it if you try to put a non-JSONifiable object into
         // it.
+        // NOTE: in the long run, it'll be cleaner to have a separate service to
+        // serialize font families and fonts.
         var deferred = $q.defer();
         var serializedFamily = _.pick(this, ['name', 'source']);
         var fontsPromises = _.map(this.fonts, function(font) {
@@ -2402,6 +2433,7 @@ angular.module('ddt').factory('fontFamilyCollection', function(ErrorMessages, $l
     };
 
     var remove = function(family) {
+        _removePersistedFontFamily(family);
         _.pull(fontFamilies, family);
     };
 
@@ -2429,6 +2461,10 @@ angular.module('ddt').factory('fontFamilyCollection', function(ErrorMessages, $l
                         });
                 }
             });
+    };
+
+    var _removePersistedFontFamily = function(family) {
+        $localForage.removeItem(family.name);
     };
 
     return {
