@@ -8,6 +8,7 @@ require('angular-sanitize');
 require('es6-shim');
 var localforage = require('localforage');
 require('angular-localforage');
+var _ = require('lodash');
 
 var app = angular.module('ddt', ['ngRoute', 'ngSanitize', 'LocalForageModule']);
 
@@ -48,4 +49,26 @@ app.config(function($routeProvider, $localForageProvider) {
         storeName: 'ddt_preferences',
         description: 'Stores preferences and fonts for DDT.'
     });
+});
+
+app.controller('DDTAppCtrl', function($localForage, fontFamilyCollection, FontFamily, comparisonMatrix) {
+    var init = function() {
+        _loadSerializedFontFamilies();
+    };
+
+    var _loadSerializedFontFamilies = function() {
+        var familiesToComparePref = JSON.parse(localStorage.getItem('familiesToCompare'));
+        $localForage.iterate(function(serializedFamily) {
+            FontFamily.deserialize(serializedFamily)
+                .then(function(fontFamily) {
+                    fontFamilyCollection.add(fontFamily, true);
+                    if (angular.isDefined(familiesToComparePref) &&
+                        _.contains(familiesToComparePref, fontFamily.name)) {
+                        comparisonMatrix.addFamily(fontFamily, true);
+                    }
+                });
+        });
+    };
+
+    init();
 });
