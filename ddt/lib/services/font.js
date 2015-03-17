@@ -34,6 +34,10 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
             throw new Error(ErrorMessages.UNRECOGNIZED_FONT_SOURCE + opts.source);
         }
 
+        this._defineProperties();
+    };
+
+    Font.prototype._defineProperties = function() {
         Object.defineProperty(this, 'weight', {
             get: function() {
                 return this._weight;
@@ -141,6 +145,7 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
         var deferred = $q.defer();
 
         var font = _.create(Font.prototype, deserializedFont);
+        font._defineProperties();
         deferred.resolve(font);
 
         return deferred.promise;
