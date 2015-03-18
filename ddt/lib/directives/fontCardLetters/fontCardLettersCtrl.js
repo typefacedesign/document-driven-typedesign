@@ -9,12 +9,13 @@ module.exports = function($scope, fontParameters, FontCardTypes, LETTERS) {
     var init = function() {
         // TODO: we'll eventually want several collections of letters for different languages.
         // TODO: flexbox this view.
-        var letters = LETTERS;
-        $scope.letters = [];
-        for (var i = 0; i < letters.length; i += LETTERS_PER_ROW) {
-            $scope.letters.push(letters.slice(i, i + LETTERS_PER_ROW));
-        }
-        $scope.fontSize = $scope.fontSize || 36;
+        $scope.fontLetterGroups = {};
+        _.each($scope.fontFamily.fonts, function(font) {
+            $scope.fontLetterGroups[font.name] = [];
+            for (var i = 0; i < font.glyphs.length; i += LETTERS_PER_ROW) {
+                $scope.fontLetterGroups[font.name].push(font.glyphs.slice(i, i + LETTERS_PER_ROW));
+            }
+        });
         $scope.currentPage = 1;
         $scope.fontParameters = fontParameters.current[FontCardTypes.LETTER];
 

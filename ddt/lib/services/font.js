@@ -123,7 +123,7 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
 
         var serializedFont = _.pick(font, [
             'source', 'faceName', 'fileName', 'fileExt', '_weight', 'familyName', 'subFamilyName',
-            'versionString', 'isItalic'
+            'versionString', 'isItalic', 'glyphs'
         ]);
 
         if (font.source === FontSources.URL) {
@@ -171,6 +171,10 @@ angular.module('ddt').factory('Font', function($q, FontSources, ErrorMessages) {
 
         // The first bit of fsSelection tells us whether the font is italic.
         ddtFont.isItalic = (openTypeFont.tables.os2.fsSelection & 1) === 1;
+
+        ddtFont.glyphs = _.map(_.keys(openTypeFont.tables.cmap.glyphIndexMap), function(charCode) {
+            return String.fromCodePoint(charCode);
+        });
     };
 
     return Font;
