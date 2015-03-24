@@ -23,3 +23,4 @@ require('./googleFontsChooser');
 require('./contenteditable');
 require('./comparisonTypeSwitcher');
 require('./fontsComparisonDropdown');
+require('./fontTestForm');

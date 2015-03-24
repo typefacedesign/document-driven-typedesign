@@ -1,0 +1,15 @@
+<div class="ddt-font-test-form">
+  <p>{{ currentQuestion.text }}</p>
+
+  <div class="ddt-font-test-form-choices">
+    <button class="btn btn-default btn-block ddt-answer-button" ng-repeat="choice in currentQuestion.choices">
+      <span class="ddt-choice-text">{{ choice }}</span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </button>
+  </div>
+
+  <div class="btn-group">
+    <button class="btn btn-default">Back</button>
+    <button class="btn btn-default">Skip</button>
+  </div>
+</div>
