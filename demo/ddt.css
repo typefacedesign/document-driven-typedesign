@@ -6857,6 +6857,31 @@ button.close {
 .ddt-fonts-comparison-dropdown-content ul li:hover {
   background-color: #f8f8f8;
 }
+.ddt-font-test-form {
+  border-radius: 4px;
+  border: solid 1px #e7e7e7;
+  padding: 15px 15px;
+  background-color: #f8f8f8;
+}
+.ddt-font-test-form .btn-group {
+  margin-top: 40px;
+  width: 100%;
+}
+.ddt-font-test-form .btn-group button {
+  width: 50%;
+}
+.ddt-answer-button {
+  white-space: normal;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.ddt-answer-button .glyphicon {
+  margin-left: 8px;
+}
+.ddt-answer-button .ddt-choice-text {
+  width: 100%;
+}
 .ddt-file-picker-input {
   visibility: hidden;
   position: absolute;
@@ -6925,4 +6950,16 @@ button.close {
 }
 .ddt-review-card-side-by-side-letter {
   min-width: 360px;
+}
+.ddt-font-tester {
+  display: flex;
+  flex-direction: row;
+}
+.ddt-font-tester-review-area {
+  flex-basis: 0;
+  flex-grow: 3;
+}
+.ddt-font-tester-questions-area {
+  flex-basis: 0;
+  flex-grow: 1;
 }

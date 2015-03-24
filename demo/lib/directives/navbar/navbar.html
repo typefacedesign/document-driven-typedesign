@@ -19,13 +19,13 @@
                  data-content="Add and select two or more font families for comparison to review">Review</a>
             </li>
 
-            <li ng-class="{active: isCurrent('/test')}" ng-show="fontFamilyCount() >= 2">
-              <a class="ddt-in-development" href="#/test">Test</a>
+            <li ng-class="{active: isCurrent('/test')}" ng-show="fontFamilyCount() >= 1">
+              <a href="#/test">Test</a>
             </li>
-            <li ng-class="{active: isCurrent('/test')}" ng-show="fontFamilyCount() < 2">
-              <a class="ddt-in-development" href="" data-toggle="popover" data-placement="bottom"
+            <li ng-class="{active: isCurrent('/test')}" ng-show="fontFamilyCount() < 1">
+              <a href="" data-toggle="popover" data-placement="bottom"
                  data-container="body"
-                 data-content="Add and select two or more font families for comparison to test">Test</a>
+                 data-content="Add and select one or more font families for comparison to test">Test</a>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
