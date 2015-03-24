@@ -61,6 +61,11 @@ gulp.task('copy:app_html', ['clean'], function() {
         .pipe(gulp.dest('build/debug/'));
 });
 
+gulp.task('copy:font_tests', ['clean'], function() {
+    return gulp.src(['ddt/fontTests/**'], {base: './ddt/'})
+        .pipe(gulp.dest('build/debug/'));
+});
+
 gulp.task('copy:vendor_js', ['clean'], function() {
     return gulp.src(['vendor/**/*.js'], {base: './'})
         .pipe(gulp.dest('build/'));
@@ -77,7 +82,7 @@ gulp.task('compile:less', ['clean'], function() {
         .pipe(gulp.dest('build/debug/'));
 });
 
-gulp.task('copy', ['copy:app_html', 'copy:glyphicons']);
+gulp.task('copy', ['copy:app_html', 'copy:font_tests', 'copy:glyphicons']);
 
 gulp.task('compile', ['compile:browserify', 'compile:less']);
 
