@@ -11,3 +11,4 @@ require('./testStrings');
 require('./comparisonMatrix');
 require('./googleFontsList');
 require('./defaultFontParameters');
+require('./fontTest');
