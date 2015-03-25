@@ -7,7 +7,7 @@ var _ = require('lodash');
 angular.module('ddt').factory('fontParameters', function($rootScope, DEFAULT_FONT_PARAMETERS) {
     // This service keeps track of font parameters in the choose fonts view.
     // fontSize, letterSpacing, wordSpacing are in px. lineHeight is unitless.
-    var fontParameters = JSON.parse(localStorage.getItem('fontParameters'));
+    var fontParameters = JSON.parse(localStorage.getItem('ddt:lastUsedFontParameters'));
 
     if (fontParameters === null) {
         fontParameters = angular.copy(DEFAULT_FONT_PARAMETERS);
@@ -22,7 +22,7 @@ angular.module('ddt').factory('fontParameters', function($rootScope, DEFAULT_FON
     $rootScope.$watch(function() {
         return fontParameters;
     }, function() {
-        localStorage.setItem('fontParameters', JSON.stringify(fontParameters));
+        localStorage.setItem('ddt:lastUsedFontParameters', JSON.stringify(fontParameters));
     }, true);
 
     return {

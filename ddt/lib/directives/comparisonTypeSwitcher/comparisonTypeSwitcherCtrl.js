@@ -8,7 +8,7 @@ module.exports = function($scope, $rootScope, $timeout, FontComparisonTypes, Eve
 
     $scope.switchComparisonType = function(type) {
         $scope.comparisonType = type;
-        localStorage.setItem('comparisonType', $scope.comparisonType);
+        localStorage.setItem('ddt:lastUsedComparisonType', $scope.comparisonType);
         $timeout(function() {
             $rootScope.$broadcast(EventTypes.COMPARISON_TYPE_CHANGED);
         });

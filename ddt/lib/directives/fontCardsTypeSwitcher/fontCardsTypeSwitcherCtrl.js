@@ -6,7 +6,7 @@ module.exports = function($scope, FontCardTypes) {
 
     $scope.switchCardType = function(type) {
         $scope.cardType = type;
-        localStorage.setItem('cardType', $scope.cardType);
+        localStorage.setItem('ddt:lastUsedCardType', $scope.cardType);
     };
 
     $scope.isType = function(type) {

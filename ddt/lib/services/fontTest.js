@@ -49,11 +49,11 @@ angular.module('ddt').factory('FontTest', function($http, $q) {
     };
 
     var _loadAnsweredQuestions = function(testName) {
-        var answeredQuestions = JSON.parse(localStorage.getItem('answeredQuestions'));
+        var answeredQuestions = JSON.parse(localStorage.getItem('ddt:testingAnsweredQuestions'));
         if (answeredQuestions === null) {
             answeredQuestions = {};
-            answeredQuestions[testName] = [];
-            localStorage.setItem('answeredQuestions', JSON.stringify(answeredQuestions));
+            answeredQuestions[testName] = {};
+            localStorage.setItem('ddt:testingAnsweredQuestions', JSON.stringify(answeredQuestions));
         }
 
         return answeredQuestions[testName];

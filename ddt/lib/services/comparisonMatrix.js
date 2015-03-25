@@ -43,13 +43,13 @@ angular.module('ddt').factory('comparisonMatrix', function(LETTERS, COLORS) {
 
     var addFamily = function(family, noPersist) {
         if (!noPersist) {
-            var familiesToComparePref = JSON.parse(localStorage.getItem('familiesToCompare'));
+            var familiesToComparePref = JSON.parse(localStorage.getItem('ddt:familiesToCompare'));
             if (angular.isUndefined(familiesToComparePref) || !familiesToComparePref) {
                 familiesToComparePref = [];
             }
 
             familiesToComparePref.push(family.name);
-            localStorage.setItem('familiesToCompare', JSON.stringify(familiesToComparePref));
+            localStorage.setItem('ddt:familiesToCompare', JSON.stringify(familiesToComparePref));
         }
 
         _fontFamilies.push(family);
@@ -58,10 +58,10 @@ angular.module('ddt').factory('comparisonMatrix', function(LETTERS, COLORS) {
     };
 
     var removeFamily = function(family) {
-        var familiesToComparePref = JSON.parse(localStorage.getItem('familiesToCompare'));
+        var familiesToComparePref = JSON.parse(localStorage.getItem('ddt:familiesToCompare'));
         if (angular.isDefined(familiesToComparePref)) {
             _.pull(familiesToComparePref, family.name);
-            localStorage.setItem('familiesToCompare', JSON.stringify(familiesToComparePref));
+            localStorage.setItem('ddt:familiesToCompare', JSON.stringify(familiesToComparePref));
         }
         _.pull(_fontFamilies, family);
         _comparisonMatrix = _buildComparisonMatrix();

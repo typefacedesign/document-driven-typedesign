@@ -11,8 +11,8 @@ module.exports = function($scope, $location, fontFamilyCollection, fontParameter
             $location.path('/choose');
         }
 
-        $scope.cardType = localStorage.getItem('cardType') || FontCardTypes.WORD;
-        $scope.comparisonType = localStorage.getItem('comparisonType') || FontComparisonTypes.SIDE_BY_SIDE;
+        $scope.cardType = localStorage.getItem('ddt:lastUsedCardType') || FontCardTypes.WORD;
+        $scope.comparisonType = localStorage.getItem('ddt:lastUsedComparisonType') || FontComparisonTypes.SIDE_BY_SIDE;
         $scope.fontParameters = fontParameters.current;
         $scope.FontComparisonTypes = FontComparisonTypes;
         $scope.comparisonMatrix = comparisonMatrix;

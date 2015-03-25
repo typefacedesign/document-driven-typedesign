@@ -57,7 +57,7 @@ app.controller('DDTAppCtrl', function($localForage, fontFamilyCollection, FontFa
     };
 
     var _loadSerializedFontFamilies = function() {
-        var familiesToComparePref = JSON.parse(localStorage.getItem('familiesToCompare'));
+        var familiesToComparePref = JSON.parse(localStorage.getItem('ddt:familiesToCompare'));
         $localForage.iterate(function(serializedFamily) {
             FontFamily.deserialize(serializedFamily)
                 .then(function(fontFamily) {
