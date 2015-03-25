@@ -11,5 +11,16 @@ module.exports = function($scope) {
         });
     };
 
+    $scope.setAnswer = function(questionId, index) {
+        $scope.test.setAnswer(questionId, index);
+        $scope.currentQuestion = $scope.test.getNextQuestion();
+    };
+
+    $scope.previousQuestion = function() {
+    };
+
+    $scope.skipQuestion = function() {
+    };
+
     init();
 };

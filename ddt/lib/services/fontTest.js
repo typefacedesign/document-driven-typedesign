@@ -30,19 +30,44 @@ angular.module('ddt').factory('FontTest', function($http, $q) {
     };
 
     // Returns the next un-answered question in the test.
-    FontTest.prototype.getNextQuestion = function() {
-        for (let question of this.questions) {
-            if (_.contains(this.answeredQuestions, question.id)) {
+    FontTest.prototype.getFirstUnansweredQuestionIndex = function() {
+        var index = angular.isUndefined(this.currentQuestionIndex)? 0 : this.currentQuestionIndex;
+        for (var i = index; i < this.questions.length; i++) {
+            if (angular.isDefined(this.answeredQuestions[this.questions[i].id])) {
                 continue;
             }
 
-            return question;
+            return i;
         }
+    };
+
+    FontTest.prototype.getNextQuestion = function() {
+        if (angular.isUndefined(this.currentQuestionIndex)) {
+            this.currentQuestionIndex = this.getFirstUnansweredQuestionIndex();
+        } else if (this.currentQuestionIndex < this.questions.length) {
+            this.currentQuestionIndex++;
+        } else {
+            return null;
+        }
+
+        return this.questions[this.currentQuestionIndex];
     };
 
     // Sets the answer to the current question and stores it in
     // localStorage.
-    FontTest.prototype.setAnswer = function(index) {
+    FontTest.prototype.setAnswer = function(questionId, index) {
+        var answeredQuestions = JSON.parse(localStorage.getItem('ddt:testingAnsweredQuestions'));
+        this.answeredQuestions[questionId] = index;
+        answeredQuestions[this.name] = this.answeredQuestions;
+        localStorage.setItem('ddt:testingAnsweredQuestions', JSON.stringify(answeredQuestions));
+    };
+
+    FontTest.prototype.skipQuestion = function() {
+        this.currentQuestionIndex++;
+    };
+
+    FontTest.prototype.previousQuestion = function() {
+        this.currentQuestionIndex--;
     };
 
     FontTest.getStatistics = function() {
