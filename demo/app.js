@@ -58,7 +58,7 @@ app.controller('DDTAppCtrl', function($localForage, fontFamilyCollection, FontFa
     };
 
     var _loadSerializedFontFamilies = function() {
-        var familiesToComparePref = JSON.parse(localStorage.getItem('familiesToCompare'));
+        var familiesToComparePref = JSON.parse(localStorage.getItem('ddt:familiesToCompare'));
         $localForage.iterate(function(serializedFamily) {
             FontFamily.deserialize(serializedFamily)
                 .then(function(fontFamily) {
@@ -80,7 +80,7 @@ app.controller('DDTAppCtrl', function($localForage, fontFamilyCollection, FontFa
 
 module.exports = function($scope, $localForage, FontCardTypes, fontParameters) {
     var init = function() {
-        $scope.cardType = localStorage.getItem('cardType') || FontCardTypes.WORD;
+        $scope.cardType = localStorage.getItem('ddt:lastUsedCardType') || FontCardTypes.WORD;
         $scope.fontParameters = fontParameters.current;
     };
 
@@ -108,8 +108,8 @@ module.exports = function($scope, $location, fontFamilyCollection, fontParameter
             $location.path('/choose');
         }
 
-        $scope.cardType = localStorage.getItem('cardType') || FontCardTypes.WORD;
-        $scope.comparisonType = localStorage.getItem('comparisonType') || FontComparisonTypes.SIDE_BY_SIDE;
+        $scope.cardType = localStorage.getItem('ddt:lastUsedCardType') || FontCardTypes.WORD;
+        $scope.comparisonType = localStorage.getItem('ddt:lastUsedComparisonType') || FontComparisonTypes.SIDE_BY_SIDE;
         $scope.fontParameters = fontParameters.current;
         $scope.FontComparisonTypes = FontComparisonTypes;
         $scope.comparisonMatrix = comparisonMatrix;
@@ -295,7 +295,7 @@ module.exports = function($scope, $rootScope, $timeout, FontComparisonTypes, Eve
 
     $scope.switchComparisonType = function(type) {
         $scope.comparisonType = type;
-        localStorage.setItem('comparisonType', $scope.comparisonType);
+        localStorage.setItem('ddt:lastUsedComparisonType', $scope.comparisonType);
         $timeout(function() {
             $rootScope.$broadcast(EventTypes.COMPARISON_TYPE_CHANGED);
         });
@@ -767,7 +767,7 @@ module.exports = function($scope, FontCardTypes) {
 
     $scope.switchCardType = function(type) {
         $scope.cardType = type;
-        localStorage.setItem('cardType', $scope.cardType);
+        localStorage.setItem('ddt:lastUsedCardType', $scope.cardType);
     };
 
     $scope.isType = function(type) {
@@ -1228,6 +1228,17 @@ module.exports = function($scope) {
                 $scope.currentQuestion = $scope.test.getNextQuestion();
             }
         });
+    };
+
+    $scope.setAnswer = function(questionId, index) {
+        $scope.test.setAnswer(questionId, index);
+        $scope.currentQuestion = $scope.test.getNextQuestion();
+    };
+
+    $scope.previousQuestion = function() {
+    };
+
+    $scope.skipQuestion = function() {
     };
 
     init();
@@ -1743,13 +1754,13 @@ angular.module('ddt').factory('comparisonMatrix', function(LETTERS, COLORS) {
 
     var addFamily = function(family, noPersist) {
         if (!noPersist) {
-            var familiesToComparePref = JSON.parse(localStorage.getItem('familiesToCompare'));
+            var familiesToComparePref = JSON.parse(localStorage.getItem('ddt:familiesToCompare'));
             if (angular.isUndefined(familiesToComparePref) || !familiesToComparePref) {
                 familiesToComparePref = [];
             }
 
             familiesToComparePref.push(family.name);
-            localStorage.setItem('familiesToCompare', JSON.stringify(familiesToComparePref));
+            localStorage.setItem('ddt:familiesToCompare', JSON.stringify(familiesToComparePref));
         }
 
         _fontFamilies.push(family);
@@ -1758,10 +1769,10 @@ angular.module('ddt').factory('comparisonMatrix', function(LETTERS, COLORS) {
     };
 
     var removeFamily = function(family) {
-        var familiesToComparePref = JSON.parse(localStorage.getItem('familiesToCompare'));
+        var familiesToComparePref = JSON.parse(localStorage.getItem('ddt:familiesToCompare'));
         if (angular.isDefined(familiesToComparePref)) {
             _.pull(familiesToComparePref, family.name);
-            localStorage.setItem('familiesToCompare', JSON.stringify(familiesToComparePref));
+            localStorage.setItem('ddt:familiesToCompare', JSON.stringify(familiesToComparePref));
         }
         _.pull(_fontFamilies, family);
         _comparisonMatrix = _buildComparisonMatrix();
@@ -2548,7 +2559,7 @@ var _ = require('lodash');
 angular.module('ddt').factory('fontParameters', function($rootScope, DEFAULT_FONT_PARAMETERS) {
     // This service keeps track of font parameters in the choose fonts view.
     // fontSize, letterSpacing, wordSpacing are in px. lineHeight is unitless.
-    var fontParameters = JSON.parse(localStorage.getItem('fontParameters'));
+    var fontParameters = JSON.parse(localStorage.getItem('ddt:lastUsedFontParameters'));
 
     if (fontParameters === null) {
         fontParameters = angular.copy(DEFAULT_FONT_PARAMETERS);
@@ -2563,7 +2574,7 @@ angular.module('ddt').factory('fontParameters', function($rootScope, DEFAULT_FON
     $rootScope.$watch(function() {
         return fontParameters;
     }, function() {
-        localStorage.setItem('fontParameters', JSON.stringify(fontParameters));
+        localStorage.setItem('ddt:lastUsedFontParameters', JSON.stringify(fontParameters));
     }, true);
 
     return {
@@ -2606,30 +2617,55 @@ angular.module('ddt').factory('FontTest', function($http, $q) {
     };
 
     // Returns the next un-answered question in the test.
-    FontTest.prototype.getNextQuestion = function() {
-        for (let question of this.questions) {
-            if (_.contains(this.answeredQuestions, question.id)) {
+    FontTest.prototype.getFirstUnansweredQuestionIndex = function() {
+        var index = angular.isUndefined(this.currentQuestionIndex)? 0 : this.currentQuestionIndex;
+        for (var i = index; i < this.questions.length; i++) {
+            if (angular.isDefined(this.answeredQuestions[this.questions[i].id])) {
                 continue;
             }
 
-            return question;
+            return i;
         }
+    };
+
+    FontTest.prototype.getNextQuestion = function() {
+        if (angular.isUndefined(this.currentQuestionIndex)) {
+            this.currentQuestionIndex = this.getFirstUnansweredQuestionIndex();
+        } else if (this.currentQuestionIndex < this.questions.length) {
+            this.currentQuestionIndex++;
+        } else {
+            return null;
+        }
+
+        return this.questions[this.currentQuestionIndex];
     };
 
     // Sets the answer to the current question and stores it in
     // localStorage.
-    FontTest.prototype.setAnswer = function(index) {
+    FontTest.prototype.setAnswer = function(questionId, index) {
+        var answeredQuestions = JSON.parse(localStorage.getItem('ddt:testingAnsweredQuestions'));
+        this.answeredQuestions[questionId] = index;
+        answeredQuestions[this.name] = this.answeredQuestions;
+        localStorage.setItem('ddt:testingAnsweredQuestions', JSON.stringify(answeredQuestions));
+    };
+
+    FontTest.prototype.skipQuestion = function() {
+        this.currentQuestionIndex++;
+    };
+
+    FontTest.prototype.previousQuestion = function() {
+        this.currentQuestionIndex--;
     };
 
     FontTest.getStatistics = function() {
     };
 
     var _loadAnsweredQuestions = function(testName) {
-        var answeredQuestions = JSON.parse(localStorage.getItem('answeredQuestions'));
+        var answeredQuestions = JSON.parse(localStorage.getItem('ddt:testingAnsweredQuestions'));
         if (answeredQuestions === null) {
             answeredQuestions = {};
-            answeredQuestions[testName] = [];
-            localStorage.setItem('answeredQuestions', JSON.stringify(answeredQuestions));
+            answeredQuestions[testName] = {};
+            localStorage.setItem('ddt:testingAnsweredQuestions', JSON.stringify(answeredQuestions));
         }
 
         return answeredQuestions[testName];
