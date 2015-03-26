@@ -54,3 +54,11 @@ app.constant('COLORS', [
 app.constant('EventTypes', {
     COMPARISON_TYPE_CHANGED: 'ddt:comparisonTypeChanged'
 });
+
+app.constant('LocalStorageKeys', {
+    FAMILIES_TO_COMPARE: 'ddt:familiesToCompare',
+    LAST_USED_CARD_TYPE: 'ddt:lastUsedCardType',
+    LAST_USED_COMPARISON_TYPE: 'ddt:lastUsedComparisonType',
+    LAST_USED_FONT_PARAMETERS: 'ddt:lastUsedFontParameters',
+    TESTING_ANSWERED_QUESTIONS: 'ddt:testingAnsweredQuestions'
+});

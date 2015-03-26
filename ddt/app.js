@@ -51,13 +51,14 @@ app.config(function($routeProvider, $localForageProvider) {
     });
 });
 
-app.controller('DDTAppCtrl', function($localForage, fontFamilyCollection, FontFamily, comparisonMatrix) {
+app.controller('DDTAppCtrl', function($localForage, fontFamilyCollection, FontFamily, comparisonMatrix,
+                                      LocalStorageKeys) {
     var init = function() {
         _loadSerializedFontFamilies();
     };
 
     var _loadSerializedFontFamilies = function() {
-        var familiesToComparePref = JSON.parse(localStorage.getItem('ddt:familiesToCompare'));
+        var familiesToComparePref = JSON.parse(localStorage.getItem(LocalStorageKeys.FAMILIES_TO_COMPARE));
         $localForage.iterate(function(serializedFamily) {
             FontFamily.deserialize(serializedFamily)
                 .then(function(fontFamily) {

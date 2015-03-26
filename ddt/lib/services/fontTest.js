@@ -4,7 +4,7 @@ var angular = require('../angular.js');
 var _ = require('lodash');
 
 
-angular.module('ddt').factory('FontTest', function($http, $q) {
+angular.module('ddt').factory('FontTest', function($http, $q, LocalStorageKeys) {
     var FontTest = function(name, questions) {
         this.name = name;
         this.questions = questions;
@@ -56,10 +56,10 @@ angular.module('ddt').factory('FontTest', function($http, $q) {
     // Sets the answer to the current question and stores it in
     // localStorage.
     FontTest.prototype.setAnswer = function(questionId, index) {
-        var answeredQuestions = JSON.parse(localStorage.getItem('ddt:testingAnsweredQuestions'));
+        var answeredQuestions = JSON.parse(localStorage.getItem(LocalStorageKeys.TESTING_ANSWERED_QUESTIONS));
         this.answeredQuestions[questionId] = index;
         answeredQuestions[this.name] = this.answeredQuestions;
-        localStorage.setItem('ddt:testingAnsweredQuestions', JSON.stringify(answeredQuestions));
+        localStorage.setItem(LocalStorageKeys.TESTING_ANSWERED_QUESTIONS, JSON.stringify(answeredQuestions));
     };
 
     FontTest.prototype.skipQuestion = function() {
@@ -74,11 +74,11 @@ angular.module('ddt').factory('FontTest', function($http, $q) {
     };
 
     var _loadAnsweredQuestions = function(testName) {
-        var answeredQuestions = JSON.parse(localStorage.getItem('ddt:testingAnsweredQuestions'));
+        var answeredQuestions = JSON.parse(localStorage.getItem(LocalStorageKeys.TESTING_ANSWERED_QUESTIONS));
         if (answeredQuestions === null) {
             answeredQuestions = {};
             answeredQuestions[testName] = {};
-            localStorage.setItem('ddt:testingAnsweredQuestions', JSON.stringify(answeredQuestions));
+            localStorage.setItem(LocalStorageKeys.TESTING_ANSWERED_QUESTIONS, JSON.stringify(answeredQuestions));
         }
 
         return answeredQuestions[testName];

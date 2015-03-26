@@ -4,15 +4,16 @@ var _ = require('lodash');
 
 
 module.exports = function($scope, $location, fontFamilyCollection, fontParameters,
-                          FontCardTypes, FontComparisonTypes, comparisonMatrix) {
+                          FontCardTypes, FontComparisonTypes, comparisonMatrix, LocalStorageKeys) {
     var init = function() {
         if (comparisonMatrix.familyCount() < 2) {
             // TODO: display an alert before redirecting.
             $location.path('/choose');
         }
 
-        $scope.cardType = localStorage.getItem('ddt:lastUsedCardType') || FontCardTypes.WORD;
-        $scope.comparisonType = localStorage.getItem('ddt:lastUsedComparisonType') || FontComparisonTypes.SIDE_BY_SIDE;
+        $scope.cardType = localStorage.getItem(LocalStorageKeys.LAST_USED_CARD_TYPE) || FontCardTypes.WORD;
+        $scope.comparisonType = localStorage.getItem(LocalStorageKeys.LAST_USED_COMPARISON_TYPE) ||
+                                FontComparisonTypes.SIDE_BY_SIDE;
         $scope.fontParameters = fontParameters.current;
         $scope.FontComparisonTypes = FontComparisonTypes;
         $scope.comparisonMatrix = comparisonMatrix;
