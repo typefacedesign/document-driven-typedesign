@@ -62,12 +62,14 @@ angular.module('ddt').factory('FontTest', function($http, $q, LocalStorageKeys) 
         localStorage.setItem(LocalStorageKeys.TESTING_ANSWERED_QUESTIONS, JSON.stringify(answeredQuestions));
     };
 
-    FontTest.prototype.skipQuestion = function() {
-        this.currentQuestionIndex++;
+    FontTest.prototype.getPreviousQuestion = function() {
+        this.currentQuestionIndex--;
+        return this.questions[this.currentQuestionIndex];
     };
 
-    FontTest.prototype.previousQuestion = function() {
-        this.currentQuestionIndex--;
+    FontTest.getAnswer = function(testName, questionId) {
+        var answeredQuestions = JSON.parse(localStorage.getItem(LocalStorageKeys.TESTING_ANSWERED_QUESTIONS));
+        return answeredQuestions[testName][questionId];
     };
 
     FontTest.getStatistics = function() {
