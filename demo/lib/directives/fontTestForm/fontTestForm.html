@@ -3,9 +3,10 @@
     <p>{{ currentQuestion.text }}</p>
 
     <div class="ddt-font-test-form-choices">
-      <button class="btn btn-default btn-block ddt-answer-button"
+      <button class="btn btn-block ddt-answer-button"
               ng-repeat="choice in currentQuestion.choices"
-              ng-click="setAnswer(currentQuestion.id, $index)">
+              ng-click="setAnswer(currentQuestion.id, $index)"
+              ng-class="{'btn-success': isAnswer($index), 'btn-default': !isAnswer($index)}">
         <span class="ddt-choice-text">{{ choice }}</span>
         <span class="glyphicon glyphicon-chevron-right"></span>
       </button>

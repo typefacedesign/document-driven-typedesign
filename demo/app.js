@@ -52,13 +52,14 @@ app.config(function($routeProvider, $localForageProvider) {
     });
 });
 
-app.controller('DDTAppCtrl', function($localForage, fontFamilyCollection, FontFamily, comparisonMatrix) {
+app.controller('DDTAppCtrl', function($localForage, fontFamilyCollection, FontFamily, comparisonMatrix,
+                                      LocalStorageKeys) {
     var init = function() {
         _loadSerializedFontFamilies();
     };
 
     var _loadSerializedFontFamilies = function() {
-        var familiesToComparePref = JSON.parse(localStorage.getItem('ddt:familiesToCompare'));
+        var familiesToComparePref = JSON.parse(localStorage.getItem(LocalStorageKeys.FAMILIES_TO_COMPARE));
         $localForage.iterate(function(serializedFamily) {
             FontFamily.deserialize(serializedFamily)
                 .then(function(fontFamily) {
@@ -78,9 +79,10 @@ app.controller('DDTAppCtrl', function($localForage, fontFamilyCollection, FontFa
 'use strict';
 
 
-module.exports = function($scope, $localForage, FontCardTypes, fontParameters) {
+module.exports = function($scope, $localForage, FontCardTypes, fontParameters, LocalStorageKeys) {
     var init = function() {
-        $scope.cardType = localStorage.getItem('ddt:lastUsedCardType') || FontCardTypes.WORD;
+        $scope.cardType = localStorage.getItem(LocalStorageKeys.LAST_USED_CARD_TYPE) ||
+                          FontCardTypes.WORD;
         $scope.fontParameters = fontParameters.current;
     };
 
@@ -101,15 +103,16 @@ var _ = require('lodash');
 
 
 module.exports = function($scope, $location, fontFamilyCollection, fontParameters,
-                          FontCardTypes, FontComparisonTypes, comparisonMatrix) {
+                          FontCardTypes, FontComparisonTypes, comparisonMatrix, LocalStorageKeys) {
     var init = function() {
         if (comparisonMatrix.familyCount() < 2) {
             // TODO: display an alert before redirecting.
             $location.path('/choose');
         }
 
-        $scope.cardType = localStorage.getItem('ddt:lastUsedCardType') || FontCardTypes.WORD;
-        $scope.comparisonType = localStorage.getItem('ddt:lastUsedComparisonType') || FontComparisonTypes.SIDE_BY_SIDE;
+        $scope.cardType = localStorage.getItem(LocalStorageKeys.LAST_USED_CARD_TYPE) || FontCardTypes.WORD;
+        $scope.comparisonType = localStorage.getItem(LocalStorageKeys.LAST_USED_COMPARISON_TYPE) ||
+                                FontComparisonTypes.SIDE_BY_SIDE;
         $scope.fontParameters = fontParameters.current;
         $scope.FontComparisonTypes = FontComparisonTypes;
         $scope.comparisonMatrix = comparisonMatrix;
@@ -224,6 +227,14 @@ app.constant('EventTypes', {
     COMPARISON_TYPE_CHANGED: 'ddt:comparisonTypeChanged'
 });
 
+app.constant('LocalStorageKeys', {
+    FAMILIES_TO_COMPARE: 'ddt:familiesToCompare',
+    LAST_USED_CARD_TYPE: 'ddt:lastUsedCardType',
+    LAST_USED_COMPARISON_TYPE: 'ddt:lastUsedComparisonType',
+    LAST_USED_FONT_PARAMETERS: 'ddt:lastUsedFontParameters',
+    TESTING_ANSWERED_QUESTIONS: 'ddt:testingAnsweredQuestions'
+});
+
 },{"./lib/angular":10}],10:[function(require,module,exports){
 /* globals angular */
 'use strict';
@@ -288,14 +299,15 @@ angular.module('ddt').directive('ddtColorPicker', require('./colorPickerDirectiv
 'use strict';
 
 
-module.exports = function($scope, $rootScope, $timeout, FontComparisonTypes, EventTypes) {
+module.exports = function($scope, $rootScope, $timeout, FontComparisonTypes, EventTypes,
+                          LocalStorageKeys) {
     var init = function() {
         $scope.FontComparisonTypes = FontComparisonTypes;
     };
 
     $scope.switchComparisonType = function(type) {
         $scope.comparisonType = type;
-        localStorage.setItem('ddt:lastUsedComparisonType', $scope.comparisonType);
+        localStorage.setItem(LocalStorageKeys.LAST_USED_COMPARISON_TYPE, $scope.comparisonType);
         $timeout(function() {
             $rootScope.$broadcast(EventTypes.COMPARISON_TYPE_CHANGED);
         });
@@ -762,12 +774,12 @@ angular.module('ddt').directive('ddtFontCardTitlebar', require('./fontCardTitleb
 'use strict';
 
 
-module.exports = function($scope, FontCardTypes) {
+module.exports = function($scope, FontCardTypes, LocalStorageKeys) {
     $scope.FontCardTypes = FontCardTypes;
 
     $scope.switchCardType = function(type) {
         $scope.cardType = type;
-        localStorage.setItem('ddt:lastUsedCardType', $scope.cardType);
+        localStorage.setItem(LocalStorageKeys.LAST_USED_CARD_TYPE, $scope.cardType);
     };
 
     $scope.isType = function(type) {
@@ -1220,7 +1232,7 @@ angular.module('ddt').directive('ddtFontSelectorDropdown', require('./fontSelect
 'use strict';
 
 
-module.exports = function($scope) {
+module.exports = function($scope, FontTest) {
     var init = function() {
         // TODO: ugly. There ought to be a cleaner way of doing this.
         $scope.$watch('test', function(newval, oldval) {
@@ -1236,9 +1248,16 @@ module.exports = function($scope) {
     };
 
     $scope.previousQuestion = function() {
+        $scope.currentQuestion = $scope.test.getPreviousQuestion();
     };
 
     $scope.skipQuestion = function() {
+        $scope.currentQuestion = $scope.test.getNextQuestion();
+    };
+
+    $scope.isAnswer = function(index) {
+        var answerIndex = FontTest.getAnswer($scope.test.name, $scope.currentQuestion.id);
+        return index === answerIndex;
     };
 
     init();
@@ -1715,7 +1734,7 @@ var angular = require('../angular');
 var _ = require('lodash');
 
 
-angular.module('ddt').factory('comparisonMatrix', function(LETTERS, COLORS) {
+angular.module('ddt').factory('comparisonMatrix', function(LETTERS, COLORS, LocalStorageKeys) {
     var _fontFamilies = [];
     var _comparisonMatrix = [];
     var _familyLabels = [];
@@ -1754,13 +1773,13 @@ angular.module('ddt').factory('comparisonMatrix', function(LETTERS, COLORS) {
 
     var addFamily = function(family, noPersist) {
         if (!noPersist) {
-            var familiesToComparePref = JSON.parse(localStorage.getItem('ddt:familiesToCompare'));
+            var familiesToComparePref = JSON.parse(localStorage.getItem(LocalStorageKeys.FAMILIES_TO_COMPARE));
             if (angular.isUndefined(familiesToComparePref) || !familiesToComparePref) {
                 familiesToComparePref = [];
             }
 
             familiesToComparePref.push(family.name);
-            localStorage.setItem('ddt:familiesToCompare', JSON.stringify(familiesToComparePref));
+            localStorage.setItem(LocalStorageKeys.FAMILIES_TO_COMPARE, JSON.stringify(familiesToComparePref));
         }
 
         _fontFamilies.push(family);
@@ -1769,10 +1788,10 @@ angular.module('ddt').factory('comparisonMatrix', function(LETTERS, COLORS) {
     };
 
     var removeFamily = function(family) {
-        var familiesToComparePref = JSON.parse(localStorage.getItem('ddt:familiesToCompare'));
+        var familiesToComparePref = JSON.parse(localStorage.getItem(LocalStorageKeys.FAMILIES_TO_COMPARE));
         if (angular.isDefined(familiesToComparePref)) {
             _.pull(familiesToComparePref, family.name);
-            localStorage.setItem('ddt:familiesToCompare', JSON.stringify(familiesToComparePref));
+            localStorage.setItem(LocalStorageKeys.FAMILIES_TO_COMPARE, JSON.stringify(familiesToComparePref));
         }
         _.pull(_fontFamilies, family);
         _comparisonMatrix = _buildComparisonMatrix();
@@ -2556,10 +2575,11 @@ var angular = require('../angular');
 var _ = require('lodash');
 
 
-angular.module('ddt').factory('fontParameters', function($rootScope, DEFAULT_FONT_PARAMETERS) {
+angular.module('ddt').factory('fontParameters', function($rootScope, DEFAULT_FONT_PARAMETERS,
+                                                         LocalStorageKeys) {
     // This service keeps track of font parameters in the choose fonts view.
     // fontSize, letterSpacing, wordSpacing are in px. lineHeight is unitless.
-    var fontParameters = JSON.parse(localStorage.getItem('ddt:lastUsedFontParameters'));
+    var fontParameters = JSON.parse(localStorage.getItem(LocalStorageKeys.LAST_USED_FONT_PARAMETERS));
 
     if (fontParameters === null) {
         fontParameters = angular.copy(DEFAULT_FONT_PARAMETERS);
@@ -2574,7 +2594,7 @@ angular.module('ddt').factory('fontParameters', function($rootScope, DEFAULT_FON
     $rootScope.$watch(function() {
         return fontParameters;
     }, function() {
-        localStorage.setItem('ddt:lastUsedFontParameters', JSON.stringify(fontParameters));
+        localStorage.setItem(LocalStorageKeys.LAST_USED_FONT_PARAMETERS, JSON.stringify(fontParameters));
     }, true);
 
     return {
@@ -2591,7 +2611,7 @@ var angular = require('../angular.js');
 var _ = require('lodash');
 
 
-angular.module('ddt').factory('FontTest', function($http, $q) {
+angular.module('ddt').factory('FontTest', function($http, $q, LocalStorageKeys) {
     var FontTest = function(name, questions) {
         this.name = name;
         this.questions = questions;
@@ -2643,29 +2663,31 @@ angular.module('ddt').factory('FontTest', function($http, $q) {
     // Sets the answer to the current question and stores it in
     // localStorage.
     FontTest.prototype.setAnswer = function(questionId, index) {
-        var answeredQuestions = JSON.parse(localStorage.getItem('ddt:testingAnsweredQuestions'));
+        var answeredQuestions = JSON.parse(localStorage.getItem(LocalStorageKeys.TESTING_ANSWERED_QUESTIONS));
         this.answeredQuestions[questionId] = index;
         answeredQuestions[this.name] = this.answeredQuestions;
-        localStorage.setItem('ddt:testingAnsweredQuestions', JSON.stringify(answeredQuestions));
+        localStorage.setItem(LocalStorageKeys.TESTING_ANSWERED_QUESTIONS, JSON.stringify(answeredQuestions));
     };
 
-    FontTest.prototype.skipQuestion = function() {
-        this.currentQuestionIndex++;
-    };
-
-    FontTest.prototype.previousQuestion = function() {
+    FontTest.prototype.getPreviousQuestion = function() {
         this.currentQuestionIndex--;
+        return this.questions[this.currentQuestionIndex];
+    };
+
+    FontTest.getAnswer = function(testName, questionId) {
+        var answeredQuestions = JSON.parse(localStorage.getItem(LocalStorageKeys.TESTING_ANSWERED_QUESTIONS));
+        return answeredQuestions[testName][questionId];
     };
 
     FontTest.getStatistics = function() {
     };
 
     var _loadAnsweredQuestions = function(testName) {
-        var answeredQuestions = JSON.parse(localStorage.getItem('ddt:testingAnsweredQuestions'));
+        var answeredQuestions = JSON.parse(localStorage.getItem(LocalStorageKeys.TESTING_ANSWERED_QUESTIONS));
         if (answeredQuestions === null) {
             answeredQuestions = {};
             answeredQuestions[testName] = {};
-            localStorage.setItem('ddt:testingAnsweredQuestions', JSON.stringify(answeredQuestions));
+            localStorage.setItem(LocalStorageKeys.TESTING_ANSWERED_QUESTIONS, JSON.stringify(answeredQuestions));
         }
 
         return answeredQuestions[testName];
