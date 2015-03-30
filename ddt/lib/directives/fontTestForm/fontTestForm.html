@@ -1,8 +1,12 @@
 <div class="ddt-font-test-form">
-  <div class="ddt-font-test-form-question" ng-hide="currentQuestion == null">
+  <div class="ddt-titlebar font-test-form-titlebar">
+    <div>{{ test.name }}</div>
+    <div>{{ test.currentQuestionIndex + 1 }}/{{ test.questions.length }}</div>
+  </div>
+  <div class="ddt-font-test-form-question" >
     <p>{{ currentQuestion.text }}</p>
 
-    <div class="ddt-font-test-form-choices">
+    <div class="ddt-font-test-form-choices" ng-hide="currentQuestion == null">
       <button class="btn btn-block ddt-answer-button"
               ng-repeat="choice in currentQuestion.choices"
               ng-click="setAnswer(currentQuestion.id, $index)"
@@ -12,18 +16,21 @@
       </button>
     </div>
 
+    <div ng-show="currentQuestion == null">
+      <p>Looks like there are no more questions!</p>
+    </div>
+
     <div class="btn-group">
-      <button class="btn btn-default" ng-click="previousQuestion()">
+      <button class="btn btn-default" ng-click="previousQuestion()"
+              ng-disabled="test.currentQuestionIndex <= 0">
         <span class="glyphicon glyphicon-chevron-left"></span>
         <span>Back</span>
       </button>
-      <button class="btn btn-default" ng-click="skipQuestion()">
+      <button class="btn btn-default" ng-click="skipQuestion()"
+              ng-disabled="test.currentQuestionIndex + 1 >= test.questions.length">
         <span>Skip</span>
         <span class="glyphicon glyphicon-chevron-right"></span>
       </button>
     </div>
-  </div>
-  <div ng-show="currentQuestion == null">
-    <p>Looks like there are no more questions!</p>
   </div>
 </div>

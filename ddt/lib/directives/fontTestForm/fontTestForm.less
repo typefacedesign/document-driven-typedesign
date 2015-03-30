@@ -1,7 +1,6 @@
 .ddt-font-test-form {
-  border-radius: @border-radius-base;
+  border-radius: 0 0 @border-radius-base @border-radius-base;
   border: solid 1px @navbar-default-border;
-  padding: @navbar-padding-vertical @navbar-padding-horizontal;
   background-color: @navbar-default-bg;
 
   .btn-group {
@@ -12,6 +11,10 @@
       width: 50%;
     }
   }
+}
+
+.ddt-font-test-form-question {
+  padding: @navbar-padding-vertical @navbar-padding-horizontal;
 }
 
 .ddt-answer-button {
