@@ -5,8 +5,9 @@ var _ = require('lodash');
 
 
 angular.module('ddt').factory('FontTest', function($http, $q, LocalStorageKeys) {
-    var FontTest = function(name, questions) {
+    var FontTest = function(name, directory, questions) {
         this.name = name;
+        this.directory = directory;
         this.questions = questions;
 
         this.questions = _.sortBy(this.questions, function(question) {
@@ -17,13 +18,18 @@ angular.module('ddt').factory('FontTest', function($http, $q, LocalStorageKeys) 
         this.answeredQuestions = _loadAnsweredQuestions(this.name);
     };
 
-    FontTest.make = function(url) {
+    FontTest.make = function(directory) {
         var deferred = $q.defer();
+        var url = 'fontTests/' + directory;
 
         var testIndexUrl = url + '/index.json';
         $http.get(testIndexUrl)
             .then(function(response) {
-                deferred.resolve(new FontTest(response.data.name, response.data.questions));
+                deferred.resolve(new FontTest(
+                    response.data.name,
+                    directory,
+                    response.data.questions
+                ));
             }, deferred.reject);
 
         return deferred.promise;
@@ -67,12 +73,33 @@ angular.module('ddt').factory('FontTest', function($http, $q, LocalStorageKeys) 
         return this.questions[this.currentQuestionIndex];
     };
 
+    FontTest.prototype.getAnsweredQuestions = function() {
+        var answeredQuestions = JSON.parse(localStorage.getItem(LocalStorageKeys.TESTING_ANSWERED_QUESTIONS));
+        return answeredQuestions[this.name];
+    };
+
+    FontTest.prototype.getAnsweredQuestionsLength = function() {
+        return _.size(this.getAnsweredQuestions());
+    };
+
+    FontTest.prototype.getProgress = function() {
+        return Math.floor((this.getAnsweredQuestionsLength()/this.questions.length) * 100);
+    };
+
     FontTest.getAnswer = function(testName, questionId) {
         var answeredQuestions = JSON.parse(localStorage.getItem(LocalStorageKeys.TESTING_ANSWERED_QUESTIONS));
         return answeredQuestions[testName][questionId];
     };
 
-    FontTest.getStatistics = function() {
+    FontTest.getIndex = function() {
+        var deferred = $q.defer();
+
+        $http.get('fontTests/index.json')
+            .then(function(response) {
+                deferred.resolve(response.data);
+            }, deferred.reject);
+
+        return deferred.promise;
     };
 
     var _loadAnsweredQuestions = function(testName) {

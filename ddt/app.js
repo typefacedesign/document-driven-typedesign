@@ -39,6 +39,10 @@ app.config(function($routeProvider, $localForageProvider) {
             reloadOnSearch: false
         })
         .when('/test', {
+            controller: 'FontsTesterDashboardCtrl',
+            templateUrl: 'app/fontsTesterDashboard/fontsTesterDashboard.html'
+        })
+        .when('/test/:directory', {
             controller: 'FontsTesterCtrl',
             templateUrl: 'app/fontsTester/fontsTester.html'
         });

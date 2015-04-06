@@ -1,12 +1,14 @@
 'use strict';
 
 
-module.exports = function($scope, FontTest) {
+module.exports = function($scope, $routeParams, FontTest) {
     var init = function() {
-        FontTest.make('fontTests/default/')
-            .then(function(test) {
-                $scope.test = test;
-            });
+        if (angular.isDefined($routeParams.directory)) {
+            FontTest.make($routeParams.directory)
+                .then(function(test) {
+                    $scope.test = test;
+                });
+        }
     };
 
     init();
