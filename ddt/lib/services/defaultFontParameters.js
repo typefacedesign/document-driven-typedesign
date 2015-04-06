@@ -5,7 +5,7 @@ var _ = require('lodash');
 
 
 angular.module('ddt').factory('DEFAULT_FONT_PARAMETERS', function(FontCardTypes, FontCases,
-                                                                  DEFAULT_TEXT_COLOR,
+                                                                  TextAlignment, DEFAULT_TEXT_COLOR,
                                                                   DEFAULT_BACKGROUND_COLOR) {
     var fontParameters = {};
 
@@ -23,7 +23,8 @@ angular.module('ddt').factory('DEFAULT_FONT_PARAMETERS', function(FontCardTypes,
         letterSpacing: 0,
         color: DEFAULT_TEXT_COLOR,
         backgroundColor: DEFAULT_BACKGROUND_COLOR,
-        fontCase: FontCases.UNSPECIFIED
+        fontCase: FontCases.UNSPECIFIED,
+        textAlignment: TextAlignment.LEFT
     };
 
     fontParameters[FontCardTypes.SENTENCE] = {
@@ -33,7 +34,8 @@ angular.module('ddt').factory('DEFAULT_FONT_PARAMETERS', function(FontCardTypes,
         wordSpacing: 0,
         color: DEFAULT_TEXT_COLOR,
         backgroundColor: DEFAULT_BACKGROUND_COLOR,
-        fontCase: FontCases.UNSPECIFIED
+        fontCase: FontCases.UNSPECIFIED,
+        textAlignment: TextAlignment.LEFT
     };
 
     fontParameters[FontCardTypes.PARAGRAPH] = {
@@ -44,7 +46,8 @@ angular.module('ddt').factory('DEFAULT_FONT_PARAMETERS', function(FontCardTypes,
         wordSpacing: 0,
         color: DEFAULT_TEXT_COLOR,
         backgroundColor: DEFAULT_BACKGROUND_COLOR,
-        fontCase: FontCases.UNSPECIFIED
+        fontCase: FontCases.UNSPECIFIED,
+        textAlignment: TextAlignment.LEFT
     };
 
     fontParameters[FontCardTypes.RICH_TEXT] = {
@@ -55,7 +58,8 @@ angular.module('ddt').factory('DEFAULT_FONT_PARAMETERS', function(FontCardTypes,
         wordSpacing: 0,
         color: DEFAULT_TEXT_COLOR,
         backgroundColor: DEFAULT_BACKGROUND_COLOR,
-        fontCase: FontCases.UNSPECIFIED
+        fontCase: FontCases.UNSPECIFIED,
+        textAlignment: TextAlignment.LEFT
     };
 
     fontParameters[FontCardTypes.LAYOUT] = {

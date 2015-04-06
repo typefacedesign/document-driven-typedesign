@@ -28,6 +28,10 @@ module.exports = function($scope, $rootScope, FontCases, EventTypes) {
             style += 'line-height: ' + $scope.fontParameters.lineHeight.toString() + ';';
         }
 
+        if (angular.isDefined($scope.fontParameters.textAlignment)) {
+            style += 'text-align: ' + $scope.fontParameters.textAlignment + ';';
+        }
+
         if (angular.isDefined($scope.fontParameters.letterSpacing)) {
             if ($scope.fontParameters.letterSpacing !== 'normal') {
                 style += 'letter-spacing: ' + $scope.fontParameters.letterSpacing.toString() + 'px;';

@@ -2,10 +2,11 @@
 'use strict';
 
 
-module.exports = function($scope, $timeout, FontCases, testStrings, fontParameters) {
+module.exports = function($scope, $timeout, FontCases, TextAlignment, testStrings, fontParameters) {
     var init = function() {
         $scope.menuVisible = false;
         $scope.FontCases = FontCases;
+        $scope.TextAlignment = TextAlignment;
         $scope.testStrings = testStrings;
     };
 
@@ -22,6 +23,14 @@ module.exports = function($scope, $timeout, FontCases, testStrings, fontParamete
 
     $scope.switchCase = function(_case) {
         $scope.parameterSet.fontCase = _case;
+    };
+
+    $scope.isAlignment = function(alignment) {
+        return $scope.parameterSet.textAlignment === alignment;
+    };
+
+    $scope.switchAlignment = function(alignment) {
+        $scope.parameterSet.textAlignment = alignment;
     };
 
     $scope.reset = function() {

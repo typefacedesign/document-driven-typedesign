@@ -36,6 +36,11 @@ app.constant('FontCases', {
     TITLECASE: 'capitalize'
 });
 
+app.constant('TextAlignment',  {
+    LEFT: 'left',
+    CENTER: 'center',
+    RIGHT: 'right'
+});
 
 app.constant('DEFAULT_TEXT_COLOR', '#333');
 app.constant('DEFAULT_BACKGROUND_COLOR', '#ffffff');
