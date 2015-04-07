@@ -12,6 +12,9 @@ module.exports = function($scope, testStrings, FontCardTypes, LETTERS) {
         $scope.$watch('opacity', function() {
             $scope.inverseOpacity = 1 - $scope.opacity;
         });
+
+        $scope.fontRenderer1Id = 'reviewCardOpacityFontRenderer1_' + $scope.font1.name.replace(/\s/g, '_');
+        $scope.fontRenderer2Id = 'reviewCardOpacityFontRenderer2_' + $scope.font1.name.replace(/\s/g, '_');
     };
 
     init();
