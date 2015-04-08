@@ -17,6 +17,7 @@ app.constant('FontCardTypes', {
 app.constant('FontComparisonTypes', {
     SIDE_BY_SIDE: 'side_by_side',
     OPACITY: 'opacity',
+    ANIMATED_TOGGLE: 'animated_toggle',
     MASK: 'mask',
     DIFF: 'diff'
 });

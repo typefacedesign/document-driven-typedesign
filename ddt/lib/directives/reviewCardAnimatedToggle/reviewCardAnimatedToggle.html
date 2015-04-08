@@ -1,0 +1,61 @@
+<div class="ddt-review-card ddt-review-card-animated-toggle"
+     ng-hide="cardType == FontCardTypes.RICH_TEXT || cardType == FontCardTypes.LAYOUT">
+  <div class="ddt-titlebar">
+    <span>{{ font1.subFamilyName }} {{ font1.weight }}</span>
+  </div>
+
+  <div class="ddt-review-card-content">
+    <div class="ddt-review-card-animated-toggle-renderer-container"
+         ng-show="cardType == FontCardTypes.WORD ||
+                  cardType == FontCardTypes.SENTENCE">
+      <ddt-font-renderer
+          class="ddt-review-card-animated-toggle-font-renderer ddt-position-absolute"
+          font="font1"
+          font-parameters="fontParameters[cardType]"
+          text="testStrings[cardType]"
+          ng-class="{'ddt-visibility-hidden': toggle}"></ddt-font-renderer>
+      <ddt-font-renderer
+          class="ddt-review-card-animated-toggle-font-renderer"
+          font="font2"
+          font-parameters="fontParameters[cardType]"
+          text="testStrings[cardType]"
+          ng-class="{'ddt-visibility-hidden': !toggle}"></ddt-font-renderer>
+    </div>
+
+    <div class="ddt-review-card-animated-toggle-renderer-container"
+         ng-show="cardType == FontCardTypes.PARAGRAPH">
+      <ddt-font-renderer
+          class="ddt-review-card-animated-toggle-font-renderer ddt-position-absolute"
+          id="{{ fontRenderer1Id }}"
+          font="font1"
+          font-parameters="fontParameters[cardType]"
+          allow-html="true"
+          text="testStrings[cardType]"
+          follow-width="{{ fontRenderer2Id }}"
+          ng-class="{'ddt-visibility-hidden': toggle}"></ddt-font-renderer>
+      <ddt-font-renderer
+          class="ddt-review-card-animated-toggle-font-renderer"
+          id="{{ fontRenderer2Id }}"
+          font="font2"
+          font-parameters="fontParameters[cardType]"
+          allow-html="true"
+          text="testStrings[cardType]"
+          ng-class="{'ddt-visibility-hidden': !toggle}"></ddt-font-renderer>
+    </div>
+
+    <div class="ddt-review-card-animated-toggle-renderer-container"
+         ng-show="cardType == FontCardTypes.LETTER"
+         ng-repeat="letter in letters">
+      <ddt-font-renderer
+          class="ddt-review-card-animated-toggle-font-renderer ddt-position-absolute"
+          font="font1"
+          font-parameters="fontParameters[cardType]"
+          text="{text: letter}"></ddt-font-renderer>
+      <ddt-font-renderer
+          class="ddt-review-card-animated-toggle-font-renderer"
+          font="font2"
+          font-parameters="fontParameters[cardType]"
+          text="{text: letter}"></ddt-font-renderer>
+    </div>
+  </div>
+</div>
