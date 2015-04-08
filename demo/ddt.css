@@ -6534,14 +6534,8 @@ button.close {
 .ddt-circle-button:hover {
   background-color: #eeeeee;
 }
-.ddt-font-renderer {
-  display: inline-block;
-}
 .ddt-font-renderer-text {
   padding: 5px;
-}
-.ddt-font-renderer > div {
-  display: inline-block;
 }
 .ddt-text-overflow-ellipsis {
   overflow: hidden;
@@ -6719,66 +6713,6 @@ button.close {
   -webkit-justify-content: center;
   justify-content: center;
 }
-.ddt-review-card-opacity-selector {
-  width: 300px;
-  min-height: 300px;
-  background-color: #f8f8f8;
-  display: -ms-flexbox;
-  /* TWEENER - IE 10 */
-  display: -webkit-flex;
-  /* Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex;
-  /* spec */
-  -ms-flex-direction: column;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-  /* What's the prefix for IE10? */
-  -webkit-justify-content: center;
-  justify-content: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-}
-.ddt-review-card-opacity-selector-content {
-  display: -ms-flexbox;
-  /* TWEENER - IE 10 */
-  display: -webkit-flex;
-  /* Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex;
-  /* spec */
-  -ms-flex-direction: column;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-  /* What's the prefix for IE10? */
-  -webkit-justify-content: center;
-  justify-content: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-}
-.ddt-review-card-opacity-selector .dropdown {
-  margin-bottom: 20px;
-}
-.ddt-review-card-opacity-selector-dropdown-container {
-  display: -ms-flexbox;
-  /* TWEENER - IE 10 */
-  display: -webkit-flex;
-  /* Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex;
-  /* spec */
-  -ms-flex-direction: row;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-  -ms-flex-wrap: nowrap;
-  -webkit-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-  -ms-flex-align: baseline;
-  -webkit-align-items: baseline;
-  align-items: baseline;
-}
-.ddt-review-card-opacity-selector-dropdown-container .dropdown {
-  margin-right: 10px;
-}
 .ddt-dotted-paginator {
   text-align: center;
 }
@@ -6858,9 +6792,8 @@ button.close {
   background-color: #f8f8f8;
 }
 .ddt-font-test-form {
-  border-radius: 4px;
+  border-radius: 0 0 4px 4px;
   border: solid 1px #e7e7e7;
-  padding: 15px 15px;
   background-color: #f8f8f8;
 }
 .ddt-font-test-form .btn-group {
@@ -6869,6 +6802,9 @@ button.close {
 }
 .ddt-font-test-form .btn-group button {
   width: 50%;
+}
+.ddt-font-test-form-question {
+  padding: 15px 15px;
 }
 .ddt-answer-button {
   white-space: normal;
@@ -6881,6 +6817,10 @@ button.close {
 }
 .ddt-answer-button .ddt-choice-text {
   width: 100%;
+}
+.ddt-google-fonts-table {
+  max-height: 60vh;
+  overflow-y: scroll;
 }
 .ddt-file-picker-input {
   visibility: hidden;
@@ -6950,6 +6890,28 @@ button.close {
 }
 .ddt-review-card-side-by-side-letter {
   min-width: 360px;
+}
+.ddt-fonts-tester-dashboard-cards-container {
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex;
+  /* spec */
+}
+.ddt-fonts-tester-dashboard-card {
+  margin-top: 20px;
+  padding: 15px 15px;
+  width: 50%;
+  border-radius: 4px;
+  border: solid 1px #e7e7e7;
+  margin-left: 30px;
+}
+.ddt-fonts-tester-dashboard-card:first-child {
+  margin-left: 0;
+}
+.ddt-fonts-tester-dashboard-card .progress {
+  margin-top: 20px;
 }
 .ddt-font-tester {
   display: flex;

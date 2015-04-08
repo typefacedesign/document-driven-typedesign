@@ -14,16 +14,17 @@
           </div>
         </form>
 
-        <table class="table table-hover">
-          <thead>
+        <div class="ddt-google-fonts-table">
+          <table class="table table-hover">
+            <thead>
             <tr>
               <th>Name</th>
               <th>Version</th>
               <th></th>
             </tr>
-          </thead>
+            </thead>
 
-          <tbody>
+            <tbody>
             <tr ng-repeat="font in fonts | filter:filterText" ng-class="{success: isFontSelected(font)}">
               <td>{{ font.family }}</td>
               <td>{{ font.version }}</td>
@@ -40,8 +41,9 @@
                 </button>
               </td>
             </tr>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <div class="modal-footer">

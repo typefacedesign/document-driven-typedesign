@@ -1,0 +1,18 @@
+<div class="ddt-fonts-tester-dashboard">
+  <h2>Test Dashboard</h2>
+
+  <div class="ddt-fonts-tester-dashboard-cards-container">
+    <div class="ddt-fonts-tester-dashboard-card" ng-repeat="fontTest in fontTests">
+      <a ng-href="#/test/{{ fontTest.directory }}">{{ fontTest.name }}</a>
+      <a class="btn btn-xs btn-default ddt-float-right" ng-href="#/test/{{ fontTest.directory }}">
+        <span class="glyphicon glyphicon-play"></span>
+        <span>Start</span>
+      </a>
+      <div class="progress">
+        <div class="progress-bar" style="width: {{ fontTest.getProgress(); }}%;">
+          {{ fontTest.getAnsweredQuestionsLength() }}/{{ fontTest.questions.length }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
