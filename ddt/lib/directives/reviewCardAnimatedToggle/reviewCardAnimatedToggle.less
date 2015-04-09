@@ -1,0 +1,23 @@
+.ddt-review-card-animated-toggle-header {
+  .ddt-display-flex();
+  .ddt-flex-direction(row);
+  .ddt-flex-wrap(nowrap);
+  .ddt-justify-content(space-between);
+  min-width: @ddt-review-card-opacity-min-width;
+  padding: @navbar-padding-vertical @navbar-padding-horizontal;
+
+  .ddt-active {
+    border-bottom: solid 2px @brand-primary;
+  }
+
+  div:last-child {
+    margin-left: @line-height-computed;
+  }
+}
+
+.ddt-review-card-animated-toggle-renderer-container {
+  .ddt-display-flex();
+  .ddt-flex-direction(row);
+  .ddt-flex-wrap(nowrap);
+  .ddt-justify-content(center);
+}
