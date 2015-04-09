@@ -55,12 +55,14 @@
           class="ddt-review-card-animated-toggle-font-renderer ddt-position-absolute"
           font="font1"
           font-parameters="fontParameters[cardType]"
-          text="{text: letter}"></ddt-font-renderer>
+          text="{text: letter}"
+          ng-class="{'ddt-visibility-hidden': toggle}"></ddt-font-renderer>
       <ddt-font-renderer
           class="ddt-review-card-animated-toggle-font-renderer"
           font="font2"
           font-parameters="fontParameters[cardType]"
-          text="{text: letter}"></ddt-font-renderer>
+          text="{text: letter}"
+          ng-class="{'ddt-visibility-hidden': !toggle}"></ddt-font-renderer>
     </div>
   </div>
 </div>
