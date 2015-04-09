@@ -6713,6 +6713,48 @@ button.close {
   -webkit-justify-content: center;
   justify-content: center;
 }
+.ddt-review-card-animated-toggle-header {
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex;
+  /* spec */
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  /* What's the prefix for IE10? */
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  min-width: 300px;
+  padding: 15px 15px;
+}
+.ddt-review-card-animated-toggle-header .ddt-active {
+  border-bottom: solid 2px #337ab7;
+}
+.ddt-review-card-animated-toggle-header div:last-child {
+  margin-left: 20px;
+}
+.ddt-review-card-animated-toggle-renderer-container {
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex;
+  /* spec */
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  /* What's the prefix for IE10? */
+  -webkit-justify-content: center;
+  justify-content: center;
+}
 .ddt-dotted-paginator {
   text-align: center;
 }

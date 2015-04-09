@@ -4,6 +4,11 @@
     <span>{{ font1.subFamilyName }} {{ font1.weight }}</span>
   </div>
 
+  <div class="ddt-review-card-animated-toggle-header">
+    <div ng-class="{'ddt-active': toggle}">{{ font1.name }}</div>
+    <div ng-class="{'ddt-active': !toggle}">{{ font2.name }}</div>
+  </div>
+
   <div class="ddt-review-card-content">
     <div class="ddt-review-card-animated-toggle-renderer-container"
          ng-show="cardType == FontCardTypes.WORD ||
