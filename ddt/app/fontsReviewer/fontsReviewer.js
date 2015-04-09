@@ -3,7 +3,7 @@
 var _ = require('lodash');
 
 
-module.exports = function($scope, $location, fontFamilyCollection, fontParameters,
+module.exports = function($scope, $location, $timeout, fontFamilyCollection, fontParameters,
                           FontCardTypes, FontComparisonTypes, comparisonMatrix, LocalStorageKeys) {
     var init = function() {
         if (comparisonMatrix.familyCount() < 2) {
@@ -17,6 +17,14 @@ module.exports = function($scope, $location, fontFamilyCollection, fontParameter
         $scope.fontParameters = fontParameters.current;
         $scope.FontComparisonTypes = FontComparisonTypes;
         $scope.comparisonMatrix = comparisonMatrix;
+
+        var TOGGLE_FONT_INTERVAL = 1000;
+        $scope.toggle = true;
+        var toggleFont = function() {
+            $scope.toggle = !$scope.toggle;
+            $timeout(toggleFont, TOGGLE_FONT_INTERVAL);
+        };
+        $timeout(toggleFont, TOGGLE_FONT_INTERVAL);
     };
 
     $scope.isCurrentComparison = function(comparison) {
