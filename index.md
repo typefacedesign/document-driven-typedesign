@@ -15,6 +15,10 @@ We are developing a small web application for testing type design quality.
 
 ### Interactive Testing Pages
 
+<https://github.com/lordgiotto/webfont-test> (Apache) hosted at <http://webfont-test.com>
+
+<https://github.com/jeroenbreen/FontApp> (GPLv3) hosted at <http://www.fontapp.org>
+
 <http://www.impallari.com/testing> (MIT) uses the FontDragr JavaScript code to provide zero setup web font testing on desktops. It has several forks:
 
 <http://vernnobile.github.io/webfont-testing/> (MIT) focused on web fonts
