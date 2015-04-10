@@ -38,7 +38,8 @@
   <ddt-review-card-opacity
       ng-repeat="comparisonGroup in comparisonMatrix.comparisonMatrix()"
       ng-class="{
-        'ddt-review-card-opacity-paragraph': isCardType(FontCardTypes.PARAGRAPH)
+        'ddt-review-card-opacity-paragraph': isCardType(FontCardTypes.PARAGRAPH),
+        'ddt-width-100': isCardType(FontCardTypes.SENTENCE)
       }"
       font1="comparisonGroup[0]"
       font2="comparisonGroup[1]"
@@ -50,6 +51,7 @@
   <!-- Animated toggle comparison. -->
   <ddt-review-card-animated-toggle
       ng-repeat="comparisonGroup in comparisonMatrix.comparisonMatrix()"
+      ng-class="{'ddt-width-100': isCardType(FontCardTypes.SENTENCE)}"
       font1="comparisonGroup[0]"
       font2="comparisonGroup[1]"
       font-parameters="fontParameters"
