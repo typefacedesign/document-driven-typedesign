@@ -16,8 +16,16 @@
   }
 }
 
-.ddt-review-card-opacity-renderer-container {
+.ddt-review-card-opacity-word-renderer-container,
+.ddt-review-card-opacity-letter-renderer-container {
   .ddt-display-flex();
-  .ddt-flex-direction(row);
+  .ddt-flex-direction(column);
   .ddt-flex-wrap(nowrap);
+
+  .ddt-review-card-opacity-font-renderer {
+    .ddt-display-flex();
+    .ddt-flex-direction(row);
+    .ddt-flex-wrap(nowrap);
+    .ddt-justify-content(center);
+  }
 }
