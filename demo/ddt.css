@@ -124,6 +124,14 @@ body {
   padding: 6px 12px;
   z-index: 1;
 }
+.ddt-width-100 {
+  width: 100%;
+}
+.ddt-justify-content-center {
+  /* What's the prefix for IE10? */
+  -webkit-justify-content: center;
+  justify-content: center;
+}
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -6709,9 +6717,6 @@ button.close {
   -ms-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
   flex-wrap: nowrap;
-  /* What's the prefix for IE10? */
-  -webkit-justify-content: center;
-  justify-content: center;
 }
 .ddt-review-card-animated-toggle-header {
   display: -ms-flexbox;
@@ -6730,7 +6735,8 @@ button.close {
   -webkit-justify-content: space-between;
   justify-content: space-between;
   min-width: 300px;
-  padding: 15px 15px;
+  padding: 0 15px 0 15px;
+  margin-top: 20px;
 }
 .ddt-review-card-animated-toggle-header .ddt-active {
   border-bottom: solid 2px #337ab7;
@@ -6751,9 +6757,6 @@ button.close {
   -ms-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
   flex-wrap: nowrap;
-  /* What's the prefix for IE10? */
-  -webkit-justify-content: center;
-  justify-content: center;
 }
 .ddt-dotted-paginator {
   text-align: center;

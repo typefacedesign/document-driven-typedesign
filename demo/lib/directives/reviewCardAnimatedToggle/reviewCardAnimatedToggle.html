@@ -12,7 +12,8 @@
   <div class="ddt-review-card-content">
     <div class="ddt-review-card-animated-toggle-renderer-container"
          ng-show="cardType == FontCardTypes.WORD ||
-                  cardType == FontCardTypes.SENTENCE">
+                  cardType == FontCardTypes.SENTENCE"
+         ng-class="{'ddt-justify-content-center': cardType == FontCardTypes.WORD}">
       <ddt-font-renderer
           class="ddt-review-card-animated-toggle-font-renderer ddt-position-absolute"
           font="font1"
@@ -48,19 +49,21 @@
           ng-class="{'ddt-visibility-hidden': !toggle}"></ddt-font-renderer>
     </div>
 
-    <div class="ddt-review-card-animated-toggle-renderer-container"
+    <div class="ddt-review-card-animated-toggle-renderer-container ddt-justify-content-center"
          ng-show="cardType == FontCardTypes.LETTER"
          ng-repeat="letter in letters">
       <ddt-font-renderer
           class="ddt-review-card-animated-toggle-font-renderer ddt-position-absolute"
           font="font1"
           font-parameters="fontParameters[cardType]"
-          text="{text: letter}"></ddt-font-renderer>
+          text="{text: letter}"
+          ng-class="{'ddt-visibility-hidden': toggle}"></ddt-font-renderer>
       <ddt-font-renderer
           class="ddt-review-card-animated-toggle-font-renderer"
           font="font2"
           font-parameters="fontParameters[cardType]"
-          text="{text: letter}"></ddt-font-renderer>
+          text="{text: letter}"
+          ng-class="{'ddt-visibility-hidden': !toggle}"></ddt-font-renderer>
     </div>
   </div>
 </div>
