@@ -16,14 +16,14 @@
     <div class="ddt-review-card-opacity-word-renderer-container ddt-justify-content-center"
          ng-show="cardType == FontCardTypes.WORD">
       <ddt-font-renderer
-          class="ddt-position-absolute"
+          class="ddt-review-card-opacity-font-renderer"
           font="font1"
           font-parameters="fontParameters[FontCardTypes.WORD]"
           opacity="inverseOpacity"
           text="testStrings[FontCardTypes.WORD]"
           editable="true"></ddt-font-renderer>
       <ddt-font-renderer
-          class="ddt-position-absolute"
+          class="ddt-review-card-opacity-font-renderer"
           font="font2"
           font-parameters="fontParameters[FontCardTypes.WORD]"
           opacity="opacity"
@@ -35,14 +35,14 @@
     <div class="ddt-review-card-opacity-sentence-renderer-container"
          ng-show="cardType == FontCardTypes.SENTENCE">
       <ddt-font-renderer
-          class="ddt-position-absolute"
+          class="ddt-review-card-opacity-font-renderer"
           font="font1"
           font-parameters="fontParameters[cardType]"
           opacity="inverseOpacity"
           text="testStrings[cardType]"
           editable="true"></ddt-font-renderer>
       <ddt-font-renderer
-          class="ddt-position-absolute"
+          class="ddt-review-card-opacity-font-renderer"
           font="font2"
           font-parameters="fontParameters[cardType]"
           opacity="opacity"
@@ -54,7 +54,7 @@
     <div class="ddt-review-card-opacity-paragraph-renderer-container"
          ng-show="cardType == FontCardTypes.PARAGRAPH">
       <ddt-font-renderer
-          class="ddt-position-absolute"
+          class="ddt-review-card-opacity-font-renderer"
           font="font1"
           font-parameters="fontParameters[cardType]"
           opacity="inverseOpacity"
@@ -62,7 +62,7 @@
           text="testStrings[cardType]"
           editable="true"></ddt-font-renderer>
       <ddt-font-renderer
-          class="ddt-position-absolute"
+          class="ddt-review-card-opacity-font-renderer"
           font="font2"
           font-parameters="fontParameters[cardType]"
           opacity="opacity"
