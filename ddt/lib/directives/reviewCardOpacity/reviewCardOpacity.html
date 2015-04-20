@@ -12,57 +12,41 @@
 
     <input type="range" min="0" max="1" step="0.001" ng-model="opacity">
 
-    <!-- Word. -->
-    <div class="ddt-review-card-opacity-word-renderer-container ddt-justify-content-center"
-         ng-show="cardType == FontCardTypes.WORD">
+    <div class="ddt-review-card-opacity-renderer-container"
+         ng-show="cardType == FontCardTypes.WORD ||
+                  cardType == FontCardTypes.SENTENCE"
+         ng-class="{'ddt-justify-content-center': cardType == FontCardTypes.WORD}">
       <ddt-font-renderer
-          class="ddt-review-card-opacity-font-renderer"
+          class="ddt-review-card-opacity-font-renderer ddt-position-absolute"
           font="font1"
-          font-parameters="fontParameters[FontCardTypes.WORD]"
+          font-parameters="fontParameters[cardType]"
           opacity="inverseOpacity"
-          text="testStrings[FontCardTypes.WORD]"
+          text="testStrings[cardType]"
           editable="true"></ddt-font-renderer>
       <ddt-font-renderer
           class="ddt-review-card-opacity-font-renderer"
           font="font2"
-          font-parameters="fontParameters[FontCardTypes.WORD]"
+          font-parameters="fontParameters[cardType]"
           opacity="opacity"
-          text="testStrings[FontCardTypes.WORD]"
+          text="testStrings[cardType]"
           editable="true"></ddt-font-renderer>
       </div>
 
-    <!-- Sentence. -->
-    <div class="ddt-review-card-opacity-sentence-renderer-container"
-         ng-show="cardType == FontCardTypes.SENTENCE">
-      <ddt-font-renderer
-          class="ddt-review-card-opacity-font-renderer"
-          font="font1"
-          font-parameters="fontParameters[cardType]"
-          opacity="inverseOpacity"
-          text="testStrings[cardType]"
-          editable="true"></ddt-font-renderer>
-      <ddt-font-renderer
-          class="ddt-review-card-opacity-font-renderer"
-          font="font2"
-          font-parameters="fontParameters[cardType]"
-          opacity="opacity"
-          text="testStrings[cardType]"
-          editable="true"></ddt-font-renderer>
-    </div>
-
-    <!-- Paragraph. -->
-    <div class="ddt-review-card-opacity-paragraph-renderer-container"
+    <div class="ddt-review-card-opacity-renderer-container"
          ng-show="cardType == FontCardTypes.PARAGRAPH">
       <ddt-font-renderer
-          class="ddt-review-card-opacity-font-renderer"
+          class="ddt-review-card-opacity-font-renderer ddt-position-absolute"
+          id="{{ fontRenderer1Id }}"
           font="font1"
           font-parameters="fontParameters[cardType]"
           opacity="inverseOpacity"
           allow-html="true"
           text="testStrings[cardType]"
+          follow-width="{{ fontRenderer2Id }}"
           editable="true"></ddt-font-renderer>
       <ddt-font-renderer
           class="ddt-review-card-opacity-font-renderer"
+          id="{{ fontRenderer2Id }}"
           font="font2"
           font-parameters="fontParameters[cardType]"
           opacity="opacity"
@@ -71,22 +55,21 @@
           editable="true"></ddt-font-renderer>
     </div>
 
-    <!-- Letter. -->
-    <div class="ddt-review-card-opacity-letter-renderer-container ddt-justify-content-center"
-         ng-show="cardType == FontCardTypes.LETTER"
-         ng-repeat="letter in letters">
-      <ddt-font-renderer
-          class="ddt-review-card-opacity-font-renderer"
-          font="font1"
-          font-parameters="fontParameters[cardType]"
-          opacity="inverseOpacity"
-          text="{text: letter}"></ddt-font-renderer>
-      <ddt-font-renderer
-          class="ddt-review-card-opacity-font-renderer"
-          font="font2"
-          font-parameters="fontParameters[cardType]"
-          opacity="opacity"
-          text="{text: letter}"></ddt-font-renderer>
+      <div class="ddt-review-card-opacity-renderer-container ddt-justify-content-center"
+           ng-show="cardType == FontCardTypes.LETTER"
+           ng-repeat="letter in letters">
+        <ddt-font-renderer
+            class="ddt-review-card-opacity-font-renderer ddt-position-absolute"
+            font="font1"
+            font-parameters="fontParameters[cardType]"
+            opacity="inverseOpacity"
+            text="{text: letter}"></ddt-font-renderer>
+        <ddt-font-renderer
+            class="ddt-review-card-opacity-font-renderer"
+            font="font2"
+            font-parameters="fontParameters[cardType]"
+            opacity="opacity"
+            text="{text: letter}"></ddt-font-renderer>
+      </div>
     </div>
-  </div>
 </div>

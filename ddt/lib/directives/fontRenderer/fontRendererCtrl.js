@@ -52,6 +52,13 @@ module.exports = function($scope, $rootScope, FontCases, EventTypes) {
             style += 'opacity: ' + $scope.opacity + ';';
         }
 
+        // $scope.adjustWidth won't be defined when the controller is
+        // first instantiated because the linking function hasn't had a chance
+        // to run.
+        if (angular.isDefined($scope.followWidth) && angular.isDefined($scope.adjustWidth)) {
+            $scope.adjustWidth();
+        }
+
         return style;
     };
 
