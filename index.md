@@ -54,3 +54,6 @@ Testing pages are filled with various ready-made test texts, but making bespoke 
 [Adobe Type Blog: Type Quality Engineering](http://blog.typekit.com/2013/11/06/the-mysteries-of-type-quality-engineering-explained/), includes sample PDFs
 
 [conjuncts.pdf](https://github.com/metapolator/ddt/raw/gh-pages/ux/samples/conjuncts.pdf)), sample PDF that reviews Devanagari shaping
+
+> "You can tell how good a type designer is by looking at their test documents."
+– [Nadine Chahine, Type Director at Monotype UK](https://twitter.com/arabictype/status/633969366355324928)
