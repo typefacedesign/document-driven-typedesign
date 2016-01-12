@@ -1,59 +1,36 @@
 ---
 layout: default
-title: Rigorous font quality testing
+title: Rigorous Font Quality Testing
 ---
 
-We are developing a small web application for testing type design quality.
+This project is developing a small web application for measuring the quality of type designs.
+
+It is led the Department of Typography at the University of Reading, with financial support from Google Fonts.
+
+### Markazi Project
+
+During 2015 and 2016 a high-quality multi-lingual text typeface (for the Latin and Arabic scripts) is being designed. 
+This typeface project is a vehicle for authoring the following documents and media that capture aspects of its development:
+
+* ...
+
+### Web Application
+
+**[DEMO](/demo)**
+
+A web application to compare typefaces and review them in a systematic way is under development. 
+The initial prototype was developed in 2014, with UX Design by [Dave Crossland](https://github.com/davelab6) and [Chris Mahon](https://github.com/chrismahon), and Web Development by [Ankur Sethi](https://github.com/GeneralMaximus).
+
+UX Design documentation:
 
 * [User Journeys](https://docs.google.com/document/d/1YtGaKEW8oU42HJ9CnhUa2b4SWEQ0Meew01PAPakcJb0/edit#heading=h.fn5nr55nvb6u)
 * [Wireframe Sketches](/ux/sketches/)
 * [Wireframe Mocks (HTML)](/ux/mocks/012)
 * [Wireframe Mocks (PNG)](/ux/mocks/012/designs.zip)
-* [Work In Progress](/demo)
 
-## Related Projects
-
-### Interactive Testing Pages
-
-<https://github.com/lordgiotto/webfont-test> (Apache) hosted at <http://webfont-test.com>
-
-<https://github.com/jeroenbreen/FontApp> (GPLv3) hosted at <http://www.fontapp.org>
-
-<http://www.impallari.com/testing> (MIT) uses the FontDragr JavaScript code to provide zero setup web font testing on desktops. It has several forks:
-
-<http://vernnobile.github.io/webfont-testing/> (MIT) focused on web fonts
-
-<http://motaitalic.com> (unreleased) (not libre) focused on Devanagari fonts
-
-### Test Text Generators
-
-Testing pages are filled with various ready-made test texts, but making bespoke texts is a daily practice. 
-
-<http://tools.ninastoessinger.com> (MIT, Python)
-
-<https://github.com/mbutterick/wordlist> (MIT, PHP)
-
-<http://justanotherfoundry.com/generator> (GPLv2, Python)
-
-<http://libretext.org> (Affero, PHP)
-
-<http://www.adhesiontext.com/> + <http://www.adhesiontext.com/devanagari> (not libre)
-
-<http://www.gestaltungssache.at/buchstaben.php?gen=1> (not libre)
-
-### Font Comparison Tools
-
-<http://urtd.net/projects/fontinspector/>
-
-<http://devanaguide.huertatipografica.com/> pre-made collection of Devanagari fonts to compare
-
-<http://tdil-dc.in/utrrs/> pre-made collection of fonts to compare Devanagari shaping
-
-### Sample Test Documents
-
-[Adobe Type Blog: Type Quality Engineering](http://blog.typekit.com/2013/11/06/the-mysteries-of-type-quality-engineering-explained/), includes sample PDFs
-
-[conjuncts.pdf](https://github.com/metapolator/ddt/raw/gh-pages/ux/samples/conjuncts.pdf)), sample PDF that reviews Devanagari shaping
+* * * 
 
 > "You can tell how good a type designer is by looking at their test documents."
 – [Nadine Chahine, Type Director at Monotype UK](https://twitter.com/arabictype/status/633969366355324928)
+
+You may also be interested in [Related Projects](related-projects.md)
