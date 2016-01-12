@@ -1,3 +1,10 @@
-This site is hosted with Github Pages and is built with jeykll. For local development, run:
+This site is hosted with Github Pages and is built with jeykll. 
 
-    jekyll server --watch
+To install the dependencies on Mac OS X, run:
+
+    sudo gem install bundler;
+    bundle install;
+
+Then for local development, run:
+
+    jekyll server --watch;
