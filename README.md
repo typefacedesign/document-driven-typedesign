@@ -16,10 +16,12 @@ This typeface project is a vehicle for authoring the following documents and med
 
 ### Web Application
 
-**[DEMO](/demo)**
+**[Demo at testmyfont.com/demo](http://testmyfont.com/demo)** ([source](https://github.com/typefacedesign/document-driven-typedesign/tree/master))
 
 A web application to compare typefaces and review them in a systematic way is under development. 
 The initial prototype was developed in 2014, with UX Design by [Dave Crossland](https://github.com/davelab6) and [Chris Mahon](https://github.com/chrismahon), and Web Development by [Ankur Sethi](https://github.com/GeneralMaximus).
+
+
 
 UX Design documentation:
 
