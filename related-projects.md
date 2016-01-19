@@ -1,3 +1,9 @@
+
+---
+layout: default
+title: Related Projects
+---
+
 Interactive Testing Pages:
 
 * <https://github.com/lordgiotto/webfont-test> (Apache) hosted at <http://webfont-test.com>
