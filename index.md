@@ -35,4 +35,4 @@ UX Design documentation:
 > "You can tell how good a type designer is by looking at their test documents."
 – [Nadine Chahine, Type Director at Monotype UK](https://twitter.com/arabictype/status/633969366355324928)
 
-You may also be interested in [Related Projects](related-projects.md)
+You may also be interested in [Related Projects](related-projects)
