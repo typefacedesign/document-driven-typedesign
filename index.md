@@ -5,17 +5,6 @@ title: Rigorous Font Quality Testing
 
 This project is developing a small web application for measuring the quality of type designs.
 
-It is led the Department of Typography at the University of Reading, with financial support from Google Fonts.
-
-### Markazi Project
-
-During 2015 and 2016 a high-quality multi-lingual text typeface (for the Latin and Arabic scripts) is being designed. 
-This typeface project is a vehicle for authoring the following documents and media that capture aspects of its development:
-
-* ...
-
-### Web Application
-
 **[Demo at testmyfont.com/demo](http://testmyfont.com/demo)** ([source](https://github.com/typefacedesign/document-driven-typedesign/tree/master))
 
 A web application to compare typefaces and review them in a systematic way is under development. 
