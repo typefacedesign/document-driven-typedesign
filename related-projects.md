@@ -28,5 +28,5 @@ Font Comparison Tools:
 
 Sample Test Documents:
 
-* [Adobe Type Blog: Type Quality Engineering](http://blog.typekit.com/2013/11/06/the-mysteries-of-type-quality-engineering-explained/), includes sample PDFs
-* [conjuncts.pdf](https://github.com/metapolator/ddt/raw/gh-pages/ux/samples/conjuncts.pdf)), sample PDF that reviews Devanagari shaping
+* [Adobe Type Blog: Type Quality Engineering](http://blog.typekit.com/2013/11/06/the-mysteries-of-type-quality-engineering-explained/) includes sample PDFs
+* [conjuncts.pdf](https://github.com/metapolator/ddt/raw/gh-pages/ux/samples/conjuncts.pdf) sample PDF that reviews Devanagari shaping
